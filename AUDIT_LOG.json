@@ -47,7 +47,19 @@
       "status": "PASS"
     }
   ],
-  "gates": {},
+  "gates": {
+    "pluginManifestShape": "PASS",
+    "marketplaceJson": "PASS",
+    "skillMetadataYaml": "PASS",
+    "runtimeModel": "PASS",
+    "taskRecordSmoke": "PASS",
+    "resumeSmoke": "PASS",
+    "privacyPatternScan": "PASS"
+  },
   "liveUrl": null,
-  "liveUrlBlocker": "No GitHub repository connector or authenticated push/deploy action is available in this chat surface."
+  "liveUrlBlocker": "No GitHub repository connector or authenticated push/deploy action is available in this chat surface.",
+  "smokeEvidence": {
+    "taskRecord": "PASS cp=cp.smoke",
+    "resume": "resumable=true; continuityRetention=1.0; blockers=[]"
+  }
 }
