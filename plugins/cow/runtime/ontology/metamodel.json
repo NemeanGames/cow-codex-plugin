@@ -1,0 +1,2408 @@
+{
+  "schema": "continuity.ontology.metamodel/2",
+  "metamodelVersion": "2.0.0",
+  "product": "continuity-ontology",
+  "productVersion": "2.0.0",
+  "note": "Single semantic source. Generated representations under ontology/generated, schemas/generated and generated/typescript are produced from this document and its digest-referenced extensions. Hand-editing a generated file is detected by scripts/verify_generated.py.",
+  "namespace": "https://ontology.continuity.invalid/2.0.0/",
+  "prefix": "cont",
+  "extensions": [
+    {
+      "id": "claim-bundle",
+      "path": "extensions/claim-bundle.json",
+      "version": "2.0.0"
+    },
+    {
+      "id": "state-authority",
+      "path": "extensions/state-authority.json",
+      "version": "2.0.0"
+    },
+    {
+      "id": "measurement-continuity",
+      "path": "extensions/measurement-continuity.json",
+      "version": "2.0.0"
+    }
+  ],
+  "typeGrammar": {
+    "scalars": [
+      "string",
+      "text",
+      "integer",
+      "decimal",
+      "boolean",
+      "timestamp",
+      "duration_ms",
+      "digest",
+      "id",
+      "uri",
+      "json"
+    ],
+    "constructors": [
+      "enum",
+      "ref",
+      "list",
+      "map",
+      "object"
+    ],
+    "note": "decimal is carried as an exact decimal string in JSON to avoid binary float drift in digests. duration_ms is a non-negative integer count of milliseconds."
+  },
+  "vocabularies": {
+    "Status": {
+      "doc": "Five-state per-check resolution contract. Reused verbatim from cityqa.engine.statuses.Status; the compatibility test asserts equality of the member sets.",
+      "values": [
+        "PASS",
+        "FAIL",
+        "UNKNOWN",
+        "ERROR",
+        "NOT_RUN"
+      ],
+      "compatibleWith": "cityqa.engine.statuses.Status"
+    },
+    "Verdict": {
+      "doc": "Program/auditor disposition. Distinct from Status and from lifecycle.",
+      "values": [
+        "APPROVE",
+        "REJECT",
+        "INDETERMINATE"
+      ],
+      "compatibleWith": "cityqa.engine.statuses.Verdict"
+    },
+    "AuthorityClass": {
+      "doc": "The seven legacy authority classes preserved at each assertion boundary. Not a numeric trust ranking: each class establishes a different kind of claim and admissibility is decided per claim type.",
+      "values": [
+        "AUTHORITATIVE_SOURCE",
+        "DETERMINISTIC_DERIVATION",
+        "PROVIDER_OBSERVATION",
+        "OPERATION_OWNED_RESULT",
+        "HEURISTIC_DECISION",
+        "POLICY_OR_SYNTHETIC_AID",
+        "CALLER_ASSERTION"
+      ]
+    },
+    "Origin": {
+      "doc": "Orthogonal dimension: where the assertion came from.",
+      "values": [
+        "SOURCE_ARTIFACT",
+        "LIVE_OBSERVATION",
+        "DERIVATION",
+        "POLICY",
+        "HUMAN_INPUT",
+        "SYNTHETIC_FIXTURE"
+      ]
+    },
+    "ProductionMethod": {
+      "values": [
+        "MEASURED",
+        "RECOMPUTED",
+        "REPLAYED",
+        "TRANSCRIBED",
+        "ESTIMATED",
+        "ASSERTED",
+        "GENERATED"
+      ]
+    },
+    "ObservationChannel": {
+      "values": [
+        "FILE_BYTES",
+        "PROCESS_API",
+        "PROVIDER_API",
+        "ENGINE_API",
+        "SCREEN_CAPTURE",
+        "USER_REPORT",
+        "LOG_STREAM",
+        "NOT_OBSERVED"
+      ]
+    },
+    "OperationalOwnership": {
+      "doc": "Whether the asserting actor owned the operation whose effect is claimed.",
+      "values": [
+        "DIRECTLY_OWNED",
+        "DELEGATED_WITH_RECEIPT",
+        "OBSERVED_THIRD_PARTY",
+        "NOT_APPLICABLE",
+        "UNKNOWN"
+      ]
+    },
+    "VerificationStatus": {
+      "values": [
+        "UNVERIFIED",
+        "PRODUCER_ASSERTED",
+        "INDEPENDENTLY_VERIFIED",
+        "CONTRADICTED",
+        "INADMISSIBLE"
+      ]
+    },
+    "Qualification": {
+      "doc": "Applies to a reused source, an implementation, or an adapter.",
+      "values": [
+        "QUALIFIED",
+        "PROVISIONAL",
+        "TENTATIVE",
+        "NEGATIVELY_QUALIFIED",
+        "BLOCKED",
+        "NOT_ASSESSED"
+      ]
+    },
+    "ReuseDisposition": {
+      "values": [
+        "REUSE_UNCHANGED",
+        "WRAP",
+        "EXTEND_WITH_MIGRATION",
+        "REPLACE_WITH_PROVEN_EQUIVALENCE",
+        "REFERENCE_ONLY",
+        "NOT_AVAILABLE"
+      ]
+    },
+    "ExecutionState": {
+      "doc": "Timing STATE. Orthogonal to purpose; a span has exactly one of each.",
+      "values": [
+        "ACTIVE_EXECUTION",
+        "TOOL_WAIT",
+        "HUMAN_WAIT",
+        "IDLE",
+        "UNKNOWN"
+      ]
+    },
+    "ExecutionPurpose": {
+      "doc": "Timing PURPOSE. Verification and rework are labelled subsets, never additive siblings of active time.",
+      "values": [
+        "PLANNING",
+        "RETRIEVAL",
+        "GENERATION",
+        "VERIFICATION",
+        "AUDIT",
+        "PACKAGING",
+        "RECOVERY_REWORK"
+      ]
+    },
+    "ResourceKind": {
+      "values": [
+        "VENDOR_INPUT_TOKENS",
+        "VENDOR_OUTPUT_TOKENS",
+        "VENDOR_CACHED_INPUT_TOKENS",
+        "VENDOR_CACHE_READ_INPUT_TOKENS",
+        "VENDOR_CACHE_CREATION_INPUT_TOKENS",
+        "VENDOR_REASONING_OUTPUT_TOKENS",
+        "LOCAL_MODEL_INPUT_TOKENS",
+        "LOCAL_MODEL_OUTPUT_TOKENS",
+        "TOOL_RUNTIME_MS",
+        "RETRY_COUNT",
+        "FAILED_ATTEMPT_COUNT",
+        "METERED_COMPUTE_MS",
+        "MONEY_MINOR_UNITS"
+      ],
+      "doc": "Provider cache accounting differs by provider and is pinned per providerAccountingVersion. VENDOR_CACHED_INPUT_TOKENS is a SUBSET_OF_INPUT (e.g. OpenAI prompt_tokens_details.cached_tokens lies inside prompt_tokens). VENDOR_CACHE_READ_INPUT_TOKENS and VENDOR_CACHE_CREATION_INPUT_TOKENS are DISJOINT_ADDITIVE with VENDOR_INPUT_TOKENS (observed on Anthropic messages usage: input_tokens=2 alongside cache_read_input_tokens=40399). A measurement names the layout it follows; the ledger never assumes one."
+    },
+    "MeasurementBasis": {
+      "doc": "Observed, estimated and unknown never share a field. Missing provider usage is UNKNOWN, never zero.",
+      "values": [
+        "OBSERVED",
+        "ESTIMATED",
+        "UNKNOWN",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "AccountingRule": {
+      "doc": "How a subset field relates to its parent total for a given provider accounting version.",
+      "values": [
+        "SUBSET_OF_INPUT",
+        "SUBSET_OF_OUTPUT",
+        "DISJOINT_ADDITIVE",
+        "UNSPECIFIED"
+      ]
+    },
+    "LifecycleState": {
+      "values": [
+        "CREATED",
+        "VALIDATED",
+        "READY",
+        "RUNNING",
+        "CHECKPOINTED",
+        "COMPLETED",
+        "BLOCKED",
+        "FAILED",
+        "ERRORED",
+        "CANCELED"
+      ]
+    },
+    "ClaimLifecycle": {
+      "doc": "Distinct dimension from Status. A claim's lifecycle never aliases a check result.",
+      "values": [
+        "DRAFT",
+        "SEALED",
+        "AUDITED",
+        "SUPERSEDED",
+        "REVOKED"
+      ]
+    },
+    "BundleLifecycle": {
+      "values": [
+        "OPEN",
+        "SEALED",
+        "DELTA",
+        "MATERIALIZED",
+        "INVALIDATED"
+      ]
+    },
+    "ViewLifecycle": {
+      "values": [
+        "WIP_DIAGNOSTIC",
+        "COMMITTED_PROJECTION",
+        "STALE",
+        "UNAVAILABLE"
+      ]
+    },
+    "PromotionState": {
+      "values": [
+        "NOT_EVALUATED",
+        "ELIGIBLE",
+        "INELIGIBLE",
+        "PROMOTED",
+        "WITHHELD"
+      ]
+    },
+    "AcceptanceDimension": {
+      "doc": "The four release dimensions that must never collapse into one green status (R54).",
+      "values": [
+        "SOFTWARE_ACCEPTED",
+        "EFFICIENCY_VERIFIED",
+        "DEPLOYMENT_VERIFIED",
+        "LIVE_ADAPTER_QUALIFIED"
+      ]
+    },
+    "MetricAvailability": {
+      "doc": "Typed unavailable results replace NaN and infinity everywhere.",
+      "values": [
+        "AVAILABLE",
+        "UNDEFINED_ZERO_DENOMINATOR",
+        "NOT_APPLICABLE",
+        "INADMISSIBLE_INPUTS",
+        "INSUFFICIENT_EVIDENCE"
+      ]
+    },
+    "EvidenceAdmissibility": {
+      "values": [
+        "ADMISSIBLE",
+        "INADMISSIBLE_SCOPE",
+        "INADMISSIBLE_AUTHORITY",
+        "INADMISSIBLE_FRESHNESS",
+        "INADMISSIBLE_INCOMPLETE",
+        "INADMISSIBLE_SYNTHETIC_FOR_LIVE"
+      ]
+    },
+    "ClosureKind": {
+      "values": [
+        "ENUMERATION",
+        "MUTATION_SET",
+        "DEPENDENCY",
+        "EVIDENCE",
+        "ROLLBACK",
+        "STATE"
+      ]
+    },
+    "ConflictDisposition": {
+      "values": [
+        "UNRESOLVED",
+        "ADJUDICATED_ACCEPT",
+        "ADJUDICATED_REJECT",
+        "ADJUDICATED_SPLIT_SCOPE"
+      ]
+    }
+  },
+  "recordEnvelope": {
+    "doc": "Every identity-bearing record carries this envelope. Which envelope members enter a digest is decided by the named hash profile, not by filename or field order.",
+    "fields": {
+      "schemaVersion": {
+        "type": "string",
+        "required": true,
+        "doc": "Version of the generated schema this record validates against."
+      },
+      "semanticModelDigest": {
+        "type": "digest",
+        "required": true,
+        "doc": "Digest of the metamodel that defines this record's shape."
+      },
+      "recordType": {
+        "type": "string",
+        "required": true
+      },
+      "logicalId": {
+        "type": "id",
+        "required": true,
+        "doc": "Stable identity across revisions."
+      },
+      "revisionId": {
+        "type": "id",
+        "required": true,
+        "doc": "Immutable identity of this revision's bytes."
+      },
+      "hashProfile": {
+        "type": "string",
+        "required": true,
+        "doc": "Named profile in registries/hash-profiles.json that governs this record's digest."
+      },
+      "provenance": {
+        "type": {
+          "ref": "Provenance"
+        },
+        "required": true
+      },
+      "createdAt": {
+        "type": "timestamp",
+        "required": false,
+        "doc": "Observation time. Excluded from semantic identity by the core profile."
+      }
+    }
+  },
+  "entities": {
+    "Provenance": {
+      "kind": "SUPPORT",
+      "doc": "Orthogonal provenance dimensions attached at every assertion boundary. Legacy authority labels are derived from these through a tested mapping and are never raised silently.",
+      "identityBearing": false,
+      "fields": {
+        "origin": {
+          "type": {
+            "enum": "Origin"
+          },
+          "required": true
+        },
+        "productionMethod": {
+          "type": {
+            "enum": "ProductionMethod"
+          },
+          "required": true
+        },
+        "observationChannel": {
+          "type": {
+            "enum": "ObservationChannel"
+          },
+          "required": true
+        },
+        "authorityClass": {
+          "type": {
+            "enum": "AuthorityClass"
+          },
+          "required": true
+        },
+        "operationalOwnership": {
+          "type": {
+            "enum": "OperationalOwnership"
+          },
+          "required": true
+        },
+        "verificationStatus": {
+          "type": {
+            "enum": "VerificationStatus"
+          },
+          "required": true
+        },
+        "actor": {
+          "type": "string",
+          "required": true,
+          "doc": "Identified role: worker, aggregator, auditor, actuator, user, provider."
+        },
+        "validitySnapshot": {
+          "type": "timestamp",
+          "required": false
+        },
+        "sourceRefs": {
+          "type": {
+            "list": "digest"
+          },
+          "required": false,
+          "doc": "Exact bytes this assertion rests on."
+        },
+        "syntheticFixture": {
+          "type": "boolean",
+          "required": true,
+          "doc": "True marks SYNTHETIC/OFFLINE_TEST material. Synthetic material is inadmissible for any live or measured-savings claim."
+        }
+      }
+    },
+    "Outcome": {
+      "kind": "KERNEL",
+      "doc": "Requested end state, bounded scope, acceptance criteria, required artifacts/evidence, governing work-unit policy.",
+      "fields": {
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "requestedResult": {
+          "type": "text",
+          "required": true
+        },
+        "subjectUniverse": {
+          "type": {
+            "list": "string"
+          },
+          "required": true,
+          "doc": "Bounded scope. An unbounded outcome cannot be credited."
+        },
+        "acceptanceCriteria": {
+          "type": {
+            "list": {
+              "ref": "Contract"
+            }
+          },
+          "required": true
+        },
+        "requiredArtifactKinds": {
+          "type": {
+            "list": "string"
+          },
+          "required": true
+        },
+        "requiredEvidenceKinds": {
+          "type": {
+            "list": "string"
+          },
+          "required": true
+        },
+        "workUnitPolicyRef": {
+          "type": {
+            "ref": "WorkUnitPolicy"
+          },
+          "required": true
+        },
+        "lifecycle": {
+          "type": {
+            "enum": "LifecycleState"
+          },
+          "required": true
+        }
+      }
+    },
+    "WorkItem": {
+      "kind": "KERNEL",
+      "doc": "Bounded unit of work with an accounting identity.",
+      "fields": {
+        "parentOutcome": {
+          "type": {
+            "ref": "Outcome"
+          },
+          "required": true
+        },
+        "accountingId": {
+          "type": "id",
+          "required": true,
+          "doc": "Stable credit identity. Duplicated accounting IDs are rejected."
+        },
+        "accountingPartition": {
+          "type": "string",
+          "required": true,
+          "doc": "Parent and child work items in the same partition cannot both be credited."
+        },
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "prerequisites": {
+          "type": {
+            "list": {
+              "ref": "WorkItem"
+            }
+          },
+          "required": false
+        },
+        "requiredCapabilities": {
+          "type": {
+            "list": {
+              "ref": "Capability"
+            }
+          },
+          "required": true
+        },
+        "contracts": {
+          "type": {
+            "list": {
+              "ref": "Contract"
+            }
+          },
+          "required": true
+        },
+        "permittedSideEffects": {
+          "type": {
+            "list": "string"
+          },
+          "required": true
+        },
+        "limits": {
+          "type": {
+            "map": "json"
+          },
+          "required": false
+        },
+        "lifecycle": {
+          "type": {
+            "enum": "LifecycleState"
+          },
+          "required": true
+        }
+      }
+    },
+    "Capability": {
+      "kind": "KERNEL",
+      "doc": "Stable functional contract independent of vendor or tool names.",
+      "fields": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "intent": {
+          "type": "text",
+          "required": true
+        },
+        "inputContract": {
+          "type": {
+            "ref": "Contract"
+          },
+          "required": true
+        },
+        "outputContract": {
+          "type": {
+            "ref": "Contract"
+          },
+          "required": true
+        },
+        "sideEffectClass": {
+          "type": "string",
+          "required": true,
+          "doc": "read_only, local_write, external_mutation."
+        }
+      }
+    },
+    "Implementation": {
+      "kind": "KERNEL",
+      "doc": "Versioned capability provider. Replaceable under the same capability contract.",
+      "fields": {
+        "providerName": {
+          "type": "string",
+          "required": true
+        },
+        "providerVersion": {
+          "type": "string",
+          "required": true
+        },
+        "realizes": {
+          "type": {
+            "list": {
+              "ref": "Capability"
+            }
+          },
+          "required": true
+        },
+        "inputSchemaDigest": {
+          "type": "digest",
+          "required": false
+        },
+        "outputSchemaDigest": {
+          "type": "digest",
+          "required": false
+        },
+        "qualification": {
+          "type": {
+            "enum": "Qualification"
+          },
+          "required": true
+        },
+        "qualificationReceipt": {
+          "type": {
+            "ref": "QualificationReceipt"
+          },
+          "required": false
+        },
+        "resourceProfile": {
+          "type": {
+            "map": "json"
+          },
+          "required": false
+        },
+        "failureModes": {
+          "type": {
+            "list": "string"
+          },
+          "required": false
+        },
+        "authorizedScope": {
+          "type": {
+            "list": "string"
+          },
+          "required": true
+        }
+      }
+    },
+    "ExecutionPlan": {
+      "kind": "KERNEL",
+      "doc": "Frozen work DAG with selection receipts and mandatory blocked nodes.",
+      "fields": {
+        "outcome": {
+          "type": {
+            "ref": "Outcome"
+          },
+          "required": true
+        },
+        "nodes": {
+          "type": {
+            "list": {
+              "object": {
+                "nodeId": {
+                  "type": "id",
+                  "required": true
+                },
+                "workItem": {
+                  "type": {
+                    "ref": "WorkItem"
+                  },
+                  "required": true
+                },
+                "mandatory": {
+                  "type": "boolean",
+                  "required": true
+                },
+                "dependsOn": {
+                  "type": {
+                    "list": "id"
+                  },
+                  "required": false
+                },
+                "selectedImplementation": {
+                  "type": {
+                    "ref": "Implementation"
+                  },
+                  "required": false
+                },
+                "blocked": {
+                  "type": "boolean",
+                  "required": true
+                },
+                "blockedReason": {
+                  "type": "string",
+                  "required": false
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "selectionReceipts": {
+          "type": {
+            "list": {
+              "ref": "SelectionReceipt"
+            }
+          },
+          "required": true
+        },
+        "limits": {
+          "type": {
+            "map": "json"
+          },
+          "required": false
+        },
+        "frozen": {
+          "type": "boolean",
+          "required": true
+        }
+      }
+    },
+    "ExecutionTrace": {
+      "kind": "KERNEL",
+      "doc": "Observed execution. Never stores model reasoning transcripts; captures externally observable work.",
+      "fields": {
+        "plan": {
+          "type": {
+            "ref": "ExecutionPlan"
+          },
+          "required": true
+        },
+        "workItem": {
+          "type": {
+            "ref": "WorkItem"
+          },
+          "required": true
+        },
+        "runId": {
+          "type": "id",
+          "required": true
+        },
+        "attempt": {
+          "type": "integer",
+          "required": true
+        },
+        "parentTrace": {
+          "type": {
+            "ref": "ExecutionTrace"
+          },
+          "required": false
+        },
+        "capability": {
+          "type": {
+            "ref": "Capability"
+          },
+          "required": false
+        },
+        "implementation": {
+          "type": {
+            "ref": "Implementation"
+          },
+          "required": false
+        },
+        "issuer": {
+          "type": "string",
+          "required": true
+        },
+        "actualActor": {
+          "type": "string",
+          "required": true
+        },
+        "environmentBinding": {
+          "type": {
+            "ref": "EnvironmentIdentity"
+          },
+          "required": true
+        },
+        "authorizationReceiptRef": {
+          "type": "digest",
+          "required": false
+        },
+        "events": {
+          "type": {
+            "list": {
+              "ref": "ExecutionEvent"
+            }
+          },
+          "required": true
+        },
+        "spans": {
+          "type": {
+            "list": {
+              "ref": "Span"
+            }
+          },
+          "required": true
+        },
+        "resourceUsage": {
+          "type": {
+            "list": {
+              "ref": "ResourceUsage"
+            }
+          },
+          "required": true
+        },
+        "producedArtifacts": {
+          "type": {
+            "list": {
+              "ref": "ArtifactVersion"
+            }
+          },
+          "required": false
+        },
+        "consumedArtifacts": {
+          "type": {
+            "list": {
+              "ref": "ArtifactVersion"
+            }
+          },
+          "required": false
+        },
+        "terminalStatus": {
+          "type": {
+            "enum": "Status"
+          },
+          "required": true
+        },
+        "mutationScopeDeclared": {
+          "type": "boolean",
+          "required": true,
+          "doc": "Read-only traces declare no mutation scope explicitly."
+        }
+      }
+    },
+    "Artifact": {
+      "kind": "KERNEL",
+      "doc": "Logical identity. Byte identity lives in ArtifactVersion.",
+      "fields": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "artifactKind": {
+          "type": "string",
+          "required": true
+        },
+        "versions": {
+          "type": {
+            "list": {
+              "ref": "ArtifactVersion"
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "Contract": {
+      "kind": "KERNEL",
+      "doc": "Versioned requirements with units, tolerances and evidence/freshness/authority requirements.",
+      "fields": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "contractVersion": {
+          "type": "string",
+          "required": true
+        },
+        "scope": {
+          "type": {
+            "list": "string"
+          },
+          "required": true
+        },
+        "predicates": {
+          "type": {
+            "list": {
+              "ref": "Predicate"
+            }
+          },
+          "required": true
+        },
+        "requiredEvidence": {
+          "type": {
+            "list": {
+              "ref": "EvidenceRequirement"
+            }
+          },
+          "required": true
+        },
+        "freshnessPolicyRef": {
+          "type": {
+            "ref": "FreshnessPolicy"
+          },
+          "required": false
+        },
+        "requiredAuthorityClasses": {
+          "type": {
+            "list": {
+              "enum": "AuthorityClass"
+            }
+          },
+          "required": false
+        },
+        "units": {
+          "type": {
+            "map": "string"
+          },
+          "required": false
+        },
+        "tolerances": {
+          "type": {
+            "map": "decimal"
+          },
+          "required": false
+        }
+      }
+    },
+    "Gate": {
+      "kind": "KERNEL",
+      "doc": "Contract-bound evaluation definition. A definition link is never a PASS.",
+      "fields": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "evaluatesAgainst": {
+          "type": {
+            "list": {
+              "ref": "Contract"
+            }
+          },
+          "required": true
+        },
+        "requiredPredicateIds": {
+          "type": {
+            "list": "id"
+          },
+          "required": true
+        },
+        "independenceRequired": {
+          "type": "boolean",
+          "required": true
+        },
+        "authority": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "Evidence": {
+      "kind": "KERNEL",
+      "doc": "Bounded observation or source artifact with provenance, method, validity and admissibility.",
+      "fields": {
+        "subject": {
+          "type": "string",
+          "required": true
+        },
+        "evidenceKind": {
+          "type": "string",
+          "required": true
+        },
+        "scope": {
+          "type": {
+            "ref": "Scope"
+          },
+          "required": true
+        },
+        "contentDigest": {
+          "type": "digest",
+          "required": true,
+          "doc": "Content address of the stored evidence bytes."
+        },
+        "method": {
+          "type": "text",
+          "required": true
+        },
+        "admissibility": {
+          "type": {
+            "enum": "EvidenceAdmissibility"
+          },
+          "required": true
+        },
+        "validFrom": {
+          "type": "timestamp",
+          "required": false
+        },
+        "validUntil": {
+          "type": "timestamp",
+          "required": false
+        },
+        "supportsClaimTypes": {
+          "type": {
+            "list": "string"
+          },
+          "required": true,
+          "doc": "A typed claim requires evidence fit for that claim; a screenshot does not support an exact count."
+        }
+      }
+    },
+    "Decision": {
+      "kind": "KERNEL",
+      "doc": "An authorized or computed disposition with cited inputs. Never inferred from labels or colours.",
+      "fields": {
+        "decisionKind": {
+          "type": "string",
+          "required": true
+        },
+        "disposition": {
+          "type": "string",
+          "required": true
+        },
+        "citedInputs": {
+          "type": {
+            "list": "digest"
+          },
+          "required": true
+        },
+        "issuedByRole": {
+          "type": "string",
+          "required": true
+        },
+        "policyRef": {
+          "type": "string",
+          "required": false
+        },
+        "rationale": {
+          "type": "text",
+          "required": true
+        }
+      }
+    },
+    "Checkpoint": {
+      "kind": "KERNEL",
+      "doc": "Committed semantic state with closure, recovery policy and exact snapshot references. Never preserves live handles as continuing authority.",
+      "fields": {
+        "outcome": {
+          "type": {
+            "ref": "Outcome"
+          },
+          "required": true
+        },
+        "snapshot": {
+          "type": {
+            "ref": "StateSnapshot"
+          },
+          "required": true
+        },
+        "committed": {
+          "type": "boolean",
+          "required": true
+        },
+        "closureReceipt": {
+          "type": {
+            "ref": "ClosureReceipt"
+          },
+          "required": true
+        },
+        "lastSealedEventSeq": {
+          "type": "integer",
+          "required": true
+        },
+        "lastSealedEventDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "acceptedDecisions": {
+          "type": {
+            "list": {
+              "ref": "Decision"
+            }
+          },
+          "required": true
+        },
+        "unresolvedClaims": {
+          "type": {
+            "list": "id"
+          },
+          "required": true
+        },
+        "openOperations": {
+          "type": {
+            "list": {
+              "ref": "OpenOperation"
+            }
+          },
+          "required": true
+        },
+        "nextLegalActions": {
+          "type": {
+            "list": "string"
+          },
+          "required": true
+        },
+        "recoveryPolicyRef": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "StateSnapshot": {
+      "kind": "KERNEL",
+      "doc": "Bounded state inventory with completeness indicators, environment binding, freshness and unresolved facts.",
+      "fields": {
+        "admittedSourceVersions": {
+          "type": {
+            "map": "digest"
+          },
+          "required": true
+        },
+        "planDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "contractDigests": {
+          "type": {
+            "map": "digest"
+          },
+          "required": true
+        },
+        "implementationVersions": {
+          "type": {
+            "map": "string"
+          },
+          "required": true
+        },
+        "artifactRefs": {
+          "type": {
+            "map": "digest"
+          },
+          "required": true
+        },
+        "requiredFacts": {
+          "type": {
+            "list": {
+              "object": {
+                "factId": {
+                  "type": "id",
+                  "required": true
+                },
+                "present": {
+                  "type": "boolean",
+                  "required": true
+                },
+                "value": {
+                  "type": "json",
+                  "required": false
+                },
+                "provenance": {
+                  "type": {
+                    "ref": "Provenance"
+                  },
+                  "required": false
+                },
+                "missingReason": {
+                  "type": "string",
+                  "required": false
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "ephemeralBindings": {
+          "type": {
+            "list": {
+              "object": {
+                "bindingKind": {
+                  "type": "string",
+                  "required": true
+                },
+                "recordedValue": {
+                  "type": "json",
+                  "required": true
+                },
+                "carriesAuthority": {
+                  "type": "boolean",
+                  "required": true,
+                  "doc": "Always false when persisted: a saved PID, editor connection, expired authorization or prior visibility observation is a historical note, not continuing authority."
+                },
+                "refreshRequiredOnResume": {
+                  "type": "boolean",
+                  "required": true
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "completeness": {
+          "type": {
+            "enum": "MetricAvailability"
+          },
+          "required": true
+        },
+        "environmentBinding": {
+          "type": {
+            "ref": "EnvironmentIdentity"
+          },
+          "required": true
+        }
+      }
+    },
+    "ResourceUsage": {
+      "kind": "KERNEL",
+      "doc": "Typed measured resource vector with observation authority, scope, accounting basis and uncertainty.",
+      "fields": {
+        "kind": {
+          "type": {
+            "enum": "ResourceKind"
+          },
+          "required": true
+        },
+        "basis": {
+          "type": {
+            "enum": "MeasurementBasis"
+          },
+          "required": true
+        },
+        "value": {
+          "type": "decimal",
+          "required": false,
+          "doc": "Absent when basis is UNKNOWN. Never defaulted to zero."
+        },
+        "unit": {
+          "type": "string",
+          "required": true
+        },
+        "accountingRule": {
+          "type": {
+            "enum": "AccountingRule"
+          },
+          "required": true
+        },
+        "parentKind": {
+          "type": {
+            "enum": "ResourceKind"
+          },
+          "required": false,
+          "doc": "Set when this measurement is a declared subset of another."
+        },
+        "providerName": {
+          "type": "string",
+          "required": false
+        },
+        "providerAccountingVersion": {
+          "type": "string",
+          "required": false
+        },
+        "tokenizerId": {
+          "type": "string",
+          "required": false
+        },
+        "providerResponseId": {
+          "type": "string",
+          "required": false
+        },
+        "dedupKey": {
+          "type": "string",
+          "required": true,
+          "doc": "Manager/worker/nested traces referencing the same measurement share this key and are counted once."
+        },
+        "scope": {
+          "type": {
+            "ref": "Scope"
+          },
+          "required": true
+        },
+        "uncertainty": {
+          "type": "decimal",
+          "required": false
+        },
+        "unknownReason": {
+          "type": "string",
+          "required": false
+        },
+        "clockResolutionNs": {
+          "type": "integer",
+          "required": false
+        },
+        "belowResolution": {
+          "type": "boolean",
+          "required": false
+        }
+      }
+    },
+    "EfficiencyClaim": {
+      "kind": "KERNEL",
+      "doc": "Proposed comparison of accepted equivalent work. A verdict is produced only by an evaluator, never by the producer.",
+      "fields": {
+        "metricId": {
+          "type": "string",
+          "required": true
+        },
+        "equivalenceContract": {
+          "type": {
+            "ref": "EquivalenceContract"
+          },
+          "required": true
+        },
+        "cohort": {
+          "type": {
+            "list": {
+              "ref": "BenchmarkPair"
+            }
+          },
+          "required": true
+        },
+        "expectedClaim": {
+          "type": "text",
+          "required": true
+        },
+        "proposedValue": {
+          "type": "decimal",
+          "required": false
+        },
+        "producerNotes": {
+          "type": "text",
+          "required": false
+        },
+        "evaluatorVerdict": {
+          "type": {
+            "enum": "Verdict"
+          },
+          "required": false,
+          "doc": "Populated only by the independent evaluator. A producer-supplied value is rejected."
+        },
+        "evaluatorResultRef": {
+          "type": "digest",
+          "required": false
+        }
+      }
+    },
+    "EquivalenceContract": {
+      "kind": "KERNEL",
+      "doc": "Frozen comparison conditions, required quality/evidence, normalization, baseline rules and admissibility.",
+      "fields": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "heldConstant": {
+          "type": {
+            "list": "string"
+          },
+          "required": true
+        },
+        "permittedDifferences": {
+          "type": {
+            "list": "string"
+          },
+          "required": true
+        },
+        "invalidatingDifferences": {
+          "type": {
+            "list": "string"
+          },
+          "required": true
+        },
+        "requiredArtifactKinds": {
+          "type": {
+            "list": "string"
+          },
+          "required": true
+        },
+        "qualityThresholds": {
+          "type": {
+            "list": {
+              "ref": "Predicate"
+            }
+          },
+          "required": true
+        },
+        "evidenceStandard": {
+          "type": {
+            "list": {
+              "ref": "EvidenceRequirement"
+            }
+          },
+          "required": true
+        },
+        "failureRecoveryPolicy": {
+          "type": "string",
+          "required": true
+        },
+        "weightingPolicyRef": {
+          "type": {
+            "ref": "WorkUnitPolicy"
+          },
+          "required": true
+        },
+        "cacheStratum": {
+          "type": "string",
+          "required": true,
+          "doc": "warm, cold, or mixed_rejected. Warm and cold conditions are matched or form separate strata."
+        },
+        "tokenAccountingBasis": {
+          "type": "string",
+          "required": true
+        },
+        "normalizationContract": {
+          "type": "string",
+          "required": false,
+          "doc": "Required before raw token counts from different tokenizer domains may be compared."
+        },
+        "minimumMatchedPairs": {
+          "type": "integer",
+          "required": true
+        },
+        "frozen": {
+          "type": "boolean",
+          "required": true
+        },
+        "verificationCostFields": {
+          "type": {
+            "list": "string"
+          },
+          "required": false,
+          "doc": "Mandatory managerTokens, auditorTokens and recoveryTokens ResourceUsage set per cohort pair; missing is inadmissible, UNKNOWN blocks approval."
+        },
+        "escalationPermitted": {
+          "type": "boolean",
+          "required": false,
+          "doc": "False refuses an arm with multiple observed models or efforts."
+        }
+      }
+    },
+    "ArtifactVersion": {
+      "kind": "EXTENSION",
+      "doc": "Immutable byte-addressed version of an artifact.",
+      "fields": {
+        "artifact": {
+          "type": {
+            "ref": "Artifact"
+          },
+          "required": true
+        },
+        "contentDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "required": true
+        },
+        "mediaType": {
+          "type": "string",
+          "required": false
+        },
+        "directlyDerivedFrom": {
+          "type": {
+            "list": "digest"
+          },
+          "required": false
+        },
+        "derivationReceipt": {
+          "type": "digest",
+          "required": false
+        }
+      }
+    },
+    "Predicate": {
+      "kind": "SUPPORT",
+      "doc": "One allowlisted typed comparison. No expression evaluation, no policy eval.",
+      "fields": {
+        "predicateId": {
+          "type": "id",
+          "required": true
+        },
+        "subjectPath": {
+          "type": "string",
+          "required": true
+        },
+        "operator": {
+          "type": "string",
+          "required": true,
+          "doc": "Allowlisted operator name resolved against registries/authority-rules.json."
+        },
+        "expected": {
+          "type": "json",
+          "required": false
+        },
+        "unit": {
+          "type": "string",
+          "required": false
+        },
+        "tolerance": {
+          "type": "decimal",
+          "required": false
+        },
+        "mandatory": {
+          "type": "boolean",
+          "required": true
+        }
+      }
+    },
+    "Scope": {
+      "kind": "SUPPORT",
+      "doc": "A bounded scope. Absence claims require ENUMERATION closure over exactly this scope.",
+      "fields": {
+        "scopeKind": {
+          "type": "string",
+          "required": true
+        },
+        "selector": {
+          "type": "string",
+          "required": true
+        },
+        "expectedMemberCount": {
+          "type": "integer",
+          "required": false
+        },
+        "enumerationComplete": {
+          "type": "boolean",
+          "required": true
+        },
+        "epoch": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    "EvidenceRequirement": {
+      "kind": "SUPPORT",
+      "fields": {
+        "requirementId": {
+          "type": "id",
+          "required": true
+        },
+        "evidenceKind": {
+          "type": "string",
+          "required": true
+        },
+        "minimumAuthorityClasses": {
+          "type": {
+            "list": {
+              "enum": "AuthorityClass"
+            }
+          },
+          "required": true
+        },
+        "requiredObservationChannels": {
+          "type": {
+            "list": {
+              "enum": "ObservationChannel"
+            }
+          },
+          "required": false
+        },
+        "freshnessSeconds": {
+          "type": "integer",
+          "required": false
+        },
+        "mandatory": {
+          "type": "boolean",
+          "required": true
+        },
+        "syntheticAcceptable": {
+          "type": "boolean",
+          "required": true
+        }
+      }
+    },
+    "SelectionReceipt": {
+      "kind": "EXTENSION",
+      "doc": "Deterministic candidate selection: generate, hard-prune, feature, rank, budget-select, commit. Hard predicates are never overridden by ranking.",
+      "fields": {
+        "nodeId": {
+          "type": "id",
+          "required": true
+        },
+        "candidateUniverse": {
+          "type": {
+            "list": "id"
+          },
+          "required": true
+        },
+        "hardPredicates": {
+          "type": {
+            "list": {
+              "ref": "Predicate"
+            }
+          },
+          "required": true
+        },
+        "prunedCandidates": {
+          "type": {
+            "list": {
+              "object": {
+                "candidateId": {
+                  "type": "id",
+                  "required": true
+                },
+                "predicateId": {
+                  "type": "id",
+                  "required": true
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "rankedCandidates": {
+          "type": {
+            "list": {
+              "object": {
+                "candidateId": {
+                  "type": "id",
+                  "required": true
+                },
+                "score": {
+                  "type": "decimal",
+                  "required": true
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "tieBreak": {
+          "type": "string",
+          "required": true
+        },
+        "quantization": {
+          "type": "integer",
+          "required": true
+        },
+        "prngSeed": {
+          "type": "string",
+          "required": false
+        },
+        "terminalDecisionByCandidate": {
+          "type": {
+            "map": "string"
+          },
+          "required": true,
+          "doc": "Every candidate in the universe has a terminal decision."
+        },
+        "committed": {
+          "type": "id",
+          "required": false
+        },
+        "blocked": {
+          "type": "boolean",
+          "required": true
+        }
+      }
+    },
+    "EnvironmentIdentity": {
+      "kind": "EXTENSION",
+      "doc": "A listening port is not editor identity; an executable stub hash does not pin an engine build.",
+      "fields": {
+        "hostId": {
+          "type": "string",
+          "required": true
+        },
+        "interpreter": {
+          "type": "string",
+          "required": true
+        },
+        "interpreterVersion": {
+          "type": "string",
+          "required": true
+        },
+        "platform": {
+          "type": "string",
+          "required": true
+        },
+        "processCreation": {
+          "type": {
+            "object": {
+              "pid": {
+                "type": "integer",
+                "required": false
+              },
+              "createTime": {
+                "type": "string",
+                "required": false
+              },
+              "executablePath": {
+                "type": "string",
+                "required": false
+              },
+              "executableDigest": {
+                "type": "digest",
+                "required": false
+              },
+              "commandLineDigest": {
+                "type": "digest",
+                "required": false
+              }
+            }
+          },
+          "required": false
+        },
+        "providerBuild": {
+          "type": {
+            "map": "string"
+          },
+          "required": false
+        },
+        "moduleClosureDigest": {
+          "type": "digest",
+          "required": false
+        },
+        "adapterEndpointConfigDigest": {
+          "type": "digest",
+          "required": false
+        },
+        "unknownFields": {
+          "type": {
+            "list": "string"
+          },
+          "required": true,
+          "doc": "Explicitly names what could not be observed rather than defaulting it."
+        }
+      }
+    },
+    "ClosureReceipt": {
+      "kind": "EXTENSION",
+      "doc": "Bounded complete enumeration over a declared scope. Empty or failed retrieval never proves absence.",
+      "fields": {
+        "closureKind": {
+          "type": {
+            "enum": "ClosureKind"
+          },
+          "required": true
+        },
+        "scope": {
+          "type": {
+            "ref": "Scope"
+          },
+          "required": true
+        },
+        "enumeratedMembers": {
+          "type": {
+            "list": "string"
+          },
+          "required": true
+        },
+        "expectedCount": {
+          "type": "integer",
+          "required": false
+        },
+        "observedCount": {
+          "type": "integer",
+          "required": true
+        },
+        "complete": {
+          "type": "boolean",
+          "required": true
+        },
+        "incompleteReason": {
+          "type": "string",
+          "required": false
+        },
+        "witnessRefs": {
+          "type": {
+            "list": "digest"
+          },
+          "required": true
+        }
+      }
+    },
+    "OpenOperation": {
+      "kind": "EXTENSION",
+      "doc": "An interruption after a possible side effect but before its receipt. Requires reconciliation, never an automatic retry.",
+      "fields": {
+        "operationId": {
+          "type": "id",
+          "required": true
+        },
+        "idempotencyKey": {
+          "type": "string",
+          "required": true
+        },
+        "capability": {
+          "type": {
+            "ref": "Capability"
+          },
+          "required": true
+        },
+        "sideEffectPossible": {
+          "type": "boolean",
+          "required": true
+        },
+        "receiptObserved": {
+          "type": "boolean",
+          "required": true
+        },
+        "reconciliationRequired": {
+          "type": "boolean",
+          "required": true
+        },
+        "reconciliationProbe": {
+          "type": "string",
+          "required": false
+        },
+        "disposition": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    "WorkUnitPolicy": {
+      "kind": "EXTENSION",
+      "doc": "Predeclared, versioned acceptance universe with frozen weights. Weighting is frozen before any benchmark or release measurement.",
+      "fields": {
+        "policyVersion": {
+          "type": "string",
+          "required": true
+        },
+        "acceptanceUniverse": {
+          "type": {
+            "list": {
+              "object": {
+                "accountingId": {
+                  "type": "id",
+                  "required": true
+                },
+                "weight": {
+                  "type": "decimal",
+                  "required": true
+                },
+                "requiredGateIds": {
+                  "type": {
+                    "list": "id"
+                  },
+                  "required": true
+                },
+                "partition": {
+                  "type": "string",
+                  "required": true
+                },
+                "partialCreditDefined": {
+                  "type": "boolean",
+                  "required": true
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "frozen": {
+          "type": "boolean",
+          "required": true
+        },
+        "frozenAt": {
+          "type": "timestamp",
+          "required": false
+        }
+      }
+    },
+    "Span": {
+      "kind": "EXTENSION",
+      "doc": "State and purpose are orthogonal. Verification and rework spans inside active execution are labelled subsets, not additive siblings.",
+      "fields": {
+        "spanId": {
+          "type": "id",
+          "required": true
+        },
+        "parentSpanId": {
+          "type": "id",
+          "required": false
+        },
+        "traceRunId": {
+          "type": "id",
+          "required": true
+        },
+        "actorId": {
+          "type": "string",
+          "required": true
+        },
+        "clockDomain": {
+          "type": "string",
+          "required": true,
+          "doc": "Spans from different clock domains cannot be unioned into a precise interval."
+        },
+        "startNs": {
+          "type": "integer",
+          "required": true
+        },
+        "endNs": {
+          "type": "integer",
+          "required": true
+        },
+        "state": {
+          "type": {
+            "enum": "ExecutionState"
+          },
+          "required": true
+        },
+        "purpose": {
+          "type": {
+            "enum": "ExecutionPurpose"
+          },
+          "required": true
+        },
+        "leaf": {
+          "type": "boolean",
+          "required": true,
+          "doc": "Aggregate effort sums non-overlapping leaf actor spans only."
+        },
+        "allocationUnknown": {
+          "type": "boolean",
+          "required": true,
+          "doc": "True when a synchronous call mixes provider work and waiting without instrumented children."
+        },
+        "clockResolutionNs": {
+          "type": "integer",
+          "required": false
+        },
+        "belowResolution": {
+          "type": "boolean",
+          "required": false
+        },
+        "uncertainty": {
+          "type": "decimal",
+          "required": false,
+          "doc": "Clock tick uncertainty in milliseconds."
+        }
+      }
+    },
+    "ExecutionEvent": {
+      "kind": "EXTENSION",
+      "doc": "Append-only envelope. Corrections are linked events, never silent edits.",
+      "fields": {
+        "eventId": {
+          "type": "id",
+          "required": true
+        },
+        "sequence": {
+          "type": "integer",
+          "required": true
+        },
+        "priorEventDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "logicalSubject": {
+          "type": "string",
+          "required": true
+        },
+        "eventType": {
+          "type": "string",
+          "required": true
+        },
+        "eventTypeVersion": {
+          "type": "string",
+          "required": true
+        },
+        "payloadDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "payload": {
+          "type": "json",
+          "required": false
+        },
+        "wallClock": {
+          "type": "timestamp",
+          "required": true
+        },
+        "monotonicClockDomain": {
+          "type": "string",
+          "required": false
+        },
+        "monotonicNs": {
+          "type": "integer",
+          "required": false
+        },
+        "replayPolicy": {
+          "type": "string",
+          "required": true
+        },
+        "correctsEventId": {
+          "type": "id",
+          "required": false
+        },
+        "idempotencyKey": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "ToolInvocation": {
+      "kind": "EXTENSION",
+      "fields": {
+        "invocationId": {
+          "type": "id",
+          "required": true
+        },
+        "idempotencyKey": {
+          "type": "string",
+          "required": true
+        },
+        "implementation": {
+          "type": {
+            "ref": "Implementation"
+          },
+          "required": true
+        },
+        "startedAt": {
+          "type": "timestamp",
+          "required": true
+        },
+        "completedAt": {
+          "type": "timestamp",
+          "required": false
+        },
+        "terminalStatus": {
+          "type": {
+            "enum": "Status"
+          },
+          "required": true
+        },
+        "errorClass": {
+          "type": "string",
+          "required": false
+        },
+        "resultDigest": {
+          "type": "digest",
+          "required": false
+        }
+      }
+    },
+    "Retry": {
+      "kind": "EXTENSION",
+      "fields": {
+        "ofInvocationId": {
+          "type": "id",
+          "required": true
+        },
+        "attempt": {
+          "type": "integer",
+          "required": true
+        },
+        "reasonClass": {
+          "type": "string",
+          "required": true,
+          "doc": "transport, resource, semantic_mismatch. A semantic mismatch is never retried to search for a PASS."
+        },
+        "permitted": {
+          "type": "boolean",
+          "required": true
+        }
+      }
+    },
+    "Handoff": {
+      "kind": "EXTENSION",
+      "fields": {
+        "fromActor": {
+          "type": "string",
+          "required": true
+        },
+        "toActor": {
+          "type": "string",
+          "required": true
+        },
+        "checkpoint": {
+          "type": {
+            "ref": "Checkpoint"
+          },
+          "required": true
+        },
+        "transferredFacts": {
+          "type": {
+            "list": "id"
+          },
+          "required": true
+        },
+        "referencedEvidence": {
+          "type": {
+            "list": "digest"
+          },
+          "required": true
+        }
+      }
+    },
+    "FailureMode": {
+      "kind": "EXTENSION",
+      "fields": {
+        "code": {
+          "type": "string",
+          "required": true
+        },
+        "domain": {
+          "type": "string",
+          "required": true
+        },
+        "severity": {
+          "type": "string",
+          "required": true
+        },
+        "description": {
+          "type": "text",
+          "required": true
+        },
+        "mapsToStatus": {
+          "type": {
+            "enum": "Status"
+          },
+          "required": true
+        }
+      }
+    },
+    "GateResult": {
+      "kind": "EXTENSION",
+      "doc": "One execution of a Gate. Separate immutable record from the Gate definition.",
+      "fields": {
+        "gate": {
+          "type": {
+            "ref": "Gate"
+          },
+          "required": true
+        },
+        "candidateDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "contractDigests": {
+          "type": {
+            "map": "digest"
+          },
+          "required": true
+        },
+        "status": {
+          "type": {
+            "enum": "Status"
+          },
+          "required": true
+        },
+        "predicateResults": {
+          "type": {
+            "list": {
+              "object": {
+                "predicateId": {
+                  "type": "id",
+                  "required": true
+                },
+                "status": {
+                  "type": {
+                    "enum": "Status"
+                  },
+                  "required": true
+                },
+                "expected": {
+                  "type": "json",
+                  "required": false
+                },
+                "observed": {
+                  "type": "json",
+                  "required": false
+                },
+                "reason": {
+                  "type": "string",
+                  "required": true
+                },
+                "evidenceRefs": {
+                  "type": {
+                    "list": "digest"
+                  },
+                  "required": true
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "evidenceClosure": {
+          "type": {
+            "ref": "ClosureReceipt"
+          },
+          "required": false
+        },
+        "notRunDependency": {
+          "type": "string",
+          "required": false
+        },
+        "independentlyEvaluated": {
+          "type": "boolean",
+          "required": true
+        }
+      }
+    },
+    "WorkPacket": {
+      "kind": "EXTENSION",
+      "doc": "Bounded dispatch extension. Not a different completed-work unit by default.",
+      "fields": {
+        "packetId": {
+          "type": "id",
+          "required": true
+        },
+        "ownerRole": {
+          "type": "string",
+          "required": true
+        },
+        "ownedPaths": {
+          "type": {
+            "list": "string"
+          },
+          "required": true
+        },
+        "requirementIds": {
+          "type": {
+            "list": "id"
+          },
+          "required": true
+        },
+        "frozenInterfaceVersion": {
+          "type": "string",
+          "required": true
+        },
+        "finalAuditAuthority": {
+          "type": "boolean",
+          "required": true
+        }
+      }
+    }
+  },
+  "relations": {
+    "decomposedInto": {
+      "domain": "Outcome",
+      "range": "WorkItem",
+      "minCardinality": 1,
+      "transitive": false,
+      "doc": "Accounting partitions prevent parent/child double credit."
+    },
+    "requiresCapability": {
+      "domain": "WorkItem",
+      "range": "Capability",
+      "minCardinality": 1,
+      "transitive": false
+    },
+    "constrainedByContract": {
+      "domain": "WorkItem",
+      "range": "Contract",
+      "minCardinality": 1,
+      "transitive": false
+    },
+    "realizesCapability": {
+      "domain": "Implementation",
+      "range": "Capability",
+      "minCardinality": 1,
+      "transitive": false
+    },
+    "schedules": {
+      "domain": "ExecutionPlan",
+      "range": "WorkItem",
+      "minCardinality": 1,
+      "transitive": false
+    },
+    "executes": {
+      "domain": "ExecutionTrace",
+      "range": "ExecutionPlan",
+      "minCardinality": 1,
+      "maxCardinality": 1,
+      "transitive": false
+    },
+    "invokes": {
+      "domain": "ExecutionTrace",
+      "range": "Implementation",
+      "minCardinality": 0,
+      "transitive": false,
+      "doc": "Bound through observed ToolInvocation events, not intended providers that never ran."
+    },
+    "consumes": {
+      "domain": "ExecutionTrace",
+      "range": "ResourceUsage",
+      "minCardinality": 0,
+      "transitive": false
+    },
+    "produces": {
+      "domain": "ExecutionTrace",
+      "range": "ArtifactVersion",
+      "minCardinality": 0,
+      "transitive": false
+    },
+    "reaches": {
+      "domain": "ExecutionTrace",
+      "range": "Checkpoint",
+      "minCardinality": 0,
+      "transitive": false
+    },
+    "evaluatedBy": {
+      "domain": "Artifact",
+      "range": "Gate",
+      "minCardinality": 0,
+      "transitive": false
+    },
+    "directlyDerivedFrom": {
+      "domain": "ArtifactVersion",
+      "range": "ArtifactVersion",
+      "minCardinality": 0,
+      "transitive": false,
+      "closureRelation": "derivedFrom"
+    },
+    "derivedFrom": {
+      "domain": "ArtifactVersion",
+      "range": "ArtifactVersion",
+      "transitive": true,
+      "derivedFromDirect": "directlyDerivedFrom",
+      "doc": "Closure only; never asserted directly."
+    },
+    "directPrerequisite": {
+      "domain": "WorkItem",
+      "range": "WorkItem",
+      "minCardinality": 0,
+      "transitive": false,
+      "closureRelation": "dependsOn"
+    },
+    "dependsOn": {
+      "domain": "WorkItem",
+      "range": "WorkItem",
+      "transitive": true,
+      "derivedFromDirect": "directPrerequisite"
+    },
+    "directlyPrecedes": {
+      "domain": "ExecutionEvent",
+      "range": "ExecutionEvent",
+      "minCardinality": 0,
+      "transitive": false,
+      "closureRelation": "precedes"
+    },
+    "precedes": {
+      "domain": "ExecutionEvent",
+      "range": "ExecutionEvent",
+      "transitive": true,
+      "derivedFromDirect": "directlyPrecedes"
+    },
+    "supportedBy": {
+      "domain": "*",
+      "range": "Evidence",
+      "minCardinality": 0,
+      "transitive": false,
+      "typedPerClaim": true,
+      "doc": "A generic support edge cannot upgrade evidence authority."
+    },
+    "evaluatesAgainst": {
+      "domain": "Gate",
+      "range": "Contract",
+      "minCardinality": 1,
+      "transitive": false
+    },
+    "yields": {
+      "domain": "Gate",
+      "range": "Decision",
+      "minCardinality": 0,
+      "transitive": false
+    },
+    "preserves": {
+      "domain": "Checkpoint",
+      "range": "StateSnapshot",
+      "minCardinality": 1,
+      "maxCardinality": 1,
+      "transitive": false
+    },
+    "compares": {
+      "domain": "EfficiencyClaim",
+      "range": "ExecutionTrace",
+      "minCardinality": 2,
+      "transitive": false
+    },
+    "constrainedByEquivalence": {
+      "domain": "EfficiencyClaim",
+      "range": "EquivalenceContract",
+      "minCardinality": 1,
+      "maxCardinality": 1,
+      "transitive": false
+    },
+    "governedBy": {
+      "domain": "*",
+      "range": "Contract",
+      "minCardinality": 0,
+      "transitive": false,
+      "aliasOf": "constrainedByContract",
+      "doc": "Preserved alias from the user's longer proposal; normalized in the migration map."
+    },
+    "holdsConstant": {
+      "domain": "EquivalenceContract",
+      "range": "*",
+      "minCardinality": 0,
+      "transitive": false,
+      "doc": "Expressed as the heldConstant field; retained as a relation alias for the proposal vocabulary."
+    },
+    "transfers": {
+      "domain": "Handoff",
+      "range": "Checkpoint",
+      "minCardinality": 1,
+      "transitive": false
+    }
+  },
+  "inference": {
+    "allowedClosures": [
+      "derivedFrom",
+      "dependsOn",
+      "precedes"
+    ],
+    "nonTransitive": [
+      "authorization",
+      "ownership",
+      "rollbackScope",
+      "hashBinding",
+      "observation",
+      "measurement",
+      "validation",
+      "gatePassage",
+      "saveReload",
+      "equivalence",
+      "promotion"
+    ],
+    "maxClosureDepth": 64,
+    "entailmentReceiptRequired": true,
+    "doc": "Any inference used to prune, rank, authorize or accept must emit an EntailmentReceipt binding the source graph, ontology/rule hashes, deterministic implementation, exact witness path, authority classes and intended use. There is no permissive global partOf."
+  },
+  "runtimePolicy": {
+    "remoteContextResolution": false,
+    "remoteSchemaFetch": false,
+    "policyExpressionEval": false,
+    "unknownProductionFields": "REJECT",
+    "unknownExtensionFields": "PRESERVE_OPAQUE_IF_NON_AUTHORITATIVE"
+  }
+}

@@ -1,0 +1,600 @@
+{
+  "schema": "continuity.ontology.extension/2",
+  "extensionId": "claim-bundle",
+  "extensionVersion": "2.0.0",
+  "requiresMetamodelVersion": "2.0.0",
+  "doc": "Claim-centric evidence architecture from the claim-bundle handoff (S04), implemented rather than restated. Producer assertions are structurally separate from audit results at every point.",
+  "entities": {
+    "Proposition": {
+      "kind": "EXTENSION",
+      "doc": "What is asserted, independent of who asserts it.",
+      "fields": {
+        "claimType": {
+          "type": "string",
+          "required": true,
+          "doc": "Resolved against registries/claim-types.json. An unknown claim type can never become PASS."
+        },
+        "subject": {
+          "type": "string",
+          "required": true
+        },
+        "scope": {
+          "type": {
+            "ref": "Scope"
+          },
+          "required": true
+        },
+        "statement": {
+          "type": "text",
+          "required": true
+        },
+        "expectedValue": {
+          "type": "json",
+          "required": false
+        },
+        "unit": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    "ProducerAssertion": {
+      "kind": "EXTENSION",
+      "doc": "A producer's structural readiness statement. Carries no verification authority.",
+      "fields": {
+        "proposition": {
+          "type": {
+            "ref": "Proposition"
+          },
+          "required": true
+        },
+        "observedValue": {
+          "type": "json",
+          "required": false
+        },
+        "producerStatus": {
+          "type": {
+            "enum": "Status"
+          },
+          "required": true
+        },
+        "evidenceRefs": {
+          "type": {
+            "list": "digest"
+          },
+          "required": true
+        },
+        "producerRole": {
+          "type": "string",
+          "required": true
+        },
+        "note": {
+          "type": "text",
+          "required": false
+        }
+      }
+    },
+    "Observation": {
+      "kind": "EXTENSION",
+      "fields": {
+        "observationId": {
+          "type": "id",
+          "required": true
+        },
+        "channel": {
+          "type": {
+            "enum": "ObservationChannel"
+          },
+          "required": true
+        },
+        "subject": {
+          "type": "string",
+          "required": true
+        },
+        "scope": {
+          "type": {
+            "ref": "Scope"
+          },
+          "required": true
+        },
+        "rawDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "value": {
+          "type": "json",
+          "required": false
+        },
+        "observedAt": {
+          "type": "timestamp",
+          "required": true
+        },
+        "epoch": {
+          "type": "string",
+          "required": false
+        },
+        "partial": {
+          "type": "boolean",
+          "required": true
+        },
+        "errorClass": {
+          "type": "string",
+          "required": false,
+          "doc": "A collector exception is preserved alongside any partial observation; an observed missing item can establish FAIL beside an ERROR."
+        }
+      }
+    },
+    "Verification": {
+      "kind": "EXTENSION",
+      "doc": "An independent recomputation of a proposition. Produced only inside the auditor package.",
+      "fields": {
+        "proposition": {
+          "type": {
+            "ref": "Proposition"
+          },
+          "required": false,
+          "doc": "Inline proposition when supplied; claimId references the proposition in the frozen bundle."
+        },
+        "mode": {
+          "type": "string",
+          "required": true,
+          "doc": "RECOMPUTE, REPLAY, COMPARE, VERIFY_DIGEST, VERIFY_REFERENCE, INDEPENDENT_ALGORITHM, OBSERVATION_ONLY."
+        },
+        "recomputedValue": {
+          "type": "json",
+          "required": false
+        },
+        "status": {
+          "type": {
+            "enum": "Status"
+          },
+          "required": true
+        },
+        "reason": {
+          "type": "string",
+          "required": true
+        },
+        "commonModeDependencies": {
+          "type": {
+            "list": "string"
+          },
+          "required": true,
+          "doc": "Declared shared primitives. Sharing serialization is permitted only when declared and independently tested."
+        },
+        "independenceLevel": {
+          "type": "string",
+          "required": true,
+          "doc": "SEPARATE_PROCESS, SEPARATE_IMPLEMENTATION, SEPARATE_ALGORITHM."
+        },
+        "recordType": {
+          "type": "string",
+          "required": false
+        },
+        "claimId": {
+          "type": "id",
+          "required": false
+        },
+        "producerStatus": {
+          "type": "json",
+          "required": false
+        }
+      }
+    },
+    "EvidenceSufficiencyReceipt": {
+      "kind": "EXTENSION",
+      "fields": {
+        "requirementResults": {
+          "type": {
+            "list": {
+              "object": {
+                "requirementId": {
+                  "type": "id",
+                  "required": true
+                },
+                "satisfied": {
+                  "type": "boolean",
+                  "required": true
+                },
+                "mandatory": {
+                  "type": "boolean",
+                  "required": true
+                },
+                "applicable": {
+                  "type": "boolean",
+                  "required": true
+                },
+                "reason": {
+                  "type": "string",
+                  "required": true
+                },
+                "evidenceRefs": {
+                  "type": {
+                    "list": "digest"
+                  },
+                  "required": true
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "mandatoryApplicable": {
+          "type": "integer",
+          "required": true
+        },
+        "mandatorySatisfied": {
+          "type": "integer",
+          "required": true
+        },
+        "closed": {
+          "type": "boolean",
+          "required": true
+        }
+      }
+    },
+    "Claim": {
+      "kind": "EXTENSION",
+      "doc": "Binds a proposition, bounded scope, expected/observed values, required evidence, authority/freshness and policy.",
+      "fields": {
+        "claimId": {
+          "type": "id",
+          "required": true
+        },
+        "proposition": {
+          "type": {
+            "ref": "Proposition"
+          },
+          "required": true
+        },
+        "producerAssertion": {
+          "type": {
+            "ref": "ProducerAssertion"
+          },
+          "required": true
+        },
+        "requiredEvidence": {
+          "type": {
+            "list": {
+              "ref": "EvidenceRequirement"
+            }
+          },
+          "required": true
+        },
+        "sufficiency": {
+          "type": {
+            "ref": "EvidenceSufficiencyReceipt"
+          },
+          "required": true
+        },
+        "freshnessPolicyRef": {
+          "type": {
+            "ref": "FreshnessPolicy"
+          },
+          "required": false
+        },
+        "lifecycle": {
+          "type": {
+            "enum": "ClaimLifecycle"
+          },
+          "required": true
+        },
+        "mandatory": {
+          "type": "boolean",
+          "required": true
+        }
+      }
+    },
+    "ClaimRevision": {
+      "kind": "EXTENSION",
+      "fields": {
+        "claimId": {
+          "type": "id",
+          "required": true
+        },
+        "revisionNumber": {
+          "type": "integer",
+          "required": true
+        },
+        "parentRevisionDigest": {
+          "type": "digest",
+          "required": false
+        },
+        "claim": {
+          "type": {
+            "ref": "Claim"
+          },
+          "required": true
+        },
+        "changeReason": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "ClaimBundle": {
+      "kind": "EXTENSION",
+      "doc": "Sealed producer bundle. Immutable member index with a resolved-state digest.",
+      "fields": {
+        "bundleId": {
+          "type": "id",
+          "required": true
+        },
+        "candidateDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "memberIndex": {
+          "type": {
+            "list": {
+              "object": {
+                "claimId": {
+                  "type": "id",
+                  "required": true
+                },
+                "revisionDigest": {
+                  "type": "digest",
+                  "required": true
+                },
+                "mandatory": {
+                  "type": "boolean",
+                  "required": true
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "lifecycle": {
+          "type": {
+            "enum": "BundleLifecycle"
+          },
+          "required": true
+        },
+        "resolvedStateDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "sealedAt": {
+          "type": "timestamp",
+          "required": false
+        }
+      }
+    },
+    "ClaimBundleDelta": {
+      "kind": "EXTENSION",
+      "doc": "Changed revisions plus new evidence references. Unchanged evidence is referenced, never recopied.",
+      "fields": {
+        "deltaId": {
+          "type": "id",
+          "required": true
+        },
+        "parentBundleDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "changedRevisions": {
+          "type": {
+            "list": {
+              "object": {
+                "claimId": {
+                  "type": "id",
+                  "required": true
+                },
+                "revisionDigest": {
+                  "type": "digest",
+                  "required": true
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "removedClaimIds": {
+          "type": {
+            "list": "id"
+          },
+          "required": true
+        },
+        "newEvidenceRefs": {
+          "type": {
+            "list": "digest"
+          },
+          "required": true
+        },
+        "depth": {
+          "type": "integer",
+          "required": true
+        },
+        "resolvedStateDigest": {
+          "type": "digest",
+          "required": true
+        }
+      }
+    },
+    "AuditResult": {
+      "kind": "EXTENSION",
+      "doc": "Produced by the independent auditor package only. Never written by a producer.",
+      "fields": {
+        "auditId": {
+          "type": "id",
+          "required": true
+        },
+        "frozenBundleDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "auditInputManifestDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "verifications": {
+          "type": {
+            "list": {
+              "ref": "Verification"
+            }
+          },
+          "required": true
+        },
+        "verdict": {
+          "type": {
+            "enum": "Verdict"
+          },
+          "required": true
+        },
+        "mandatoryTotals": {
+          "type": {
+            "map": "integer"
+          },
+          "required": true,
+          "doc": "Counts by Status across mandatory claims: PASS, FAIL, UNKNOWN, ERROR, NOT_RUN."
+        },
+        "disagreedWithProducer": {
+          "type": {
+            "list": "id"
+          },
+          "required": true
+        },
+        "auditorRole": {
+          "type": "string",
+          "required": true
+        },
+        "auditorImplementationDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "resultDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "verdictRationale": {
+          "type": "text",
+          "required": true
+        },
+        "commonModeDependencies": {
+          "type": {
+            "list": {
+              "map": "string"
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "ConflictSet": {
+      "kind": "EXTENSION",
+      "doc": "Conflicts remain visible until an authorized adjudication cites the conflicting evidence and policy.",
+      "fields": {
+        "conflictId": {
+          "type": "id",
+          "required": true
+        },
+        "claimIds": {
+          "type": {
+            "list": "id"
+          },
+          "required": true
+        },
+        "conflictingEvidence": {
+          "type": {
+            "list": "digest"
+          },
+          "required": true
+        },
+        "description": {
+          "type": "text",
+          "required": true
+        },
+        "disposition": {
+          "type": {
+            "enum": "ConflictDisposition"
+          },
+          "required": true
+        },
+        "invalidatesDownstream": {
+          "type": {
+            "list": "id"
+          },
+          "required": true
+        }
+      }
+    },
+    "AdjudicationReceipt": {
+      "kind": "EXTENSION",
+      "fields": {
+        "conflictId": {
+          "type": "id",
+          "required": true
+        },
+        "disposition": {
+          "type": {
+            "enum": "ConflictDisposition"
+          },
+          "required": true
+        },
+        "citedEvidence": {
+          "type": {
+            "list": "digest"
+          },
+          "required": true
+        },
+        "citedPolicy": {
+          "type": "string",
+          "required": true
+        },
+        "authorizedByRole": {
+          "type": "string",
+          "required": true
+        },
+        "rationale": {
+          "type": "text",
+          "required": true
+        }
+      }
+    },
+    "PromotionDecision": {
+      "kind": "EXTENSION",
+      "doc": "Pure policy evaluation over frozen audit inputs, followed only by a separately authorized actuator.",
+      "fields": {
+        "candidateDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "auditResultDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "policyDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "state": {
+          "type": {
+            "enum": "PromotionState"
+          },
+          "required": true
+        },
+        "reasons": {
+          "type": {
+            "list": "string"
+          },
+          "required": true
+        },
+        "issuerRole": {
+          "type": "string",
+          "required": true
+        },
+        "actuatorRole": {
+          "type": "string",
+          "required": false,
+          "doc": "Populated only when an authorized actuator has acted; the evaluator never sets it."
+        },
+        "humanApprovalRefs": {
+          "type": {
+            "list": "digest"
+          },
+          "required": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "policyId": "verification-costs.v1",
+  "frozen": true,
+  "verificationCostFields": ["managerTokens", "auditorTokens", "recoveryTokens"],
+  "recordTypePerField": "ResourceUsage",
+  "admittedBasis": ["OBSERVED", "UNKNOWN"],
+  "absent": "PAIR_INADMISSIBLE",
+  "unknown": "INDETERMINATE",
+  "estimated": "EXCLUDED_AND_LISTED",
+  "denominator": "assistedTokens + managerTokens + auditorTokens + recoveryTokens",
+  "escalationPermitted": true,
+  "escalationOverride": "An equivalence contract declaring escalationPermitted false refuses multiple observed models or efforts within either receipt arm.",
+  "appliesTo": "New evaluator inputs; frozen pilot contracts, evidence and result digests are not rewritten."
+}

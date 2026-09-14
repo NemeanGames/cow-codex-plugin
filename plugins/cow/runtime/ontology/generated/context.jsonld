@@ -1,0 +1,2206 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "AcceptanceReceipt": {
+      "@id": "cont:AcceptanceReceipt",
+      "@type": "@id"
+    },
+    "AcceptanceReceipt.acceptedAt": {
+      "@id": "cont:AcceptanceReceipt.acceptedAt"
+    },
+    "AcceptanceReceipt.accountingId": {
+      "@id": "cont:AcceptanceReceipt.accountingId"
+    },
+    "AcceptanceReceipt.correctsReceiptId": {
+      "@id": "cont:AcceptanceReceipt.correctsReceiptId"
+    },
+    "AcceptanceReceipt.firstQualifyingAttempt": {
+      "@id": "cont:AcceptanceReceipt.firstQualifyingAttempt"
+    },
+    "AcceptanceReceipt.partition": {
+      "@id": "cont:AcceptanceReceipt.partition"
+    },
+    "AcceptanceReceipt.receiptId": {
+      "@id": "cont:AcceptanceReceipt.receiptId"
+    },
+    "AcceptanceReceipt.requiredGateResults": {
+      "@id": "cont:AcceptanceReceipt.requiredGateResults"
+    },
+    "AcceptanceReceipt.revocationReason": {
+      "@id": "cont:AcceptanceReceipt.revocationReason"
+    },
+    "AcceptanceReceipt.revoked": {
+      "@id": "cont:AcceptanceReceipt.revoked"
+    },
+    "AcceptanceReceipt.weight": {
+      "@id": "cont:AcceptanceReceipt.weight"
+    },
+    "AcceptanceReceipt.workUnitPolicyVersion": {
+      "@id": "cont:AcceptanceReceipt.workUnitPolicyVersion"
+    },
+    "AcceptedWorkLedgerEntry": {
+      "@id": "cont:AcceptedWorkLedgerEntry",
+      "@type": "@id"
+    },
+    "AcceptedWorkLedgerEntry.accountingId": {
+      "@id": "cont:AcceptedWorkLedgerEntry.accountingId"
+    },
+    "AcceptedWorkLedgerEntry.delta": {
+      "@id": "cont:AcceptedWorkLedgerEntry.delta"
+    },
+    "AcceptedWorkLedgerEntry.measurementWindow": {
+      "@id": "cont:AcceptedWorkLedgerEntry.measurementWindow"
+    },
+    "AcceptedWorkLedgerEntry.receiptId": {
+      "@id": "cont:AcceptedWorkLedgerEntry.receiptId"
+    },
+    "AcceptedWorkLedgerEntry.sequence": {
+      "@id": "cont:AcceptedWorkLedgerEntry.sequence"
+    },
+    "AcceptedWorkLedgerEntry.weight": {
+      "@id": "cont:AcceptedWorkLedgerEntry.weight"
+    },
+    "AdjudicationReceipt": {
+      "@id": "cont:AdjudicationReceipt",
+      "@type": "@id"
+    },
+    "AdjudicationReceipt.authorizedByRole": {
+      "@id": "cont:AdjudicationReceipt.authorizedByRole"
+    },
+    "AdjudicationReceipt.citedEvidence": {
+      "@id": "cont:AdjudicationReceipt.citedEvidence"
+    },
+    "AdjudicationReceipt.citedPolicy": {
+      "@id": "cont:AdjudicationReceipt.citedPolicy"
+    },
+    "AdjudicationReceipt.conflictId": {
+      "@id": "cont:AdjudicationReceipt.conflictId"
+    },
+    "AdjudicationReceipt.disposition": {
+      "@id": "cont:AdjudicationReceipt.disposition"
+    },
+    "AdjudicationReceipt.rationale": {
+      "@id": "cont:AdjudicationReceipt.rationale"
+    },
+    "Artifact": {
+      "@id": "cont:Artifact",
+      "@type": "@id"
+    },
+    "Artifact.artifactKind": {
+      "@id": "cont:Artifact.artifactKind"
+    },
+    "Artifact.name": {
+      "@id": "cont:Artifact.name"
+    },
+    "Artifact.versions": {
+      "@id": "cont:Artifact.versions"
+    },
+    "ArtifactVersion": {
+      "@id": "cont:ArtifactVersion",
+      "@type": "@id"
+    },
+    "ArtifactVersion.artifact": {
+      "@id": "cont:ArtifactVersion.artifact",
+      "@type": "@id"
+    },
+    "ArtifactVersion.contentDigest": {
+      "@id": "cont:ArtifactVersion.contentDigest"
+    },
+    "ArtifactVersion.derivationReceipt": {
+      "@id": "cont:ArtifactVersion.derivationReceipt"
+    },
+    "ArtifactVersion.directlyDerivedFrom": {
+      "@id": "cont:ArtifactVersion.directlyDerivedFrom"
+    },
+    "ArtifactVersion.mediaType": {
+      "@id": "cont:ArtifactVersion.mediaType"
+    },
+    "ArtifactVersion.sizeBytes": {
+      "@id": "cont:ArtifactVersion.sizeBytes"
+    },
+    "AuditResult": {
+      "@id": "cont:AuditResult",
+      "@type": "@id"
+    },
+    "AuditResult.auditId": {
+      "@id": "cont:AuditResult.auditId"
+    },
+    "AuditResult.auditInputManifestDigest": {
+      "@id": "cont:AuditResult.auditInputManifestDigest"
+    },
+    "AuditResult.auditorImplementationDigest": {
+      "@id": "cont:AuditResult.auditorImplementationDigest"
+    },
+    "AuditResult.auditorRole": {
+      "@id": "cont:AuditResult.auditorRole"
+    },
+    "AuditResult.commonModeDependencies": {
+      "@id": "cont:AuditResult.commonModeDependencies"
+    },
+    "AuditResult.disagreedWithProducer": {
+      "@id": "cont:AuditResult.disagreedWithProducer"
+    },
+    "AuditResult.frozenBundleDigest": {
+      "@id": "cont:AuditResult.frozenBundleDigest"
+    },
+    "AuditResult.mandatoryTotals": {
+      "@id": "cont:AuditResult.mandatoryTotals"
+    },
+    "AuditResult.resultDigest": {
+      "@id": "cont:AuditResult.resultDigest"
+    },
+    "AuditResult.verdict": {
+      "@id": "cont:AuditResult.verdict"
+    },
+    "AuditResult.verdictRationale": {
+      "@id": "cont:AuditResult.verdictRationale"
+    },
+    "AuditResult.verifications": {
+      "@id": "cont:AuditResult.verifications"
+    },
+    "AuthorizedOperation": {
+      "@id": "cont:AuthorizedOperation",
+      "@type": "@id"
+    },
+    "AuthorizedOperation.authorizedScope": {
+      "@id": "cont:AuthorizedOperation.authorizedScope",
+      "@type": "@id"
+    },
+    "AuthorizedOperation.capability": {
+      "@id": "cont:AuthorizedOperation.capability",
+      "@type": "@id"
+    },
+    "AuthorizedOperation.expiresAt": {
+      "@id": "cont:AuthorizedOperation.expiresAt"
+    },
+    "AuthorizedOperation.grantDigest": {
+      "@id": "cont:AuthorizedOperation.grantDigest"
+    },
+    "AuthorizedOperation.grantedByRole": {
+      "@id": "cont:AuthorizedOperation.grantedByRole"
+    },
+    "AuthorizedOperation.operationId": {
+      "@id": "cont:AuthorizedOperation.operationId"
+    },
+    "AuthorizedOperation.replayGuard": {
+      "@id": "cont:AuthorizedOperation.replayGuard"
+    },
+    "AuthorizedOperation.secretsExcluded": {
+      "@id": "cont:AuthorizedOperation.secretsExcluded"
+    },
+    "BenchmarkPair": {
+      "@id": "cont:BenchmarkPair",
+      "@type": "@id"
+    },
+    "BenchmarkPair.assistedAccepted": {
+      "@id": "cont:BenchmarkPair.assistedAccepted"
+    },
+    "BenchmarkPair.assistedTraceRef": {
+      "@id": "cont:BenchmarkPair.assistedTraceRef"
+    },
+    "BenchmarkPair.baselineAccepted": {
+      "@id": "cont:BenchmarkPair.baselineAccepted"
+    },
+    "BenchmarkPair.baselineTraceRef": {
+      "@id": "cont:BenchmarkPair.baselineTraceRef"
+    },
+    "BenchmarkPair.cacheStratum": {
+      "@id": "cont:BenchmarkPair.cacheStratum"
+    },
+    "BenchmarkPair.contaminationChecks": {
+      "@id": "cont:BenchmarkPair.contaminationChecks"
+    },
+    "BenchmarkPair.equivalenceContractDigest": {
+      "@id": "cont:BenchmarkPair.equivalenceContractDigest"
+    },
+    "BenchmarkPair.exclusionReason": {
+      "@id": "cont:BenchmarkPair.exclusionReason"
+    },
+    "BenchmarkPair.includedInCohort": {
+      "@id": "cont:BenchmarkPair.includedInCohort"
+    },
+    "BenchmarkPair.pairId": {
+      "@id": "cont:BenchmarkPair.pairId"
+    },
+    "BenchmarkPair.receipts": {
+      "@id": "cont:BenchmarkPair.receipts"
+    },
+    "BenchmarkPair.setupAmortized": {
+      "@id": "cont:BenchmarkPair.setupAmortized"
+    },
+    "BenchmarkPair.verificationCosts": {
+      "@id": "cont:BenchmarkPair.verificationCosts",
+      "@type": "@id"
+    },
+    "BenchmarkProtocol": {
+      "@id": "cont:BenchmarkProtocol",
+      "@type": "@id"
+    },
+    "BenchmarkProtocol.equivalenceContractDigest": {
+      "@id": "cont:BenchmarkProtocol.equivalenceContractDigest"
+    },
+    "BenchmarkProtocol.frozen": {
+      "@id": "cont:BenchmarkProtocol.frozen"
+    },
+    "BenchmarkProtocol.minimumPairs": {
+      "@id": "cont:BenchmarkProtocol.minimumPairs"
+    },
+    "BenchmarkProtocol.preRegisteredAt": {
+      "@id": "cont:BenchmarkProtocol.preRegisteredAt"
+    },
+    "BenchmarkProtocol.protocolId": {
+      "@id": "cont:BenchmarkProtocol.protocolId"
+    },
+    "BenchmarkProtocol.protocolKind": {
+      "@id": "cont:BenchmarkProtocol.protocolKind"
+    },
+    "BenchmarkProtocol.setupTreatment": {
+      "@id": "cont:BenchmarkProtocol.setupTreatment"
+    },
+    "BenchmarkProtocol.stoppingRule": {
+      "@id": "cont:BenchmarkProtocol.stoppingRule"
+    },
+    "BenchmarkProtocol.strata": {
+      "@id": "cont:BenchmarkProtocol.strata"
+    },
+    "BenchmarkProtocol.targetPairs": {
+      "@id": "cont:BenchmarkProtocol.targetPairs"
+    },
+    "BenchmarkProtocol.uncertaintyMethod": {
+      "@id": "cont:BenchmarkProtocol.uncertaintyMethod"
+    },
+    "CacheReuseReceipt": {
+      "@id": "cont:CacheReuseReceipt",
+      "@type": "@id"
+    },
+    "CacheReuseReceipt.boundInputs": {
+      "@id": "cont:CacheReuseReceipt.boundInputs"
+    },
+    "CacheReuseReceipt.cacheKeyDigest": {
+      "@id": "cont:CacheReuseReceipt.cacheKeyDigest"
+    },
+    "CacheReuseReceipt.claimType": {
+      "@id": "cont:CacheReuseReceipt.claimType"
+    },
+    "CacheReuseReceipt.freshnessPolicyId": {
+      "@id": "cont:CacheReuseReceipt.freshnessPolicyId"
+    },
+    "CacheReuseReceipt.receiptId": {
+      "@id": "cont:CacheReuseReceipt.receiptId"
+    },
+    "CacheReuseReceipt.refusedReason": {
+      "@id": "cont:CacheReuseReceipt.refusedReason"
+    },
+    "CacheReuseReceipt.reused": {
+      "@id": "cont:CacheReuseReceipt.reused"
+    },
+    "Capability": {
+      "@id": "cont:Capability",
+      "@type": "@id"
+    },
+    "Capability.inputContract": {
+      "@id": "cont:Capability.inputContract",
+      "@type": "@id"
+    },
+    "Capability.intent": {
+      "@id": "cont:Capability.intent"
+    },
+    "Capability.name": {
+      "@id": "cont:Capability.name"
+    },
+    "Capability.outputContract": {
+      "@id": "cont:Capability.outputContract",
+      "@type": "@id"
+    },
+    "Capability.sideEffectClass": {
+      "@id": "cont:Capability.sideEffectClass"
+    },
+    "Checkpoint": {
+      "@id": "cont:Checkpoint",
+      "@type": "@id"
+    },
+    "Checkpoint.acceptedDecisions": {
+      "@id": "cont:Checkpoint.acceptedDecisions"
+    },
+    "Checkpoint.closureReceipt": {
+      "@id": "cont:Checkpoint.closureReceipt",
+      "@type": "@id"
+    },
+    "Checkpoint.committed": {
+      "@id": "cont:Checkpoint.committed"
+    },
+    "Checkpoint.lastSealedEventDigest": {
+      "@id": "cont:Checkpoint.lastSealedEventDigest"
+    },
+    "Checkpoint.lastSealedEventSeq": {
+      "@id": "cont:Checkpoint.lastSealedEventSeq"
+    },
+    "Checkpoint.nextLegalActions": {
+      "@id": "cont:Checkpoint.nextLegalActions"
+    },
+    "Checkpoint.openOperations": {
+      "@id": "cont:Checkpoint.openOperations"
+    },
+    "Checkpoint.outcome": {
+      "@id": "cont:Checkpoint.outcome",
+      "@type": "@id"
+    },
+    "Checkpoint.recoveryPolicyRef": {
+      "@id": "cont:Checkpoint.recoveryPolicyRef"
+    },
+    "Checkpoint.snapshot": {
+      "@id": "cont:Checkpoint.snapshot",
+      "@type": "@id"
+    },
+    "Checkpoint.unresolvedClaims": {
+      "@id": "cont:Checkpoint.unresolvedClaims"
+    },
+    "ChunkAggregate": {
+      "@id": "cont:ChunkAggregate",
+      "@type": "@id"
+    },
+    "ChunkAggregate.aggregateId": {
+      "@id": "cont:ChunkAggregate.aggregateId"
+    },
+    "ChunkAggregate.chunkRefs": {
+      "@id": "cont:ChunkAggregate.chunkRefs"
+    },
+    "ChunkAggregate.consistencyGuarantee": {
+      "@id": "cont:ChunkAggregate.consistencyGuarantee"
+    },
+    "ChunkAggregate.consistencyWitnesses": {
+      "@id": "cont:ChunkAggregate.consistencyWitnesses"
+    },
+    "ChunkAggregate.rejectionReasons": {
+      "@id": "cont:ChunkAggregate.rejectionReasons"
+    },
+    "ChunkAggregate.requiredScope": {
+      "@id": "cont:ChunkAggregate.requiredScope",
+      "@type": "@id"
+    },
+    "ChunkAggregate.status": {
+      "@id": "cont:ChunkAggregate.status"
+    },
+    "ChunkEnvelope": {
+      "@id": "cont:ChunkEnvelope",
+      "@type": "@id"
+    },
+    "ChunkEnvelope.attempt": {
+      "@id": "cont:ChunkEnvelope.attempt"
+    },
+    "ChunkEnvelope.candidateDigest": {
+      "@id": "cont:ChunkEnvelope.candidateDigest"
+    },
+    "ChunkEnvelope.chunkId": {
+      "@id": "cont:ChunkEnvelope.chunkId"
+    },
+    "ChunkEnvelope.completed": {
+      "@id": "cont:ChunkEnvelope.completed"
+    },
+    "ChunkEnvelope.deadlineMs": {
+      "@id": "cont:ChunkEnvelope.deadlineMs"
+    },
+    "ChunkEnvelope.elapsedMs": {
+      "@id": "cont:ChunkEnvelope.elapsedMs"
+    },
+    "ChunkEnvelope.engineCount": {
+      "@id": "cont:ChunkEnvelope.engineCount"
+    },
+    "ChunkEnvelope.mapIdentity": {
+      "@id": "cont:ChunkEnvelope.mapIdentity"
+    },
+    "ChunkEnvelope.memberIds": {
+      "@id": "cont:ChunkEnvelope.memberIds"
+    },
+    "ChunkEnvelope.policyDigest": {
+      "@id": "cont:ChunkEnvelope.policyDigest"
+    },
+    "ChunkEnvelope.processCreationDigest": {
+      "@id": "cont:ChunkEnvelope.processCreationDigest"
+    },
+    "ChunkEnvelope.rangeEnd": {
+      "@id": "cont:ChunkEnvelope.rangeEnd"
+    },
+    "ChunkEnvelope.rangeStart": {
+      "@id": "cont:ChunkEnvelope.rangeStart"
+    },
+    "ChunkEnvelope.runId": {
+      "@id": "cont:ChunkEnvelope.runId"
+    },
+    "ChunkEnvelope.serializedRowCount": {
+      "@id": "cont:ChunkEnvelope.serializedRowCount"
+    },
+    "ChunkEnvelope.snapshotEpoch": {
+      "@id": "cont:ChunkEnvelope.snapshotEpoch"
+    },
+    "ChunkEnvelope.sourceDigest": {
+      "@id": "cont:ChunkEnvelope.sourceDigest"
+    },
+    "ChunkEnvelope.timedOut": {
+      "@id": "cont:ChunkEnvelope.timedOut"
+    },
+    "Claim": {
+      "@id": "cont:Claim",
+      "@type": "@id"
+    },
+    "Claim.claimId": {
+      "@id": "cont:Claim.claimId"
+    },
+    "Claim.freshnessPolicyRef": {
+      "@id": "cont:Claim.freshnessPolicyRef",
+      "@type": "@id"
+    },
+    "Claim.lifecycle": {
+      "@id": "cont:Claim.lifecycle"
+    },
+    "Claim.mandatory": {
+      "@id": "cont:Claim.mandatory"
+    },
+    "Claim.producerAssertion": {
+      "@id": "cont:Claim.producerAssertion",
+      "@type": "@id"
+    },
+    "Claim.proposition": {
+      "@id": "cont:Claim.proposition",
+      "@type": "@id"
+    },
+    "Claim.requiredEvidence": {
+      "@id": "cont:Claim.requiredEvidence"
+    },
+    "Claim.sufficiency": {
+      "@id": "cont:Claim.sufficiency",
+      "@type": "@id"
+    },
+    "ClaimBundle": {
+      "@id": "cont:ClaimBundle",
+      "@type": "@id"
+    },
+    "ClaimBundle.bundleId": {
+      "@id": "cont:ClaimBundle.bundleId"
+    },
+    "ClaimBundle.candidateDigest": {
+      "@id": "cont:ClaimBundle.candidateDigest"
+    },
+    "ClaimBundle.lifecycle": {
+      "@id": "cont:ClaimBundle.lifecycle"
+    },
+    "ClaimBundle.memberIndex": {
+      "@id": "cont:ClaimBundle.memberIndex"
+    },
+    "ClaimBundle.resolvedStateDigest": {
+      "@id": "cont:ClaimBundle.resolvedStateDigest"
+    },
+    "ClaimBundle.sealedAt": {
+      "@id": "cont:ClaimBundle.sealedAt"
+    },
+    "ClaimBundleDelta": {
+      "@id": "cont:ClaimBundleDelta",
+      "@type": "@id"
+    },
+    "ClaimBundleDelta.changedRevisions": {
+      "@id": "cont:ClaimBundleDelta.changedRevisions"
+    },
+    "ClaimBundleDelta.deltaId": {
+      "@id": "cont:ClaimBundleDelta.deltaId"
+    },
+    "ClaimBundleDelta.depth": {
+      "@id": "cont:ClaimBundleDelta.depth"
+    },
+    "ClaimBundleDelta.newEvidenceRefs": {
+      "@id": "cont:ClaimBundleDelta.newEvidenceRefs"
+    },
+    "ClaimBundleDelta.parentBundleDigest": {
+      "@id": "cont:ClaimBundleDelta.parentBundleDigest"
+    },
+    "ClaimBundleDelta.removedClaimIds": {
+      "@id": "cont:ClaimBundleDelta.removedClaimIds"
+    },
+    "ClaimBundleDelta.resolvedStateDigest": {
+      "@id": "cont:ClaimBundleDelta.resolvedStateDigest"
+    },
+    "ClaimRevision": {
+      "@id": "cont:ClaimRevision",
+      "@type": "@id"
+    },
+    "ClaimRevision.changeReason": {
+      "@id": "cont:ClaimRevision.changeReason"
+    },
+    "ClaimRevision.claim": {
+      "@id": "cont:ClaimRevision.claim",
+      "@type": "@id"
+    },
+    "ClaimRevision.claimId": {
+      "@id": "cont:ClaimRevision.claimId"
+    },
+    "ClaimRevision.parentRevisionDigest": {
+      "@id": "cont:ClaimRevision.parentRevisionDigest"
+    },
+    "ClaimRevision.revisionNumber": {
+      "@id": "cont:ClaimRevision.revisionNumber"
+    },
+    "ClosureReceipt": {
+      "@id": "cont:ClosureReceipt",
+      "@type": "@id"
+    },
+    "ClosureReceipt.closureKind": {
+      "@id": "cont:ClosureReceipt.closureKind"
+    },
+    "ClosureReceipt.complete": {
+      "@id": "cont:ClosureReceipt.complete"
+    },
+    "ClosureReceipt.enumeratedMembers": {
+      "@id": "cont:ClosureReceipt.enumeratedMembers"
+    },
+    "ClosureReceipt.expectedCount": {
+      "@id": "cont:ClosureReceipt.expectedCount"
+    },
+    "ClosureReceipt.incompleteReason": {
+      "@id": "cont:ClosureReceipt.incompleteReason"
+    },
+    "ClosureReceipt.observedCount": {
+      "@id": "cont:ClosureReceipt.observedCount"
+    },
+    "ClosureReceipt.scope": {
+      "@id": "cont:ClosureReceipt.scope",
+      "@type": "@id"
+    },
+    "ClosureReceipt.witnessRefs": {
+      "@id": "cont:ClosureReceipt.witnessRefs"
+    },
+    "ConflictSet": {
+      "@id": "cont:ConflictSet",
+      "@type": "@id"
+    },
+    "ConflictSet.claimIds": {
+      "@id": "cont:ConflictSet.claimIds"
+    },
+    "ConflictSet.conflictId": {
+      "@id": "cont:ConflictSet.conflictId"
+    },
+    "ConflictSet.conflictingEvidence": {
+      "@id": "cont:ConflictSet.conflictingEvidence"
+    },
+    "ConflictSet.description": {
+      "@id": "cont:ConflictSet.description"
+    },
+    "ConflictSet.disposition": {
+      "@id": "cont:ConflictSet.disposition"
+    },
+    "ConflictSet.invalidatesDownstream": {
+      "@id": "cont:ConflictSet.invalidatesDownstream"
+    },
+    "Contract": {
+      "@id": "cont:Contract",
+      "@type": "@id"
+    },
+    "Contract.contractVersion": {
+      "@id": "cont:Contract.contractVersion"
+    },
+    "Contract.freshnessPolicyRef": {
+      "@id": "cont:Contract.freshnessPolicyRef",
+      "@type": "@id"
+    },
+    "Contract.name": {
+      "@id": "cont:Contract.name"
+    },
+    "Contract.predicates": {
+      "@id": "cont:Contract.predicates"
+    },
+    "Contract.requiredAuthorityClasses": {
+      "@id": "cont:Contract.requiredAuthorityClasses"
+    },
+    "Contract.requiredEvidence": {
+      "@id": "cont:Contract.requiredEvidence"
+    },
+    "Contract.scope": {
+      "@id": "cont:Contract.scope"
+    },
+    "Contract.tolerances": {
+      "@id": "cont:Contract.tolerances"
+    },
+    "Contract.units": {
+      "@id": "cont:Contract.units"
+    },
+    "Decision": {
+      "@id": "cont:Decision",
+      "@type": "@id"
+    },
+    "Decision.citedInputs": {
+      "@id": "cont:Decision.citedInputs"
+    },
+    "Decision.decisionKind": {
+      "@id": "cont:Decision.decisionKind"
+    },
+    "Decision.disposition": {
+      "@id": "cont:Decision.disposition"
+    },
+    "Decision.issuedByRole": {
+      "@id": "cont:Decision.issuedByRole"
+    },
+    "Decision.policyRef": {
+      "@id": "cont:Decision.policyRef"
+    },
+    "Decision.rationale": {
+      "@id": "cont:Decision.rationale"
+    },
+    "EfficiencyClaim": {
+      "@id": "cont:EfficiencyClaim",
+      "@type": "@id"
+    },
+    "EfficiencyClaim.cohort": {
+      "@id": "cont:EfficiencyClaim.cohort"
+    },
+    "EfficiencyClaim.equivalenceContract": {
+      "@id": "cont:EfficiencyClaim.equivalenceContract",
+      "@type": "@id"
+    },
+    "EfficiencyClaim.evaluatorResultRef": {
+      "@id": "cont:EfficiencyClaim.evaluatorResultRef"
+    },
+    "EfficiencyClaim.evaluatorVerdict": {
+      "@id": "cont:EfficiencyClaim.evaluatorVerdict"
+    },
+    "EfficiencyClaim.expectedClaim": {
+      "@id": "cont:EfficiencyClaim.expectedClaim"
+    },
+    "EfficiencyClaim.metricId": {
+      "@id": "cont:EfficiencyClaim.metricId"
+    },
+    "EfficiencyClaim.producerNotes": {
+      "@id": "cont:EfficiencyClaim.producerNotes"
+    },
+    "EfficiencyClaim.proposedValue": {
+      "@id": "cont:EfficiencyClaim.proposedValue"
+    },
+    "EntailmentReceipt": {
+      "@id": "cont:EntailmentReceipt",
+      "@type": "@id"
+    },
+    "EntailmentReceipt.authorityClasses": {
+      "@id": "cont:EntailmentReceipt.authorityClasses"
+    },
+    "EntailmentReceipt.depth": {
+      "@id": "cont:EntailmentReceipt.depth"
+    },
+    "EntailmentReceipt.implementationDigest": {
+      "@id": "cont:EntailmentReceipt.implementationDigest"
+    },
+    "EntailmentReceipt.intendedUse": {
+      "@id": "cont:EntailmentReceipt.intendedUse"
+    },
+    "EntailmentReceipt.metamodelDigest": {
+      "@id": "cont:EntailmentReceipt.metamodelDigest"
+    },
+    "EntailmentReceipt.receiptId": {
+      "@id": "cont:EntailmentReceipt.receiptId"
+    },
+    "EntailmentReceipt.relation": {
+      "@id": "cont:EntailmentReceipt.relation"
+    },
+    "EntailmentReceipt.ruleDigest": {
+      "@id": "cont:EntailmentReceipt.ruleDigest"
+    },
+    "EntailmentReceipt.sourceGraphDigest": {
+      "@id": "cont:EntailmentReceipt.sourceGraphDigest"
+    },
+    "EntailmentReceipt.witnessPath": {
+      "@id": "cont:EntailmentReceipt.witnessPath"
+    },
+    "EnvironmentIdentity": {
+      "@id": "cont:EnvironmentIdentity",
+      "@type": "@id"
+    },
+    "EnvironmentIdentity.adapterEndpointConfigDigest": {
+      "@id": "cont:EnvironmentIdentity.adapterEndpointConfigDigest"
+    },
+    "EnvironmentIdentity.hostId": {
+      "@id": "cont:EnvironmentIdentity.hostId"
+    },
+    "EnvironmentIdentity.interpreter": {
+      "@id": "cont:EnvironmentIdentity.interpreter"
+    },
+    "EnvironmentIdentity.interpreterVersion": {
+      "@id": "cont:EnvironmentIdentity.interpreterVersion"
+    },
+    "EnvironmentIdentity.moduleClosureDigest": {
+      "@id": "cont:EnvironmentIdentity.moduleClosureDigest"
+    },
+    "EnvironmentIdentity.platform": {
+      "@id": "cont:EnvironmentIdentity.platform"
+    },
+    "EnvironmentIdentity.processCreation": {
+      "@id": "cont:EnvironmentIdentity.processCreation"
+    },
+    "EnvironmentIdentity.providerBuild": {
+      "@id": "cont:EnvironmentIdentity.providerBuild"
+    },
+    "EnvironmentIdentity.unknownFields": {
+      "@id": "cont:EnvironmentIdentity.unknownFields"
+    },
+    "EquivalenceContract": {
+      "@id": "cont:EquivalenceContract",
+      "@type": "@id"
+    },
+    "EquivalenceContract.cacheStratum": {
+      "@id": "cont:EquivalenceContract.cacheStratum"
+    },
+    "EquivalenceContract.escalationPermitted": {
+      "@id": "cont:EquivalenceContract.escalationPermitted"
+    },
+    "EquivalenceContract.evidenceStandard": {
+      "@id": "cont:EquivalenceContract.evidenceStandard"
+    },
+    "EquivalenceContract.failureRecoveryPolicy": {
+      "@id": "cont:EquivalenceContract.failureRecoveryPolicy"
+    },
+    "EquivalenceContract.frozen": {
+      "@id": "cont:EquivalenceContract.frozen"
+    },
+    "EquivalenceContract.heldConstant": {
+      "@id": "cont:EquivalenceContract.heldConstant"
+    },
+    "EquivalenceContract.invalidatingDifferences": {
+      "@id": "cont:EquivalenceContract.invalidatingDifferences"
+    },
+    "EquivalenceContract.minimumMatchedPairs": {
+      "@id": "cont:EquivalenceContract.minimumMatchedPairs"
+    },
+    "EquivalenceContract.name": {
+      "@id": "cont:EquivalenceContract.name"
+    },
+    "EquivalenceContract.normalizationContract": {
+      "@id": "cont:EquivalenceContract.normalizationContract"
+    },
+    "EquivalenceContract.permittedDifferences": {
+      "@id": "cont:EquivalenceContract.permittedDifferences"
+    },
+    "EquivalenceContract.qualityThresholds": {
+      "@id": "cont:EquivalenceContract.qualityThresholds"
+    },
+    "EquivalenceContract.requiredArtifactKinds": {
+      "@id": "cont:EquivalenceContract.requiredArtifactKinds"
+    },
+    "EquivalenceContract.tokenAccountingBasis": {
+      "@id": "cont:EquivalenceContract.tokenAccountingBasis"
+    },
+    "EquivalenceContract.verificationCostFields": {
+      "@id": "cont:EquivalenceContract.verificationCostFields"
+    },
+    "EquivalenceContract.weightingPolicyRef": {
+      "@id": "cont:EquivalenceContract.weightingPolicyRef",
+      "@type": "@id"
+    },
+    "Evidence": {
+      "@id": "cont:Evidence",
+      "@type": "@id"
+    },
+    "Evidence.admissibility": {
+      "@id": "cont:Evidence.admissibility"
+    },
+    "Evidence.contentDigest": {
+      "@id": "cont:Evidence.contentDigest"
+    },
+    "Evidence.evidenceKind": {
+      "@id": "cont:Evidence.evidenceKind"
+    },
+    "Evidence.method": {
+      "@id": "cont:Evidence.method"
+    },
+    "Evidence.scope": {
+      "@id": "cont:Evidence.scope",
+      "@type": "@id"
+    },
+    "Evidence.subject": {
+      "@id": "cont:Evidence.subject"
+    },
+    "Evidence.supportsClaimTypes": {
+      "@id": "cont:Evidence.supportsClaimTypes"
+    },
+    "Evidence.validFrom": {
+      "@id": "cont:Evidence.validFrom"
+    },
+    "Evidence.validUntil": {
+      "@id": "cont:Evidence.validUntil"
+    },
+    "EvidenceRequirement": {
+      "@id": "cont:EvidenceRequirement",
+      "@type": "@id"
+    },
+    "EvidenceRequirement.evidenceKind": {
+      "@id": "cont:EvidenceRequirement.evidenceKind"
+    },
+    "EvidenceRequirement.freshnessSeconds": {
+      "@id": "cont:EvidenceRequirement.freshnessSeconds"
+    },
+    "EvidenceRequirement.mandatory": {
+      "@id": "cont:EvidenceRequirement.mandatory"
+    },
+    "EvidenceRequirement.minimumAuthorityClasses": {
+      "@id": "cont:EvidenceRequirement.minimumAuthorityClasses"
+    },
+    "EvidenceRequirement.requiredObservationChannels": {
+      "@id": "cont:EvidenceRequirement.requiredObservationChannels"
+    },
+    "EvidenceRequirement.requirementId": {
+      "@id": "cont:EvidenceRequirement.requirementId"
+    },
+    "EvidenceRequirement.syntheticAcceptable": {
+      "@id": "cont:EvidenceRequirement.syntheticAcceptable"
+    },
+    "EvidenceSufficiencyReceipt": {
+      "@id": "cont:EvidenceSufficiencyReceipt",
+      "@type": "@id"
+    },
+    "EvidenceSufficiencyReceipt.closed": {
+      "@id": "cont:EvidenceSufficiencyReceipt.closed"
+    },
+    "EvidenceSufficiencyReceipt.mandatoryApplicable": {
+      "@id": "cont:EvidenceSufficiencyReceipt.mandatoryApplicable"
+    },
+    "EvidenceSufficiencyReceipt.mandatorySatisfied": {
+      "@id": "cont:EvidenceSufficiencyReceipt.mandatorySatisfied"
+    },
+    "EvidenceSufficiencyReceipt.requirementResults": {
+      "@id": "cont:EvidenceSufficiencyReceipt.requirementResults"
+    },
+    "ExecutionEvent": {
+      "@id": "cont:ExecutionEvent",
+      "@type": "@id"
+    },
+    "ExecutionEvent.correctsEventId": {
+      "@id": "cont:ExecutionEvent.correctsEventId"
+    },
+    "ExecutionEvent.eventId": {
+      "@id": "cont:ExecutionEvent.eventId"
+    },
+    "ExecutionEvent.eventType": {
+      "@id": "cont:ExecutionEvent.eventType"
+    },
+    "ExecutionEvent.eventTypeVersion": {
+      "@id": "cont:ExecutionEvent.eventTypeVersion"
+    },
+    "ExecutionEvent.idempotencyKey": {
+      "@id": "cont:ExecutionEvent.idempotencyKey"
+    },
+    "ExecutionEvent.logicalSubject": {
+      "@id": "cont:ExecutionEvent.logicalSubject"
+    },
+    "ExecutionEvent.monotonicClockDomain": {
+      "@id": "cont:ExecutionEvent.monotonicClockDomain"
+    },
+    "ExecutionEvent.monotonicNs": {
+      "@id": "cont:ExecutionEvent.monotonicNs"
+    },
+    "ExecutionEvent.payload": {
+      "@id": "cont:ExecutionEvent.payload"
+    },
+    "ExecutionEvent.payloadDigest": {
+      "@id": "cont:ExecutionEvent.payloadDigest"
+    },
+    "ExecutionEvent.priorEventDigest": {
+      "@id": "cont:ExecutionEvent.priorEventDigest"
+    },
+    "ExecutionEvent.replayPolicy": {
+      "@id": "cont:ExecutionEvent.replayPolicy"
+    },
+    "ExecutionEvent.sequence": {
+      "@id": "cont:ExecutionEvent.sequence"
+    },
+    "ExecutionEvent.wallClock": {
+      "@id": "cont:ExecutionEvent.wallClock"
+    },
+    "ExecutionPlan": {
+      "@id": "cont:ExecutionPlan",
+      "@type": "@id"
+    },
+    "ExecutionPlan.frozen": {
+      "@id": "cont:ExecutionPlan.frozen"
+    },
+    "ExecutionPlan.limits": {
+      "@id": "cont:ExecutionPlan.limits"
+    },
+    "ExecutionPlan.nodes": {
+      "@id": "cont:ExecutionPlan.nodes"
+    },
+    "ExecutionPlan.outcome": {
+      "@id": "cont:ExecutionPlan.outcome",
+      "@type": "@id"
+    },
+    "ExecutionPlan.selectionReceipts": {
+      "@id": "cont:ExecutionPlan.selectionReceipts"
+    },
+    "ExecutionTrace": {
+      "@id": "cont:ExecutionTrace",
+      "@type": "@id"
+    },
+    "ExecutionTrace.actualActor": {
+      "@id": "cont:ExecutionTrace.actualActor"
+    },
+    "ExecutionTrace.attempt": {
+      "@id": "cont:ExecutionTrace.attempt"
+    },
+    "ExecutionTrace.authorizationReceiptRef": {
+      "@id": "cont:ExecutionTrace.authorizationReceiptRef"
+    },
+    "ExecutionTrace.capability": {
+      "@id": "cont:ExecutionTrace.capability",
+      "@type": "@id"
+    },
+    "ExecutionTrace.consumedArtifacts": {
+      "@id": "cont:ExecutionTrace.consumedArtifacts"
+    },
+    "ExecutionTrace.environmentBinding": {
+      "@id": "cont:ExecutionTrace.environmentBinding",
+      "@type": "@id"
+    },
+    "ExecutionTrace.events": {
+      "@id": "cont:ExecutionTrace.events"
+    },
+    "ExecutionTrace.implementation": {
+      "@id": "cont:ExecutionTrace.implementation",
+      "@type": "@id"
+    },
+    "ExecutionTrace.issuer": {
+      "@id": "cont:ExecutionTrace.issuer"
+    },
+    "ExecutionTrace.mutationScopeDeclared": {
+      "@id": "cont:ExecutionTrace.mutationScopeDeclared"
+    },
+    "ExecutionTrace.parentTrace": {
+      "@id": "cont:ExecutionTrace.parentTrace",
+      "@type": "@id"
+    },
+    "ExecutionTrace.plan": {
+      "@id": "cont:ExecutionTrace.plan",
+      "@type": "@id"
+    },
+    "ExecutionTrace.producedArtifacts": {
+      "@id": "cont:ExecutionTrace.producedArtifacts"
+    },
+    "ExecutionTrace.resourceUsage": {
+      "@id": "cont:ExecutionTrace.resourceUsage"
+    },
+    "ExecutionTrace.runId": {
+      "@id": "cont:ExecutionTrace.runId"
+    },
+    "ExecutionTrace.spans": {
+      "@id": "cont:ExecutionTrace.spans"
+    },
+    "ExecutionTrace.terminalStatus": {
+      "@id": "cont:ExecutionTrace.terminalStatus"
+    },
+    "ExecutionTrace.workItem": {
+      "@id": "cont:ExecutionTrace.workItem",
+      "@type": "@id"
+    },
+    "FailureMode": {
+      "@id": "cont:FailureMode",
+      "@type": "@id"
+    },
+    "FailureMode.code": {
+      "@id": "cont:FailureMode.code"
+    },
+    "FailureMode.description": {
+      "@id": "cont:FailureMode.description"
+    },
+    "FailureMode.domain": {
+      "@id": "cont:FailureMode.domain"
+    },
+    "FailureMode.mapsToStatus": {
+      "@id": "cont:FailureMode.mapsToStatus"
+    },
+    "FailureMode.severity": {
+      "@id": "cont:FailureMode.severity"
+    },
+    "FreshnessPolicy": {
+      "@id": "cont:FreshnessPolicy",
+      "@type": "@id"
+    },
+    "FreshnessPolicy.alwaysFreshDomains": {
+      "@id": "cont:FreshnessPolicy.alwaysFreshDomains"
+    },
+    "FreshnessPolicy.claimTypeGlob": {
+      "@id": "cont:FreshnessPolicy.claimTypeGlob"
+    },
+    "FreshnessPolicy.maxAgeSeconds": {
+      "@id": "cont:FreshnessPolicy.maxAgeSeconds"
+    },
+    "FreshnessPolicy.policyId": {
+      "@id": "cont:FreshnessPolicy.policyId"
+    },
+    "FreshnessPolicy.reusableWhileUnchanged": {
+      "@id": "cont:FreshnessPolicy.reusableWhileUnchanged"
+    },
+    "Gate": {
+      "@id": "cont:Gate",
+      "@type": "@id"
+    },
+    "Gate.authority": {
+      "@id": "cont:Gate.authority"
+    },
+    "Gate.evaluatesAgainst": {
+      "@id": "cont:Gate.evaluatesAgainst"
+    },
+    "Gate.independenceRequired": {
+      "@id": "cont:Gate.independenceRequired"
+    },
+    "Gate.name": {
+      "@id": "cont:Gate.name"
+    },
+    "Gate.requiredPredicateIds": {
+      "@id": "cont:Gate.requiredPredicateIds"
+    },
+    "GateResult": {
+      "@id": "cont:GateResult",
+      "@type": "@id"
+    },
+    "GateResult.candidateDigest": {
+      "@id": "cont:GateResult.candidateDigest"
+    },
+    "GateResult.contractDigests": {
+      "@id": "cont:GateResult.contractDigests"
+    },
+    "GateResult.evidenceClosure": {
+      "@id": "cont:GateResult.evidenceClosure",
+      "@type": "@id"
+    },
+    "GateResult.gate": {
+      "@id": "cont:GateResult.gate",
+      "@type": "@id"
+    },
+    "GateResult.independentlyEvaluated": {
+      "@id": "cont:GateResult.independentlyEvaluated"
+    },
+    "GateResult.notRunDependency": {
+      "@id": "cont:GateResult.notRunDependency"
+    },
+    "GateResult.predicateResults": {
+      "@id": "cont:GateResult.predicateResults"
+    },
+    "GateResult.status": {
+      "@id": "cont:GateResult.status"
+    },
+    "Handoff": {
+      "@id": "cont:Handoff",
+      "@type": "@id"
+    },
+    "Handoff.checkpoint": {
+      "@id": "cont:Handoff.checkpoint",
+      "@type": "@id"
+    },
+    "Handoff.fromActor": {
+      "@id": "cont:Handoff.fromActor"
+    },
+    "Handoff.referencedEvidence": {
+      "@id": "cont:Handoff.referencedEvidence"
+    },
+    "Handoff.toActor": {
+      "@id": "cont:Handoff.toActor"
+    },
+    "Handoff.transferredFacts": {
+      "@id": "cont:Handoff.transferredFacts"
+    },
+    "Implementation": {
+      "@id": "cont:Implementation",
+      "@type": "@id"
+    },
+    "Implementation.authorizedScope": {
+      "@id": "cont:Implementation.authorizedScope"
+    },
+    "Implementation.failureModes": {
+      "@id": "cont:Implementation.failureModes"
+    },
+    "Implementation.inputSchemaDigest": {
+      "@id": "cont:Implementation.inputSchemaDigest"
+    },
+    "Implementation.outputSchemaDigest": {
+      "@id": "cont:Implementation.outputSchemaDigest"
+    },
+    "Implementation.providerName": {
+      "@id": "cont:Implementation.providerName"
+    },
+    "Implementation.providerVersion": {
+      "@id": "cont:Implementation.providerVersion"
+    },
+    "Implementation.qualification": {
+      "@id": "cont:Implementation.qualification"
+    },
+    "Implementation.qualificationReceipt": {
+      "@id": "cont:Implementation.qualificationReceipt",
+      "@type": "@id"
+    },
+    "Implementation.realizes": {
+      "@id": "cont:Implementation.realizes"
+    },
+    "Implementation.resourceProfile": {
+      "@id": "cont:Implementation.resourceProfile"
+    },
+    "Measurement": {
+      "@id": "cont:Measurement",
+      "@type": "@id"
+    },
+    "Measurement.admissibility": {
+      "@id": "cont:Measurement.admissibility"
+    },
+    "Measurement.availability": {
+      "@id": "cont:Measurement.availability"
+    },
+    "Measurement.denominator": {
+      "@id": "cont:Measurement.denominator"
+    },
+    "Measurement.formulaVersion": {
+      "@id": "cont:Measurement.formulaVersion"
+    },
+    "Measurement.inputRefs": {
+      "@id": "cont:Measurement.inputRefs"
+    },
+    "Measurement.metricId": {
+      "@id": "cont:Measurement.metricId"
+    },
+    "Measurement.numerator": {
+      "@id": "cont:Measurement.numerator"
+    },
+    "Measurement.scope": {
+      "@id": "cont:Measurement.scope",
+      "@type": "@id"
+    },
+    "Measurement.unavailableReason": {
+      "@id": "cont:Measurement.unavailableReason"
+    },
+    "Measurement.uncertainty": {
+      "@id": "cont:Measurement.uncertainty"
+    },
+    "Measurement.unit": {
+      "@id": "cont:Measurement.unit"
+    },
+    "Measurement.value": {
+      "@id": "cont:Measurement.value"
+    },
+    "MutationIntent": {
+      "@id": "cont:MutationIntent",
+      "@type": "@id"
+    },
+    "MutationIntent.declaredEffects": {
+      "@id": "cont:MutationIntent.declaredEffects"
+    },
+    "MutationIntent.intentId": {
+      "@id": "cont:MutationIntent.intentId"
+    },
+    "MutationIntent.operationId": {
+      "@id": "cont:MutationIntent.operationId"
+    },
+    "MutationIntent.preStateDigest": {
+      "@id": "cont:MutationIntent.preStateDigest"
+    },
+    "MutationIntent.targetScope": {
+      "@id": "cont:MutationIntent.targetScope",
+      "@type": "@id"
+    },
+    "MutationLedgerEntry": {
+      "@id": "cont:MutationLedgerEntry",
+      "@type": "@id"
+    },
+    "MutationLedgerEntry.effectDescription": {
+      "@id": "cont:MutationLedgerEntry.effectDescription"
+    },
+    "MutationLedgerEntry.entryId": {
+      "@id": "cont:MutationLedgerEntry.entryId"
+    },
+    "MutationLedgerEntry.intentId": {
+      "@id": "cont:MutationLedgerEntry.intentId"
+    },
+    "MutationLedgerEntry.operationId": {
+      "@id": "cont:MutationLedgerEntry.operationId"
+    },
+    "MutationLedgerEntry.ownership": {
+      "@id": "cont:MutationLedgerEntry.ownership",
+      "@type": "@id"
+    },
+    "MutationLedgerEntry.postStateDigest": {
+      "@id": "cont:MutationLedgerEntry.postStateDigest"
+    },
+    "MutationLedgerEntry.preStateDigest": {
+      "@id": "cont:MutationLedgerEntry.preStateDigest"
+    },
+    "MutationLedgerEntry.priorEntryDigest": {
+      "@id": "cont:MutationLedgerEntry.priorEntryDigest"
+    },
+    "MutationLedgerEntry.readbackRef": {
+      "@id": "cont:MutationLedgerEntry.readbackRef"
+    },
+    "MutationLedgerEntry.sequence": {
+      "@id": "cont:MutationLedgerEntry.sequence"
+    },
+    "MutationLedgerEntry.transactionId": {
+      "@id": "cont:MutationLedgerEntry.transactionId"
+    },
+    "MutationSetClosureReceipt": {
+      "@id": "cont:MutationSetClosureReceipt",
+      "@type": "@id"
+    },
+    "MutationSetClosureReceipt.discrepancies": {
+      "@id": "cont:MutationSetClosureReceipt.discrepancies"
+    },
+    "MutationSetClosureReceipt.intendedEffects": {
+      "@id": "cont:MutationSetClosureReceipt.intendedEffects"
+    },
+    "MutationSetClosureReceipt.ledgeredEffects": {
+      "@id": "cont:MutationSetClosureReceipt.ledgeredEffects"
+    },
+    "MutationSetClosureReceipt.operationId": {
+      "@id": "cont:MutationSetClosureReceipt.operationId"
+    },
+    "MutationSetClosureReceipt.readbackConfirmedEffects": {
+      "@id": "cont:MutationSetClosureReceipt.readbackConfirmedEffects"
+    },
+    "MutationSetClosureReceipt.rollbackSet": {
+      "@id": "cont:MutationSetClosureReceipt.rollbackSet"
+    },
+    "MutationSetClosureReceipt.setsEqual": {
+      "@id": "cont:MutationSetClosureReceipt.setsEqual"
+    },
+    "Observation": {
+      "@id": "cont:Observation",
+      "@type": "@id"
+    },
+    "Observation.channel": {
+      "@id": "cont:Observation.channel"
+    },
+    "Observation.epoch": {
+      "@id": "cont:Observation.epoch"
+    },
+    "Observation.errorClass": {
+      "@id": "cont:Observation.errorClass"
+    },
+    "Observation.observationId": {
+      "@id": "cont:Observation.observationId"
+    },
+    "Observation.observedAt": {
+      "@id": "cont:Observation.observedAt"
+    },
+    "Observation.partial": {
+      "@id": "cont:Observation.partial"
+    },
+    "Observation.rawDigest": {
+      "@id": "cont:Observation.rawDigest"
+    },
+    "Observation.scope": {
+      "@id": "cont:Observation.scope",
+      "@type": "@id"
+    },
+    "Observation.subject": {
+      "@id": "cont:Observation.subject"
+    },
+    "Observation.value": {
+      "@id": "cont:Observation.value"
+    },
+    "OpenOperation": {
+      "@id": "cont:OpenOperation",
+      "@type": "@id"
+    },
+    "OpenOperation.capability": {
+      "@id": "cont:OpenOperation.capability",
+      "@type": "@id"
+    },
+    "OpenOperation.disposition": {
+      "@id": "cont:OpenOperation.disposition"
+    },
+    "OpenOperation.idempotencyKey": {
+      "@id": "cont:OpenOperation.idempotencyKey"
+    },
+    "OpenOperation.operationId": {
+      "@id": "cont:OpenOperation.operationId"
+    },
+    "OpenOperation.receiptObserved": {
+      "@id": "cont:OpenOperation.receiptObserved"
+    },
+    "OpenOperation.reconciliationProbe": {
+      "@id": "cont:OpenOperation.reconciliationProbe"
+    },
+    "OpenOperation.reconciliationRequired": {
+      "@id": "cont:OpenOperation.reconciliationRequired"
+    },
+    "OpenOperation.sideEffectPossible": {
+      "@id": "cont:OpenOperation.sideEffectPossible"
+    },
+    "Outcome": {
+      "@id": "cont:Outcome",
+      "@type": "@id"
+    },
+    "Outcome.acceptanceCriteria": {
+      "@id": "cont:Outcome.acceptanceCriteria"
+    },
+    "Outcome.lifecycle": {
+      "@id": "cont:Outcome.lifecycle"
+    },
+    "Outcome.requestedResult": {
+      "@id": "cont:Outcome.requestedResult"
+    },
+    "Outcome.requiredArtifactKinds": {
+      "@id": "cont:Outcome.requiredArtifactKinds"
+    },
+    "Outcome.requiredEvidenceKinds": {
+      "@id": "cont:Outcome.requiredEvidenceKinds"
+    },
+    "Outcome.subjectUniverse": {
+      "@id": "cont:Outcome.subjectUniverse"
+    },
+    "Outcome.title": {
+      "@id": "cont:Outcome.title"
+    },
+    "Outcome.workUnitPolicyRef": {
+      "@id": "cont:Outcome.workUnitPolicyRef",
+      "@type": "@id"
+    },
+    "OwnershipAssertion": {
+      "@id": "cont:OwnershipAssertion",
+      "@type": "@id"
+    },
+    "OwnershipAssertion.directness": {
+      "@id": "cont:OwnershipAssertion.directness"
+    },
+    "OwnershipAssertion.ownerRole": {
+      "@id": "cont:OwnershipAssertion.ownerRole"
+    },
+    "OwnershipAssertion.subject": {
+      "@id": "cont:OwnershipAssertion.subject"
+    },
+    "OwnershipAssertion.transactionId": {
+      "@id": "cont:OwnershipAssertion.transactionId"
+    },
+    "Predicate": {
+      "@id": "cont:Predicate",
+      "@type": "@id"
+    },
+    "Predicate.expected": {
+      "@id": "cont:Predicate.expected"
+    },
+    "Predicate.mandatory": {
+      "@id": "cont:Predicate.mandatory"
+    },
+    "Predicate.operator": {
+      "@id": "cont:Predicate.operator"
+    },
+    "Predicate.predicateId": {
+      "@id": "cont:Predicate.predicateId"
+    },
+    "Predicate.subjectPath": {
+      "@id": "cont:Predicate.subjectPath"
+    },
+    "Predicate.tolerance": {
+      "@id": "cont:Predicate.tolerance"
+    },
+    "Predicate.unit": {
+      "@id": "cont:Predicate.unit"
+    },
+    "ProducerAssertion": {
+      "@id": "cont:ProducerAssertion",
+      "@type": "@id"
+    },
+    "ProducerAssertion.evidenceRefs": {
+      "@id": "cont:ProducerAssertion.evidenceRefs"
+    },
+    "ProducerAssertion.note": {
+      "@id": "cont:ProducerAssertion.note"
+    },
+    "ProducerAssertion.observedValue": {
+      "@id": "cont:ProducerAssertion.observedValue"
+    },
+    "ProducerAssertion.producerRole": {
+      "@id": "cont:ProducerAssertion.producerRole"
+    },
+    "ProducerAssertion.producerStatus": {
+      "@id": "cont:ProducerAssertion.producerStatus"
+    },
+    "ProducerAssertion.proposition": {
+      "@id": "cont:ProducerAssertion.proposition",
+      "@type": "@id"
+    },
+    "PromotionDecision": {
+      "@id": "cont:PromotionDecision",
+      "@type": "@id"
+    },
+    "PromotionDecision.actuatorRole": {
+      "@id": "cont:PromotionDecision.actuatorRole"
+    },
+    "PromotionDecision.auditResultDigest": {
+      "@id": "cont:PromotionDecision.auditResultDigest"
+    },
+    "PromotionDecision.candidateDigest": {
+      "@id": "cont:PromotionDecision.candidateDigest"
+    },
+    "PromotionDecision.humanApprovalRefs": {
+      "@id": "cont:PromotionDecision.humanApprovalRefs"
+    },
+    "PromotionDecision.issuerRole": {
+      "@id": "cont:PromotionDecision.issuerRole"
+    },
+    "PromotionDecision.policyDigest": {
+      "@id": "cont:PromotionDecision.policyDigest"
+    },
+    "PromotionDecision.reasons": {
+      "@id": "cont:PromotionDecision.reasons"
+    },
+    "PromotionDecision.state": {
+      "@id": "cont:PromotionDecision.state"
+    },
+    "Proposition": {
+      "@id": "cont:Proposition",
+      "@type": "@id"
+    },
+    "Proposition.claimType": {
+      "@id": "cont:Proposition.claimType"
+    },
+    "Proposition.expectedValue": {
+      "@id": "cont:Proposition.expectedValue"
+    },
+    "Proposition.scope": {
+      "@id": "cont:Proposition.scope",
+      "@type": "@id"
+    },
+    "Proposition.statement": {
+      "@id": "cont:Proposition.statement"
+    },
+    "Proposition.subject": {
+      "@id": "cont:Proposition.subject"
+    },
+    "Proposition.unit": {
+      "@id": "cont:Proposition.unit"
+    },
+    "Provenance": {
+      "@id": "cont:Provenance",
+      "@type": "@id"
+    },
+    "Provenance.actor": {
+      "@id": "cont:Provenance.actor"
+    },
+    "Provenance.authorityClass": {
+      "@id": "cont:Provenance.authorityClass"
+    },
+    "Provenance.observationChannel": {
+      "@id": "cont:Provenance.observationChannel"
+    },
+    "Provenance.operationalOwnership": {
+      "@id": "cont:Provenance.operationalOwnership"
+    },
+    "Provenance.origin": {
+      "@id": "cont:Provenance.origin"
+    },
+    "Provenance.productionMethod": {
+      "@id": "cont:Provenance.productionMethod"
+    },
+    "Provenance.sourceRefs": {
+      "@id": "cont:Provenance.sourceRefs"
+    },
+    "Provenance.syntheticFixture": {
+      "@id": "cont:Provenance.syntheticFixture"
+    },
+    "Provenance.validitySnapshot": {
+      "@id": "cont:Provenance.validitySnapshot"
+    },
+    "Provenance.verificationStatus": {
+      "@id": "cont:Provenance.verificationStatus"
+    },
+    "ProviderReadback": {
+      "@id": "cont:ProviderReadback",
+      "@type": "@id"
+    },
+    "ProviderReadback.channel": {
+      "@id": "cont:ProviderReadback.channel"
+    },
+    "ProviderReadback.matchesExpectedPostState": {
+      "@id": "cont:ProviderReadback.matchesExpectedPostState"
+    },
+    "ProviderReadback.observedStateDigest": {
+      "@id": "cont:ProviderReadback.observedStateDigest"
+    },
+    "ProviderReadback.operationId": {
+      "@id": "cont:ProviderReadback.operationId"
+    },
+    "ProviderReadback.readbackId": {
+      "@id": "cont:ProviderReadback.readbackId"
+    },
+    "ProviderSession": {
+      "@id": "cont:ProviderSession",
+      "@type": "@id"
+    },
+    "ProviderSession.accountingVersion": {
+      "@id": "cont:ProviderSession.accountingVersion"
+    },
+    "ProviderSession.expiresAt": {
+      "@id": "cont:ProviderSession.expiresAt"
+    },
+    "ProviderSession.openedAt": {
+      "@id": "cont:ProviderSession.openedAt"
+    },
+    "ProviderSession.providerName": {
+      "@id": "cont:ProviderSession.providerName"
+    },
+    "ProviderSession.revalidateOnResume": {
+      "@id": "cont:ProviderSession.revalidateOnResume"
+    },
+    "ProviderSession.sessionId": {
+      "@id": "cont:ProviderSession.sessionId"
+    },
+    "ProviderSession.tokenizerId": {
+      "@id": "cont:ProviderSession.tokenizerId"
+    },
+    "QualificationReceipt": {
+      "@id": "cont:QualificationReceipt",
+      "@type": "@id"
+    },
+    "QualificationReceipt.buildIdentityDigest": {
+      "@id": "cont:QualificationReceipt.buildIdentityDigest"
+    },
+    "QualificationReceipt.candidateDigest": {
+      "@id": "cont:QualificationReceipt.candidateDigest"
+    },
+    "QualificationReceipt.configurationDigest": {
+      "@id": "cont:QualificationReceipt.configurationDigest"
+    },
+    "QualificationReceipt.dependencies": {
+      "@id": "cont:QualificationReceipt.dependencies"
+    },
+    "QualificationReceipt.limits": {
+      "@id": "cont:QualificationReceipt.limits"
+    },
+    "QualificationReceipt.observedAt": {
+      "@id": "cont:QualificationReceipt.observedAt"
+    },
+    "QualificationReceipt.probeScope": {
+      "@id": "cont:QualificationReceipt.probeScope",
+      "@type": "@id"
+    },
+    "QualificationReceipt.providerName": {
+      "@id": "cont:QualificationReceipt.providerName"
+    },
+    "QualificationReceipt.providerVersion": {
+      "@id": "cont:QualificationReceipt.providerVersion"
+    },
+    "QualificationReceipt.receiptId": {
+      "@id": "cont:QualificationReceipt.receiptId"
+    },
+    "QualificationReceipt.result": {
+      "@id": "cont:QualificationReceipt.result"
+    },
+    "QualificationReceipt.subjectKind": {
+      "@id": "cont:QualificationReceipt.subjectKind"
+    },
+    "QualificationReceipt.syntheticFixture": {
+      "@id": "cont:QualificationReceipt.syntheticFixture"
+    },
+    "ReleaseManifest": {
+      "@id": "cont:ReleaseManifest",
+      "@type": "@id"
+    },
+    "ReleaseManifest.acceptanceByDimension": {
+      "@id": "cont:ReleaseManifest.acceptanceByDimension"
+    },
+    "ReleaseManifest.auditResultDigest": {
+      "@id": "cont:ReleaseManifest.auditResultDigest"
+    },
+    "ReleaseManifest.blockers": {
+      "@id": "cont:ReleaseManifest.blockers"
+    },
+    "ReleaseManifest.dependencyLockDigest": {
+      "@id": "cont:ReleaseManifest.dependencyLockDigest"
+    },
+    "ReleaseManifest.knownGaps": {
+      "@id": "cont:ReleaseManifest.knownGaps"
+    },
+    "ReleaseManifest.liveUrl": {
+      "@id": "cont:ReleaseManifest.liveUrl"
+    },
+    "ReleaseManifest.memberDigests": {
+      "@id": "cont:ReleaseManifest.memberDigests"
+    },
+    "ReleaseManifest.payloadDigest": {
+      "@id": "cont:ReleaseManifest.payloadDigest"
+    },
+    "ReleaseManifest.product": {
+      "@id": "cont:ReleaseManifest.product"
+    },
+    "ReleaseManifest.releaseUrl": {
+      "@id": "cont:ReleaseManifest.releaseUrl"
+    },
+    "ReleaseManifest.repositoryUrl": {
+      "@id": "cont:ReleaseManifest.repositoryUrl"
+    },
+    "ReleaseManifest.schemaManifestDigest": {
+      "@id": "cont:ReleaseManifest.schemaManifestDigest"
+    },
+    "ReleaseManifest.version": {
+      "@id": "cont:ReleaseManifest.version"
+    },
+    "ResourceUsage": {
+      "@id": "cont:ResourceUsage",
+      "@type": "@id"
+    },
+    "ResourceUsage.accountingRule": {
+      "@id": "cont:ResourceUsage.accountingRule"
+    },
+    "ResourceUsage.basis": {
+      "@id": "cont:ResourceUsage.basis"
+    },
+    "ResourceUsage.belowResolution": {
+      "@id": "cont:ResourceUsage.belowResolution"
+    },
+    "ResourceUsage.clockResolutionNs": {
+      "@id": "cont:ResourceUsage.clockResolutionNs"
+    },
+    "ResourceUsage.dedupKey": {
+      "@id": "cont:ResourceUsage.dedupKey"
+    },
+    "ResourceUsage.kind": {
+      "@id": "cont:ResourceUsage.kind"
+    },
+    "ResourceUsage.parentKind": {
+      "@id": "cont:ResourceUsage.parentKind"
+    },
+    "ResourceUsage.providerAccountingVersion": {
+      "@id": "cont:ResourceUsage.providerAccountingVersion"
+    },
+    "ResourceUsage.providerName": {
+      "@id": "cont:ResourceUsage.providerName"
+    },
+    "ResourceUsage.providerResponseId": {
+      "@id": "cont:ResourceUsage.providerResponseId"
+    },
+    "ResourceUsage.scope": {
+      "@id": "cont:ResourceUsage.scope",
+      "@type": "@id"
+    },
+    "ResourceUsage.tokenizerId": {
+      "@id": "cont:ResourceUsage.tokenizerId"
+    },
+    "ResourceUsage.uncertainty": {
+      "@id": "cont:ResourceUsage.uncertainty"
+    },
+    "ResourceUsage.unit": {
+      "@id": "cont:ResourceUsage.unit"
+    },
+    "ResourceUsage.unknownReason": {
+      "@id": "cont:ResourceUsage.unknownReason"
+    },
+    "ResourceUsage.value": {
+      "@id": "cont:ResourceUsage.value"
+    },
+    "ResourceUsageLedger": {
+      "@id": "cont:ResourceUsageLedger",
+      "@type": "@id"
+    },
+    "ResourceUsageLedger.accountingDomains": {
+      "@id": "cont:ResourceUsageLedger.accountingDomains"
+    },
+    "ResourceUsageLedger.consumes": {
+      "@id": "cont:ResourceUsageLedger.consumes"
+    },
+    "ResourceUsageLedger.measurements": {
+      "@id": "cont:ResourceUsageLedger.measurements"
+    },
+    "ResourceUsageLedger.recordType": {
+      "@id": "cont:ResourceUsageLedger.recordType"
+    },
+    "ResourceUsageLedger.runId": {
+      "@id": "cont:ResourceUsageLedger.runId"
+    },
+    "ResourceUsageLedger.schemaVersion": {
+      "@id": "cont:ResourceUsageLedger.schemaVersion"
+    },
+    "ResourceUsageLedger.subsetReconciliation": {
+      "@id": "cont:ResourceUsageLedger.subsetReconciliation"
+    },
+    "ResourceUsageLedger.synthetic": {
+      "@id": "cont:ResourceUsageLedger.synthetic"
+    },
+    "ResourceUsageLedger.totals": {
+      "@id": "cont:ResourceUsageLedger.totals"
+    },
+    "Retry": {
+      "@id": "cont:Retry",
+      "@type": "@id"
+    },
+    "Retry.attempt": {
+      "@id": "cont:Retry.attempt"
+    },
+    "Retry.ofInvocationId": {
+      "@id": "cont:Retry.ofInvocationId"
+    },
+    "Retry.permitted": {
+      "@id": "cont:Retry.permitted"
+    },
+    "Retry.reasonClass": {
+      "@id": "cont:Retry.reasonClass"
+    },
+    "ReviewView": {
+      "@id": "cont:ReviewView",
+      "@type": "@id"
+    },
+    "ReviewView.accessibilityResults": {
+      "@id": "cont:ReviewView.accessibilityResults"
+    },
+    "ReviewView.lifecycle": {
+      "@id": "cont:ReviewView.lifecycle"
+    },
+    "ReviewView.profileId": {
+      "@id": "cont:ReviewView.profileId"
+    },
+    "ReviewView.rasterProfileDigest": {
+      "@id": "cont:ReviewView.rasterProfileDigest"
+    },
+    "ReviewView.rendererId": {
+      "@id": "cont:ReviewView.rendererId"
+    },
+    "ReviewView.rendererVersion": {
+      "@id": "cont:ReviewView.rendererVersion"
+    },
+    "ReviewView.semanticInputDigest": {
+      "@id": "cont:ReviewView.semanticInputDigest"
+    },
+    "ReviewView.sourceAuditDigest": {
+      "@id": "cont:ReviewView.sourceAuditDigest"
+    },
+    "ReviewView.sourceCheckpointDigest": {
+      "@id": "cont:ReviewView.sourceCheckpointDigest"
+    },
+    "ReviewView.unavailableReason": {
+      "@id": "cont:ReviewView.unavailableReason"
+    },
+    "ReviewView.viewId": {
+      "@id": "cont:ReviewView.viewId"
+    },
+    "RollbackAction": {
+      "@id": "cont:RollbackAction",
+      "@type": "@id"
+    },
+    "RollbackAction.actionId": {
+      "@id": "cont:RollbackAction.actionId"
+    },
+    "RollbackAction.authorizedByRole": {
+      "@id": "cont:RollbackAction.authorizedByRole"
+    },
+    "RollbackAction.performed": {
+      "@id": "cont:RollbackAction.performed"
+    },
+    "RollbackAction.resultDigest": {
+      "@id": "cont:RollbackAction.resultDigest"
+    },
+    "RollbackAction.targetEntryId": {
+      "@id": "cont:RollbackAction.targetEntryId"
+    },
+    "Scope": {
+      "@id": "cont:Scope",
+      "@type": "@id"
+    },
+    "Scope.enumerationComplete": {
+      "@id": "cont:Scope.enumerationComplete"
+    },
+    "Scope.epoch": {
+      "@id": "cont:Scope.epoch"
+    },
+    "Scope.expectedMemberCount": {
+      "@id": "cont:Scope.expectedMemberCount"
+    },
+    "Scope.scopeKind": {
+      "@id": "cont:Scope.scopeKind"
+    },
+    "Scope.selector": {
+      "@id": "cont:Scope.selector"
+    },
+    "SelectionReceipt": {
+      "@id": "cont:SelectionReceipt",
+      "@type": "@id"
+    },
+    "SelectionReceipt.blocked": {
+      "@id": "cont:SelectionReceipt.blocked"
+    },
+    "SelectionReceipt.candidateUniverse": {
+      "@id": "cont:SelectionReceipt.candidateUniverse"
+    },
+    "SelectionReceipt.committed": {
+      "@id": "cont:SelectionReceipt.committed"
+    },
+    "SelectionReceipt.hardPredicates": {
+      "@id": "cont:SelectionReceipt.hardPredicates"
+    },
+    "SelectionReceipt.nodeId": {
+      "@id": "cont:SelectionReceipt.nodeId"
+    },
+    "SelectionReceipt.prngSeed": {
+      "@id": "cont:SelectionReceipt.prngSeed"
+    },
+    "SelectionReceipt.prunedCandidates": {
+      "@id": "cont:SelectionReceipt.prunedCandidates"
+    },
+    "SelectionReceipt.quantization": {
+      "@id": "cont:SelectionReceipt.quantization"
+    },
+    "SelectionReceipt.rankedCandidates": {
+      "@id": "cont:SelectionReceipt.rankedCandidates"
+    },
+    "SelectionReceipt.terminalDecisionByCandidate": {
+      "@id": "cont:SelectionReceipt.terminalDecisionByCandidate"
+    },
+    "SelectionReceipt.tieBreak": {
+      "@id": "cont:SelectionReceipt.tieBreak"
+    },
+    "Span": {
+      "@id": "cont:Span",
+      "@type": "@id"
+    },
+    "Span.actorId": {
+      "@id": "cont:Span.actorId"
+    },
+    "Span.allocationUnknown": {
+      "@id": "cont:Span.allocationUnknown"
+    },
+    "Span.belowResolution": {
+      "@id": "cont:Span.belowResolution"
+    },
+    "Span.clockDomain": {
+      "@id": "cont:Span.clockDomain"
+    },
+    "Span.clockResolutionNs": {
+      "@id": "cont:Span.clockResolutionNs"
+    },
+    "Span.endNs": {
+      "@id": "cont:Span.endNs"
+    },
+    "Span.leaf": {
+      "@id": "cont:Span.leaf"
+    },
+    "Span.parentSpanId": {
+      "@id": "cont:Span.parentSpanId"
+    },
+    "Span.purpose": {
+      "@id": "cont:Span.purpose"
+    },
+    "Span.spanId": {
+      "@id": "cont:Span.spanId"
+    },
+    "Span.startNs": {
+      "@id": "cont:Span.startNs"
+    },
+    "Span.state": {
+      "@id": "cont:Span.state"
+    },
+    "Span.traceRunId": {
+      "@id": "cont:Span.traceRunId"
+    },
+    "Span.uncertainty": {
+      "@id": "cont:Span.uncertainty"
+    },
+    "StateSnapshot": {
+      "@id": "cont:StateSnapshot",
+      "@type": "@id"
+    },
+    "StateSnapshot.admittedSourceVersions": {
+      "@id": "cont:StateSnapshot.admittedSourceVersions"
+    },
+    "StateSnapshot.artifactRefs": {
+      "@id": "cont:StateSnapshot.artifactRefs"
+    },
+    "StateSnapshot.completeness": {
+      "@id": "cont:StateSnapshot.completeness"
+    },
+    "StateSnapshot.contractDigests": {
+      "@id": "cont:StateSnapshot.contractDigests"
+    },
+    "StateSnapshot.environmentBinding": {
+      "@id": "cont:StateSnapshot.environmentBinding",
+      "@type": "@id"
+    },
+    "StateSnapshot.ephemeralBindings": {
+      "@id": "cont:StateSnapshot.ephemeralBindings"
+    },
+    "StateSnapshot.implementationVersions": {
+      "@id": "cont:StateSnapshot.implementationVersions"
+    },
+    "StateSnapshot.planDigest": {
+      "@id": "cont:StateSnapshot.planDigest"
+    },
+    "StateSnapshot.requiredFacts": {
+      "@id": "cont:StateSnapshot.requiredFacts"
+    },
+    "ToolInvocation": {
+      "@id": "cont:ToolInvocation",
+      "@type": "@id"
+    },
+    "ToolInvocation.completedAt": {
+      "@id": "cont:ToolInvocation.completedAt"
+    },
+    "ToolInvocation.errorClass": {
+      "@id": "cont:ToolInvocation.errorClass"
+    },
+    "ToolInvocation.idempotencyKey": {
+      "@id": "cont:ToolInvocation.idempotencyKey"
+    },
+    "ToolInvocation.implementation": {
+      "@id": "cont:ToolInvocation.implementation",
+      "@type": "@id"
+    },
+    "ToolInvocation.invocationId": {
+      "@id": "cont:ToolInvocation.invocationId"
+    },
+    "ToolInvocation.resultDigest": {
+      "@id": "cont:ToolInvocation.resultDigest"
+    },
+    "ToolInvocation.startedAt": {
+      "@id": "cont:ToolInvocation.startedAt"
+    },
+    "ToolInvocation.terminalStatus": {
+      "@id": "cont:ToolInvocation.terminalStatus"
+    },
+    "Transaction": {
+      "@id": "cont:Transaction",
+      "@type": "@id"
+    },
+    "Transaction.closedAt": {
+      "@id": "cont:Transaction.closedAt"
+    },
+    "Transaction.committed": {
+      "@id": "cont:Transaction.committed"
+    },
+    "Transaction.openedAt": {
+      "@id": "cont:Transaction.openedAt"
+    },
+    "Transaction.operationId": {
+      "@id": "cont:Transaction.operationId"
+    },
+    "Transaction.transactionId": {
+      "@id": "cont:Transaction.transactionId"
+    },
+    "Verification": {
+      "@id": "cont:Verification",
+      "@type": "@id"
+    },
+    "Verification.claimId": {
+      "@id": "cont:Verification.claimId"
+    },
+    "Verification.commonModeDependencies": {
+      "@id": "cont:Verification.commonModeDependencies"
+    },
+    "Verification.independenceLevel": {
+      "@id": "cont:Verification.independenceLevel"
+    },
+    "Verification.mode": {
+      "@id": "cont:Verification.mode"
+    },
+    "Verification.producerStatus": {
+      "@id": "cont:Verification.producerStatus"
+    },
+    "Verification.proposition": {
+      "@id": "cont:Verification.proposition",
+      "@type": "@id"
+    },
+    "Verification.reason": {
+      "@id": "cont:Verification.reason"
+    },
+    "Verification.recomputedValue": {
+      "@id": "cont:Verification.recomputedValue"
+    },
+    "Verification.recordType": {
+      "@id": "cont:Verification.recordType"
+    },
+    "Verification.status": {
+      "@id": "cont:Verification.status"
+    },
+    "VerificationCostSet": {
+      "@id": "cont:VerificationCostSet",
+      "@type": "@id"
+    },
+    "VerificationCostSet.auditorTokens": {
+      "@id": "cont:VerificationCostSet.auditorTokens",
+      "@type": "@id"
+    },
+    "VerificationCostSet.managerTokens": {
+      "@id": "cont:VerificationCostSet.managerTokens",
+      "@type": "@id"
+    },
+    "VerificationCostSet.recoveryTokens": {
+      "@id": "cont:VerificationCostSet.recoveryTokens",
+      "@type": "@id"
+    },
+    "WorkItem": {
+      "@id": "cont:WorkItem",
+      "@type": "@id"
+    },
+    "WorkItem.accountingId": {
+      "@id": "cont:WorkItem.accountingId"
+    },
+    "WorkItem.accountingPartition": {
+      "@id": "cont:WorkItem.accountingPartition"
+    },
+    "WorkItem.contracts": {
+      "@id": "cont:WorkItem.contracts"
+    },
+    "WorkItem.lifecycle": {
+      "@id": "cont:WorkItem.lifecycle"
+    },
+    "WorkItem.limits": {
+      "@id": "cont:WorkItem.limits"
+    },
+    "WorkItem.parentOutcome": {
+      "@id": "cont:WorkItem.parentOutcome",
+      "@type": "@id"
+    },
+    "WorkItem.permittedSideEffects": {
+      "@id": "cont:WorkItem.permittedSideEffects"
+    },
+    "WorkItem.prerequisites": {
+      "@id": "cont:WorkItem.prerequisites"
+    },
+    "WorkItem.requiredCapabilities": {
+      "@id": "cont:WorkItem.requiredCapabilities"
+    },
+    "WorkItem.title": {
+      "@id": "cont:WorkItem.title"
+    },
+    "WorkPacket": {
+      "@id": "cont:WorkPacket",
+      "@type": "@id"
+    },
+    "WorkPacket.finalAuditAuthority": {
+      "@id": "cont:WorkPacket.finalAuditAuthority"
+    },
+    "WorkPacket.frozenInterfaceVersion": {
+      "@id": "cont:WorkPacket.frozenInterfaceVersion"
+    },
+    "WorkPacket.ownedPaths": {
+      "@id": "cont:WorkPacket.ownedPaths"
+    },
+    "WorkPacket.ownerRole": {
+      "@id": "cont:WorkPacket.ownerRole"
+    },
+    "WorkPacket.packetId": {
+      "@id": "cont:WorkPacket.packetId"
+    },
+    "WorkPacket.requirementIds": {
+      "@id": "cont:WorkPacket.requirementIds"
+    },
+    "WorkUnitPolicy": {
+      "@id": "cont:WorkUnitPolicy",
+      "@type": "@id"
+    },
+    "WorkUnitPolicy.acceptanceUniverse": {
+      "@id": "cont:WorkUnitPolicy.acceptanceUniverse"
+    },
+    "WorkUnitPolicy.frozen": {
+      "@id": "cont:WorkUnitPolicy.frozen"
+    },
+    "WorkUnitPolicy.frozenAt": {
+      "@id": "cont:WorkUnitPolicy.frozenAt"
+    },
+    "WorkUnitPolicy.policyVersion": {
+      "@id": "cont:WorkUnitPolicy.policyVersion"
+    },
+    "compares": {
+      "@id": "cont:compares",
+      "@type": "@id"
+    },
+    "constrainedByContract": {
+      "@id": "cont:constrainedByContract",
+      "@type": "@id"
+    },
+    "constrainedByEquivalence": {
+      "@id": "cont:constrainedByEquivalence",
+      "@type": "@id"
+    },
+    "consumes": {
+      "@id": "cont:consumes",
+      "@type": "@id"
+    },
+    "cont": "https://ontology.continuity.invalid/2.0.0/",
+    "decomposedInto": {
+      "@id": "cont:decomposedInto",
+      "@type": "@id"
+    },
+    "dependsOn": {
+      "@id": "cont:dependsOn",
+      "@type": "@id"
+    },
+    "derivedFrom": {
+      "@id": "cont:derivedFrom",
+      "@type": "@id"
+    },
+    "directPrerequisite": {
+      "@id": "cont:directPrerequisite",
+      "@type": "@id"
+    },
+    "directlyDerivedFrom": {
+      "@id": "cont:directlyDerivedFrom",
+      "@type": "@id"
+    },
+    "directlyPrecedes": {
+      "@id": "cont:directlyPrecedes",
+      "@type": "@id"
+    },
+    "evaluatedBy": {
+      "@id": "cont:evaluatedBy",
+      "@type": "@id"
+    },
+    "evaluatesAgainst": {
+      "@id": "cont:evaluatesAgainst",
+      "@type": "@id"
+    },
+    "executes": {
+      "@id": "cont:executes",
+      "@type": "@id"
+    },
+    "governedBy": {
+      "@id": "cont:governedBy",
+      "@type": "@id"
+    },
+    "holdsConstant": {
+      "@id": "cont:holdsConstant",
+      "@type": "@id"
+    },
+    "invokes": {
+      "@id": "cont:invokes",
+      "@type": "@id"
+    },
+    "precedes": {
+      "@id": "cont:precedes",
+      "@type": "@id"
+    },
+    "preserves": {
+      "@id": "cont:preserves",
+      "@type": "@id"
+    },
+    "produces": {
+      "@id": "cont:produces",
+      "@type": "@id"
+    },
+    "reaches": {
+      "@id": "cont:reaches",
+      "@type": "@id"
+    },
+    "realizesCapability": {
+      "@id": "cont:realizesCapability",
+      "@type": "@id"
+    },
+    "requiresCapability": {
+      "@id": "cont:requiresCapability",
+      "@type": "@id"
+    },
+    "schedules": {
+      "@id": "cont:schedules",
+      "@type": "@id"
+    },
+    "supportedBy": {
+      "@id": "cont:supportedBy",
+      "@type": "@id"
+    },
+    "transfers": {
+      "@id": "cont:transfers",
+      "@type": "@id"
+    },
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "yields": {
+      "@id": "cont:yields",
+      "@type": "@id"
+    }
+  },
+  "_generated": "GENERATED FROM ontology/metamodel.json -- DO NOT EDIT",
+  "_semanticModelDigest": "sha256:356d05c8e459888cd22779f81e74d9e856a749105e115cca66391806a95aca4a"
+}

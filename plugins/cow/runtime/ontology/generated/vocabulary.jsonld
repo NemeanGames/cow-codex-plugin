@@ -1,0 +1,5603 @@
+{
+  "@context": {
+    "cont": "https://ontology.continuity.invalid/2.0.0/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+  },
+  "@graph": [
+    {
+      "@id": "cont:AcceptanceDimension/SOFTWARE_ACCEPTED",
+      "@type": "cont:AcceptanceDimension",
+      "rdfs:label": "SOFTWARE_ACCEPTED"
+    },
+    {
+      "@id": "cont:AcceptanceDimension/EFFICIENCY_VERIFIED",
+      "@type": "cont:AcceptanceDimension",
+      "rdfs:label": "EFFICIENCY_VERIFIED"
+    },
+    {
+      "@id": "cont:AcceptanceDimension/DEPLOYMENT_VERIFIED",
+      "@type": "cont:AcceptanceDimension",
+      "rdfs:label": "DEPLOYMENT_VERIFIED"
+    },
+    {
+      "@id": "cont:AcceptanceDimension/LIVE_ADAPTER_QUALIFIED",
+      "@type": "cont:AcceptanceDimension",
+      "rdfs:label": "LIVE_ADAPTER_QUALIFIED"
+    },
+    {
+      "@id": "cont:AccountingRule/SUBSET_OF_INPUT",
+      "@type": "cont:AccountingRule",
+      "rdfs:label": "SUBSET_OF_INPUT"
+    },
+    {
+      "@id": "cont:AccountingRule/SUBSET_OF_OUTPUT",
+      "@type": "cont:AccountingRule",
+      "rdfs:label": "SUBSET_OF_OUTPUT"
+    },
+    {
+      "@id": "cont:AccountingRule/DISJOINT_ADDITIVE",
+      "@type": "cont:AccountingRule",
+      "rdfs:label": "DISJOINT_ADDITIVE"
+    },
+    {
+      "@id": "cont:AccountingRule/UNSPECIFIED",
+      "@type": "cont:AccountingRule",
+      "rdfs:label": "UNSPECIFIED"
+    },
+    {
+      "@id": "cont:AuthorityClass/AUTHORITATIVE_SOURCE",
+      "@type": "cont:AuthorityClass",
+      "rdfs:label": "AUTHORITATIVE_SOURCE"
+    },
+    {
+      "@id": "cont:AuthorityClass/DETERMINISTIC_DERIVATION",
+      "@type": "cont:AuthorityClass",
+      "rdfs:label": "DETERMINISTIC_DERIVATION"
+    },
+    {
+      "@id": "cont:AuthorityClass/PROVIDER_OBSERVATION",
+      "@type": "cont:AuthorityClass",
+      "rdfs:label": "PROVIDER_OBSERVATION"
+    },
+    {
+      "@id": "cont:AuthorityClass/OPERATION_OWNED_RESULT",
+      "@type": "cont:AuthorityClass",
+      "rdfs:label": "OPERATION_OWNED_RESULT"
+    },
+    {
+      "@id": "cont:AuthorityClass/HEURISTIC_DECISION",
+      "@type": "cont:AuthorityClass",
+      "rdfs:label": "HEURISTIC_DECISION"
+    },
+    {
+      "@id": "cont:AuthorityClass/POLICY_OR_SYNTHETIC_AID",
+      "@type": "cont:AuthorityClass",
+      "rdfs:label": "POLICY_OR_SYNTHETIC_AID"
+    },
+    {
+      "@id": "cont:AuthorityClass/CALLER_ASSERTION",
+      "@type": "cont:AuthorityClass",
+      "rdfs:label": "CALLER_ASSERTION"
+    },
+    {
+      "@id": "cont:BundleLifecycle/OPEN",
+      "@type": "cont:BundleLifecycle",
+      "rdfs:label": "OPEN"
+    },
+    {
+      "@id": "cont:BundleLifecycle/SEALED",
+      "@type": "cont:BundleLifecycle",
+      "rdfs:label": "SEALED"
+    },
+    {
+      "@id": "cont:BundleLifecycle/DELTA",
+      "@type": "cont:BundleLifecycle",
+      "rdfs:label": "DELTA"
+    },
+    {
+      "@id": "cont:BundleLifecycle/MATERIALIZED",
+      "@type": "cont:BundleLifecycle",
+      "rdfs:label": "MATERIALIZED"
+    },
+    {
+      "@id": "cont:BundleLifecycle/INVALIDATED",
+      "@type": "cont:BundleLifecycle",
+      "rdfs:label": "INVALIDATED"
+    },
+    {
+      "@id": "cont:ClaimLifecycle/DRAFT",
+      "@type": "cont:ClaimLifecycle",
+      "rdfs:label": "DRAFT"
+    },
+    {
+      "@id": "cont:ClaimLifecycle/SEALED",
+      "@type": "cont:ClaimLifecycle",
+      "rdfs:label": "SEALED"
+    },
+    {
+      "@id": "cont:ClaimLifecycle/AUDITED",
+      "@type": "cont:ClaimLifecycle",
+      "rdfs:label": "AUDITED"
+    },
+    {
+      "@id": "cont:ClaimLifecycle/SUPERSEDED",
+      "@type": "cont:ClaimLifecycle",
+      "rdfs:label": "SUPERSEDED"
+    },
+    {
+      "@id": "cont:ClaimLifecycle/REVOKED",
+      "@type": "cont:ClaimLifecycle",
+      "rdfs:label": "REVOKED"
+    },
+    {
+      "@id": "cont:ClosureKind/ENUMERATION",
+      "@type": "cont:ClosureKind",
+      "rdfs:label": "ENUMERATION"
+    },
+    {
+      "@id": "cont:ClosureKind/MUTATION_SET",
+      "@type": "cont:ClosureKind",
+      "rdfs:label": "MUTATION_SET"
+    },
+    {
+      "@id": "cont:ClosureKind/DEPENDENCY",
+      "@type": "cont:ClosureKind",
+      "rdfs:label": "DEPENDENCY"
+    },
+    {
+      "@id": "cont:ClosureKind/EVIDENCE",
+      "@type": "cont:ClosureKind",
+      "rdfs:label": "EVIDENCE"
+    },
+    {
+      "@id": "cont:ClosureKind/ROLLBACK",
+      "@type": "cont:ClosureKind",
+      "rdfs:label": "ROLLBACK"
+    },
+    {
+      "@id": "cont:ClosureKind/STATE",
+      "@type": "cont:ClosureKind",
+      "rdfs:label": "STATE"
+    },
+    {
+      "@id": "cont:ConflictDisposition/UNRESOLVED",
+      "@type": "cont:ConflictDisposition",
+      "rdfs:label": "UNRESOLVED"
+    },
+    {
+      "@id": "cont:ConflictDisposition/ADJUDICATED_ACCEPT",
+      "@type": "cont:ConflictDisposition",
+      "rdfs:label": "ADJUDICATED_ACCEPT"
+    },
+    {
+      "@id": "cont:ConflictDisposition/ADJUDICATED_REJECT",
+      "@type": "cont:ConflictDisposition",
+      "rdfs:label": "ADJUDICATED_REJECT"
+    },
+    {
+      "@id": "cont:ConflictDisposition/ADJUDICATED_SPLIT_SCOPE",
+      "@type": "cont:ConflictDisposition",
+      "rdfs:label": "ADJUDICATED_SPLIT_SCOPE"
+    },
+    {
+      "@id": "cont:EvidenceAdmissibility/ADMISSIBLE",
+      "@type": "cont:EvidenceAdmissibility",
+      "rdfs:label": "ADMISSIBLE"
+    },
+    {
+      "@id": "cont:EvidenceAdmissibility/INADMISSIBLE_SCOPE",
+      "@type": "cont:EvidenceAdmissibility",
+      "rdfs:label": "INADMISSIBLE_SCOPE"
+    },
+    {
+      "@id": "cont:EvidenceAdmissibility/INADMISSIBLE_AUTHORITY",
+      "@type": "cont:EvidenceAdmissibility",
+      "rdfs:label": "INADMISSIBLE_AUTHORITY"
+    },
+    {
+      "@id": "cont:EvidenceAdmissibility/INADMISSIBLE_FRESHNESS",
+      "@type": "cont:EvidenceAdmissibility",
+      "rdfs:label": "INADMISSIBLE_FRESHNESS"
+    },
+    {
+      "@id": "cont:EvidenceAdmissibility/INADMISSIBLE_INCOMPLETE",
+      "@type": "cont:EvidenceAdmissibility",
+      "rdfs:label": "INADMISSIBLE_INCOMPLETE"
+    },
+    {
+      "@id": "cont:EvidenceAdmissibility/INADMISSIBLE_SYNTHETIC_FOR_LIVE",
+      "@type": "cont:EvidenceAdmissibility",
+      "rdfs:label": "INADMISSIBLE_SYNTHETIC_FOR_LIVE"
+    },
+    {
+      "@id": "cont:ExecutionPurpose/PLANNING",
+      "@type": "cont:ExecutionPurpose",
+      "rdfs:label": "PLANNING"
+    },
+    {
+      "@id": "cont:ExecutionPurpose/RETRIEVAL",
+      "@type": "cont:ExecutionPurpose",
+      "rdfs:label": "RETRIEVAL"
+    },
+    {
+      "@id": "cont:ExecutionPurpose/GENERATION",
+      "@type": "cont:ExecutionPurpose",
+      "rdfs:label": "GENERATION"
+    },
+    {
+      "@id": "cont:ExecutionPurpose/VERIFICATION",
+      "@type": "cont:ExecutionPurpose",
+      "rdfs:label": "VERIFICATION"
+    },
+    {
+      "@id": "cont:ExecutionPurpose/AUDIT",
+      "@type": "cont:ExecutionPurpose",
+      "rdfs:label": "AUDIT"
+    },
+    {
+      "@id": "cont:ExecutionPurpose/PACKAGING",
+      "@type": "cont:ExecutionPurpose",
+      "rdfs:label": "PACKAGING"
+    },
+    {
+      "@id": "cont:ExecutionPurpose/RECOVERY_REWORK",
+      "@type": "cont:ExecutionPurpose",
+      "rdfs:label": "RECOVERY_REWORK"
+    },
+    {
+      "@id": "cont:ExecutionState/ACTIVE_EXECUTION",
+      "@type": "cont:ExecutionState",
+      "rdfs:label": "ACTIVE_EXECUTION"
+    },
+    {
+      "@id": "cont:ExecutionState/TOOL_WAIT",
+      "@type": "cont:ExecutionState",
+      "rdfs:label": "TOOL_WAIT"
+    },
+    {
+      "@id": "cont:ExecutionState/HUMAN_WAIT",
+      "@type": "cont:ExecutionState",
+      "rdfs:label": "HUMAN_WAIT"
+    },
+    {
+      "@id": "cont:ExecutionState/IDLE",
+      "@type": "cont:ExecutionState",
+      "rdfs:label": "IDLE"
+    },
+    {
+      "@id": "cont:ExecutionState/UNKNOWN",
+      "@type": "cont:ExecutionState",
+      "rdfs:label": "UNKNOWN"
+    },
+    {
+      "@id": "cont:LifecycleState/CREATED",
+      "@type": "cont:LifecycleState",
+      "rdfs:label": "CREATED"
+    },
+    {
+      "@id": "cont:LifecycleState/VALIDATED",
+      "@type": "cont:LifecycleState",
+      "rdfs:label": "VALIDATED"
+    },
+    {
+      "@id": "cont:LifecycleState/READY",
+      "@type": "cont:LifecycleState",
+      "rdfs:label": "READY"
+    },
+    {
+      "@id": "cont:LifecycleState/RUNNING",
+      "@type": "cont:LifecycleState",
+      "rdfs:label": "RUNNING"
+    },
+    {
+      "@id": "cont:LifecycleState/CHECKPOINTED",
+      "@type": "cont:LifecycleState",
+      "rdfs:label": "CHECKPOINTED"
+    },
+    {
+      "@id": "cont:LifecycleState/COMPLETED",
+      "@type": "cont:LifecycleState",
+      "rdfs:label": "COMPLETED"
+    },
+    {
+      "@id": "cont:LifecycleState/BLOCKED",
+      "@type": "cont:LifecycleState",
+      "rdfs:label": "BLOCKED"
+    },
+    {
+      "@id": "cont:LifecycleState/FAILED",
+      "@type": "cont:LifecycleState",
+      "rdfs:label": "FAILED"
+    },
+    {
+      "@id": "cont:LifecycleState/ERRORED",
+      "@type": "cont:LifecycleState",
+      "rdfs:label": "ERRORED"
+    },
+    {
+      "@id": "cont:LifecycleState/CANCELED",
+      "@type": "cont:LifecycleState",
+      "rdfs:label": "CANCELED"
+    },
+    {
+      "@id": "cont:MeasurementBasis/OBSERVED",
+      "@type": "cont:MeasurementBasis",
+      "rdfs:label": "OBSERVED"
+    },
+    {
+      "@id": "cont:MeasurementBasis/ESTIMATED",
+      "@type": "cont:MeasurementBasis",
+      "rdfs:label": "ESTIMATED"
+    },
+    {
+      "@id": "cont:MeasurementBasis/UNKNOWN",
+      "@type": "cont:MeasurementBasis",
+      "rdfs:label": "UNKNOWN"
+    },
+    {
+      "@id": "cont:MeasurementBasis/NOT_APPLICABLE",
+      "@type": "cont:MeasurementBasis",
+      "rdfs:label": "NOT_APPLICABLE"
+    },
+    {
+      "@id": "cont:MetricAvailability/AVAILABLE",
+      "@type": "cont:MetricAvailability",
+      "rdfs:label": "AVAILABLE"
+    },
+    {
+      "@id": "cont:MetricAvailability/UNDEFINED_ZERO_DENOMINATOR",
+      "@type": "cont:MetricAvailability",
+      "rdfs:label": "UNDEFINED_ZERO_DENOMINATOR"
+    },
+    {
+      "@id": "cont:MetricAvailability/NOT_APPLICABLE",
+      "@type": "cont:MetricAvailability",
+      "rdfs:label": "NOT_APPLICABLE"
+    },
+    {
+      "@id": "cont:MetricAvailability/INADMISSIBLE_INPUTS",
+      "@type": "cont:MetricAvailability",
+      "rdfs:label": "INADMISSIBLE_INPUTS"
+    },
+    {
+      "@id": "cont:MetricAvailability/INSUFFICIENT_EVIDENCE",
+      "@type": "cont:MetricAvailability",
+      "rdfs:label": "INSUFFICIENT_EVIDENCE"
+    },
+    {
+      "@id": "cont:ObservationChannel/FILE_BYTES",
+      "@type": "cont:ObservationChannel",
+      "rdfs:label": "FILE_BYTES"
+    },
+    {
+      "@id": "cont:ObservationChannel/PROCESS_API",
+      "@type": "cont:ObservationChannel",
+      "rdfs:label": "PROCESS_API"
+    },
+    {
+      "@id": "cont:ObservationChannel/PROVIDER_API",
+      "@type": "cont:ObservationChannel",
+      "rdfs:label": "PROVIDER_API"
+    },
+    {
+      "@id": "cont:ObservationChannel/ENGINE_API",
+      "@type": "cont:ObservationChannel",
+      "rdfs:label": "ENGINE_API"
+    },
+    {
+      "@id": "cont:ObservationChannel/SCREEN_CAPTURE",
+      "@type": "cont:ObservationChannel",
+      "rdfs:label": "SCREEN_CAPTURE"
+    },
+    {
+      "@id": "cont:ObservationChannel/USER_REPORT",
+      "@type": "cont:ObservationChannel",
+      "rdfs:label": "USER_REPORT"
+    },
+    {
+      "@id": "cont:ObservationChannel/LOG_STREAM",
+      "@type": "cont:ObservationChannel",
+      "rdfs:label": "LOG_STREAM"
+    },
+    {
+      "@id": "cont:ObservationChannel/NOT_OBSERVED",
+      "@type": "cont:ObservationChannel",
+      "rdfs:label": "NOT_OBSERVED"
+    },
+    {
+      "@id": "cont:OperationalOwnership/DIRECTLY_OWNED",
+      "@type": "cont:OperationalOwnership",
+      "rdfs:label": "DIRECTLY_OWNED"
+    },
+    {
+      "@id": "cont:OperationalOwnership/DELEGATED_WITH_RECEIPT",
+      "@type": "cont:OperationalOwnership",
+      "rdfs:label": "DELEGATED_WITH_RECEIPT"
+    },
+    {
+      "@id": "cont:OperationalOwnership/OBSERVED_THIRD_PARTY",
+      "@type": "cont:OperationalOwnership",
+      "rdfs:label": "OBSERVED_THIRD_PARTY"
+    },
+    {
+      "@id": "cont:OperationalOwnership/NOT_APPLICABLE",
+      "@type": "cont:OperationalOwnership",
+      "rdfs:label": "NOT_APPLICABLE"
+    },
+    {
+      "@id": "cont:OperationalOwnership/UNKNOWN",
+      "@type": "cont:OperationalOwnership",
+      "rdfs:label": "UNKNOWN"
+    },
+    {
+      "@id": "cont:Origin/SOURCE_ARTIFACT",
+      "@type": "cont:Origin",
+      "rdfs:label": "SOURCE_ARTIFACT"
+    },
+    {
+      "@id": "cont:Origin/LIVE_OBSERVATION",
+      "@type": "cont:Origin",
+      "rdfs:label": "LIVE_OBSERVATION"
+    },
+    {
+      "@id": "cont:Origin/DERIVATION",
+      "@type": "cont:Origin",
+      "rdfs:label": "DERIVATION"
+    },
+    {
+      "@id": "cont:Origin/POLICY",
+      "@type": "cont:Origin",
+      "rdfs:label": "POLICY"
+    },
+    {
+      "@id": "cont:Origin/HUMAN_INPUT",
+      "@type": "cont:Origin",
+      "rdfs:label": "HUMAN_INPUT"
+    },
+    {
+      "@id": "cont:Origin/SYNTHETIC_FIXTURE",
+      "@type": "cont:Origin",
+      "rdfs:label": "SYNTHETIC_FIXTURE"
+    },
+    {
+      "@id": "cont:ProductionMethod/MEASURED",
+      "@type": "cont:ProductionMethod",
+      "rdfs:label": "MEASURED"
+    },
+    {
+      "@id": "cont:ProductionMethod/RECOMPUTED",
+      "@type": "cont:ProductionMethod",
+      "rdfs:label": "RECOMPUTED"
+    },
+    {
+      "@id": "cont:ProductionMethod/REPLAYED",
+      "@type": "cont:ProductionMethod",
+      "rdfs:label": "REPLAYED"
+    },
+    {
+      "@id": "cont:ProductionMethod/TRANSCRIBED",
+      "@type": "cont:ProductionMethod",
+      "rdfs:label": "TRANSCRIBED"
+    },
+    {
+      "@id": "cont:ProductionMethod/ESTIMATED",
+      "@type": "cont:ProductionMethod",
+      "rdfs:label": "ESTIMATED"
+    },
+    {
+      "@id": "cont:ProductionMethod/ASSERTED",
+      "@type": "cont:ProductionMethod",
+      "rdfs:label": "ASSERTED"
+    },
+    {
+      "@id": "cont:ProductionMethod/GENERATED",
+      "@type": "cont:ProductionMethod",
+      "rdfs:label": "GENERATED"
+    },
+    {
+      "@id": "cont:PromotionState/NOT_EVALUATED",
+      "@type": "cont:PromotionState",
+      "rdfs:label": "NOT_EVALUATED"
+    },
+    {
+      "@id": "cont:PromotionState/ELIGIBLE",
+      "@type": "cont:PromotionState",
+      "rdfs:label": "ELIGIBLE"
+    },
+    {
+      "@id": "cont:PromotionState/INELIGIBLE",
+      "@type": "cont:PromotionState",
+      "rdfs:label": "INELIGIBLE"
+    },
+    {
+      "@id": "cont:PromotionState/PROMOTED",
+      "@type": "cont:PromotionState",
+      "rdfs:label": "PROMOTED"
+    },
+    {
+      "@id": "cont:PromotionState/WITHHELD",
+      "@type": "cont:PromotionState",
+      "rdfs:label": "WITHHELD"
+    },
+    {
+      "@id": "cont:Qualification/QUALIFIED",
+      "@type": "cont:Qualification",
+      "rdfs:label": "QUALIFIED"
+    },
+    {
+      "@id": "cont:Qualification/PROVISIONAL",
+      "@type": "cont:Qualification",
+      "rdfs:label": "PROVISIONAL"
+    },
+    {
+      "@id": "cont:Qualification/TENTATIVE",
+      "@type": "cont:Qualification",
+      "rdfs:label": "TENTATIVE"
+    },
+    {
+      "@id": "cont:Qualification/NEGATIVELY_QUALIFIED",
+      "@type": "cont:Qualification",
+      "rdfs:label": "NEGATIVELY_QUALIFIED"
+    },
+    {
+      "@id": "cont:Qualification/BLOCKED",
+      "@type": "cont:Qualification",
+      "rdfs:label": "BLOCKED"
+    },
+    {
+      "@id": "cont:Qualification/NOT_ASSESSED",
+      "@type": "cont:Qualification",
+      "rdfs:label": "NOT_ASSESSED"
+    },
+    {
+      "@id": "cont:ResourceKind/VENDOR_INPUT_TOKENS",
+      "@type": "cont:ResourceKind",
+      "rdfs:label": "VENDOR_INPUT_TOKENS"
+    },
+    {
+      "@id": "cont:ResourceKind/VENDOR_OUTPUT_TOKENS",
+      "@type": "cont:ResourceKind",
+      "rdfs:label": "VENDOR_OUTPUT_TOKENS"
+    },
+    {
+      "@id": "cont:ResourceKind/VENDOR_CACHED_INPUT_TOKENS",
+      "@type": "cont:ResourceKind",
+      "rdfs:label": "VENDOR_CACHED_INPUT_TOKENS"
+    },
+    {
+      "@id": "cont:ResourceKind/VENDOR_CACHE_READ_INPUT_TOKENS",
+      "@type": "cont:ResourceKind",
+      "rdfs:label": "VENDOR_CACHE_READ_INPUT_TOKENS"
+    },
+    {
+      "@id": "cont:ResourceKind/VENDOR_CACHE_CREATION_INPUT_TOKENS",
+      "@type": "cont:ResourceKind",
+      "rdfs:label": "VENDOR_CACHE_CREATION_INPUT_TOKENS"
+    },
+    {
+      "@id": "cont:ResourceKind/VENDOR_REASONING_OUTPUT_TOKENS",
+      "@type": "cont:ResourceKind",
+      "rdfs:label": "VENDOR_REASONING_OUTPUT_TOKENS"
+    },
+    {
+      "@id": "cont:ResourceKind/LOCAL_MODEL_INPUT_TOKENS",
+      "@type": "cont:ResourceKind",
+      "rdfs:label": "LOCAL_MODEL_INPUT_TOKENS"
+    },
+    {
+      "@id": "cont:ResourceKind/LOCAL_MODEL_OUTPUT_TOKENS",
+      "@type": "cont:ResourceKind",
+      "rdfs:label": "LOCAL_MODEL_OUTPUT_TOKENS"
+    },
+    {
+      "@id": "cont:ResourceKind/TOOL_RUNTIME_MS",
+      "@type": "cont:ResourceKind",
+      "rdfs:label": "TOOL_RUNTIME_MS"
+    },
+    {
+      "@id": "cont:ResourceKind/RETRY_COUNT",
+      "@type": "cont:ResourceKind",
+      "rdfs:label": "RETRY_COUNT"
+    },
+    {
+      "@id": "cont:ResourceKind/FAILED_ATTEMPT_COUNT",
+      "@type": "cont:ResourceKind",
+      "rdfs:label": "FAILED_ATTEMPT_COUNT"
+    },
+    {
+      "@id": "cont:ResourceKind/METERED_COMPUTE_MS",
+      "@type": "cont:ResourceKind",
+      "rdfs:label": "METERED_COMPUTE_MS"
+    },
+    {
+      "@id": "cont:ResourceKind/MONEY_MINOR_UNITS",
+      "@type": "cont:ResourceKind",
+      "rdfs:label": "MONEY_MINOR_UNITS"
+    },
+    {
+      "@id": "cont:ReuseDisposition/REUSE_UNCHANGED",
+      "@type": "cont:ReuseDisposition",
+      "rdfs:label": "REUSE_UNCHANGED"
+    },
+    {
+      "@id": "cont:ReuseDisposition/WRAP",
+      "@type": "cont:ReuseDisposition",
+      "rdfs:label": "WRAP"
+    },
+    {
+      "@id": "cont:ReuseDisposition/EXTEND_WITH_MIGRATION",
+      "@type": "cont:ReuseDisposition",
+      "rdfs:label": "EXTEND_WITH_MIGRATION"
+    },
+    {
+      "@id": "cont:ReuseDisposition/REPLACE_WITH_PROVEN_EQUIVALENCE",
+      "@type": "cont:ReuseDisposition",
+      "rdfs:label": "REPLACE_WITH_PROVEN_EQUIVALENCE"
+    },
+    {
+      "@id": "cont:ReuseDisposition/REFERENCE_ONLY",
+      "@type": "cont:ReuseDisposition",
+      "rdfs:label": "REFERENCE_ONLY"
+    },
+    {
+      "@id": "cont:ReuseDisposition/NOT_AVAILABLE",
+      "@type": "cont:ReuseDisposition",
+      "rdfs:label": "NOT_AVAILABLE"
+    },
+    {
+      "@id": "cont:Status/PASS",
+      "@type": "cont:Status",
+      "rdfs:label": "PASS"
+    },
+    {
+      "@id": "cont:Status/FAIL",
+      "@type": "cont:Status",
+      "rdfs:label": "FAIL"
+    },
+    {
+      "@id": "cont:Status/UNKNOWN",
+      "@type": "cont:Status",
+      "rdfs:label": "UNKNOWN"
+    },
+    {
+      "@id": "cont:Status/ERROR",
+      "@type": "cont:Status",
+      "rdfs:label": "ERROR"
+    },
+    {
+      "@id": "cont:Status/NOT_RUN",
+      "@type": "cont:Status",
+      "rdfs:label": "NOT_RUN"
+    },
+    {
+      "@id": "cont:Verdict/APPROVE",
+      "@type": "cont:Verdict",
+      "rdfs:label": "APPROVE"
+    },
+    {
+      "@id": "cont:Verdict/REJECT",
+      "@type": "cont:Verdict",
+      "rdfs:label": "REJECT"
+    },
+    {
+      "@id": "cont:Verdict/INDETERMINATE",
+      "@type": "cont:Verdict",
+      "rdfs:label": "INDETERMINATE"
+    },
+    {
+      "@id": "cont:VerificationStatus/UNVERIFIED",
+      "@type": "cont:VerificationStatus",
+      "rdfs:label": "UNVERIFIED"
+    },
+    {
+      "@id": "cont:VerificationStatus/PRODUCER_ASSERTED",
+      "@type": "cont:VerificationStatus",
+      "rdfs:label": "PRODUCER_ASSERTED"
+    },
+    {
+      "@id": "cont:VerificationStatus/INDEPENDENTLY_VERIFIED",
+      "@type": "cont:VerificationStatus",
+      "rdfs:label": "INDEPENDENTLY_VERIFIED"
+    },
+    {
+      "@id": "cont:VerificationStatus/CONTRADICTED",
+      "@type": "cont:VerificationStatus",
+      "rdfs:label": "CONTRADICTED"
+    },
+    {
+      "@id": "cont:VerificationStatus/INADMISSIBLE",
+      "@type": "cont:VerificationStatus",
+      "rdfs:label": "INADMISSIBLE"
+    },
+    {
+      "@id": "cont:ViewLifecycle/WIP_DIAGNOSTIC",
+      "@type": "cont:ViewLifecycle",
+      "rdfs:label": "WIP_DIAGNOSTIC"
+    },
+    {
+      "@id": "cont:ViewLifecycle/COMMITTED_PROJECTION",
+      "@type": "cont:ViewLifecycle",
+      "rdfs:label": "COMMITTED_PROJECTION"
+    },
+    {
+      "@id": "cont:ViewLifecycle/STALE",
+      "@type": "cont:ViewLifecycle",
+      "rdfs:label": "STALE"
+    },
+    {
+      "@id": "cont:ViewLifecycle/UNAVAILABLE",
+      "@type": "cont:ViewLifecycle",
+      "rdfs:label": "UNAVAILABLE"
+    },
+    {
+      "@id": "cont:AcceptanceReceipt",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "Credits exactly one accounting identity once. Revocation appends a correction; it never rewrites history.",
+      "rdfs:label": "AcceptanceReceipt"
+    },
+    {
+      "@id": "cont:AcceptanceReceipt.acceptedAt",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AcceptanceReceipt",
+      "rdfs:label": "acceptedAt"
+    },
+    {
+      "@id": "cont:AcceptanceReceipt.accountingId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AcceptanceReceipt",
+      "rdfs:label": "accountingId"
+    },
+    {
+      "@id": "cont:AcceptanceReceipt.correctsReceiptId",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:AcceptanceReceipt",
+      "rdfs:label": "correctsReceiptId"
+    },
+    {
+      "@id": "cont:AcceptanceReceipt.firstQualifyingAttempt",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AcceptanceReceipt",
+      "rdfs:label": "firstQualifyingAttempt"
+    },
+    {
+      "@id": "cont:AcceptanceReceipt.partition",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AcceptanceReceipt",
+      "rdfs:label": "partition"
+    },
+    {
+      "@id": "cont:AcceptanceReceipt.receiptId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AcceptanceReceipt",
+      "rdfs:label": "receiptId"
+    },
+    {
+      "@id": "cont:AcceptanceReceipt.requiredGateResults",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AcceptanceReceipt",
+      "rdfs:label": "requiredGateResults"
+    },
+    {
+      "@id": "cont:AcceptanceReceipt.revocationReason",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:AcceptanceReceipt",
+      "rdfs:label": "revocationReason"
+    },
+    {
+      "@id": "cont:AcceptanceReceipt.revoked",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AcceptanceReceipt",
+      "rdfs:label": "revoked"
+    },
+    {
+      "@id": "cont:AcceptanceReceipt.weight",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AcceptanceReceipt",
+      "rdfs:label": "weight"
+    },
+    {
+      "@id": "cont:AcceptanceReceipt.workUnitPolicyVersion",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AcceptanceReceipt",
+      "rdfs:label": "workUnitPolicyVersion"
+    },
+    {
+      "@id": "cont:AcceptedWorkLedgerEntry",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:label": "AcceptedWorkLedgerEntry"
+    },
+    {
+      "@id": "cont:AcceptedWorkLedgerEntry.accountingId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AcceptedWorkLedgerEntry",
+      "rdfs:label": "accountingId"
+    },
+    {
+      "@id": "cont:AcceptedWorkLedgerEntry.delta",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AcceptedWorkLedgerEntry",
+      "rdfs:label": "delta"
+    },
+    {
+      "@id": "cont:AcceptedWorkLedgerEntry.measurementWindow",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AcceptedWorkLedgerEntry",
+      "rdfs:label": "measurementWindow"
+    },
+    {
+      "@id": "cont:AcceptedWorkLedgerEntry.receiptId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AcceptedWorkLedgerEntry",
+      "rdfs:label": "receiptId"
+    },
+    {
+      "@id": "cont:AcceptedWorkLedgerEntry.sequence",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AcceptedWorkLedgerEntry",
+      "rdfs:label": "sequence"
+    },
+    {
+      "@id": "cont:AcceptedWorkLedgerEntry.weight",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AcceptedWorkLedgerEntry",
+      "rdfs:label": "weight"
+    },
+    {
+      "@id": "cont:AdjudicationReceipt",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:label": "AdjudicationReceipt"
+    },
+    {
+      "@id": "cont:AdjudicationReceipt.authorizedByRole",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AdjudicationReceipt",
+      "rdfs:label": "authorizedByRole"
+    },
+    {
+      "@id": "cont:AdjudicationReceipt.citedEvidence",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AdjudicationReceipt",
+      "rdfs:label": "citedEvidence"
+    },
+    {
+      "@id": "cont:AdjudicationReceipt.citedPolicy",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AdjudicationReceipt",
+      "rdfs:label": "citedPolicy"
+    },
+    {
+      "@id": "cont:AdjudicationReceipt.conflictId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AdjudicationReceipt",
+      "rdfs:label": "conflictId"
+    },
+    {
+      "@id": "cont:AdjudicationReceipt.disposition",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AdjudicationReceipt",
+      "rdfs:label": "disposition"
+    },
+    {
+      "@id": "cont:AdjudicationReceipt.rationale",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AdjudicationReceipt",
+      "rdfs:label": "rationale"
+    },
+    {
+      "@id": "cont:Artifact",
+      "@type": "rdfs:Class",
+      "cont:kind": "KERNEL",
+      "rdfs:comment": "Logical identity. Byte identity lives in ArtifactVersion.",
+      "rdfs:label": "Artifact"
+    },
+    {
+      "@id": "cont:Artifact.artifactKind",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Artifact",
+      "rdfs:label": "artifactKind"
+    },
+    {
+      "@id": "cont:Artifact.name",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Artifact",
+      "rdfs:label": "name"
+    },
+    {
+      "@id": "cont:Artifact.versions",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Artifact",
+      "rdfs:label": "versions",
+      "rdfs:range": "cont:ArtifactVersion"
+    },
+    {
+      "@id": "cont:ArtifactVersion",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "Immutable byte-addressed version of an artifact.",
+      "rdfs:label": "ArtifactVersion"
+    },
+    {
+      "@id": "cont:ArtifactVersion.artifact",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ArtifactVersion",
+      "rdfs:label": "artifact",
+      "rdfs:range": "cont:Artifact"
+    },
+    {
+      "@id": "cont:ArtifactVersion.contentDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ArtifactVersion",
+      "rdfs:label": "contentDigest"
+    },
+    {
+      "@id": "cont:ArtifactVersion.derivationReceipt",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ArtifactVersion",
+      "rdfs:label": "derivationReceipt"
+    },
+    {
+      "@id": "cont:ArtifactVersion.directlyDerivedFrom",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ArtifactVersion",
+      "rdfs:label": "directlyDerivedFrom"
+    },
+    {
+      "@id": "cont:ArtifactVersion.mediaType",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ArtifactVersion",
+      "rdfs:label": "mediaType"
+    },
+    {
+      "@id": "cont:ArtifactVersion.sizeBytes",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ArtifactVersion",
+      "rdfs:label": "sizeBytes"
+    },
+    {
+      "@id": "cont:AuditResult",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "Produced by the independent auditor package only. Never written by a producer.",
+      "rdfs:label": "AuditResult"
+    },
+    {
+      "@id": "cont:AuditResult.auditId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AuditResult",
+      "rdfs:label": "auditId"
+    },
+    {
+      "@id": "cont:AuditResult.auditInputManifestDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AuditResult",
+      "rdfs:label": "auditInputManifestDigest"
+    },
+    {
+      "@id": "cont:AuditResult.auditorImplementationDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AuditResult",
+      "rdfs:label": "auditorImplementationDigest"
+    },
+    {
+      "@id": "cont:AuditResult.auditorRole",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AuditResult",
+      "rdfs:label": "auditorRole"
+    },
+    {
+      "@id": "cont:AuditResult.commonModeDependencies",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AuditResult",
+      "rdfs:label": "commonModeDependencies"
+    },
+    {
+      "@id": "cont:AuditResult.disagreedWithProducer",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AuditResult",
+      "rdfs:label": "disagreedWithProducer"
+    },
+    {
+      "@id": "cont:AuditResult.frozenBundleDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AuditResult",
+      "rdfs:label": "frozenBundleDigest"
+    },
+    {
+      "@id": "cont:AuditResult.mandatoryTotals",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AuditResult",
+      "rdfs:label": "mandatoryTotals"
+    },
+    {
+      "@id": "cont:AuditResult.resultDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AuditResult",
+      "rdfs:label": "resultDigest"
+    },
+    {
+      "@id": "cont:AuditResult.verdict",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AuditResult",
+      "rdfs:label": "verdict"
+    },
+    {
+      "@id": "cont:AuditResult.verdictRationale",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AuditResult",
+      "rdfs:label": "verdictRationale"
+    },
+    {
+      "@id": "cont:AuditResult.verifications",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AuditResult",
+      "rdfs:label": "verifications",
+      "rdfs:range": "cont:Verification"
+    },
+    {
+      "@id": "cont:AuthorizedOperation",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:label": "AuthorizedOperation"
+    },
+    {
+      "@id": "cont:AuthorizedOperation.authorizedScope",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AuthorizedOperation",
+      "rdfs:label": "authorizedScope",
+      "rdfs:range": "cont:Scope"
+    },
+    {
+      "@id": "cont:AuthorizedOperation.capability",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AuthorizedOperation",
+      "rdfs:label": "capability",
+      "rdfs:range": "cont:Capability"
+    },
+    {
+      "@id": "cont:AuthorizedOperation.expiresAt",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:AuthorizedOperation",
+      "rdfs:label": "expiresAt"
+    },
+    {
+      "@id": "cont:AuthorizedOperation.grantDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AuthorizedOperation",
+      "rdfs:label": "grantDigest"
+    },
+    {
+      "@id": "cont:AuthorizedOperation.grantedByRole",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AuthorizedOperation",
+      "rdfs:label": "grantedByRole"
+    },
+    {
+      "@id": "cont:AuthorizedOperation.operationId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AuthorizedOperation",
+      "rdfs:label": "operationId"
+    },
+    {
+      "@id": "cont:AuthorizedOperation.replayGuard",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AuthorizedOperation",
+      "rdfs:label": "replayGuard"
+    },
+    {
+      "@id": "cont:AuthorizedOperation.secretsExcluded",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:AuthorizedOperation",
+      "rdfs:label": "secretsExcluded"
+    },
+    {
+      "@id": "cont:BenchmarkPair",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "One matched baseline/assisted execution pair under a frozen equivalence contract.",
+      "rdfs:label": "BenchmarkPair"
+    },
+    {
+      "@id": "cont:BenchmarkPair.assistedAccepted",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:BenchmarkPair",
+      "rdfs:label": "assistedAccepted"
+    },
+    {
+      "@id": "cont:BenchmarkPair.assistedTraceRef",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:BenchmarkPair",
+      "rdfs:label": "assistedTraceRef"
+    },
+    {
+      "@id": "cont:BenchmarkPair.baselineAccepted",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:BenchmarkPair",
+      "rdfs:label": "baselineAccepted"
+    },
+    {
+      "@id": "cont:BenchmarkPair.baselineTraceRef",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:BenchmarkPair",
+      "rdfs:label": "baselineTraceRef"
+    },
+    {
+      "@id": "cont:BenchmarkPair.cacheStratum",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:BenchmarkPair",
+      "rdfs:label": "cacheStratum"
+    },
+    {
+      "@id": "cont:BenchmarkPair.contaminationChecks",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:BenchmarkPair",
+      "rdfs:label": "contaminationChecks"
+    },
+    {
+      "@id": "cont:BenchmarkPair.equivalenceContractDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:BenchmarkPair",
+      "rdfs:label": "equivalenceContractDigest"
+    },
+    {
+      "@id": "cont:BenchmarkPair.exclusionReason",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:BenchmarkPair",
+      "rdfs:label": "exclusionReason"
+    },
+    {
+      "@id": "cont:BenchmarkPair.includedInCohort",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:BenchmarkPair",
+      "rdfs:label": "includedInCohort"
+    },
+    {
+      "@id": "cont:BenchmarkPair.pairId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:BenchmarkPair",
+      "rdfs:label": "pairId"
+    },
+    {
+      "@id": "cont:BenchmarkPair.receipts",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:BenchmarkPair",
+      "rdfs:label": "receipts"
+    },
+    {
+      "@id": "cont:BenchmarkPair.setupAmortized",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:BenchmarkPair",
+      "rdfs:label": "setupAmortized"
+    },
+    {
+      "@id": "cont:BenchmarkPair.verificationCosts",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:BenchmarkPair",
+      "rdfs:label": "verificationCosts",
+      "rdfs:range": "cont:VerificationCostSet"
+    },
+    {
+      "@id": "cont:BenchmarkProtocol",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "Pre-registered before a cohort is measured. A pilot is a debugging cohort, never an advertised result.",
+      "rdfs:label": "BenchmarkProtocol"
+    },
+    {
+      "@id": "cont:BenchmarkProtocol.equivalenceContractDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:BenchmarkProtocol",
+      "rdfs:label": "equivalenceContractDigest"
+    },
+    {
+      "@id": "cont:BenchmarkProtocol.frozen",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:BenchmarkProtocol",
+      "rdfs:label": "frozen"
+    },
+    {
+      "@id": "cont:BenchmarkProtocol.minimumPairs",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:BenchmarkProtocol",
+      "rdfs:label": "minimumPairs"
+    },
+    {
+      "@id": "cont:BenchmarkProtocol.preRegisteredAt",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:BenchmarkProtocol",
+      "rdfs:label": "preRegisteredAt"
+    },
+    {
+      "@id": "cont:BenchmarkProtocol.protocolId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:BenchmarkProtocol",
+      "rdfs:label": "protocolId"
+    },
+    {
+      "@id": "cont:BenchmarkProtocol.protocolKind",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:BenchmarkProtocol",
+      "rdfs:label": "protocolKind"
+    },
+    {
+      "@id": "cont:BenchmarkProtocol.setupTreatment",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:BenchmarkProtocol",
+      "rdfs:label": "setupTreatment"
+    },
+    {
+      "@id": "cont:BenchmarkProtocol.stoppingRule",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:BenchmarkProtocol",
+      "rdfs:label": "stoppingRule"
+    },
+    {
+      "@id": "cont:BenchmarkProtocol.strata",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:BenchmarkProtocol",
+      "rdfs:label": "strata"
+    },
+    {
+      "@id": "cont:BenchmarkProtocol.targetPairs",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:BenchmarkProtocol",
+      "rdfs:label": "targetPairs"
+    },
+    {
+      "@id": "cont:BenchmarkProtocol.uncertaintyMethod",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:BenchmarkProtocol",
+      "rdfs:label": "uncertaintyMethod"
+    },
+    {
+      "@id": "cont:CacheReuseReceipt",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:label": "CacheReuseReceipt"
+    },
+    {
+      "@id": "cont:CacheReuseReceipt.boundInputs",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:CacheReuseReceipt",
+      "rdfs:label": "boundInputs"
+    },
+    {
+      "@id": "cont:CacheReuseReceipt.cacheKeyDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:CacheReuseReceipt",
+      "rdfs:label": "cacheKeyDigest"
+    },
+    {
+      "@id": "cont:CacheReuseReceipt.claimType",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:CacheReuseReceipt",
+      "rdfs:label": "claimType"
+    },
+    {
+      "@id": "cont:CacheReuseReceipt.freshnessPolicyId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:CacheReuseReceipt",
+      "rdfs:label": "freshnessPolicyId"
+    },
+    {
+      "@id": "cont:CacheReuseReceipt.receiptId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:CacheReuseReceipt",
+      "rdfs:label": "receiptId"
+    },
+    {
+      "@id": "cont:CacheReuseReceipt.refusedReason",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:CacheReuseReceipt",
+      "rdfs:label": "refusedReason"
+    },
+    {
+      "@id": "cont:CacheReuseReceipt.reused",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:CacheReuseReceipt",
+      "rdfs:label": "reused"
+    },
+    {
+      "@id": "cont:Capability",
+      "@type": "rdfs:Class",
+      "cont:kind": "KERNEL",
+      "rdfs:comment": "Stable functional contract independent of vendor or tool names.",
+      "rdfs:label": "Capability"
+    },
+    {
+      "@id": "cont:Capability.inputContract",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Capability",
+      "rdfs:label": "inputContract",
+      "rdfs:range": "cont:Contract"
+    },
+    {
+      "@id": "cont:Capability.intent",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Capability",
+      "rdfs:label": "intent"
+    },
+    {
+      "@id": "cont:Capability.name",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Capability",
+      "rdfs:label": "name"
+    },
+    {
+      "@id": "cont:Capability.outputContract",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Capability",
+      "rdfs:label": "outputContract",
+      "rdfs:range": "cont:Contract"
+    },
+    {
+      "@id": "cont:Capability.sideEffectClass",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Capability",
+      "rdfs:label": "sideEffectClass"
+    },
+    {
+      "@id": "cont:Checkpoint",
+      "@type": "rdfs:Class",
+      "cont:kind": "KERNEL",
+      "rdfs:comment": "Committed semantic state with closure, recovery policy and exact snapshot references. Never preserves live handles as continuing authority.",
+      "rdfs:label": "Checkpoint"
+    },
+    {
+      "@id": "cont:Checkpoint.acceptedDecisions",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Checkpoint",
+      "rdfs:label": "acceptedDecisions",
+      "rdfs:range": "cont:Decision"
+    },
+    {
+      "@id": "cont:Checkpoint.closureReceipt",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Checkpoint",
+      "rdfs:label": "closureReceipt",
+      "rdfs:range": "cont:ClosureReceipt"
+    },
+    {
+      "@id": "cont:Checkpoint.committed",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Checkpoint",
+      "rdfs:label": "committed"
+    },
+    {
+      "@id": "cont:Checkpoint.lastSealedEventDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Checkpoint",
+      "rdfs:label": "lastSealedEventDigest"
+    },
+    {
+      "@id": "cont:Checkpoint.lastSealedEventSeq",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Checkpoint",
+      "rdfs:label": "lastSealedEventSeq"
+    },
+    {
+      "@id": "cont:Checkpoint.nextLegalActions",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Checkpoint",
+      "rdfs:label": "nextLegalActions"
+    },
+    {
+      "@id": "cont:Checkpoint.openOperations",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Checkpoint",
+      "rdfs:label": "openOperations",
+      "rdfs:range": "cont:OpenOperation"
+    },
+    {
+      "@id": "cont:Checkpoint.outcome",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Checkpoint",
+      "rdfs:label": "outcome",
+      "rdfs:range": "cont:Outcome"
+    },
+    {
+      "@id": "cont:Checkpoint.recoveryPolicyRef",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Checkpoint",
+      "rdfs:label": "recoveryPolicyRef"
+    },
+    {
+      "@id": "cont:Checkpoint.snapshot",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Checkpoint",
+      "rdfs:label": "snapshot",
+      "rdfs:range": "cont:StateSnapshot"
+    },
+    {
+      "@id": "cont:Checkpoint.unresolvedClaims",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Checkpoint",
+      "rdfs:label": "unresolvedClaims"
+    },
+    {
+      "@id": "cont:ChunkAggregate",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "Rejects gaps, overlap, duplicate ranges, stale or mixed epochs, process changes, candidate changes and partial writes.",
+      "rdfs:label": "ChunkAggregate"
+    },
+    {
+      "@id": "cont:ChunkAggregate.aggregateId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkAggregate",
+      "rdfs:label": "aggregateId"
+    },
+    {
+      "@id": "cont:ChunkAggregate.chunkRefs",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkAggregate",
+      "rdfs:label": "chunkRefs"
+    },
+    {
+      "@id": "cont:ChunkAggregate.consistencyGuarantee",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkAggregate",
+      "rdfs:label": "consistencyGuarantee"
+    },
+    {
+      "@id": "cont:ChunkAggregate.consistencyWitnesses",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkAggregate",
+      "rdfs:label": "consistencyWitnesses"
+    },
+    {
+      "@id": "cont:ChunkAggregate.rejectionReasons",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkAggregate",
+      "rdfs:label": "rejectionReasons"
+    },
+    {
+      "@id": "cont:ChunkAggregate.requiredScope",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkAggregate",
+      "rdfs:label": "requiredScope",
+      "rdfs:range": "cont:Scope"
+    },
+    {
+      "@id": "cont:ChunkAggregate.status",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkAggregate",
+      "rdfs:label": "status"
+    },
+    {
+      "@id": "cont:ChunkEnvelope",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "One stable-ID-ordered collection chunk in a single authorized session.",
+      "rdfs:label": "ChunkEnvelope"
+    },
+    {
+      "@id": "cont:ChunkEnvelope.attempt",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkEnvelope",
+      "rdfs:label": "attempt"
+    },
+    {
+      "@id": "cont:ChunkEnvelope.candidateDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkEnvelope",
+      "rdfs:label": "candidateDigest"
+    },
+    {
+      "@id": "cont:ChunkEnvelope.chunkId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkEnvelope",
+      "rdfs:label": "chunkId"
+    },
+    {
+      "@id": "cont:ChunkEnvelope.completed",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkEnvelope",
+      "rdfs:label": "completed"
+    },
+    {
+      "@id": "cont:ChunkEnvelope.deadlineMs",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkEnvelope",
+      "rdfs:label": "deadlineMs"
+    },
+    {
+      "@id": "cont:ChunkEnvelope.elapsedMs",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkEnvelope",
+      "rdfs:label": "elapsedMs"
+    },
+    {
+      "@id": "cont:ChunkEnvelope.engineCount",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ChunkEnvelope",
+      "rdfs:label": "engineCount"
+    },
+    {
+      "@id": "cont:ChunkEnvelope.mapIdentity",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkEnvelope",
+      "rdfs:label": "mapIdentity"
+    },
+    {
+      "@id": "cont:ChunkEnvelope.memberIds",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkEnvelope",
+      "rdfs:label": "memberIds"
+    },
+    {
+      "@id": "cont:ChunkEnvelope.policyDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkEnvelope",
+      "rdfs:label": "policyDigest"
+    },
+    {
+      "@id": "cont:ChunkEnvelope.processCreationDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkEnvelope",
+      "rdfs:label": "processCreationDigest"
+    },
+    {
+      "@id": "cont:ChunkEnvelope.rangeEnd",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkEnvelope",
+      "rdfs:label": "rangeEnd"
+    },
+    {
+      "@id": "cont:ChunkEnvelope.rangeStart",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkEnvelope",
+      "rdfs:label": "rangeStart"
+    },
+    {
+      "@id": "cont:ChunkEnvelope.runId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkEnvelope",
+      "rdfs:label": "runId"
+    },
+    {
+      "@id": "cont:ChunkEnvelope.serializedRowCount",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ChunkEnvelope",
+      "rdfs:label": "serializedRowCount"
+    },
+    {
+      "@id": "cont:ChunkEnvelope.snapshotEpoch",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkEnvelope",
+      "rdfs:label": "snapshotEpoch"
+    },
+    {
+      "@id": "cont:ChunkEnvelope.sourceDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkEnvelope",
+      "rdfs:label": "sourceDigest"
+    },
+    {
+      "@id": "cont:ChunkEnvelope.timedOut",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ChunkEnvelope",
+      "rdfs:label": "timedOut"
+    },
+    {
+      "@id": "cont:Claim",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "Binds a proposition, bounded scope, expected/observed values, required evidence, authority/freshness and policy.",
+      "rdfs:label": "Claim"
+    },
+    {
+      "@id": "cont:Claim.claimId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Claim",
+      "rdfs:label": "claimId"
+    },
+    {
+      "@id": "cont:Claim.freshnessPolicyRef",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Claim",
+      "rdfs:label": "freshnessPolicyRef",
+      "rdfs:range": "cont:FreshnessPolicy"
+    },
+    {
+      "@id": "cont:Claim.lifecycle",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Claim",
+      "rdfs:label": "lifecycle"
+    },
+    {
+      "@id": "cont:Claim.mandatory",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Claim",
+      "rdfs:label": "mandatory"
+    },
+    {
+      "@id": "cont:Claim.producerAssertion",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Claim",
+      "rdfs:label": "producerAssertion",
+      "rdfs:range": "cont:ProducerAssertion"
+    },
+    {
+      "@id": "cont:Claim.proposition",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Claim",
+      "rdfs:label": "proposition",
+      "rdfs:range": "cont:Proposition"
+    },
+    {
+      "@id": "cont:Claim.requiredEvidence",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Claim",
+      "rdfs:label": "requiredEvidence",
+      "rdfs:range": "cont:EvidenceRequirement"
+    },
+    {
+      "@id": "cont:Claim.sufficiency",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Claim",
+      "rdfs:label": "sufficiency",
+      "rdfs:range": "cont:EvidenceSufficiencyReceipt"
+    },
+    {
+      "@id": "cont:ClaimBundle",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "Sealed producer bundle. Immutable member index with a resolved-state digest.",
+      "rdfs:label": "ClaimBundle"
+    },
+    {
+      "@id": "cont:ClaimBundle.bundleId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClaimBundle",
+      "rdfs:label": "bundleId"
+    },
+    {
+      "@id": "cont:ClaimBundle.candidateDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClaimBundle",
+      "rdfs:label": "candidateDigest"
+    },
+    {
+      "@id": "cont:ClaimBundle.lifecycle",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClaimBundle",
+      "rdfs:label": "lifecycle"
+    },
+    {
+      "@id": "cont:ClaimBundle.memberIndex",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClaimBundle",
+      "rdfs:label": "memberIndex"
+    },
+    {
+      "@id": "cont:ClaimBundle.resolvedStateDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClaimBundle",
+      "rdfs:label": "resolvedStateDigest"
+    },
+    {
+      "@id": "cont:ClaimBundle.sealedAt",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ClaimBundle",
+      "rdfs:label": "sealedAt"
+    },
+    {
+      "@id": "cont:ClaimBundleDelta",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "Changed revisions plus new evidence references. Unchanged evidence is referenced, never recopied.",
+      "rdfs:label": "ClaimBundleDelta"
+    },
+    {
+      "@id": "cont:ClaimBundleDelta.changedRevisions",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClaimBundleDelta",
+      "rdfs:label": "changedRevisions"
+    },
+    {
+      "@id": "cont:ClaimBundleDelta.deltaId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClaimBundleDelta",
+      "rdfs:label": "deltaId"
+    },
+    {
+      "@id": "cont:ClaimBundleDelta.depth",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClaimBundleDelta",
+      "rdfs:label": "depth"
+    },
+    {
+      "@id": "cont:ClaimBundleDelta.newEvidenceRefs",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClaimBundleDelta",
+      "rdfs:label": "newEvidenceRefs"
+    },
+    {
+      "@id": "cont:ClaimBundleDelta.parentBundleDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClaimBundleDelta",
+      "rdfs:label": "parentBundleDigest"
+    },
+    {
+      "@id": "cont:ClaimBundleDelta.removedClaimIds",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClaimBundleDelta",
+      "rdfs:label": "removedClaimIds"
+    },
+    {
+      "@id": "cont:ClaimBundleDelta.resolvedStateDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClaimBundleDelta",
+      "rdfs:label": "resolvedStateDigest"
+    },
+    {
+      "@id": "cont:ClaimRevision",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:label": "ClaimRevision"
+    },
+    {
+      "@id": "cont:ClaimRevision.changeReason",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClaimRevision",
+      "rdfs:label": "changeReason"
+    },
+    {
+      "@id": "cont:ClaimRevision.claim",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClaimRevision",
+      "rdfs:label": "claim",
+      "rdfs:range": "cont:Claim"
+    },
+    {
+      "@id": "cont:ClaimRevision.claimId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClaimRevision",
+      "rdfs:label": "claimId"
+    },
+    {
+      "@id": "cont:ClaimRevision.parentRevisionDigest",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ClaimRevision",
+      "rdfs:label": "parentRevisionDigest"
+    },
+    {
+      "@id": "cont:ClaimRevision.revisionNumber",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClaimRevision",
+      "rdfs:label": "revisionNumber"
+    },
+    {
+      "@id": "cont:ClosureReceipt",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "Bounded complete enumeration over a declared scope. Empty or failed retrieval never proves absence.",
+      "rdfs:label": "ClosureReceipt"
+    },
+    {
+      "@id": "cont:ClosureReceipt.closureKind",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClosureReceipt",
+      "rdfs:label": "closureKind"
+    },
+    {
+      "@id": "cont:ClosureReceipt.complete",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClosureReceipt",
+      "rdfs:label": "complete"
+    },
+    {
+      "@id": "cont:ClosureReceipt.enumeratedMembers",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClosureReceipt",
+      "rdfs:label": "enumeratedMembers"
+    },
+    {
+      "@id": "cont:ClosureReceipt.expectedCount",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ClosureReceipt",
+      "rdfs:label": "expectedCount"
+    },
+    {
+      "@id": "cont:ClosureReceipt.incompleteReason",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ClosureReceipt",
+      "rdfs:label": "incompleteReason"
+    },
+    {
+      "@id": "cont:ClosureReceipt.observedCount",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClosureReceipt",
+      "rdfs:label": "observedCount"
+    },
+    {
+      "@id": "cont:ClosureReceipt.scope",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClosureReceipt",
+      "rdfs:label": "scope",
+      "rdfs:range": "cont:Scope"
+    },
+    {
+      "@id": "cont:ClosureReceipt.witnessRefs",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ClosureReceipt",
+      "rdfs:label": "witnessRefs"
+    },
+    {
+      "@id": "cont:ConflictSet",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "Conflicts remain visible until an authorized adjudication cites the conflicting evidence and policy.",
+      "rdfs:label": "ConflictSet"
+    },
+    {
+      "@id": "cont:ConflictSet.claimIds",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ConflictSet",
+      "rdfs:label": "claimIds"
+    },
+    {
+      "@id": "cont:ConflictSet.conflictId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ConflictSet",
+      "rdfs:label": "conflictId"
+    },
+    {
+      "@id": "cont:ConflictSet.conflictingEvidence",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ConflictSet",
+      "rdfs:label": "conflictingEvidence"
+    },
+    {
+      "@id": "cont:ConflictSet.description",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ConflictSet",
+      "rdfs:label": "description"
+    },
+    {
+      "@id": "cont:ConflictSet.disposition",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ConflictSet",
+      "rdfs:label": "disposition"
+    },
+    {
+      "@id": "cont:ConflictSet.invalidatesDownstream",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ConflictSet",
+      "rdfs:label": "invalidatesDownstream"
+    },
+    {
+      "@id": "cont:Contract",
+      "@type": "rdfs:Class",
+      "cont:kind": "KERNEL",
+      "rdfs:comment": "Versioned requirements with units, tolerances and evidence/freshness/authority requirements.",
+      "rdfs:label": "Contract"
+    },
+    {
+      "@id": "cont:Contract.contractVersion",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Contract",
+      "rdfs:label": "contractVersion"
+    },
+    {
+      "@id": "cont:Contract.freshnessPolicyRef",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Contract",
+      "rdfs:label": "freshnessPolicyRef",
+      "rdfs:range": "cont:FreshnessPolicy"
+    },
+    {
+      "@id": "cont:Contract.name",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Contract",
+      "rdfs:label": "name"
+    },
+    {
+      "@id": "cont:Contract.predicates",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Contract",
+      "rdfs:label": "predicates",
+      "rdfs:range": "cont:Predicate"
+    },
+    {
+      "@id": "cont:Contract.requiredAuthorityClasses",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Contract",
+      "rdfs:label": "requiredAuthorityClasses"
+    },
+    {
+      "@id": "cont:Contract.requiredEvidence",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Contract",
+      "rdfs:label": "requiredEvidence",
+      "rdfs:range": "cont:EvidenceRequirement"
+    },
+    {
+      "@id": "cont:Contract.scope",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Contract",
+      "rdfs:label": "scope"
+    },
+    {
+      "@id": "cont:Contract.tolerances",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Contract",
+      "rdfs:label": "tolerances"
+    },
+    {
+      "@id": "cont:Contract.units",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Contract",
+      "rdfs:label": "units"
+    },
+    {
+      "@id": "cont:Decision",
+      "@type": "rdfs:Class",
+      "cont:kind": "KERNEL",
+      "rdfs:comment": "An authorized or computed disposition with cited inputs. Never inferred from labels or colours.",
+      "rdfs:label": "Decision"
+    },
+    {
+      "@id": "cont:Decision.citedInputs",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Decision",
+      "rdfs:label": "citedInputs"
+    },
+    {
+      "@id": "cont:Decision.decisionKind",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Decision",
+      "rdfs:label": "decisionKind"
+    },
+    {
+      "@id": "cont:Decision.disposition",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Decision",
+      "rdfs:label": "disposition"
+    },
+    {
+      "@id": "cont:Decision.issuedByRole",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Decision",
+      "rdfs:label": "issuedByRole"
+    },
+    {
+      "@id": "cont:Decision.policyRef",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Decision",
+      "rdfs:label": "policyRef"
+    },
+    {
+      "@id": "cont:Decision.rationale",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Decision",
+      "rdfs:label": "rationale"
+    },
+    {
+      "@id": "cont:EfficiencyClaim",
+      "@type": "rdfs:Class",
+      "cont:kind": "KERNEL",
+      "rdfs:comment": "Proposed comparison of accepted equivalent work. A verdict is produced only by an evaluator, never by the producer.",
+      "rdfs:label": "EfficiencyClaim"
+    },
+    {
+      "@id": "cont:EfficiencyClaim.cohort",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EfficiencyClaim",
+      "rdfs:label": "cohort",
+      "rdfs:range": "cont:BenchmarkPair"
+    },
+    {
+      "@id": "cont:EfficiencyClaim.equivalenceContract",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EfficiencyClaim",
+      "rdfs:label": "equivalenceContract",
+      "rdfs:range": "cont:EquivalenceContract"
+    },
+    {
+      "@id": "cont:EfficiencyClaim.evaluatorResultRef",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:EfficiencyClaim",
+      "rdfs:label": "evaluatorResultRef"
+    },
+    {
+      "@id": "cont:EfficiencyClaim.evaluatorVerdict",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:EfficiencyClaim",
+      "rdfs:label": "evaluatorVerdict"
+    },
+    {
+      "@id": "cont:EfficiencyClaim.expectedClaim",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EfficiencyClaim",
+      "rdfs:label": "expectedClaim"
+    },
+    {
+      "@id": "cont:EfficiencyClaim.metricId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EfficiencyClaim",
+      "rdfs:label": "metricId"
+    },
+    {
+      "@id": "cont:EfficiencyClaim.producerNotes",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:EfficiencyClaim",
+      "rdfs:label": "producerNotes"
+    },
+    {
+      "@id": "cont:EfficiencyClaim.proposedValue",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:EfficiencyClaim",
+      "rdfs:label": "proposedValue"
+    },
+    {
+      "@id": "cont:EntailmentReceipt",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "Emitted for any inference used to prune, rank, authorize or accept.",
+      "rdfs:label": "EntailmentReceipt"
+    },
+    {
+      "@id": "cont:EntailmentReceipt.authorityClasses",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EntailmentReceipt",
+      "rdfs:label": "authorityClasses"
+    },
+    {
+      "@id": "cont:EntailmentReceipt.depth",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EntailmentReceipt",
+      "rdfs:label": "depth"
+    },
+    {
+      "@id": "cont:EntailmentReceipt.implementationDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EntailmentReceipt",
+      "rdfs:label": "implementationDigest"
+    },
+    {
+      "@id": "cont:EntailmentReceipt.intendedUse",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EntailmentReceipt",
+      "rdfs:label": "intendedUse"
+    },
+    {
+      "@id": "cont:EntailmentReceipt.metamodelDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EntailmentReceipt",
+      "rdfs:label": "metamodelDigest"
+    },
+    {
+      "@id": "cont:EntailmentReceipt.receiptId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EntailmentReceipt",
+      "rdfs:label": "receiptId"
+    },
+    {
+      "@id": "cont:EntailmentReceipt.relation",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EntailmentReceipt",
+      "rdfs:label": "relation"
+    },
+    {
+      "@id": "cont:EntailmentReceipt.ruleDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EntailmentReceipt",
+      "rdfs:label": "ruleDigest"
+    },
+    {
+      "@id": "cont:EntailmentReceipt.sourceGraphDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EntailmentReceipt",
+      "rdfs:label": "sourceGraphDigest"
+    },
+    {
+      "@id": "cont:EntailmentReceipt.witnessPath",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EntailmentReceipt",
+      "rdfs:label": "witnessPath"
+    },
+    {
+      "@id": "cont:EnvironmentIdentity",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "A listening port is not editor identity; an executable stub hash does not pin an engine build.",
+      "rdfs:label": "EnvironmentIdentity"
+    },
+    {
+      "@id": "cont:EnvironmentIdentity.adapterEndpointConfigDigest",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:EnvironmentIdentity",
+      "rdfs:label": "adapterEndpointConfigDigest"
+    },
+    {
+      "@id": "cont:EnvironmentIdentity.hostId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EnvironmentIdentity",
+      "rdfs:label": "hostId"
+    },
+    {
+      "@id": "cont:EnvironmentIdentity.interpreter",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EnvironmentIdentity",
+      "rdfs:label": "interpreter"
+    },
+    {
+      "@id": "cont:EnvironmentIdentity.interpreterVersion",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EnvironmentIdentity",
+      "rdfs:label": "interpreterVersion"
+    },
+    {
+      "@id": "cont:EnvironmentIdentity.moduleClosureDigest",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:EnvironmentIdentity",
+      "rdfs:label": "moduleClosureDigest"
+    },
+    {
+      "@id": "cont:EnvironmentIdentity.platform",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EnvironmentIdentity",
+      "rdfs:label": "platform"
+    },
+    {
+      "@id": "cont:EnvironmentIdentity.processCreation",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:EnvironmentIdentity",
+      "rdfs:label": "processCreation"
+    },
+    {
+      "@id": "cont:EnvironmentIdentity.providerBuild",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:EnvironmentIdentity",
+      "rdfs:label": "providerBuild"
+    },
+    {
+      "@id": "cont:EnvironmentIdentity.unknownFields",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EnvironmentIdentity",
+      "rdfs:label": "unknownFields"
+    },
+    {
+      "@id": "cont:EquivalenceContract",
+      "@type": "rdfs:Class",
+      "cont:kind": "KERNEL",
+      "rdfs:comment": "Frozen comparison conditions, required quality/evidence, normalization, baseline rules and admissibility.",
+      "rdfs:label": "EquivalenceContract"
+    },
+    {
+      "@id": "cont:EquivalenceContract.cacheStratum",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EquivalenceContract",
+      "rdfs:label": "cacheStratum"
+    },
+    {
+      "@id": "cont:EquivalenceContract.escalationPermitted",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:EquivalenceContract",
+      "rdfs:label": "escalationPermitted"
+    },
+    {
+      "@id": "cont:EquivalenceContract.evidenceStandard",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EquivalenceContract",
+      "rdfs:label": "evidenceStandard",
+      "rdfs:range": "cont:EvidenceRequirement"
+    },
+    {
+      "@id": "cont:EquivalenceContract.failureRecoveryPolicy",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EquivalenceContract",
+      "rdfs:label": "failureRecoveryPolicy"
+    },
+    {
+      "@id": "cont:EquivalenceContract.frozen",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EquivalenceContract",
+      "rdfs:label": "frozen"
+    },
+    {
+      "@id": "cont:EquivalenceContract.heldConstant",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EquivalenceContract",
+      "rdfs:label": "heldConstant"
+    },
+    {
+      "@id": "cont:EquivalenceContract.invalidatingDifferences",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EquivalenceContract",
+      "rdfs:label": "invalidatingDifferences"
+    },
+    {
+      "@id": "cont:EquivalenceContract.minimumMatchedPairs",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EquivalenceContract",
+      "rdfs:label": "minimumMatchedPairs"
+    },
+    {
+      "@id": "cont:EquivalenceContract.name",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EquivalenceContract",
+      "rdfs:label": "name"
+    },
+    {
+      "@id": "cont:EquivalenceContract.normalizationContract",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:EquivalenceContract",
+      "rdfs:label": "normalizationContract"
+    },
+    {
+      "@id": "cont:EquivalenceContract.permittedDifferences",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EquivalenceContract",
+      "rdfs:label": "permittedDifferences"
+    },
+    {
+      "@id": "cont:EquivalenceContract.qualityThresholds",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EquivalenceContract",
+      "rdfs:label": "qualityThresholds",
+      "rdfs:range": "cont:Predicate"
+    },
+    {
+      "@id": "cont:EquivalenceContract.requiredArtifactKinds",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EquivalenceContract",
+      "rdfs:label": "requiredArtifactKinds"
+    },
+    {
+      "@id": "cont:EquivalenceContract.tokenAccountingBasis",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EquivalenceContract",
+      "rdfs:label": "tokenAccountingBasis"
+    },
+    {
+      "@id": "cont:EquivalenceContract.verificationCostFields",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:EquivalenceContract",
+      "rdfs:label": "verificationCostFields"
+    },
+    {
+      "@id": "cont:EquivalenceContract.weightingPolicyRef",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EquivalenceContract",
+      "rdfs:label": "weightingPolicyRef",
+      "rdfs:range": "cont:WorkUnitPolicy"
+    },
+    {
+      "@id": "cont:Evidence",
+      "@type": "rdfs:Class",
+      "cont:kind": "KERNEL",
+      "rdfs:comment": "Bounded observation or source artifact with provenance, method, validity and admissibility.",
+      "rdfs:label": "Evidence"
+    },
+    {
+      "@id": "cont:Evidence.admissibility",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Evidence",
+      "rdfs:label": "admissibility"
+    },
+    {
+      "@id": "cont:Evidence.contentDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Evidence",
+      "rdfs:label": "contentDigest"
+    },
+    {
+      "@id": "cont:Evidence.evidenceKind",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Evidence",
+      "rdfs:label": "evidenceKind"
+    },
+    {
+      "@id": "cont:Evidence.method",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Evidence",
+      "rdfs:label": "method"
+    },
+    {
+      "@id": "cont:Evidence.scope",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Evidence",
+      "rdfs:label": "scope",
+      "rdfs:range": "cont:Scope"
+    },
+    {
+      "@id": "cont:Evidence.subject",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Evidence",
+      "rdfs:label": "subject"
+    },
+    {
+      "@id": "cont:Evidence.supportsClaimTypes",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Evidence",
+      "rdfs:label": "supportsClaimTypes"
+    },
+    {
+      "@id": "cont:Evidence.validFrom",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Evidence",
+      "rdfs:label": "validFrom"
+    },
+    {
+      "@id": "cont:Evidence.validUntil",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Evidence",
+      "rdfs:label": "validUntil"
+    },
+    {
+      "@id": "cont:EvidenceRequirement",
+      "@type": "rdfs:Class",
+      "cont:kind": "SUPPORT",
+      "rdfs:label": "EvidenceRequirement"
+    },
+    {
+      "@id": "cont:EvidenceRequirement.evidenceKind",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EvidenceRequirement",
+      "rdfs:label": "evidenceKind"
+    },
+    {
+      "@id": "cont:EvidenceRequirement.freshnessSeconds",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:EvidenceRequirement",
+      "rdfs:label": "freshnessSeconds"
+    },
+    {
+      "@id": "cont:EvidenceRequirement.mandatory",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EvidenceRequirement",
+      "rdfs:label": "mandatory"
+    },
+    {
+      "@id": "cont:EvidenceRequirement.minimumAuthorityClasses",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EvidenceRequirement",
+      "rdfs:label": "minimumAuthorityClasses"
+    },
+    {
+      "@id": "cont:EvidenceRequirement.requiredObservationChannels",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:EvidenceRequirement",
+      "rdfs:label": "requiredObservationChannels"
+    },
+    {
+      "@id": "cont:EvidenceRequirement.requirementId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EvidenceRequirement",
+      "rdfs:label": "requirementId"
+    },
+    {
+      "@id": "cont:EvidenceRequirement.syntheticAcceptable",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EvidenceRequirement",
+      "rdfs:label": "syntheticAcceptable"
+    },
+    {
+      "@id": "cont:EvidenceSufficiencyReceipt",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:label": "EvidenceSufficiencyReceipt"
+    },
+    {
+      "@id": "cont:EvidenceSufficiencyReceipt.closed",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EvidenceSufficiencyReceipt",
+      "rdfs:label": "closed"
+    },
+    {
+      "@id": "cont:EvidenceSufficiencyReceipt.mandatoryApplicable",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EvidenceSufficiencyReceipt",
+      "rdfs:label": "mandatoryApplicable"
+    },
+    {
+      "@id": "cont:EvidenceSufficiencyReceipt.mandatorySatisfied",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EvidenceSufficiencyReceipt",
+      "rdfs:label": "mandatorySatisfied"
+    },
+    {
+      "@id": "cont:EvidenceSufficiencyReceipt.requirementResults",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:EvidenceSufficiencyReceipt",
+      "rdfs:label": "requirementResults"
+    },
+    {
+      "@id": "cont:ExecutionEvent",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "Append-only envelope. Corrections are linked events, never silent edits.",
+      "rdfs:label": "ExecutionEvent"
+    },
+    {
+      "@id": "cont:ExecutionEvent.correctsEventId",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ExecutionEvent",
+      "rdfs:label": "correctsEventId"
+    },
+    {
+      "@id": "cont:ExecutionEvent.eventId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionEvent",
+      "rdfs:label": "eventId"
+    },
+    {
+      "@id": "cont:ExecutionEvent.eventType",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionEvent",
+      "rdfs:label": "eventType"
+    },
+    {
+      "@id": "cont:ExecutionEvent.eventTypeVersion",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionEvent",
+      "rdfs:label": "eventTypeVersion"
+    },
+    {
+      "@id": "cont:ExecutionEvent.idempotencyKey",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionEvent",
+      "rdfs:label": "idempotencyKey"
+    },
+    {
+      "@id": "cont:ExecutionEvent.logicalSubject",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionEvent",
+      "rdfs:label": "logicalSubject"
+    },
+    {
+      "@id": "cont:ExecutionEvent.monotonicClockDomain",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ExecutionEvent",
+      "rdfs:label": "monotonicClockDomain"
+    },
+    {
+      "@id": "cont:ExecutionEvent.monotonicNs",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ExecutionEvent",
+      "rdfs:label": "monotonicNs"
+    },
+    {
+      "@id": "cont:ExecutionEvent.payload",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ExecutionEvent",
+      "rdfs:label": "payload"
+    },
+    {
+      "@id": "cont:ExecutionEvent.payloadDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionEvent",
+      "rdfs:label": "payloadDigest"
+    },
+    {
+      "@id": "cont:ExecutionEvent.priorEventDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionEvent",
+      "rdfs:label": "priorEventDigest"
+    },
+    {
+      "@id": "cont:ExecutionEvent.replayPolicy",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionEvent",
+      "rdfs:label": "replayPolicy"
+    },
+    {
+      "@id": "cont:ExecutionEvent.sequence",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionEvent",
+      "rdfs:label": "sequence"
+    },
+    {
+      "@id": "cont:ExecutionEvent.wallClock",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionEvent",
+      "rdfs:label": "wallClock"
+    },
+    {
+      "@id": "cont:ExecutionPlan",
+      "@type": "rdfs:Class",
+      "cont:kind": "KERNEL",
+      "rdfs:comment": "Frozen work DAG with selection receipts and mandatory blocked nodes.",
+      "rdfs:label": "ExecutionPlan"
+    },
+    {
+      "@id": "cont:ExecutionPlan.frozen",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionPlan",
+      "rdfs:label": "frozen"
+    },
+    {
+      "@id": "cont:ExecutionPlan.limits",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ExecutionPlan",
+      "rdfs:label": "limits"
+    },
+    {
+      "@id": "cont:ExecutionPlan.nodes",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionPlan",
+      "rdfs:label": "nodes"
+    },
+    {
+      "@id": "cont:ExecutionPlan.outcome",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionPlan",
+      "rdfs:label": "outcome",
+      "rdfs:range": "cont:Outcome"
+    },
+    {
+      "@id": "cont:ExecutionPlan.selectionReceipts",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionPlan",
+      "rdfs:label": "selectionReceipts",
+      "rdfs:range": "cont:SelectionReceipt"
+    },
+    {
+      "@id": "cont:ExecutionTrace",
+      "@type": "rdfs:Class",
+      "cont:kind": "KERNEL",
+      "rdfs:comment": "Observed execution. Never stores model reasoning transcripts; captures externally observable work.",
+      "rdfs:label": "ExecutionTrace"
+    },
+    {
+      "@id": "cont:ExecutionTrace.actualActor",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "actualActor"
+    },
+    {
+      "@id": "cont:ExecutionTrace.attempt",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "attempt"
+    },
+    {
+      "@id": "cont:ExecutionTrace.authorizationReceiptRef",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "authorizationReceiptRef"
+    },
+    {
+      "@id": "cont:ExecutionTrace.capability",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "capability",
+      "rdfs:range": "cont:Capability"
+    },
+    {
+      "@id": "cont:ExecutionTrace.consumedArtifacts",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "consumedArtifacts",
+      "rdfs:range": "cont:ArtifactVersion"
+    },
+    {
+      "@id": "cont:ExecutionTrace.environmentBinding",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "environmentBinding",
+      "rdfs:range": "cont:EnvironmentIdentity"
+    },
+    {
+      "@id": "cont:ExecutionTrace.events",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "events",
+      "rdfs:range": "cont:ExecutionEvent"
+    },
+    {
+      "@id": "cont:ExecutionTrace.implementation",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "implementation",
+      "rdfs:range": "cont:Implementation"
+    },
+    {
+      "@id": "cont:ExecutionTrace.issuer",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "issuer"
+    },
+    {
+      "@id": "cont:ExecutionTrace.mutationScopeDeclared",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "mutationScopeDeclared"
+    },
+    {
+      "@id": "cont:ExecutionTrace.parentTrace",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "parentTrace",
+      "rdfs:range": "cont:ExecutionTrace"
+    },
+    {
+      "@id": "cont:ExecutionTrace.plan",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "plan",
+      "rdfs:range": "cont:ExecutionPlan"
+    },
+    {
+      "@id": "cont:ExecutionTrace.producedArtifacts",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "producedArtifacts",
+      "rdfs:range": "cont:ArtifactVersion"
+    },
+    {
+      "@id": "cont:ExecutionTrace.resourceUsage",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "resourceUsage",
+      "rdfs:range": "cont:ResourceUsage"
+    },
+    {
+      "@id": "cont:ExecutionTrace.runId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "runId"
+    },
+    {
+      "@id": "cont:ExecutionTrace.spans",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "spans",
+      "rdfs:range": "cont:Span"
+    },
+    {
+      "@id": "cont:ExecutionTrace.terminalStatus",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "terminalStatus"
+    },
+    {
+      "@id": "cont:ExecutionTrace.workItem",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "workItem",
+      "rdfs:range": "cont:WorkItem"
+    },
+    {
+      "@id": "cont:FailureMode",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:label": "FailureMode"
+    },
+    {
+      "@id": "cont:FailureMode.code",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:FailureMode",
+      "rdfs:label": "code"
+    },
+    {
+      "@id": "cont:FailureMode.description",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:FailureMode",
+      "rdfs:label": "description"
+    },
+    {
+      "@id": "cont:FailureMode.domain",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:FailureMode",
+      "rdfs:label": "domain"
+    },
+    {
+      "@id": "cont:FailureMode.mapsToStatus",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:FailureMode",
+      "rdfs:label": "mapsToStatus"
+    },
+    {
+      "@id": "cont:FailureMode.severity",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:FailureMode",
+      "rdfs:label": "severity"
+    },
+    {
+      "@id": "cont:FreshnessPolicy",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "Cache keys are decided by the claim, not by a shared filename.",
+      "rdfs:label": "FreshnessPolicy"
+    },
+    {
+      "@id": "cont:FreshnessPolicy.alwaysFreshDomains",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:FreshnessPolicy",
+      "rdfs:label": "alwaysFreshDomains"
+    },
+    {
+      "@id": "cont:FreshnessPolicy.claimTypeGlob",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:FreshnessPolicy",
+      "rdfs:label": "claimTypeGlob"
+    },
+    {
+      "@id": "cont:FreshnessPolicy.maxAgeSeconds",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:FreshnessPolicy",
+      "rdfs:label": "maxAgeSeconds"
+    },
+    {
+      "@id": "cont:FreshnessPolicy.policyId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:FreshnessPolicy",
+      "rdfs:label": "policyId"
+    },
+    {
+      "@id": "cont:FreshnessPolicy.reusableWhileUnchanged",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:FreshnessPolicy",
+      "rdfs:label": "reusableWhileUnchanged"
+    },
+    {
+      "@id": "cont:Gate",
+      "@type": "rdfs:Class",
+      "cont:kind": "KERNEL",
+      "rdfs:comment": "Contract-bound evaluation definition. A definition link is never a PASS.",
+      "rdfs:label": "Gate"
+    },
+    {
+      "@id": "cont:Gate.authority",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Gate",
+      "rdfs:label": "authority"
+    },
+    {
+      "@id": "cont:Gate.evaluatesAgainst",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Gate",
+      "rdfs:label": "evaluatesAgainst",
+      "rdfs:range": "cont:Contract"
+    },
+    {
+      "@id": "cont:Gate.independenceRequired",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Gate",
+      "rdfs:label": "independenceRequired"
+    },
+    {
+      "@id": "cont:Gate.name",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Gate",
+      "rdfs:label": "name"
+    },
+    {
+      "@id": "cont:Gate.requiredPredicateIds",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Gate",
+      "rdfs:label": "requiredPredicateIds"
+    },
+    {
+      "@id": "cont:GateResult",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "One execution of a Gate. Separate immutable record from the Gate definition.",
+      "rdfs:label": "GateResult"
+    },
+    {
+      "@id": "cont:GateResult.candidateDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:GateResult",
+      "rdfs:label": "candidateDigest"
+    },
+    {
+      "@id": "cont:GateResult.contractDigests",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:GateResult",
+      "rdfs:label": "contractDigests"
+    },
+    {
+      "@id": "cont:GateResult.evidenceClosure",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:GateResult",
+      "rdfs:label": "evidenceClosure",
+      "rdfs:range": "cont:ClosureReceipt"
+    },
+    {
+      "@id": "cont:GateResult.gate",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:GateResult",
+      "rdfs:label": "gate",
+      "rdfs:range": "cont:Gate"
+    },
+    {
+      "@id": "cont:GateResult.independentlyEvaluated",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:GateResult",
+      "rdfs:label": "independentlyEvaluated"
+    },
+    {
+      "@id": "cont:GateResult.notRunDependency",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:GateResult",
+      "rdfs:label": "notRunDependency"
+    },
+    {
+      "@id": "cont:GateResult.predicateResults",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:GateResult",
+      "rdfs:label": "predicateResults"
+    },
+    {
+      "@id": "cont:GateResult.status",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:GateResult",
+      "rdfs:label": "status"
+    },
+    {
+      "@id": "cont:Handoff",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:label": "Handoff"
+    },
+    {
+      "@id": "cont:Handoff.checkpoint",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Handoff",
+      "rdfs:label": "checkpoint",
+      "rdfs:range": "cont:Checkpoint"
+    },
+    {
+      "@id": "cont:Handoff.fromActor",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Handoff",
+      "rdfs:label": "fromActor"
+    },
+    {
+      "@id": "cont:Handoff.referencedEvidence",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Handoff",
+      "rdfs:label": "referencedEvidence"
+    },
+    {
+      "@id": "cont:Handoff.toActor",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Handoff",
+      "rdfs:label": "toActor"
+    },
+    {
+      "@id": "cont:Handoff.transferredFacts",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Handoff",
+      "rdfs:label": "transferredFacts"
+    },
+    {
+      "@id": "cont:Implementation",
+      "@type": "rdfs:Class",
+      "cont:kind": "KERNEL",
+      "rdfs:comment": "Versioned capability provider. Replaceable under the same capability contract.",
+      "rdfs:label": "Implementation"
+    },
+    {
+      "@id": "cont:Implementation.authorizedScope",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Implementation",
+      "rdfs:label": "authorizedScope"
+    },
+    {
+      "@id": "cont:Implementation.failureModes",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Implementation",
+      "rdfs:label": "failureModes"
+    },
+    {
+      "@id": "cont:Implementation.inputSchemaDigest",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Implementation",
+      "rdfs:label": "inputSchemaDigest"
+    },
+    {
+      "@id": "cont:Implementation.outputSchemaDigest",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Implementation",
+      "rdfs:label": "outputSchemaDigest"
+    },
+    {
+      "@id": "cont:Implementation.providerName",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Implementation",
+      "rdfs:label": "providerName"
+    },
+    {
+      "@id": "cont:Implementation.providerVersion",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Implementation",
+      "rdfs:label": "providerVersion"
+    },
+    {
+      "@id": "cont:Implementation.qualification",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Implementation",
+      "rdfs:label": "qualification"
+    },
+    {
+      "@id": "cont:Implementation.qualificationReceipt",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Implementation",
+      "rdfs:label": "qualificationReceipt",
+      "rdfs:range": "cont:QualificationReceipt"
+    },
+    {
+      "@id": "cont:Implementation.realizes",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Implementation",
+      "rdfs:label": "realizes",
+      "rdfs:range": "cont:Capability"
+    },
+    {
+      "@id": "cont:Implementation.resourceProfile",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Implementation",
+      "rdfs:label": "resourceProfile"
+    },
+    {
+      "@id": "cont:Measurement",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "A typed metric result. Carries value, unit, scope, authority, validity, formula version, input references and a reason when unavailable.",
+      "rdfs:label": "Measurement"
+    },
+    {
+      "@id": "cont:Measurement.admissibility",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Measurement",
+      "rdfs:label": "admissibility"
+    },
+    {
+      "@id": "cont:Measurement.availability",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Measurement",
+      "rdfs:label": "availability"
+    },
+    {
+      "@id": "cont:Measurement.denominator",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Measurement",
+      "rdfs:label": "denominator"
+    },
+    {
+      "@id": "cont:Measurement.formulaVersion",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Measurement",
+      "rdfs:label": "formulaVersion"
+    },
+    {
+      "@id": "cont:Measurement.inputRefs",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Measurement",
+      "rdfs:label": "inputRefs"
+    },
+    {
+      "@id": "cont:Measurement.metricId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Measurement",
+      "rdfs:label": "metricId"
+    },
+    {
+      "@id": "cont:Measurement.numerator",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Measurement",
+      "rdfs:label": "numerator"
+    },
+    {
+      "@id": "cont:Measurement.scope",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Measurement",
+      "rdfs:label": "scope",
+      "rdfs:range": "cont:Scope"
+    },
+    {
+      "@id": "cont:Measurement.unavailableReason",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Measurement",
+      "rdfs:label": "unavailableReason"
+    },
+    {
+      "@id": "cont:Measurement.uncertainty",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Measurement",
+      "rdfs:label": "uncertainty"
+    },
+    {
+      "@id": "cont:Measurement.unit",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Measurement",
+      "rdfs:label": "unit"
+    },
+    {
+      "@id": "cont:Measurement.value",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Measurement",
+      "rdfs:label": "value"
+    },
+    {
+      "@id": "cont:MutationIntent",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:label": "MutationIntent"
+    },
+    {
+      "@id": "cont:MutationIntent.declaredEffects",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationIntent",
+      "rdfs:label": "declaredEffects"
+    },
+    {
+      "@id": "cont:MutationIntent.intentId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationIntent",
+      "rdfs:label": "intentId"
+    },
+    {
+      "@id": "cont:MutationIntent.operationId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationIntent",
+      "rdfs:label": "operationId"
+    },
+    {
+      "@id": "cont:MutationIntent.preStateDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationIntent",
+      "rdfs:label": "preStateDigest"
+    },
+    {
+      "@id": "cont:MutationIntent.targetScope",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationIntent",
+      "rdfs:label": "targetScope",
+      "rdfs:range": "cont:Scope"
+    },
+    {
+      "@id": "cont:MutationLedgerEntry",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "Append-only. A mutation-effect claim requires the authorized operation, intent, pre-state, ledger range, post-state, provider readback, direct ownership binding and rollback-set closure.",
+      "rdfs:label": "MutationLedgerEntry"
+    },
+    {
+      "@id": "cont:MutationLedgerEntry.effectDescription",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationLedgerEntry",
+      "rdfs:label": "effectDescription"
+    },
+    {
+      "@id": "cont:MutationLedgerEntry.entryId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationLedgerEntry",
+      "rdfs:label": "entryId"
+    },
+    {
+      "@id": "cont:MutationLedgerEntry.intentId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationLedgerEntry",
+      "rdfs:label": "intentId"
+    },
+    {
+      "@id": "cont:MutationLedgerEntry.operationId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationLedgerEntry",
+      "rdfs:label": "operationId"
+    },
+    {
+      "@id": "cont:MutationLedgerEntry.ownership",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationLedgerEntry",
+      "rdfs:label": "ownership",
+      "rdfs:range": "cont:OwnershipAssertion"
+    },
+    {
+      "@id": "cont:MutationLedgerEntry.postStateDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationLedgerEntry",
+      "rdfs:label": "postStateDigest"
+    },
+    {
+      "@id": "cont:MutationLedgerEntry.preStateDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationLedgerEntry",
+      "rdfs:label": "preStateDigest"
+    },
+    {
+      "@id": "cont:MutationLedgerEntry.priorEntryDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationLedgerEntry",
+      "rdfs:label": "priorEntryDigest"
+    },
+    {
+      "@id": "cont:MutationLedgerEntry.readbackRef",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:MutationLedgerEntry",
+      "rdfs:label": "readbackRef"
+    },
+    {
+      "@id": "cont:MutationLedgerEntry.sequence",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationLedgerEntry",
+      "rdfs:label": "sequence"
+    },
+    {
+      "@id": "cont:MutationLedgerEntry.transactionId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationLedgerEntry",
+      "rdfs:label": "transactionId"
+    },
+    {
+      "@id": "cont:MutationSetClosureReceipt",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "Set equality between intended effects, ledger entries, readbacks and the rollback set.",
+      "rdfs:label": "MutationSetClosureReceipt"
+    },
+    {
+      "@id": "cont:MutationSetClosureReceipt.discrepancies",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationSetClosureReceipt",
+      "rdfs:label": "discrepancies"
+    },
+    {
+      "@id": "cont:MutationSetClosureReceipt.intendedEffects",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationSetClosureReceipt",
+      "rdfs:label": "intendedEffects"
+    },
+    {
+      "@id": "cont:MutationSetClosureReceipt.ledgeredEffects",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationSetClosureReceipt",
+      "rdfs:label": "ledgeredEffects"
+    },
+    {
+      "@id": "cont:MutationSetClosureReceipt.operationId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationSetClosureReceipt",
+      "rdfs:label": "operationId"
+    },
+    {
+      "@id": "cont:MutationSetClosureReceipt.readbackConfirmedEffects",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationSetClosureReceipt",
+      "rdfs:label": "readbackConfirmedEffects"
+    },
+    {
+      "@id": "cont:MutationSetClosureReceipt.rollbackSet",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationSetClosureReceipt",
+      "rdfs:label": "rollbackSet"
+    },
+    {
+      "@id": "cont:MutationSetClosureReceipt.setsEqual",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:MutationSetClosureReceipt",
+      "rdfs:label": "setsEqual"
+    },
+    {
+      "@id": "cont:Observation",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:label": "Observation"
+    },
+    {
+      "@id": "cont:Observation.channel",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Observation",
+      "rdfs:label": "channel"
+    },
+    {
+      "@id": "cont:Observation.epoch",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Observation",
+      "rdfs:label": "epoch"
+    },
+    {
+      "@id": "cont:Observation.errorClass",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Observation",
+      "rdfs:label": "errorClass"
+    },
+    {
+      "@id": "cont:Observation.observationId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Observation",
+      "rdfs:label": "observationId"
+    },
+    {
+      "@id": "cont:Observation.observedAt",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Observation",
+      "rdfs:label": "observedAt"
+    },
+    {
+      "@id": "cont:Observation.partial",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Observation",
+      "rdfs:label": "partial"
+    },
+    {
+      "@id": "cont:Observation.rawDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Observation",
+      "rdfs:label": "rawDigest"
+    },
+    {
+      "@id": "cont:Observation.scope",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Observation",
+      "rdfs:label": "scope",
+      "rdfs:range": "cont:Scope"
+    },
+    {
+      "@id": "cont:Observation.subject",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Observation",
+      "rdfs:label": "subject"
+    },
+    {
+      "@id": "cont:Observation.value",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Observation",
+      "rdfs:label": "value"
+    },
+    {
+      "@id": "cont:OpenOperation",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "An interruption after a possible side effect but before its receipt. Requires reconciliation, never an automatic retry.",
+      "rdfs:label": "OpenOperation"
+    },
+    {
+      "@id": "cont:OpenOperation.capability",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:OpenOperation",
+      "rdfs:label": "capability",
+      "rdfs:range": "cont:Capability"
+    },
+    {
+      "@id": "cont:OpenOperation.disposition",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:OpenOperation",
+      "rdfs:label": "disposition"
+    },
+    {
+      "@id": "cont:OpenOperation.idempotencyKey",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:OpenOperation",
+      "rdfs:label": "idempotencyKey"
+    },
+    {
+      "@id": "cont:OpenOperation.operationId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:OpenOperation",
+      "rdfs:label": "operationId"
+    },
+    {
+      "@id": "cont:OpenOperation.receiptObserved",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:OpenOperation",
+      "rdfs:label": "receiptObserved"
+    },
+    {
+      "@id": "cont:OpenOperation.reconciliationProbe",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:OpenOperation",
+      "rdfs:label": "reconciliationProbe"
+    },
+    {
+      "@id": "cont:OpenOperation.reconciliationRequired",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:OpenOperation",
+      "rdfs:label": "reconciliationRequired"
+    },
+    {
+      "@id": "cont:OpenOperation.sideEffectPossible",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:OpenOperation",
+      "rdfs:label": "sideEffectPossible"
+    },
+    {
+      "@id": "cont:Outcome",
+      "@type": "rdfs:Class",
+      "cont:kind": "KERNEL",
+      "rdfs:comment": "Requested end state, bounded scope, acceptance criteria, required artifacts/evidence, governing work-unit policy.",
+      "rdfs:label": "Outcome"
+    },
+    {
+      "@id": "cont:Outcome.acceptanceCriteria",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Outcome",
+      "rdfs:label": "acceptanceCriteria",
+      "rdfs:range": "cont:Contract"
+    },
+    {
+      "@id": "cont:Outcome.lifecycle",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Outcome",
+      "rdfs:label": "lifecycle"
+    },
+    {
+      "@id": "cont:Outcome.requestedResult",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Outcome",
+      "rdfs:label": "requestedResult"
+    },
+    {
+      "@id": "cont:Outcome.requiredArtifactKinds",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Outcome",
+      "rdfs:label": "requiredArtifactKinds"
+    },
+    {
+      "@id": "cont:Outcome.requiredEvidenceKinds",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Outcome",
+      "rdfs:label": "requiredEvidenceKinds"
+    },
+    {
+      "@id": "cont:Outcome.subjectUniverse",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Outcome",
+      "rdfs:label": "subjectUniverse"
+    },
+    {
+      "@id": "cont:Outcome.title",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Outcome",
+      "rdfs:label": "title"
+    },
+    {
+      "@id": "cont:Outcome.workUnitPolicyRef",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Outcome",
+      "rdfs:label": "workUnitPolicyRef",
+      "rdfs:range": "cont:WorkUnitPolicy"
+    },
+    {
+      "@id": "cont:OwnershipAssertion",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "Direct ownership only. Ownership is not transitive and cannot be smuggled through containment.",
+      "rdfs:label": "OwnershipAssertion"
+    },
+    {
+      "@id": "cont:OwnershipAssertion.directness",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:OwnershipAssertion",
+      "rdfs:label": "directness"
+    },
+    {
+      "@id": "cont:OwnershipAssertion.ownerRole",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:OwnershipAssertion",
+      "rdfs:label": "ownerRole"
+    },
+    {
+      "@id": "cont:OwnershipAssertion.subject",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:OwnershipAssertion",
+      "rdfs:label": "subject"
+    },
+    {
+      "@id": "cont:OwnershipAssertion.transactionId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:OwnershipAssertion",
+      "rdfs:label": "transactionId"
+    },
+    {
+      "@id": "cont:Predicate",
+      "@type": "rdfs:Class",
+      "cont:kind": "SUPPORT",
+      "rdfs:comment": "One allowlisted typed comparison. No expression evaluation, no policy eval.",
+      "rdfs:label": "Predicate"
+    },
+    {
+      "@id": "cont:Predicate.expected",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Predicate",
+      "rdfs:label": "expected"
+    },
+    {
+      "@id": "cont:Predicate.mandatory",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Predicate",
+      "rdfs:label": "mandatory"
+    },
+    {
+      "@id": "cont:Predicate.operator",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Predicate",
+      "rdfs:label": "operator"
+    },
+    {
+      "@id": "cont:Predicate.predicateId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Predicate",
+      "rdfs:label": "predicateId"
+    },
+    {
+      "@id": "cont:Predicate.subjectPath",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Predicate",
+      "rdfs:label": "subjectPath"
+    },
+    {
+      "@id": "cont:Predicate.tolerance",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Predicate",
+      "rdfs:label": "tolerance"
+    },
+    {
+      "@id": "cont:Predicate.unit",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Predicate",
+      "rdfs:label": "unit"
+    },
+    {
+      "@id": "cont:ProducerAssertion",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "A producer's structural readiness statement. Carries no verification authority.",
+      "rdfs:label": "ProducerAssertion"
+    },
+    {
+      "@id": "cont:ProducerAssertion.evidenceRefs",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ProducerAssertion",
+      "rdfs:label": "evidenceRefs"
+    },
+    {
+      "@id": "cont:ProducerAssertion.note",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ProducerAssertion",
+      "rdfs:label": "note"
+    },
+    {
+      "@id": "cont:ProducerAssertion.observedValue",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ProducerAssertion",
+      "rdfs:label": "observedValue"
+    },
+    {
+      "@id": "cont:ProducerAssertion.producerRole",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ProducerAssertion",
+      "rdfs:label": "producerRole"
+    },
+    {
+      "@id": "cont:ProducerAssertion.producerStatus",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ProducerAssertion",
+      "rdfs:label": "producerStatus"
+    },
+    {
+      "@id": "cont:ProducerAssertion.proposition",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ProducerAssertion",
+      "rdfs:label": "proposition",
+      "rdfs:range": "cont:Proposition"
+    },
+    {
+      "@id": "cont:PromotionDecision",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "Pure policy evaluation over frozen audit inputs, followed only by a separately authorized actuator.",
+      "rdfs:label": "PromotionDecision"
+    },
+    {
+      "@id": "cont:PromotionDecision.actuatorRole",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:PromotionDecision",
+      "rdfs:label": "actuatorRole"
+    },
+    {
+      "@id": "cont:PromotionDecision.auditResultDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:PromotionDecision",
+      "rdfs:label": "auditResultDigest"
+    },
+    {
+      "@id": "cont:PromotionDecision.candidateDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:PromotionDecision",
+      "rdfs:label": "candidateDigest"
+    },
+    {
+      "@id": "cont:PromotionDecision.humanApprovalRefs",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:PromotionDecision",
+      "rdfs:label": "humanApprovalRefs"
+    },
+    {
+      "@id": "cont:PromotionDecision.issuerRole",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:PromotionDecision",
+      "rdfs:label": "issuerRole"
+    },
+    {
+      "@id": "cont:PromotionDecision.policyDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:PromotionDecision",
+      "rdfs:label": "policyDigest"
+    },
+    {
+      "@id": "cont:PromotionDecision.reasons",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:PromotionDecision",
+      "rdfs:label": "reasons"
+    },
+    {
+      "@id": "cont:PromotionDecision.state",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:PromotionDecision",
+      "rdfs:label": "state"
+    },
+    {
+      "@id": "cont:Proposition",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "What is asserted, independent of who asserts it.",
+      "rdfs:label": "Proposition"
+    },
+    {
+      "@id": "cont:Proposition.claimType",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Proposition",
+      "rdfs:label": "claimType"
+    },
+    {
+      "@id": "cont:Proposition.expectedValue",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Proposition",
+      "rdfs:label": "expectedValue"
+    },
+    {
+      "@id": "cont:Proposition.scope",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Proposition",
+      "rdfs:label": "scope",
+      "rdfs:range": "cont:Scope"
+    },
+    {
+      "@id": "cont:Proposition.statement",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Proposition",
+      "rdfs:label": "statement"
+    },
+    {
+      "@id": "cont:Proposition.subject",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Proposition",
+      "rdfs:label": "subject"
+    },
+    {
+      "@id": "cont:Proposition.unit",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Proposition",
+      "rdfs:label": "unit"
+    },
+    {
+      "@id": "cont:Provenance",
+      "@type": "rdfs:Class",
+      "cont:kind": "SUPPORT",
+      "rdfs:comment": "Orthogonal provenance dimensions attached at every assertion boundary. Legacy authority labels are derived from these through a tested mapping and are never raised silently.",
+      "rdfs:label": "Provenance"
+    },
+    {
+      "@id": "cont:Provenance.actor",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Provenance",
+      "rdfs:label": "actor"
+    },
+    {
+      "@id": "cont:Provenance.authorityClass",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Provenance",
+      "rdfs:label": "authorityClass"
+    },
+    {
+      "@id": "cont:Provenance.observationChannel",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Provenance",
+      "rdfs:label": "observationChannel"
+    },
+    {
+      "@id": "cont:Provenance.operationalOwnership",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Provenance",
+      "rdfs:label": "operationalOwnership"
+    },
+    {
+      "@id": "cont:Provenance.origin",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Provenance",
+      "rdfs:label": "origin"
+    },
+    {
+      "@id": "cont:Provenance.productionMethod",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Provenance",
+      "rdfs:label": "productionMethod"
+    },
+    {
+      "@id": "cont:Provenance.sourceRefs",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Provenance",
+      "rdfs:label": "sourceRefs"
+    },
+    {
+      "@id": "cont:Provenance.syntheticFixture",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Provenance",
+      "rdfs:label": "syntheticFixture"
+    },
+    {
+      "@id": "cont:Provenance.validitySnapshot",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Provenance",
+      "rdfs:label": "validitySnapshot"
+    },
+    {
+      "@id": "cont:Provenance.verificationStatus",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Provenance",
+      "rdfs:label": "verificationStatus"
+    },
+    {
+      "@id": "cont:ProviderReadback",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "An independent re-read of the mutated subject from the provider. A provider success field is not a readback.",
+      "rdfs:label": "ProviderReadback"
+    },
+    {
+      "@id": "cont:ProviderReadback.channel",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ProviderReadback",
+      "rdfs:label": "channel"
+    },
+    {
+      "@id": "cont:ProviderReadback.matchesExpectedPostState",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ProviderReadback",
+      "rdfs:label": "matchesExpectedPostState"
+    },
+    {
+      "@id": "cont:ProviderReadback.observedStateDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ProviderReadback",
+      "rdfs:label": "observedStateDigest"
+    },
+    {
+      "@id": "cont:ProviderReadback.operationId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ProviderReadback",
+      "rdfs:label": "operationId"
+    },
+    {
+      "@id": "cont:ProviderReadback.readbackId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ProviderReadback",
+      "rdfs:label": "readbackId"
+    },
+    {
+      "@id": "cont:ProviderSession",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:label": "ProviderSession"
+    },
+    {
+      "@id": "cont:ProviderSession.accountingVersion",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ProviderSession",
+      "rdfs:label": "accountingVersion"
+    },
+    {
+      "@id": "cont:ProviderSession.expiresAt",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ProviderSession",
+      "rdfs:label": "expiresAt"
+    },
+    {
+      "@id": "cont:ProviderSession.openedAt",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ProviderSession",
+      "rdfs:label": "openedAt"
+    },
+    {
+      "@id": "cont:ProviderSession.providerName",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ProviderSession",
+      "rdfs:label": "providerName"
+    },
+    {
+      "@id": "cont:ProviderSession.revalidateOnResume",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ProviderSession",
+      "rdfs:label": "revalidateOnResume"
+    },
+    {
+      "@id": "cont:ProviderSession.sessionId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ProviderSession",
+      "rdfs:label": "sessionId"
+    },
+    {
+      "@id": "cont:ProviderSession.tokenizerId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ProviderSession",
+      "rdfs:label": "tokenizerId"
+    },
+    {
+      "@id": "cont:QualificationReceipt",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "Qualification never floats to another version, build, configuration or candidate.",
+      "rdfs:label": "QualificationReceipt"
+    },
+    {
+      "@id": "cont:QualificationReceipt.buildIdentityDigest",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:QualificationReceipt",
+      "rdfs:label": "buildIdentityDigest"
+    },
+    {
+      "@id": "cont:QualificationReceipt.candidateDigest",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:QualificationReceipt",
+      "rdfs:label": "candidateDigest"
+    },
+    {
+      "@id": "cont:QualificationReceipt.configurationDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:QualificationReceipt",
+      "rdfs:label": "configurationDigest"
+    },
+    {
+      "@id": "cont:QualificationReceipt.dependencies",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:QualificationReceipt",
+      "rdfs:label": "dependencies"
+    },
+    {
+      "@id": "cont:QualificationReceipt.limits",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:QualificationReceipt",
+      "rdfs:label": "limits"
+    },
+    {
+      "@id": "cont:QualificationReceipt.observedAt",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:QualificationReceipt",
+      "rdfs:label": "observedAt"
+    },
+    {
+      "@id": "cont:QualificationReceipt.probeScope",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:QualificationReceipt",
+      "rdfs:label": "probeScope",
+      "rdfs:range": "cont:Scope"
+    },
+    {
+      "@id": "cont:QualificationReceipt.providerName",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:QualificationReceipt",
+      "rdfs:label": "providerName"
+    },
+    {
+      "@id": "cont:QualificationReceipt.providerVersion",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:QualificationReceipt",
+      "rdfs:label": "providerVersion"
+    },
+    {
+      "@id": "cont:QualificationReceipt.receiptId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:QualificationReceipt",
+      "rdfs:label": "receiptId"
+    },
+    {
+      "@id": "cont:QualificationReceipt.result",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:QualificationReceipt",
+      "rdfs:label": "result"
+    },
+    {
+      "@id": "cont:QualificationReceipt.subjectKind",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:QualificationReceipt",
+      "rdfs:label": "subjectKind"
+    },
+    {
+      "@id": "cont:QualificationReceipt.syntheticFixture",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:QualificationReceipt",
+      "rdfs:label": "syntheticFixture"
+    },
+    {
+      "@id": "cont:ReleaseManifest",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:label": "ReleaseManifest"
+    },
+    {
+      "@id": "cont:ReleaseManifest.acceptanceByDimension",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ReleaseManifest",
+      "rdfs:label": "acceptanceByDimension"
+    },
+    {
+      "@id": "cont:ReleaseManifest.auditResultDigest",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ReleaseManifest",
+      "rdfs:label": "auditResultDigest"
+    },
+    {
+      "@id": "cont:ReleaseManifest.blockers",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ReleaseManifest",
+      "rdfs:label": "blockers"
+    },
+    {
+      "@id": "cont:ReleaseManifest.dependencyLockDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ReleaseManifest",
+      "rdfs:label": "dependencyLockDigest"
+    },
+    {
+      "@id": "cont:ReleaseManifest.knownGaps",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ReleaseManifest",
+      "rdfs:label": "knownGaps"
+    },
+    {
+      "@id": "cont:ReleaseManifest.liveUrl",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ReleaseManifest",
+      "rdfs:label": "liveUrl"
+    },
+    {
+      "@id": "cont:ReleaseManifest.memberDigests",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ReleaseManifest",
+      "rdfs:label": "memberDigests"
+    },
+    {
+      "@id": "cont:ReleaseManifest.payloadDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ReleaseManifest",
+      "rdfs:label": "payloadDigest"
+    },
+    {
+      "@id": "cont:ReleaseManifest.product",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ReleaseManifest",
+      "rdfs:label": "product"
+    },
+    {
+      "@id": "cont:ReleaseManifest.releaseUrl",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ReleaseManifest",
+      "rdfs:label": "releaseUrl"
+    },
+    {
+      "@id": "cont:ReleaseManifest.repositoryUrl",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ReleaseManifest",
+      "rdfs:label": "repositoryUrl"
+    },
+    {
+      "@id": "cont:ReleaseManifest.schemaManifestDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ReleaseManifest",
+      "rdfs:label": "schemaManifestDigest"
+    },
+    {
+      "@id": "cont:ReleaseManifest.version",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ReleaseManifest",
+      "rdfs:label": "version"
+    },
+    {
+      "@id": "cont:ResourceUsage",
+      "@type": "rdfs:Class",
+      "cont:kind": "KERNEL",
+      "rdfs:comment": "Typed measured resource vector with observation authority, scope, accounting basis and uncertainty.",
+      "rdfs:label": "ResourceUsage"
+    },
+    {
+      "@id": "cont:ResourceUsage.accountingRule",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ResourceUsage",
+      "rdfs:label": "accountingRule"
+    },
+    {
+      "@id": "cont:ResourceUsage.basis",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ResourceUsage",
+      "rdfs:label": "basis"
+    },
+    {
+      "@id": "cont:ResourceUsage.belowResolution",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ResourceUsage",
+      "rdfs:label": "belowResolution"
+    },
+    {
+      "@id": "cont:ResourceUsage.clockResolutionNs",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ResourceUsage",
+      "rdfs:label": "clockResolutionNs"
+    },
+    {
+      "@id": "cont:ResourceUsage.dedupKey",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ResourceUsage",
+      "rdfs:label": "dedupKey"
+    },
+    {
+      "@id": "cont:ResourceUsage.kind",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ResourceUsage",
+      "rdfs:label": "kind"
+    },
+    {
+      "@id": "cont:ResourceUsage.parentKind",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ResourceUsage",
+      "rdfs:label": "parentKind"
+    },
+    {
+      "@id": "cont:ResourceUsage.providerAccountingVersion",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ResourceUsage",
+      "rdfs:label": "providerAccountingVersion"
+    },
+    {
+      "@id": "cont:ResourceUsage.providerName",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ResourceUsage",
+      "rdfs:label": "providerName"
+    },
+    {
+      "@id": "cont:ResourceUsage.providerResponseId",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ResourceUsage",
+      "rdfs:label": "providerResponseId"
+    },
+    {
+      "@id": "cont:ResourceUsage.scope",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ResourceUsage",
+      "rdfs:label": "scope",
+      "rdfs:range": "cont:Scope"
+    },
+    {
+      "@id": "cont:ResourceUsage.tokenizerId",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ResourceUsage",
+      "rdfs:label": "tokenizerId"
+    },
+    {
+      "@id": "cont:ResourceUsage.uncertainty",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ResourceUsage",
+      "rdfs:label": "uncertainty"
+    },
+    {
+      "@id": "cont:ResourceUsage.unit",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ResourceUsage",
+      "rdfs:label": "unit"
+    },
+    {
+      "@id": "cont:ResourceUsage.unknownReason",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ResourceUsage",
+      "rdfs:label": "unknownReason"
+    },
+    {
+      "@id": "cont:ResourceUsage.value",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ResourceUsage",
+      "rdfs:label": "value"
+    },
+    {
+      "@id": "cont:ResourceUsageLedger",
+      "@type": "rdfs:Class",
+      "cont:kind": "SUPPORT",
+      "rdfs:label": "ResourceUsageLedger"
+    },
+    {
+      "@id": "cont:ResourceUsageLedger.accountingDomains",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ResourceUsageLedger",
+      "rdfs:label": "accountingDomains"
+    },
+    {
+      "@id": "cont:ResourceUsageLedger.consumes",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ResourceUsageLedger",
+      "rdfs:label": "consumes"
+    },
+    {
+      "@id": "cont:ResourceUsageLedger.measurements",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ResourceUsageLedger",
+      "rdfs:label": "measurements",
+      "rdfs:range": "cont:ResourceUsage"
+    },
+    {
+      "@id": "cont:ResourceUsageLedger.recordType",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ResourceUsageLedger",
+      "rdfs:label": "recordType"
+    },
+    {
+      "@id": "cont:ResourceUsageLedger.runId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ResourceUsageLedger",
+      "rdfs:label": "runId"
+    },
+    {
+      "@id": "cont:ResourceUsageLedger.schemaVersion",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ResourceUsageLedger",
+      "rdfs:label": "schemaVersion"
+    },
+    {
+      "@id": "cont:ResourceUsageLedger.subsetReconciliation",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ResourceUsageLedger",
+      "rdfs:label": "subsetReconciliation"
+    },
+    {
+      "@id": "cont:ResourceUsageLedger.synthetic",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ResourceUsageLedger",
+      "rdfs:label": "synthetic"
+    },
+    {
+      "@id": "cont:ResourceUsageLedger.totals",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ResourceUsageLedger",
+      "rdfs:label": "totals"
+    },
+    {
+      "@id": "cont:Retry",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:label": "Retry"
+    },
+    {
+      "@id": "cont:Retry.attempt",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Retry",
+      "rdfs:label": "attempt"
+    },
+    {
+      "@id": "cont:Retry.ofInvocationId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Retry",
+      "rdfs:label": "ofInvocationId"
+    },
+    {
+      "@id": "cont:Retry.permitted",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Retry",
+      "rdfs:label": "permitted"
+    },
+    {
+      "@id": "cont:Retry.reasonClass",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Retry",
+      "rdfs:label": "reasonClass"
+    },
+    {
+      "@id": "cont:ReviewView",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "A view projects state. It never establishes it.",
+      "rdfs:label": "ReviewView"
+    },
+    {
+      "@id": "cont:ReviewView.accessibilityResults",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ReviewView",
+      "rdfs:label": "accessibilityResults"
+    },
+    {
+      "@id": "cont:ReviewView.lifecycle",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ReviewView",
+      "rdfs:label": "lifecycle"
+    },
+    {
+      "@id": "cont:ReviewView.profileId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ReviewView",
+      "rdfs:label": "profileId"
+    },
+    {
+      "@id": "cont:ReviewView.rasterProfileDigest",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ReviewView",
+      "rdfs:label": "rasterProfileDigest"
+    },
+    {
+      "@id": "cont:ReviewView.rendererId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ReviewView",
+      "rdfs:label": "rendererId"
+    },
+    {
+      "@id": "cont:ReviewView.rendererVersion",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ReviewView",
+      "rdfs:label": "rendererVersion"
+    },
+    {
+      "@id": "cont:ReviewView.semanticInputDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ReviewView",
+      "rdfs:label": "semanticInputDigest"
+    },
+    {
+      "@id": "cont:ReviewView.sourceAuditDigest",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ReviewView",
+      "rdfs:label": "sourceAuditDigest"
+    },
+    {
+      "@id": "cont:ReviewView.sourceCheckpointDigest",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ReviewView",
+      "rdfs:label": "sourceCheckpointDigest"
+    },
+    {
+      "@id": "cont:ReviewView.unavailableReason",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ReviewView",
+      "rdfs:label": "unavailableReason"
+    },
+    {
+      "@id": "cont:ReviewView.viewId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ReviewView",
+      "rdfs:label": "viewId"
+    },
+    {
+      "@id": "cont:RollbackAction",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:label": "RollbackAction"
+    },
+    {
+      "@id": "cont:RollbackAction.actionId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:RollbackAction",
+      "rdfs:label": "actionId"
+    },
+    {
+      "@id": "cont:RollbackAction.authorizedByRole",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:RollbackAction",
+      "rdfs:label": "authorizedByRole"
+    },
+    {
+      "@id": "cont:RollbackAction.performed",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:RollbackAction",
+      "rdfs:label": "performed"
+    },
+    {
+      "@id": "cont:RollbackAction.resultDigest",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:RollbackAction",
+      "rdfs:label": "resultDigest"
+    },
+    {
+      "@id": "cont:RollbackAction.targetEntryId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:RollbackAction",
+      "rdfs:label": "targetEntryId"
+    },
+    {
+      "@id": "cont:Scope",
+      "@type": "rdfs:Class",
+      "cont:kind": "SUPPORT",
+      "rdfs:comment": "A bounded scope. Absence claims require ENUMERATION closure over exactly this scope.",
+      "rdfs:label": "Scope"
+    },
+    {
+      "@id": "cont:Scope.enumerationComplete",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Scope",
+      "rdfs:label": "enumerationComplete"
+    },
+    {
+      "@id": "cont:Scope.epoch",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Scope",
+      "rdfs:label": "epoch"
+    },
+    {
+      "@id": "cont:Scope.expectedMemberCount",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Scope",
+      "rdfs:label": "expectedMemberCount"
+    },
+    {
+      "@id": "cont:Scope.scopeKind",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Scope",
+      "rdfs:label": "scopeKind"
+    },
+    {
+      "@id": "cont:Scope.selector",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Scope",
+      "rdfs:label": "selector"
+    },
+    {
+      "@id": "cont:SelectionReceipt",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "Deterministic candidate selection: generate, hard-prune, feature, rank, budget-select, commit. Hard predicates are never overridden by ranking.",
+      "rdfs:label": "SelectionReceipt"
+    },
+    {
+      "@id": "cont:SelectionReceipt.blocked",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:SelectionReceipt",
+      "rdfs:label": "blocked"
+    },
+    {
+      "@id": "cont:SelectionReceipt.candidateUniverse",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:SelectionReceipt",
+      "rdfs:label": "candidateUniverse"
+    },
+    {
+      "@id": "cont:SelectionReceipt.committed",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:SelectionReceipt",
+      "rdfs:label": "committed"
+    },
+    {
+      "@id": "cont:SelectionReceipt.hardPredicates",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:SelectionReceipt",
+      "rdfs:label": "hardPredicates",
+      "rdfs:range": "cont:Predicate"
+    },
+    {
+      "@id": "cont:SelectionReceipt.nodeId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:SelectionReceipt",
+      "rdfs:label": "nodeId"
+    },
+    {
+      "@id": "cont:SelectionReceipt.prngSeed",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:SelectionReceipt",
+      "rdfs:label": "prngSeed"
+    },
+    {
+      "@id": "cont:SelectionReceipt.prunedCandidates",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:SelectionReceipt",
+      "rdfs:label": "prunedCandidates"
+    },
+    {
+      "@id": "cont:SelectionReceipt.quantization",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:SelectionReceipt",
+      "rdfs:label": "quantization"
+    },
+    {
+      "@id": "cont:SelectionReceipt.rankedCandidates",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:SelectionReceipt",
+      "rdfs:label": "rankedCandidates"
+    },
+    {
+      "@id": "cont:SelectionReceipt.terminalDecisionByCandidate",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:SelectionReceipt",
+      "rdfs:label": "terminalDecisionByCandidate"
+    },
+    {
+      "@id": "cont:SelectionReceipt.tieBreak",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:SelectionReceipt",
+      "rdfs:label": "tieBreak"
+    },
+    {
+      "@id": "cont:Span",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "State and purpose are orthogonal. Verification and rework spans inside active execution are labelled subsets, not additive siblings.",
+      "rdfs:label": "Span"
+    },
+    {
+      "@id": "cont:Span.actorId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Span",
+      "rdfs:label": "actorId"
+    },
+    {
+      "@id": "cont:Span.allocationUnknown",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Span",
+      "rdfs:label": "allocationUnknown"
+    },
+    {
+      "@id": "cont:Span.belowResolution",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Span",
+      "rdfs:label": "belowResolution"
+    },
+    {
+      "@id": "cont:Span.clockDomain",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Span",
+      "rdfs:label": "clockDomain"
+    },
+    {
+      "@id": "cont:Span.clockResolutionNs",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Span",
+      "rdfs:label": "clockResolutionNs"
+    },
+    {
+      "@id": "cont:Span.endNs",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Span",
+      "rdfs:label": "endNs"
+    },
+    {
+      "@id": "cont:Span.leaf",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Span",
+      "rdfs:label": "leaf"
+    },
+    {
+      "@id": "cont:Span.parentSpanId",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Span",
+      "rdfs:label": "parentSpanId"
+    },
+    {
+      "@id": "cont:Span.purpose",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Span",
+      "rdfs:label": "purpose"
+    },
+    {
+      "@id": "cont:Span.spanId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Span",
+      "rdfs:label": "spanId"
+    },
+    {
+      "@id": "cont:Span.startNs",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Span",
+      "rdfs:label": "startNs"
+    },
+    {
+      "@id": "cont:Span.state",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Span",
+      "rdfs:label": "state"
+    },
+    {
+      "@id": "cont:Span.traceRunId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Span",
+      "rdfs:label": "traceRunId"
+    },
+    {
+      "@id": "cont:Span.uncertainty",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Span",
+      "rdfs:label": "uncertainty"
+    },
+    {
+      "@id": "cont:StateSnapshot",
+      "@type": "rdfs:Class",
+      "cont:kind": "KERNEL",
+      "rdfs:comment": "Bounded state inventory with completeness indicators, environment binding, freshness and unresolved facts.",
+      "rdfs:label": "StateSnapshot"
+    },
+    {
+      "@id": "cont:StateSnapshot.admittedSourceVersions",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:StateSnapshot",
+      "rdfs:label": "admittedSourceVersions"
+    },
+    {
+      "@id": "cont:StateSnapshot.artifactRefs",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:StateSnapshot",
+      "rdfs:label": "artifactRefs"
+    },
+    {
+      "@id": "cont:StateSnapshot.completeness",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:StateSnapshot",
+      "rdfs:label": "completeness"
+    },
+    {
+      "@id": "cont:StateSnapshot.contractDigests",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:StateSnapshot",
+      "rdfs:label": "contractDigests"
+    },
+    {
+      "@id": "cont:StateSnapshot.environmentBinding",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:StateSnapshot",
+      "rdfs:label": "environmentBinding",
+      "rdfs:range": "cont:EnvironmentIdentity"
+    },
+    {
+      "@id": "cont:StateSnapshot.ephemeralBindings",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:StateSnapshot",
+      "rdfs:label": "ephemeralBindings"
+    },
+    {
+      "@id": "cont:StateSnapshot.implementationVersions",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:StateSnapshot",
+      "rdfs:label": "implementationVersions"
+    },
+    {
+      "@id": "cont:StateSnapshot.planDigest",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:StateSnapshot",
+      "rdfs:label": "planDigest"
+    },
+    {
+      "@id": "cont:StateSnapshot.requiredFacts",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:StateSnapshot",
+      "rdfs:label": "requiredFacts"
+    },
+    {
+      "@id": "cont:ToolInvocation",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:label": "ToolInvocation"
+    },
+    {
+      "@id": "cont:ToolInvocation.completedAt",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ToolInvocation",
+      "rdfs:label": "completedAt"
+    },
+    {
+      "@id": "cont:ToolInvocation.errorClass",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ToolInvocation",
+      "rdfs:label": "errorClass"
+    },
+    {
+      "@id": "cont:ToolInvocation.idempotencyKey",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ToolInvocation",
+      "rdfs:label": "idempotencyKey"
+    },
+    {
+      "@id": "cont:ToolInvocation.implementation",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ToolInvocation",
+      "rdfs:label": "implementation",
+      "rdfs:range": "cont:Implementation"
+    },
+    {
+      "@id": "cont:ToolInvocation.invocationId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ToolInvocation",
+      "rdfs:label": "invocationId"
+    },
+    {
+      "@id": "cont:ToolInvocation.resultDigest",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:ToolInvocation",
+      "rdfs:label": "resultDigest"
+    },
+    {
+      "@id": "cont:ToolInvocation.startedAt",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ToolInvocation",
+      "rdfs:label": "startedAt"
+    },
+    {
+      "@id": "cont:ToolInvocation.terminalStatus",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:ToolInvocation",
+      "rdfs:label": "terminalStatus"
+    },
+    {
+      "@id": "cont:Transaction",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:label": "Transaction"
+    },
+    {
+      "@id": "cont:Transaction.closedAt",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Transaction",
+      "rdfs:label": "closedAt"
+    },
+    {
+      "@id": "cont:Transaction.committed",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Transaction",
+      "rdfs:label": "committed"
+    },
+    {
+      "@id": "cont:Transaction.openedAt",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Transaction",
+      "rdfs:label": "openedAt"
+    },
+    {
+      "@id": "cont:Transaction.operationId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Transaction",
+      "rdfs:label": "operationId"
+    },
+    {
+      "@id": "cont:Transaction.transactionId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Transaction",
+      "rdfs:label": "transactionId"
+    },
+    {
+      "@id": "cont:Verification",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "An independent recomputation of a proposition. Produced only inside the auditor package.",
+      "rdfs:label": "Verification"
+    },
+    {
+      "@id": "cont:Verification.claimId",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Verification",
+      "rdfs:label": "claimId"
+    },
+    {
+      "@id": "cont:Verification.commonModeDependencies",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Verification",
+      "rdfs:label": "commonModeDependencies"
+    },
+    {
+      "@id": "cont:Verification.independenceLevel",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Verification",
+      "rdfs:label": "independenceLevel"
+    },
+    {
+      "@id": "cont:Verification.mode",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Verification",
+      "rdfs:label": "mode"
+    },
+    {
+      "@id": "cont:Verification.producerStatus",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Verification",
+      "rdfs:label": "producerStatus"
+    },
+    {
+      "@id": "cont:Verification.proposition",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Verification",
+      "rdfs:label": "proposition",
+      "rdfs:range": "cont:Proposition"
+    },
+    {
+      "@id": "cont:Verification.reason",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Verification",
+      "rdfs:label": "reason"
+    },
+    {
+      "@id": "cont:Verification.recomputedValue",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Verification",
+      "rdfs:label": "recomputedValue"
+    },
+    {
+      "@id": "cont:Verification.recordType",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:Verification",
+      "rdfs:label": "recordType"
+    },
+    {
+      "@id": "cont:Verification.status",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:Verification",
+      "rdfs:label": "status"
+    },
+    {
+      "@id": "cont:VerificationCostSet",
+      "@type": "rdfs:Class",
+      "cont:kind": "SUPPORT",
+      "rdfs:label": "VerificationCostSet"
+    },
+    {
+      "@id": "cont:VerificationCostSet.auditorTokens",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:VerificationCostSet",
+      "rdfs:label": "auditorTokens",
+      "rdfs:range": "cont:ResourceUsage"
+    },
+    {
+      "@id": "cont:VerificationCostSet.managerTokens",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:VerificationCostSet",
+      "rdfs:label": "managerTokens",
+      "rdfs:range": "cont:ResourceUsage"
+    },
+    {
+      "@id": "cont:VerificationCostSet.recoveryTokens",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:VerificationCostSet",
+      "rdfs:label": "recoveryTokens",
+      "rdfs:range": "cont:ResourceUsage"
+    },
+    {
+      "@id": "cont:WorkItem",
+      "@type": "rdfs:Class",
+      "cont:kind": "KERNEL",
+      "rdfs:comment": "Bounded unit of work with an accounting identity.",
+      "rdfs:label": "WorkItem"
+    },
+    {
+      "@id": "cont:WorkItem.accountingId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:WorkItem",
+      "rdfs:label": "accountingId"
+    },
+    {
+      "@id": "cont:WorkItem.accountingPartition",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:WorkItem",
+      "rdfs:label": "accountingPartition"
+    },
+    {
+      "@id": "cont:WorkItem.contracts",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:WorkItem",
+      "rdfs:label": "contracts",
+      "rdfs:range": "cont:Contract"
+    },
+    {
+      "@id": "cont:WorkItem.lifecycle",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:WorkItem",
+      "rdfs:label": "lifecycle"
+    },
+    {
+      "@id": "cont:WorkItem.limits",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:WorkItem",
+      "rdfs:label": "limits"
+    },
+    {
+      "@id": "cont:WorkItem.parentOutcome",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:WorkItem",
+      "rdfs:label": "parentOutcome",
+      "rdfs:range": "cont:Outcome"
+    },
+    {
+      "@id": "cont:WorkItem.permittedSideEffects",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:WorkItem",
+      "rdfs:label": "permittedSideEffects"
+    },
+    {
+      "@id": "cont:WorkItem.prerequisites",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:WorkItem",
+      "rdfs:label": "prerequisites",
+      "rdfs:range": "cont:WorkItem"
+    },
+    {
+      "@id": "cont:WorkItem.requiredCapabilities",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:WorkItem",
+      "rdfs:label": "requiredCapabilities",
+      "rdfs:range": "cont:Capability"
+    },
+    {
+      "@id": "cont:WorkItem.title",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:WorkItem",
+      "rdfs:label": "title"
+    },
+    {
+      "@id": "cont:WorkPacket",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "Bounded dispatch extension. Not a different completed-work unit by default.",
+      "rdfs:label": "WorkPacket"
+    },
+    {
+      "@id": "cont:WorkPacket.finalAuditAuthority",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:WorkPacket",
+      "rdfs:label": "finalAuditAuthority"
+    },
+    {
+      "@id": "cont:WorkPacket.frozenInterfaceVersion",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:WorkPacket",
+      "rdfs:label": "frozenInterfaceVersion"
+    },
+    {
+      "@id": "cont:WorkPacket.ownedPaths",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:WorkPacket",
+      "rdfs:label": "ownedPaths"
+    },
+    {
+      "@id": "cont:WorkPacket.ownerRole",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:WorkPacket",
+      "rdfs:label": "ownerRole"
+    },
+    {
+      "@id": "cont:WorkPacket.packetId",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:WorkPacket",
+      "rdfs:label": "packetId"
+    },
+    {
+      "@id": "cont:WorkPacket.requirementIds",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:WorkPacket",
+      "rdfs:label": "requirementIds"
+    },
+    {
+      "@id": "cont:WorkUnitPolicy",
+      "@type": "rdfs:Class",
+      "cont:kind": "EXTENSION",
+      "rdfs:comment": "Predeclared, versioned acceptance universe with frozen weights. Weighting is frozen before any benchmark or release measurement.",
+      "rdfs:label": "WorkUnitPolicy"
+    },
+    {
+      "@id": "cont:WorkUnitPolicy.acceptanceUniverse",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:WorkUnitPolicy",
+      "rdfs:label": "acceptanceUniverse"
+    },
+    {
+      "@id": "cont:WorkUnitPolicy.frozen",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:WorkUnitPolicy",
+      "rdfs:label": "frozen"
+    },
+    {
+      "@id": "cont:WorkUnitPolicy.frozenAt",
+      "@type": "rdf:Property",
+      "cont:required": false,
+      "rdfs:domain": "cont:WorkUnitPolicy",
+      "rdfs:label": "frozenAt"
+    },
+    {
+      "@id": "cont:WorkUnitPolicy.policyVersion",
+      "@type": "rdf:Property",
+      "cont:required": true,
+      "rdfs:domain": "cont:WorkUnitPolicy",
+      "rdfs:label": "policyVersion"
+    },
+    {
+      "@id": "cont:compares",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:domain": "cont:EfficiencyClaim",
+      "rdfs:label": "compares",
+      "rdfs:range": "cont:ExecutionTrace"
+    },
+    {
+      "@id": "cont:constrainedByContract",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:domain": "cont:WorkItem",
+      "rdfs:label": "constrainedByContract",
+      "rdfs:range": "cont:Contract"
+    },
+    {
+      "@id": "cont:constrainedByEquivalence",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:domain": "cont:EfficiencyClaim",
+      "rdfs:label": "constrainedByEquivalence",
+      "rdfs:range": "cont:EquivalenceContract"
+    },
+    {
+      "@id": "cont:consumes",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "consumes",
+      "rdfs:range": "cont:ResourceUsage"
+    },
+    {
+      "@id": "cont:decomposedInto",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:domain": "cont:Outcome",
+      "rdfs:label": "decomposedInto",
+      "rdfs:range": "cont:WorkItem"
+    },
+    {
+      "@id": "cont:dependsOn",
+      "@type": "rdf:Property",
+      "cont:derivedFromDirect": "cont:directPrerequisite",
+      "cont:transitive": true,
+      "rdfs:domain": "cont:WorkItem",
+      "rdfs:label": "dependsOn",
+      "rdfs:range": "cont:WorkItem"
+    },
+    {
+      "@id": "cont:derivedFrom",
+      "@type": "rdf:Property",
+      "cont:derivedFromDirect": "cont:directlyDerivedFrom",
+      "cont:transitive": true,
+      "rdfs:domain": "cont:ArtifactVersion",
+      "rdfs:label": "derivedFrom",
+      "rdfs:range": "cont:ArtifactVersion"
+    },
+    {
+      "@id": "cont:directPrerequisite",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:domain": "cont:WorkItem",
+      "rdfs:label": "directPrerequisite",
+      "rdfs:range": "cont:WorkItem"
+    },
+    {
+      "@id": "cont:directlyDerivedFrom",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:domain": "cont:ArtifactVersion",
+      "rdfs:label": "directlyDerivedFrom",
+      "rdfs:range": "cont:ArtifactVersion"
+    },
+    {
+      "@id": "cont:directlyPrecedes",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:domain": "cont:ExecutionEvent",
+      "rdfs:label": "directlyPrecedes",
+      "rdfs:range": "cont:ExecutionEvent"
+    },
+    {
+      "@id": "cont:evaluatedBy",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:domain": "cont:Artifact",
+      "rdfs:label": "evaluatedBy",
+      "rdfs:range": "cont:Gate"
+    },
+    {
+      "@id": "cont:evaluatesAgainst",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:domain": "cont:Gate",
+      "rdfs:label": "evaluatesAgainst",
+      "rdfs:range": "cont:Contract"
+    },
+    {
+      "@id": "cont:executes",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "executes",
+      "rdfs:range": "cont:ExecutionPlan"
+    },
+    {
+      "@id": "cont:governedBy",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:label": "governedBy",
+      "rdfs:range": "cont:Contract"
+    },
+    {
+      "@id": "cont:holdsConstant",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:domain": "cont:EquivalenceContract",
+      "rdfs:label": "holdsConstant"
+    },
+    {
+      "@id": "cont:invokes",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "invokes",
+      "rdfs:range": "cont:Implementation"
+    },
+    {
+      "@id": "cont:precedes",
+      "@type": "rdf:Property",
+      "cont:derivedFromDirect": "cont:directlyPrecedes",
+      "cont:transitive": true,
+      "rdfs:domain": "cont:ExecutionEvent",
+      "rdfs:label": "precedes",
+      "rdfs:range": "cont:ExecutionEvent"
+    },
+    {
+      "@id": "cont:preserves",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:domain": "cont:Checkpoint",
+      "rdfs:label": "preserves",
+      "rdfs:range": "cont:StateSnapshot"
+    },
+    {
+      "@id": "cont:produces",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "produces",
+      "rdfs:range": "cont:ArtifactVersion"
+    },
+    {
+      "@id": "cont:reaches",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:domain": "cont:ExecutionTrace",
+      "rdfs:label": "reaches",
+      "rdfs:range": "cont:Checkpoint"
+    },
+    {
+      "@id": "cont:realizesCapability",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:domain": "cont:Implementation",
+      "rdfs:label": "realizesCapability",
+      "rdfs:range": "cont:Capability"
+    },
+    {
+      "@id": "cont:requiresCapability",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:domain": "cont:WorkItem",
+      "rdfs:label": "requiresCapability",
+      "rdfs:range": "cont:Capability"
+    },
+    {
+      "@id": "cont:schedules",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:domain": "cont:ExecutionPlan",
+      "rdfs:label": "schedules",
+      "rdfs:range": "cont:WorkItem"
+    },
+    {
+      "@id": "cont:supportedBy",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:label": "supportedBy",
+      "rdfs:range": "cont:Evidence"
+    },
+    {
+      "@id": "cont:transfers",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:domain": "cont:Handoff",
+      "rdfs:label": "transfers",
+      "rdfs:range": "cont:Checkpoint"
+    },
+    {
+      "@id": "cont:yields",
+      "@type": "rdf:Property",
+      "cont:transitive": false,
+      "rdfs:domain": "cont:Gate",
+      "rdfs:label": "yields",
+      "rdfs:range": "cont:Decision"
+    }
+  ],
+  "_generated": "GENERATED FROM ontology/metamodel.json -- DO NOT EDIT",
+  "_semanticModelDigest": "sha256:356d05c8e459888cd22779f81e74d9e856a749105e115cca66391806a95aca4a"
+}

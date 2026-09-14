@@ -1,0 +1,101 @@
+{
+  "schema": "continuity.registry.metrics/2",
+  "registryVersion": "2.0.0",
+  "doc": "Metric definitions with explicit numerators, denominators and units. A metric whose denominator changes becomes a new versioned metric; it is never a silent correction of history. Zero denominators produce a typed unavailable result, never NaN, infinity or a fabricated zero.",
+  "metrics": {
+    "verified_throughput.vendor_tokens": {
+      "formulaVersion": "1.0.0",
+      "numerator": "sum of frozen weights of unique accepted work units in the measurement window",
+      "denominator": "admissible observed vendor tokens in the same window",
+      "unit": "accepted_work_units_per_1k_vendor_tokens",
+      "scale": 1000,
+      "requiresAccountingBasis": true,
+      "zeroDenominator": "UNDEFINED_ZERO_DENOMINATOR",
+      "note": "An observed zero-token local operation may be labelled token-free for that measured scope. Unmetered surrounding model work is not thereby free."
+    },
+    "time_throughput.active_elapsed": {
+      "formulaVersion": "1.0.0",
+      "numerator": "sum of frozen weights of unique accepted work units",
+      "denominator": "active elapsed execution time (union of active intervals in one clock domain)",
+      "unit": "accepted_work_units_per_hour",
+      "scale": 3600000,
+      "zeroDenominator": "UNDEFINED_ZERO_DENOMINATOR"
+    },
+    "effort_throughput": {
+      "formulaVersion": "1.0.0",
+      "numerator": "sum of frozen weights of unique accepted work units",
+      "denominator": "aggregate effort (sum of non-overlapping leaf actor spans)",
+      "unit": "accepted_work_units_per_effort_hour",
+      "scale": 3600000,
+      "zeroDenominator": "UNDEFINED_ZERO_DENOMINATOR",
+      "note": "Published alongside active elapsed time, never instead of it."
+    },
+    "tool_leverage": {
+      "formulaVersion": "1.0.0",
+      "numerator": "matched baseline observed vendor tokens",
+      "denominator": "matched tool-assisted observed vendor tokens",
+      "unit": "ratio",
+      "requiresEquivalence": true,
+      "zeroDenominator": "UNDEFINED_ZERO_DENOMINATOR",
+      "cohortAggregation": "aggregate matched resources, not the unweighted mean of per-pair ratios"
+    },
+    "token_reduction": {
+      "formulaVersion": "1.0.0",
+      "numerator": "1 - (assisted tokens / baseline tokens)",
+      "denominator": "matched baseline observed vendor tokens",
+      "unit": "fraction",
+      "requiresEquivalence": true,
+      "zeroDenominator": "UNDEFINED_ZERO_DENOMINATOR"
+    },
+    "rework_tax.vendor_tokens": {
+      "formulaVersion": "1.0.0",
+      "numerator": "rework-purpose vendor tokens",
+      "denominator": "total vendor tokens",
+      "unit": "fraction",
+      "unitDomain": "vendor_tokens",
+      "zeroDenominator": "UNDEFINED_ZERO_DENOMINATOR",
+      "note": "Published separately per unit domain. Dividing tokens by time is rejected rather than reported."
+    },
+    "rework_tax.active_time": {
+      "formulaVersion": "1.0.0",
+      "numerator": "rework-purpose active time",
+      "denominator": "total active time",
+      "unit": "fraction",
+      "unitDomain": "active_time_ms",
+      "zeroDenominator": "UNDEFINED_ZERO_DENOMINATOR"
+    },
+    "first_pass_yield": {
+      "formulaVersion": "1.0.0",
+      "numerator": "unique submissions accepted on their first qualifying attempt",
+      "denominator": "unique submissions in the frozen cohort",
+      "unit": "fraction",
+      "zeroDenominator": "NOT_APPLICABLE"
+    },
+    "evidence_closure": {
+      "formulaVersion": "1.0.0",
+      "numerator": "mandatory evidence requirements satisfied",
+      "denominator": "mandatory applicable evidence requirements",
+      "unit": "fraction",
+      "zeroDenominator": "NOT_APPLICABLE",
+      "companionCounters": ["mandatoryChecks", "passCount", "unknownCount", "errorCount", "notRunCount"]
+    },
+    "continuity_retention": {
+      "formulaVersion": "1.0.0",
+      "numerator": "required handoff facts restored with admissible provenance",
+      "denominator": "frozen required fact set size",
+      "unit": "fraction",
+      "zeroDenominator": "NOT_APPLICABLE"
+    },
+    "recovery_success": {
+      "formulaVersion": "1.0.0",
+      "numerator": "accepted resumptions",
+      "denominator": "attempted recoveries",
+      "unit": "fraction",
+      "zeroDenominator": "NOT_APPLICABLE",
+      "companionCounters": ["recoveryCostMs", "recoveryVendorTokens"]
+    }
+  },
+  "mixedCounterWarnings": [
+    "Skill uses, implementation runs and tool invocations are separate counters. The historical 227/508 concentration ratio mixed them; do not reconstruct a 44.7% figure from those counters."
+  ]
+}

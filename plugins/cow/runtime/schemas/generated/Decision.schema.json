@@ -1,0 +1,5258 @@
+{
+  "$defs": {
+    "AcceptanceReceipt": {
+      "additionalProperties": false,
+      "description": "Credits exactly one accounting identity once. Revocation appends a correction; it never rewrites history.",
+      "properties": {
+        "acceptedAt": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]\\d{2}:\\d{2})$",
+          "type": "string"
+        },
+        "accountingId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "correctsReceiptId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "firstQualifyingAttempt": {
+          "type": "boolean"
+        },
+        "partition": {
+          "type": "string"
+        },
+        "receiptId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "requiredGateResults": {
+          "items": {
+            "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "revocationReason": {
+          "type": "string"
+        },
+        "revoked": {
+          "type": "boolean"
+        },
+        "weight": {
+          "description": "Exact decimal text. Binary floats are rejected: they have no stable digest representation.",
+          "oneOf": [
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "workUnitPolicyVersion": {
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "acceptedAt",
+        "accountingId",
+        "firstQualifyingAttempt",
+        "partition",
+        "receiptId",
+        "requiredGateResults",
+        "revoked",
+        "weight",
+        "workUnitPolicyVersion"
+      ],
+      "type": "object"
+    },
+    "AcceptedWorkLedgerEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "accountingId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "delta": {
+          "description": "CREDIT or INVALIDATE.",
+          "type": "string"
+        },
+        "measurementWindow": {
+          "type": "string"
+        },
+        "receiptId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "sequence": {
+          "type": "integer"
+        },
+        "weight": {
+          "description": "Exact decimal text. Binary floats are rejected: they have no stable digest representation.",
+          "oneOf": [
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "accountingId",
+        "delta",
+        "measurementWindow",
+        "receiptId",
+        "sequence",
+        "weight"
+      ],
+      "type": "object"
+    },
+    "AdjudicationReceipt": {
+      "additionalProperties": false,
+      "properties": {
+        "authorizedByRole": {
+          "type": "string"
+        },
+        "citedEvidence": {
+          "items": {
+            "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "citedPolicy": {
+          "type": "string"
+        },
+        "conflictId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "disposition": {
+          "enum": [
+            "UNRESOLVED",
+            "ADJUDICATED_ACCEPT",
+            "ADJUDICATED_REJECT",
+            "ADJUDICATED_SPLIT_SCOPE"
+          ],
+          "type": "string"
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "authorizedByRole",
+        "citedEvidence",
+        "citedPolicy",
+        "conflictId",
+        "disposition",
+        "rationale"
+      ],
+      "type": "object"
+    },
+    "Artifact": {
+      "additionalProperties": false,
+      "description": "Logical identity. Byte identity lives in ArtifactVersion.",
+      "properties": {
+        "artifactKind": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "versions": {
+          "items": {
+            "description": "identifier reference or embedded ArtifactVersion",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/ArtifactVersion"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "artifactKind",
+        "name",
+        "versions"
+      ],
+      "type": "object"
+    },
+    "ArtifactVersion": {
+      "additionalProperties": false,
+      "description": "Immutable byte-addressed version of an artifact.",
+      "properties": {
+        "artifact": {
+          "description": "identifier reference or embedded Artifact",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Artifact"
+            }
+          ]
+        },
+        "contentDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "derivationReceipt": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "directlyDerivedFrom": {
+          "items": {
+            "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "mediaType": {
+          "type": "string"
+        },
+        "sizeBytes": {
+          "type": "integer"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "artifact",
+        "contentDigest",
+        "sizeBytes"
+      ],
+      "type": "object"
+    },
+    "AuditResult": {
+      "additionalProperties": false,
+      "description": "Produced by the independent auditor package only. Never written by a producer.",
+      "properties": {
+        "auditId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "auditInputManifestDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "auditorImplementationDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "auditorRole": {
+          "type": "string"
+        },
+        "commonModeDependencies": {
+          "items": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "disagreedWithProducer": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "frozenBundleDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "mandatoryTotals": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "description": "Counts by Status across mandatory claims: PASS, FAIL, UNKNOWN, ERROR, NOT_RUN.",
+          "type": "object"
+        },
+        "resultDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "verdict": {
+          "enum": [
+            "APPROVE",
+            "REJECT",
+            "INDETERMINATE"
+          ],
+          "type": "string"
+        },
+        "verdictRationale": {
+          "type": "string"
+        },
+        "verifications": {
+          "items": {
+            "description": "identifier reference or embedded Verification",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/Verification"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "auditId",
+        "auditInputManifestDigest",
+        "auditorImplementationDigest",
+        "auditorRole",
+        "commonModeDependencies",
+        "disagreedWithProducer",
+        "frozenBundleDigest",
+        "mandatoryTotals",
+        "resultDigest",
+        "verdict",
+        "verdictRationale",
+        "verifications"
+      ],
+      "type": "object"
+    },
+    "AuthorizedOperation": {
+      "additionalProperties": false,
+      "properties": {
+        "authorizedScope": {
+          "description": "identifier reference or embedded Scope",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Scope"
+            }
+          ]
+        },
+        "capability": {
+          "description": "identifier reference or embedded Capability",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Capability"
+            }
+          ]
+        },
+        "expiresAt": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]\\d{2}:\\d{2})$",
+          "type": "string"
+        },
+        "grantDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "grantedByRole": {
+          "type": "string"
+        },
+        "operationId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "replayGuard": {
+          "type": "string"
+        },
+        "secretsExcluded": {
+          "description": "Always true in a persisted receipt: operation capabilities and secrets never enter persisted records.",
+          "type": "boolean"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "authorizedScope",
+        "capability",
+        "grantDigest",
+        "grantedByRole",
+        "operationId",
+        "replayGuard",
+        "secretsExcluded"
+      ],
+      "type": "object"
+    },
+    "BenchmarkPair": {
+      "additionalProperties": false,
+      "description": "One matched baseline/assisted execution pair under a frozen equivalence contract.",
+      "properties": {
+        "assistedAccepted": {
+          "type": "boolean"
+        },
+        "assistedTraceRef": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "baselineAccepted": {
+          "type": "boolean"
+        },
+        "baselineTraceRef": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "cacheStratum": {
+          "type": "string"
+        },
+        "contaminationChecks": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "checkId": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              },
+              "status": {
+                "enum": [
+                  "PASS",
+                  "FAIL",
+                  "UNKNOWN",
+                  "ERROR",
+                  "NOT_RUN"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "checkId",
+              "reason",
+              "status"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "equivalenceContractDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "exclusionReason": {
+          "type": "string"
+        },
+        "includedInCohort": {
+          "description": "Failed attempts stay in the cohort. Excluding them to improve a ratio invalidates the claim.",
+          "type": "boolean"
+        },
+        "pairId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "receipts": {},
+        "setupAmortized": {
+          "type": "boolean"
+        },
+        "verificationCosts": {
+          "description": "identifier reference or embedded VerificationCostSet",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/VerificationCostSet"
+            }
+          ]
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "assistedAccepted",
+        "assistedTraceRef",
+        "baselineAccepted",
+        "baselineTraceRef",
+        "cacheStratum",
+        "contaminationChecks",
+        "equivalenceContractDigest",
+        "includedInCohort",
+        "pairId",
+        "setupAmortized"
+      ],
+      "type": "object"
+    },
+    "BenchmarkProtocol": {
+      "additionalProperties": false,
+      "description": "Pre-registered before a cohort is measured. A pilot is a debugging cohort, never an advertised result.",
+      "properties": {
+        "equivalenceContractDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "frozen": {
+          "type": "boolean"
+        },
+        "minimumPairs": {
+          "type": "integer"
+        },
+        "preRegisteredAt": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]\\d{2}:\\d{2})$",
+          "type": "string"
+        },
+        "protocolId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "protocolKind": {
+          "description": "PILOT or REGISTERED_COHORT.",
+          "type": "string"
+        },
+        "setupTreatment": {
+          "type": "string"
+        },
+        "stoppingRule": {
+          "type": "string"
+        },
+        "strata": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "targetPairs": {
+          "type": "integer"
+        },
+        "uncertaintyMethod": {
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "equivalenceContractDigest",
+        "frozen",
+        "minimumPairs",
+        "preRegisteredAt",
+        "protocolId",
+        "protocolKind",
+        "setupTreatment",
+        "stoppingRule",
+        "strata",
+        "targetPairs",
+        "uncertaintyMethod"
+      ],
+      "type": "object"
+    },
+    "CacheReuseReceipt": {
+      "additionalProperties": false,
+      "properties": {
+        "boundInputs": {
+          "additionalProperties": {
+            "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "cacheKeyDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "claimType": {
+          "type": "string"
+        },
+        "freshnessPolicyId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "receiptId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "refusedReason": {
+          "description": "A timeout is never converted into a cache hit.",
+          "type": "string"
+        },
+        "reused": {
+          "type": "boolean"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "boundInputs",
+        "cacheKeyDigest",
+        "claimType",
+        "freshnessPolicyId",
+        "receiptId",
+        "reused"
+      ],
+      "type": "object"
+    },
+    "Capability": {
+      "additionalProperties": false,
+      "description": "Stable functional contract independent of vendor or tool names.",
+      "properties": {
+        "inputContract": {
+          "description": "identifier reference or embedded Contract",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Contract"
+            }
+          ]
+        },
+        "intent": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "outputContract": {
+          "description": "identifier reference or embedded Contract",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Contract"
+            }
+          ]
+        },
+        "sideEffectClass": {
+          "description": "read_only, local_write, external_mutation.",
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "inputContract",
+        "intent",
+        "name",
+        "outputContract",
+        "sideEffectClass"
+      ],
+      "type": "object"
+    },
+    "Checkpoint": {
+      "additionalProperties": false,
+      "description": "Committed semantic state with closure, recovery policy and exact snapshot references. Never preserves live handles as continuing authority.",
+      "properties": {
+        "acceptedDecisions": {
+          "items": {
+            "description": "identifier reference or embedded Decision",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/Decision"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "closureReceipt": {
+          "description": "identifier reference or embedded ClosureReceipt",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/ClosureReceipt"
+            }
+          ]
+        },
+        "committed": {
+          "type": "boolean"
+        },
+        "lastSealedEventDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "lastSealedEventSeq": {
+          "type": "integer"
+        },
+        "nextLegalActions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "openOperations": {
+          "items": {
+            "description": "identifier reference or embedded OpenOperation",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/OpenOperation"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "outcome": {
+          "description": "identifier reference or embedded Outcome",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Outcome"
+            }
+          ]
+        },
+        "recoveryPolicyRef": {
+          "type": "string"
+        },
+        "snapshot": {
+          "description": "identifier reference or embedded StateSnapshot",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/StateSnapshot"
+            }
+          ]
+        },
+        "unresolvedClaims": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "acceptedDecisions",
+        "closureReceipt",
+        "committed",
+        "lastSealedEventDigest",
+        "lastSealedEventSeq",
+        "nextLegalActions",
+        "openOperations",
+        "outcome",
+        "recoveryPolicyRef",
+        "snapshot",
+        "unresolvedClaims"
+      ],
+      "type": "object"
+    },
+    "ChunkAggregate": {
+      "additionalProperties": false,
+      "description": "Rejects gaps, overlap, duplicate ranges, stale or mixed epochs, process changes, candidate changes and partial writes.",
+      "properties": {
+        "aggregateId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "chunkRefs": {
+          "items": {
+            "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "consistencyGuarantee": {
+          "description": "The actual guarantee, e.g. NOT_ATOMIC_SNAPSHOT, rather than an implied one.",
+          "type": "string"
+        },
+        "consistencyWitnesses": {
+          "description": "Engine counts, serialized rows and component membership are consistency witnesses, not independent auditors.",
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "agrees": {
+                "type": "boolean"
+              },
+              "expected": {},
+              "observed": {},
+              "witnessKind": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "agrees",
+              "witnessKind"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "rejectionReasons": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "requiredScope": {
+          "description": "identifier reference or embedded Scope",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Scope"
+            }
+          ]
+        },
+        "status": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "UNKNOWN",
+            "ERROR",
+            "NOT_RUN"
+          ],
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "aggregateId",
+        "chunkRefs",
+        "consistencyGuarantee",
+        "consistencyWitnesses",
+        "rejectionReasons",
+        "requiredScope",
+        "status"
+      ],
+      "type": "object"
+    },
+    "ChunkEnvelope": {
+      "additionalProperties": false,
+      "description": "One stable-ID-ordered collection chunk in a single authorized session.",
+      "properties": {
+        "attempt": {
+          "type": "integer"
+        },
+        "candidateDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "chunkId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "completed": {
+          "type": "boolean"
+        },
+        "deadlineMs": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "elapsedMs": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "engineCount": {
+          "type": "integer"
+        },
+        "mapIdentity": {
+          "type": "string"
+        },
+        "memberIds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "policyDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "processCreationDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "rangeEnd": {
+          "type": "string"
+        },
+        "rangeStart": {
+          "type": "string"
+        },
+        "runId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "serializedRowCount": {
+          "type": "integer"
+        },
+        "snapshotEpoch": {
+          "type": "string"
+        },
+        "sourceDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "timedOut": {
+          "type": "boolean"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "attempt",
+        "candidateDigest",
+        "chunkId",
+        "completed",
+        "deadlineMs",
+        "elapsedMs",
+        "mapIdentity",
+        "memberIds",
+        "policyDigest",
+        "processCreationDigest",
+        "rangeEnd",
+        "rangeStart",
+        "runId",
+        "snapshotEpoch",
+        "sourceDigest",
+        "timedOut"
+      ],
+      "type": "object"
+    },
+    "Claim": {
+      "additionalProperties": false,
+      "description": "Binds a proposition, bounded scope, expected/observed values, required evidence, authority/freshness and policy.",
+      "properties": {
+        "claimId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "freshnessPolicyRef": {
+          "description": "identifier reference or embedded FreshnessPolicy",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/FreshnessPolicy"
+            }
+          ]
+        },
+        "lifecycle": {
+          "enum": [
+            "DRAFT",
+            "SEALED",
+            "AUDITED",
+            "SUPERSEDED",
+            "REVOKED"
+          ],
+          "type": "string"
+        },
+        "mandatory": {
+          "type": "boolean"
+        },
+        "producerAssertion": {
+          "description": "identifier reference or embedded ProducerAssertion",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/ProducerAssertion"
+            }
+          ]
+        },
+        "proposition": {
+          "description": "identifier reference or embedded Proposition",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Proposition"
+            }
+          ]
+        },
+        "requiredEvidence": {
+          "items": {
+            "description": "identifier reference or embedded EvidenceRequirement",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/EvidenceRequirement"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "sufficiency": {
+          "description": "identifier reference or embedded EvidenceSufficiencyReceipt",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/EvidenceSufficiencyReceipt"
+            }
+          ]
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "claimId",
+        "lifecycle",
+        "mandatory",
+        "producerAssertion",
+        "proposition",
+        "requiredEvidence",
+        "sufficiency"
+      ],
+      "type": "object"
+    },
+    "ClaimBundle": {
+      "additionalProperties": false,
+      "description": "Sealed producer bundle. Immutable member index with a resolved-state digest.",
+      "properties": {
+        "bundleId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "candidateDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "lifecycle": {
+          "enum": [
+            "OPEN",
+            "SEALED",
+            "DELTA",
+            "MATERIALIZED",
+            "INVALIDATED"
+          ],
+          "type": "string"
+        },
+        "memberIndex": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "claimId": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              "mandatory": {
+                "type": "boolean"
+              },
+              "revisionDigest": {
+                "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "claimId",
+              "mandatory",
+              "revisionDigest"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "resolvedStateDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "sealedAt": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]\\d{2}:\\d{2})$",
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "bundleId",
+        "candidateDigest",
+        "lifecycle",
+        "memberIndex",
+        "resolvedStateDigest"
+      ],
+      "type": "object"
+    },
+    "ClaimBundleDelta": {
+      "additionalProperties": false,
+      "description": "Changed revisions plus new evidence references. Unchanged evidence is referenced, never recopied.",
+      "properties": {
+        "changedRevisions": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "claimId": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              "revisionDigest": {
+                "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "claimId",
+              "revisionDigest"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "deltaId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "depth": {
+          "type": "integer"
+        },
+        "newEvidenceRefs": {
+          "items": {
+            "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "parentBundleDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "removedClaimIds": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "resolvedStateDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "changedRevisions",
+        "deltaId",
+        "depth",
+        "newEvidenceRefs",
+        "parentBundleDigest",
+        "removedClaimIds",
+        "resolvedStateDigest"
+      ],
+      "type": "object"
+    },
+    "ClaimRevision": {
+      "additionalProperties": false,
+      "properties": {
+        "changeReason": {
+          "type": "string"
+        },
+        "claim": {
+          "description": "identifier reference or embedded Claim",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Claim"
+            }
+          ]
+        },
+        "claimId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "parentRevisionDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "revisionNumber": {
+          "type": "integer"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "changeReason",
+        "claim",
+        "claimId",
+        "revisionNumber"
+      ],
+      "type": "object"
+    },
+    "ClosureReceipt": {
+      "additionalProperties": false,
+      "description": "Bounded complete enumeration over a declared scope. Empty or failed retrieval never proves absence.",
+      "properties": {
+        "closureKind": {
+          "enum": [
+            "ENUMERATION",
+            "MUTATION_SET",
+            "DEPENDENCY",
+            "EVIDENCE",
+            "ROLLBACK",
+            "STATE"
+          ],
+          "type": "string"
+        },
+        "complete": {
+          "type": "boolean"
+        },
+        "enumeratedMembers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "expectedCount": {
+          "type": "integer"
+        },
+        "incompleteReason": {
+          "type": "string"
+        },
+        "observedCount": {
+          "type": "integer"
+        },
+        "scope": {
+          "description": "identifier reference or embedded Scope",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Scope"
+            }
+          ]
+        },
+        "witnessRefs": {
+          "items": {
+            "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "closureKind",
+        "complete",
+        "enumeratedMembers",
+        "observedCount",
+        "scope",
+        "witnessRefs"
+      ],
+      "type": "object"
+    },
+    "ConflictSet": {
+      "additionalProperties": false,
+      "description": "Conflicts remain visible until an authorized adjudication cites the conflicting evidence and policy.",
+      "properties": {
+        "claimIds": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "conflictId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "conflictingEvidence": {
+          "items": {
+            "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "description": {
+          "type": "string"
+        },
+        "disposition": {
+          "enum": [
+            "UNRESOLVED",
+            "ADJUDICATED_ACCEPT",
+            "ADJUDICATED_REJECT",
+            "ADJUDICATED_SPLIT_SCOPE"
+          ],
+          "type": "string"
+        },
+        "invalidatesDownstream": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "claimIds",
+        "conflictId",
+        "conflictingEvidence",
+        "description",
+        "disposition",
+        "invalidatesDownstream"
+      ],
+      "type": "object"
+    },
+    "Contract": {
+      "additionalProperties": false,
+      "description": "Versioned requirements with units, tolerances and evidence/freshness/authority requirements.",
+      "properties": {
+        "contractVersion": {
+          "type": "string"
+        },
+        "freshnessPolicyRef": {
+          "description": "identifier reference or embedded FreshnessPolicy",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/FreshnessPolicy"
+            }
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "predicates": {
+          "items": {
+            "description": "identifier reference or embedded Predicate",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/Predicate"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "requiredAuthorityClasses": {
+          "items": {
+            "enum": [
+              "AUTHORITATIVE_SOURCE",
+              "DETERMINISTIC_DERIVATION",
+              "PROVIDER_OBSERVATION",
+              "OPERATION_OWNED_RESULT",
+              "HEURISTIC_DECISION",
+              "POLICY_OR_SYNTHETIC_AID",
+              "CALLER_ASSERTION"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "requiredEvidence": {
+          "items": {
+            "description": "identifier reference or embedded EvidenceRequirement",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/EvidenceRequirement"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "scope": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "tolerances": {
+          "additionalProperties": {
+            "description": "Exact decimal text. Binary floats are rejected: they have no stable digest representation.",
+            "oneOf": [
+              {
+                "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "type": "object"
+        },
+        "units": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "contractVersion",
+        "name",
+        "predicates",
+        "requiredEvidence",
+        "scope"
+      ],
+      "type": "object"
+    },
+    "Decision": {
+      "additionalProperties": false,
+      "description": "An authorized or computed disposition with cited inputs. Never inferred from labels or colours.",
+      "properties": {
+        "citedInputs": {
+          "items": {
+            "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "decisionKind": {
+          "type": "string"
+        },
+        "disposition": {
+          "type": "string"
+        },
+        "issuedByRole": {
+          "type": "string"
+        },
+        "policyRef": {
+          "type": "string"
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "citedInputs",
+        "decisionKind",
+        "disposition",
+        "issuedByRole",
+        "rationale"
+      ],
+      "type": "object"
+    },
+    "EfficiencyClaim": {
+      "additionalProperties": false,
+      "description": "Proposed comparison of accepted equivalent work. A verdict is produced only by an evaluator, never by the producer.",
+      "properties": {
+        "cohort": {
+          "items": {
+            "description": "identifier reference or embedded BenchmarkPair",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/BenchmarkPair"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "equivalenceContract": {
+          "description": "identifier reference or embedded EquivalenceContract",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/EquivalenceContract"
+            }
+          ]
+        },
+        "evaluatorResultRef": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "evaluatorVerdict": {
+          "description": "Populated only by the independent evaluator. A producer-supplied value is rejected.",
+          "enum": [
+            "APPROVE",
+            "REJECT",
+            "INDETERMINATE"
+          ],
+          "type": "string"
+        },
+        "expectedClaim": {
+          "type": "string"
+        },
+        "metricId": {
+          "type": "string"
+        },
+        "producerNotes": {
+          "type": "string"
+        },
+        "proposedValue": {
+          "description": "Exact decimal text. Binary floats are rejected: they have no stable digest representation.",
+          "oneOf": [
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "cohort",
+        "equivalenceContract",
+        "expectedClaim",
+        "metricId"
+      ],
+      "type": "object"
+    },
+    "EntailmentReceipt": {
+      "additionalProperties": false,
+      "description": "Emitted for any inference used to prune, rank, authorize or accept.",
+      "properties": {
+        "authorityClasses": {
+          "items": {
+            "enum": [
+              "AUTHORITATIVE_SOURCE",
+              "DETERMINISTIC_DERIVATION",
+              "PROVIDER_OBSERVATION",
+              "OPERATION_OWNED_RESULT",
+              "HEURISTIC_DECISION",
+              "POLICY_OR_SYNTHETIC_AID",
+              "CALLER_ASSERTION"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "depth": {
+          "type": "integer"
+        },
+        "implementationDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "intendedUse": {
+          "type": "string"
+        },
+        "metamodelDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "receiptId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "relation": {
+          "type": "string"
+        },
+        "ruleDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "sourceGraphDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "witnessPath": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "authorityClasses",
+        "depth",
+        "implementationDigest",
+        "intendedUse",
+        "metamodelDigest",
+        "receiptId",
+        "relation",
+        "ruleDigest",
+        "sourceGraphDigest",
+        "witnessPath"
+      ],
+      "type": "object"
+    },
+    "EnvironmentIdentity": {
+      "additionalProperties": false,
+      "description": "A listening port is not editor identity; an executable stub hash does not pin an engine build.",
+      "properties": {
+        "adapterEndpointConfigDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "hostId": {
+          "type": "string"
+        },
+        "interpreter": {
+          "type": "string"
+        },
+        "interpreterVersion": {
+          "type": "string"
+        },
+        "moduleClosureDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "platform": {
+          "type": "string"
+        },
+        "processCreation": {
+          "additionalProperties": false,
+          "properties": {
+            "commandLineDigest": {
+              "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+              "type": "string"
+            },
+            "createTime": {
+              "type": "string"
+            },
+            "executableDigest": {
+              "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+              "type": "string"
+            },
+            "executablePath": {
+              "type": "string"
+            },
+            "pid": {
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "providerBuild": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "unknownFields": {
+          "description": "Explicitly names what could not be observed rather than defaulting it.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "hostId",
+        "interpreter",
+        "interpreterVersion",
+        "platform",
+        "unknownFields"
+      ],
+      "type": "object"
+    },
+    "EquivalenceContract": {
+      "additionalProperties": false,
+      "description": "Frozen comparison conditions, required quality/evidence, normalization, baseline rules and admissibility.",
+      "properties": {
+        "cacheStratum": {
+          "description": "warm, cold, or mixed_rejected. Warm and cold conditions are matched or form separate strata.",
+          "type": "string"
+        },
+        "escalationPermitted": {
+          "description": "False refuses an arm with multiple observed models or efforts.",
+          "type": "boolean"
+        },
+        "evidenceStandard": {
+          "items": {
+            "description": "identifier reference or embedded EvidenceRequirement",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/EvidenceRequirement"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "failureRecoveryPolicy": {
+          "type": "string"
+        },
+        "frozen": {
+          "type": "boolean"
+        },
+        "heldConstant": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "invalidatingDifferences": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "minimumMatchedPairs": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "normalizationContract": {
+          "description": "Required before raw token counts from different tokenizer domains may be compared.",
+          "type": "string"
+        },
+        "permittedDifferences": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "qualityThresholds": {
+          "items": {
+            "description": "identifier reference or embedded Predicate",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/Predicate"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "requiredArtifactKinds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "tokenAccountingBasis": {
+          "type": "string"
+        },
+        "verificationCostFields": {
+          "description": "Mandatory managerTokens, auditorTokens and recoveryTokens ResourceUsage set per cohort pair; missing is inadmissible, UNKNOWN blocks approval.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "weightingPolicyRef": {
+          "description": "identifier reference or embedded WorkUnitPolicy",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/WorkUnitPolicy"
+            }
+          ]
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "cacheStratum",
+        "evidenceStandard",
+        "failureRecoveryPolicy",
+        "frozen",
+        "heldConstant",
+        "invalidatingDifferences",
+        "minimumMatchedPairs",
+        "name",
+        "permittedDifferences",
+        "qualityThresholds",
+        "requiredArtifactKinds",
+        "tokenAccountingBasis",
+        "weightingPolicyRef"
+      ],
+      "type": "object"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "description": "Bounded observation or source artifact with provenance, method, validity and admissibility.",
+      "properties": {
+        "admissibility": {
+          "enum": [
+            "ADMISSIBLE",
+            "INADMISSIBLE_SCOPE",
+            "INADMISSIBLE_AUTHORITY",
+            "INADMISSIBLE_FRESHNESS",
+            "INADMISSIBLE_INCOMPLETE",
+            "INADMISSIBLE_SYNTHETIC_FOR_LIVE"
+          ],
+          "type": "string"
+        },
+        "contentDigest": {
+          "description": "Content address of the stored evidence bytes.",
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "evidenceKind": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "scope": {
+          "description": "identifier reference or embedded Scope",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Scope"
+            }
+          ]
+        },
+        "subject": {
+          "type": "string"
+        },
+        "supportsClaimTypes": {
+          "description": "A typed claim requires evidence fit for that claim; a screenshot does not support an exact count.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "validFrom": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]\\d{2}:\\d{2})$",
+          "type": "string"
+        },
+        "validUntil": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]\\d{2}:\\d{2})$",
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "admissibility",
+        "contentDigest",
+        "evidenceKind",
+        "method",
+        "scope",
+        "subject",
+        "supportsClaimTypes"
+      ],
+      "type": "object"
+    },
+    "EvidenceRequirement": {
+      "additionalProperties": false,
+      "properties": {
+        "evidenceKind": {
+          "type": "string"
+        },
+        "freshnessSeconds": {
+          "type": "integer"
+        },
+        "mandatory": {
+          "type": "boolean"
+        },
+        "minimumAuthorityClasses": {
+          "items": {
+            "enum": [
+              "AUTHORITATIVE_SOURCE",
+              "DETERMINISTIC_DERIVATION",
+              "PROVIDER_OBSERVATION",
+              "OPERATION_OWNED_RESULT",
+              "HEURISTIC_DECISION",
+              "POLICY_OR_SYNTHETIC_AID",
+              "CALLER_ASSERTION"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "requiredObservationChannels": {
+          "items": {
+            "enum": [
+              "FILE_BYTES",
+              "PROCESS_API",
+              "PROVIDER_API",
+              "ENGINE_API",
+              "SCREEN_CAPTURE",
+              "USER_REPORT",
+              "LOG_STREAM",
+              "NOT_OBSERVED"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "requirementId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "syntheticAcceptable": {
+          "type": "boolean"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "evidenceKind",
+        "mandatory",
+        "minimumAuthorityClasses",
+        "requirementId",
+        "syntheticAcceptable"
+      ],
+      "type": "object"
+    },
+    "EvidenceSufficiencyReceipt": {
+      "additionalProperties": false,
+      "properties": {
+        "closed": {
+          "type": "boolean"
+        },
+        "mandatoryApplicable": {
+          "type": "integer"
+        },
+        "mandatorySatisfied": {
+          "type": "integer"
+        },
+        "requirementResults": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "applicable": {
+                "type": "boolean"
+              },
+              "evidenceRefs": {
+                "items": {
+                  "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "mandatory": {
+                "type": "boolean"
+              },
+              "reason": {
+                "type": "string"
+              },
+              "requirementId": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              "satisfied": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "applicable",
+              "evidenceRefs",
+              "mandatory",
+              "reason",
+              "requirementId",
+              "satisfied"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "closed",
+        "mandatoryApplicable",
+        "mandatorySatisfied",
+        "requirementResults"
+      ],
+      "type": "object"
+    },
+    "ExecutionEvent": {
+      "additionalProperties": false,
+      "description": "Append-only envelope. Corrections are linked events, never silent edits.",
+      "properties": {
+        "correctsEventId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "eventId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "eventType": {
+          "type": "string"
+        },
+        "eventTypeVersion": {
+          "type": "string"
+        },
+        "idempotencyKey": {
+          "type": "string"
+        },
+        "logicalSubject": {
+          "type": "string"
+        },
+        "monotonicClockDomain": {
+          "type": "string"
+        },
+        "monotonicNs": {
+          "type": "integer"
+        },
+        "payload": {},
+        "payloadDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "priorEventDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "replayPolicy": {
+          "type": "string"
+        },
+        "sequence": {
+          "type": "integer"
+        },
+        "wallClock": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]\\d{2}:\\d{2})$",
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "eventId",
+        "eventType",
+        "eventTypeVersion",
+        "idempotencyKey",
+        "logicalSubject",
+        "payloadDigest",
+        "priorEventDigest",
+        "replayPolicy",
+        "sequence",
+        "wallClock"
+      ],
+      "type": "object"
+    },
+    "ExecutionPlan": {
+      "additionalProperties": false,
+      "description": "Frozen work DAG with selection receipts and mandatory blocked nodes.",
+      "properties": {
+        "frozen": {
+          "type": "boolean"
+        },
+        "limits": {
+          "additionalProperties": {},
+          "type": "object"
+        },
+        "nodes": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "blocked": {
+                "type": "boolean"
+              },
+              "blockedReason": {
+                "type": "string"
+              },
+              "dependsOn": {
+                "items": {
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "mandatory": {
+                "type": "boolean"
+              },
+              "nodeId": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              "selectedImplementation": {
+                "description": "identifier reference or embedded Implementation",
+                "oneOf": [
+                  {
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/$defs/Implementation"
+                  }
+                ]
+              },
+              "workItem": {
+                "description": "identifier reference or embedded WorkItem",
+                "oneOf": [
+                  {
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/$defs/WorkItem"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "blocked",
+              "mandatory",
+              "nodeId",
+              "workItem"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "outcome": {
+          "description": "identifier reference or embedded Outcome",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Outcome"
+            }
+          ]
+        },
+        "selectionReceipts": {
+          "items": {
+            "description": "identifier reference or embedded SelectionReceipt",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/SelectionReceipt"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "frozen",
+        "nodes",
+        "outcome",
+        "selectionReceipts"
+      ],
+      "type": "object"
+    },
+    "ExecutionTrace": {
+      "additionalProperties": false,
+      "description": "Observed execution. Never stores model reasoning transcripts; captures externally observable work.",
+      "properties": {
+        "actualActor": {
+          "type": "string"
+        },
+        "attempt": {
+          "type": "integer"
+        },
+        "authorizationReceiptRef": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "capability": {
+          "description": "identifier reference or embedded Capability",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Capability"
+            }
+          ]
+        },
+        "consumedArtifacts": {
+          "items": {
+            "description": "identifier reference or embedded ArtifactVersion",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/ArtifactVersion"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "environmentBinding": {
+          "description": "identifier reference or embedded EnvironmentIdentity",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/EnvironmentIdentity"
+            }
+          ]
+        },
+        "events": {
+          "items": {
+            "description": "identifier reference or embedded ExecutionEvent",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/ExecutionEvent"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "implementation": {
+          "description": "identifier reference or embedded Implementation",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Implementation"
+            }
+          ]
+        },
+        "issuer": {
+          "type": "string"
+        },
+        "mutationScopeDeclared": {
+          "description": "Read-only traces declare no mutation scope explicitly.",
+          "type": "boolean"
+        },
+        "parentTrace": {
+          "description": "identifier reference or embedded ExecutionTrace",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/ExecutionTrace"
+            }
+          ]
+        },
+        "plan": {
+          "description": "identifier reference or embedded ExecutionPlan",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/ExecutionPlan"
+            }
+          ]
+        },
+        "producedArtifacts": {
+          "items": {
+            "description": "identifier reference or embedded ArtifactVersion",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/ArtifactVersion"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "resourceUsage": {
+          "items": {
+            "description": "identifier reference or embedded ResourceUsage",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/ResourceUsage"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "runId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "spans": {
+          "items": {
+            "description": "identifier reference or embedded Span",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/Span"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "terminalStatus": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "UNKNOWN",
+            "ERROR",
+            "NOT_RUN"
+          ],
+          "type": "string"
+        },
+        "workItem": {
+          "description": "identifier reference or embedded WorkItem",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/WorkItem"
+            }
+          ]
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "actualActor",
+        "attempt",
+        "environmentBinding",
+        "events",
+        "issuer",
+        "mutationScopeDeclared",
+        "plan",
+        "resourceUsage",
+        "runId",
+        "spans",
+        "terminalStatus",
+        "workItem"
+      ],
+      "type": "object"
+    },
+    "FailureMode": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "mapsToStatus": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "UNKNOWN",
+            "ERROR",
+            "NOT_RUN"
+          ],
+          "type": "string"
+        },
+        "severity": {
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "code",
+        "description",
+        "domain",
+        "mapsToStatus",
+        "severity"
+      ],
+      "type": "object"
+    },
+    "FreshnessPolicy": {
+      "additionalProperties": false,
+      "description": "Cache keys are decided by the claim, not by a shared filename.",
+      "properties": {
+        "alwaysFreshDomains": {
+          "description": "Process, map, visibility, slot, dirty-state and prescribed cold-reopen observations are never served from cache.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "claimTypeGlob": {
+          "type": "string"
+        },
+        "maxAgeSeconds": {
+          "type": "integer"
+        },
+        "policyId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "reusableWhileUnchanged": {
+          "description": "Dependency classes whose stability permits reuse, e.g. candidate bytes, source implementation, metamodel, contract.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "alwaysFreshDomains",
+        "claimTypeGlob",
+        "policyId",
+        "reusableWhileUnchanged"
+      ],
+      "type": "object"
+    },
+    "Gate": {
+      "additionalProperties": false,
+      "description": "Contract-bound evaluation definition. A definition link is never a PASS.",
+      "properties": {
+        "authority": {
+          "type": "string"
+        },
+        "evaluatesAgainst": {
+          "items": {
+            "description": "identifier reference or embedded Contract",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/Contract"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "independenceRequired": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "requiredPredicateIds": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "authority",
+        "evaluatesAgainst",
+        "independenceRequired",
+        "name",
+        "requiredPredicateIds"
+      ],
+      "type": "object"
+    },
+    "GateResult": {
+      "additionalProperties": false,
+      "description": "One execution of a Gate. Separate immutable record from the Gate definition.",
+      "properties": {
+        "candidateDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "contractDigests": {
+          "additionalProperties": {
+            "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "evidenceClosure": {
+          "description": "identifier reference or embedded ClosureReceipt",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/ClosureReceipt"
+            }
+          ]
+        },
+        "gate": {
+          "description": "identifier reference or embedded Gate",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Gate"
+            }
+          ]
+        },
+        "independentlyEvaluated": {
+          "type": "boolean"
+        },
+        "notRunDependency": {
+          "type": "string"
+        },
+        "predicateResults": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "evidenceRefs": {
+                "items": {
+                  "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "expected": {},
+              "observed": {},
+              "predicateId": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              },
+              "status": {
+                "enum": [
+                  "PASS",
+                  "FAIL",
+                  "UNKNOWN",
+                  "ERROR",
+                  "NOT_RUN"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "evidenceRefs",
+              "predicateId",
+              "reason",
+              "status"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "UNKNOWN",
+            "ERROR",
+            "NOT_RUN"
+          ],
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "candidateDigest",
+        "contractDigests",
+        "gate",
+        "independentlyEvaluated",
+        "predicateResults",
+        "status"
+      ],
+      "type": "object"
+    },
+    "Handoff": {
+      "additionalProperties": false,
+      "properties": {
+        "checkpoint": {
+          "description": "identifier reference or embedded Checkpoint",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Checkpoint"
+            }
+          ]
+        },
+        "fromActor": {
+          "type": "string"
+        },
+        "referencedEvidence": {
+          "items": {
+            "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "toActor": {
+          "type": "string"
+        },
+        "transferredFacts": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "checkpoint",
+        "fromActor",
+        "referencedEvidence",
+        "toActor",
+        "transferredFacts"
+      ],
+      "type": "object"
+    },
+    "Implementation": {
+      "additionalProperties": false,
+      "description": "Versioned capability provider. Replaceable under the same capability contract.",
+      "properties": {
+        "authorizedScope": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "failureModes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "inputSchemaDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "outputSchemaDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "providerName": {
+          "type": "string"
+        },
+        "providerVersion": {
+          "type": "string"
+        },
+        "qualification": {
+          "enum": [
+            "QUALIFIED",
+            "PROVISIONAL",
+            "TENTATIVE",
+            "NEGATIVELY_QUALIFIED",
+            "BLOCKED",
+            "NOT_ASSESSED"
+          ],
+          "type": "string"
+        },
+        "qualificationReceipt": {
+          "description": "identifier reference or embedded QualificationReceipt",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/QualificationReceipt"
+            }
+          ]
+        },
+        "realizes": {
+          "items": {
+            "description": "identifier reference or embedded Capability",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/Capability"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "resourceProfile": {
+          "additionalProperties": {},
+          "type": "object"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "authorizedScope",
+        "providerName",
+        "providerVersion",
+        "qualification",
+        "realizes"
+      ],
+      "type": "object"
+    },
+    "Measurement": {
+      "additionalProperties": false,
+      "description": "A typed metric result. Carries value, unit, scope, authority, validity, formula version, input references and a reason when unavailable.",
+      "properties": {
+        "admissibility": {
+          "enum": [
+            "ADMISSIBLE",
+            "INADMISSIBLE_SCOPE",
+            "INADMISSIBLE_AUTHORITY",
+            "INADMISSIBLE_FRESHNESS",
+            "INADMISSIBLE_INCOMPLETE",
+            "INADMISSIBLE_SYNTHETIC_FOR_LIVE"
+          ],
+          "type": "string"
+        },
+        "availability": {
+          "enum": [
+            "AVAILABLE",
+            "UNDEFINED_ZERO_DENOMINATOR",
+            "NOT_APPLICABLE",
+            "INADMISSIBLE_INPUTS",
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "type": "string"
+        },
+        "denominator": {
+          "description": "Exact decimal text. Binary floats are rejected: they have no stable digest representation.",
+          "oneOf": [
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "formulaVersion": {
+          "type": "string"
+        },
+        "inputRefs": {
+          "items": {
+            "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "metricId": {
+          "type": "string"
+        },
+        "numerator": {
+          "description": "Exact decimal text. Binary floats are rejected: they have no stable digest representation.",
+          "oneOf": [
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "scope": {
+          "description": "identifier reference or embedded Scope",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Scope"
+            }
+          ]
+        },
+        "unavailableReason": {
+          "type": "string"
+        },
+        "uncertainty": {
+          "description": "Exact decimal text. Binary floats are rejected: they have no stable digest representation.",
+          "oneOf": [
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "unit": {
+          "type": "string"
+        },
+        "value": {
+          "description": "Absent unless availability is AVAILABLE. There is no NaN and no infinity.",
+          "oneOf": [
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "admissibility",
+        "availability",
+        "formulaVersion",
+        "inputRefs",
+        "metricId",
+        "scope",
+        "unit"
+      ],
+      "type": "object"
+    },
+    "MutationIntent": {
+      "additionalProperties": false,
+      "properties": {
+        "declaredEffects": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "intentId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "operationId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "preStateDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "targetScope": {
+          "description": "identifier reference or embedded Scope",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Scope"
+            }
+          ]
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "declaredEffects",
+        "intentId",
+        "operationId",
+        "preStateDigest",
+        "targetScope"
+      ],
+      "type": "object"
+    },
+    "MutationLedgerEntry": {
+      "additionalProperties": false,
+      "description": "Append-only. A mutation-effect claim requires the authorized operation, intent, pre-state, ledger range, post-state, provider readback, direct ownership binding and rollback-set closure.",
+      "properties": {
+        "effectDescription": {
+          "type": "string"
+        },
+        "entryId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "intentId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "operationId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "ownership": {
+          "description": "identifier reference or embedded OwnershipAssertion",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/OwnershipAssertion"
+            }
+          ]
+        },
+        "postStateDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "preStateDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "priorEntryDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "readbackRef": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "sequence": {
+          "type": "integer"
+        },
+        "transactionId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "effectDescription",
+        "entryId",
+        "intentId",
+        "operationId",
+        "ownership",
+        "postStateDigest",
+        "preStateDigest",
+        "priorEntryDigest",
+        "sequence",
+        "transactionId"
+      ],
+      "type": "object"
+    },
+    "MutationSetClosureReceipt": {
+      "additionalProperties": false,
+      "description": "Set equality between intended effects, ledger entries, readbacks and the rollback set.",
+      "properties": {
+        "discrepancies": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "intendedEffects": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ledgeredEffects": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "operationId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "readbackConfirmedEffects": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "rollbackSet": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "setsEqual": {
+          "type": "boolean"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "discrepancies",
+        "intendedEffects",
+        "ledgeredEffects",
+        "operationId",
+        "readbackConfirmedEffects",
+        "rollbackSet",
+        "setsEqual"
+      ],
+      "type": "object"
+    },
+    "Observation": {
+      "additionalProperties": false,
+      "properties": {
+        "channel": {
+          "enum": [
+            "FILE_BYTES",
+            "PROCESS_API",
+            "PROVIDER_API",
+            "ENGINE_API",
+            "SCREEN_CAPTURE",
+            "USER_REPORT",
+            "LOG_STREAM",
+            "NOT_OBSERVED"
+          ],
+          "type": "string"
+        },
+        "epoch": {
+          "type": "string"
+        },
+        "errorClass": {
+          "description": "A collector exception is preserved alongside any partial observation; an observed missing item can establish FAIL beside an ERROR.",
+          "type": "string"
+        },
+        "observationId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "observedAt": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]\\d{2}:\\d{2})$",
+          "type": "string"
+        },
+        "partial": {
+          "type": "boolean"
+        },
+        "rawDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "scope": {
+          "description": "identifier reference or embedded Scope",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Scope"
+            }
+          ]
+        },
+        "subject": {
+          "type": "string"
+        },
+        "value": {},
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "channel",
+        "observationId",
+        "observedAt",
+        "partial",
+        "rawDigest",
+        "scope",
+        "subject"
+      ],
+      "type": "object"
+    },
+    "OpenOperation": {
+      "additionalProperties": false,
+      "description": "An interruption after a possible side effect but before its receipt. Requires reconciliation, never an automatic retry.",
+      "properties": {
+        "capability": {
+          "description": "identifier reference or embedded Capability",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Capability"
+            }
+          ]
+        },
+        "disposition": {
+          "type": "string"
+        },
+        "idempotencyKey": {
+          "type": "string"
+        },
+        "operationId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "receiptObserved": {
+          "type": "boolean"
+        },
+        "reconciliationProbe": {
+          "type": "string"
+        },
+        "reconciliationRequired": {
+          "type": "boolean"
+        },
+        "sideEffectPossible": {
+          "type": "boolean"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "capability",
+        "idempotencyKey",
+        "operationId",
+        "receiptObserved",
+        "reconciliationRequired",
+        "sideEffectPossible"
+      ],
+      "type": "object"
+    },
+    "Outcome": {
+      "additionalProperties": false,
+      "description": "Requested end state, bounded scope, acceptance criteria, required artifacts/evidence, governing work-unit policy.",
+      "properties": {
+        "acceptanceCriteria": {
+          "items": {
+            "description": "identifier reference or embedded Contract",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/Contract"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "lifecycle": {
+          "enum": [
+            "CREATED",
+            "VALIDATED",
+            "READY",
+            "RUNNING",
+            "CHECKPOINTED",
+            "COMPLETED",
+            "BLOCKED",
+            "FAILED",
+            "ERRORED",
+            "CANCELED"
+          ],
+          "type": "string"
+        },
+        "requestedResult": {
+          "type": "string"
+        },
+        "requiredArtifactKinds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "requiredEvidenceKinds": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "subjectUniverse": {
+          "description": "Bounded scope. An unbounded outcome cannot be credited.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "title": {
+          "type": "string"
+        },
+        "workUnitPolicyRef": {
+          "description": "identifier reference or embedded WorkUnitPolicy",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/WorkUnitPolicy"
+            }
+          ]
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "acceptanceCriteria",
+        "lifecycle",
+        "requestedResult",
+        "requiredArtifactKinds",
+        "requiredEvidenceKinds",
+        "subjectUniverse",
+        "title",
+        "workUnitPolicyRef"
+      ],
+      "type": "object"
+    },
+    "OwnershipAssertion": {
+      "additionalProperties": false,
+      "description": "Direct ownership only. Ownership is not transitive and cannot be smuggled through containment.",
+      "properties": {
+        "directness": {
+          "enum": [
+            "DIRECTLY_OWNED",
+            "DELEGATED_WITH_RECEIPT",
+            "OBSERVED_THIRD_PARTY",
+            "NOT_APPLICABLE",
+            "UNKNOWN"
+          ],
+          "type": "string"
+        },
+        "ownerRole": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "transactionId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "directness",
+        "ownerRole",
+        "subject",
+        "transactionId"
+      ],
+      "type": "object"
+    },
+    "Predicate": {
+      "additionalProperties": false,
+      "description": "One allowlisted typed comparison. No expression evaluation, no policy eval.",
+      "properties": {
+        "expected": {},
+        "mandatory": {
+          "type": "boolean"
+        },
+        "operator": {
+          "description": "Allowlisted operator name resolved against registries/authority-rules.json.",
+          "type": "string"
+        },
+        "predicateId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "subjectPath": {
+          "type": "string"
+        },
+        "tolerance": {
+          "description": "Exact decimal text. Binary floats are rejected: they have no stable digest representation.",
+          "oneOf": [
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "unit": {
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "mandatory",
+        "operator",
+        "predicateId",
+        "subjectPath"
+      ],
+      "type": "object"
+    },
+    "ProducerAssertion": {
+      "additionalProperties": false,
+      "description": "A producer's structural readiness statement. Carries no verification authority.",
+      "properties": {
+        "evidenceRefs": {
+          "items": {
+            "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "note": {
+          "type": "string"
+        },
+        "observedValue": {},
+        "producerRole": {
+          "type": "string"
+        },
+        "producerStatus": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "UNKNOWN",
+            "ERROR",
+            "NOT_RUN"
+          ],
+          "type": "string"
+        },
+        "proposition": {
+          "description": "identifier reference or embedded Proposition",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Proposition"
+            }
+          ]
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "evidenceRefs",
+        "producerRole",
+        "producerStatus",
+        "proposition"
+      ],
+      "type": "object"
+    },
+    "PromotionDecision": {
+      "additionalProperties": false,
+      "description": "Pure policy evaluation over frozen audit inputs, followed only by a separately authorized actuator.",
+      "properties": {
+        "actuatorRole": {
+          "description": "Populated only when an authorized actuator has acted; the evaluator never sets it.",
+          "type": "string"
+        },
+        "auditResultDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "candidateDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "humanApprovalRefs": {
+          "items": {
+            "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "issuerRole": {
+          "type": "string"
+        },
+        "policyDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "reasons": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "state": {
+          "enum": [
+            "NOT_EVALUATED",
+            "ELIGIBLE",
+            "INELIGIBLE",
+            "PROMOTED",
+            "WITHHELD"
+          ],
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "auditResultDigest",
+        "candidateDigest",
+        "humanApprovalRefs",
+        "issuerRole",
+        "policyDigest",
+        "reasons",
+        "state"
+      ],
+      "type": "object"
+    },
+    "Proposition": {
+      "additionalProperties": false,
+      "description": "What is asserted, independent of who asserts it.",
+      "properties": {
+        "claimType": {
+          "description": "Resolved against registries/claim-types.json. An unknown claim type can never become PASS.",
+          "type": "string"
+        },
+        "expectedValue": {},
+        "scope": {
+          "description": "identifier reference or embedded Scope",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Scope"
+            }
+          ]
+        },
+        "statement": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "claimType",
+        "scope",
+        "statement",
+        "subject"
+      ],
+      "type": "object"
+    },
+    "Provenance": {
+      "additionalProperties": false,
+      "description": "Orthogonal provenance dimensions attached at every assertion boundary. Legacy authority labels are derived from these through a tested mapping and are never raised silently.",
+      "properties": {
+        "actor": {
+          "description": "Identified role: worker, aggregator, auditor, actuator, user, provider.",
+          "type": "string"
+        },
+        "authorityClass": {
+          "enum": [
+            "AUTHORITATIVE_SOURCE",
+            "DETERMINISTIC_DERIVATION",
+            "PROVIDER_OBSERVATION",
+            "OPERATION_OWNED_RESULT",
+            "HEURISTIC_DECISION",
+            "POLICY_OR_SYNTHETIC_AID",
+            "CALLER_ASSERTION"
+          ],
+          "type": "string"
+        },
+        "observationChannel": {
+          "enum": [
+            "FILE_BYTES",
+            "PROCESS_API",
+            "PROVIDER_API",
+            "ENGINE_API",
+            "SCREEN_CAPTURE",
+            "USER_REPORT",
+            "LOG_STREAM",
+            "NOT_OBSERVED"
+          ],
+          "type": "string"
+        },
+        "operationalOwnership": {
+          "enum": [
+            "DIRECTLY_OWNED",
+            "DELEGATED_WITH_RECEIPT",
+            "OBSERVED_THIRD_PARTY",
+            "NOT_APPLICABLE",
+            "UNKNOWN"
+          ],
+          "type": "string"
+        },
+        "origin": {
+          "enum": [
+            "SOURCE_ARTIFACT",
+            "LIVE_OBSERVATION",
+            "DERIVATION",
+            "POLICY",
+            "HUMAN_INPUT",
+            "SYNTHETIC_FIXTURE"
+          ],
+          "type": "string"
+        },
+        "productionMethod": {
+          "enum": [
+            "MEASURED",
+            "RECOMPUTED",
+            "REPLAYED",
+            "TRANSCRIBED",
+            "ESTIMATED",
+            "ASSERTED",
+            "GENERATED"
+          ],
+          "type": "string"
+        },
+        "sourceRefs": {
+          "description": "Exact bytes this assertion rests on.",
+          "items": {
+            "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "syntheticFixture": {
+          "description": "True marks SYNTHETIC/OFFLINE_TEST material. Synthetic material is inadmissible for any live or measured-savings claim.",
+          "type": "boolean"
+        },
+        "validitySnapshot": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]\\d{2}:\\d{2})$",
+          "type": "string"
+        },
+        "verificationStatus": {
+          "enum": [
+            "UNVERIFIED",
+            "PRODUCER_ASSERTED",
+            "INDEPENDENTLY_VERIFIED",
+            "CONTRADICTED",
+            "INADMISSIBLE"
+          ],
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "actor",
+        "authorityClass",
+        "observationChannel",
+        "operationalOwnership",
+        "origin",
+        "productionMethod",
+        "syntheticFixture",
+        "verificationStatus"
+      ],
+      "type": "object"
+    },
+    "ProviderReadback": {
+      "additionalProperties": false,
+      "description": "An independent re-read of the mutated subject from the provider. A provider success field is not a readback.",
+      "properties": {
+        "channel": {
+          "enum": [
+            "FILE_BYTES",
+            "PROCESS_API",
+            "PROVIDER_API",
+            "ENGINE_API",
+            "SCREEN_CAPTURE",
+            "USER_REPORT",
+            "LOG_STREAM",
+            "NOT_OBSERVED"
+          ],
+          "type": "string"
+        },
+        "matchesExpectedPostState": {
+          "type": "boolean"
+        },
+        "observedStateDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "operationId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "readbackId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "channel",
+        "matchesExpectedPostState",
+        "observedStateDigest",
+        "operationId",
+        "readbackId"
+      ],
+      "type": "object"
+    },
+    "ProviderSession": {
+      "additionalProperties": false,
+      "properties": {
+        "accountingVersion": {
+          "type": "string"
+        },
+        "expiresAt": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]\\d{2}:\\d{2})$",
+          "type": "string"
+        },
+        "openedAt": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]\\d{2}:\\d{2})$",
+          "type": "string"
+        },
+        "providerName": {
+          "type": "string"
+        },
+        "revalidateOnResume": {
+          "type": "boolean"
+        },
+        "sessionId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "tokenizerId": {
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "accountingVersion",
+        "openedAt",
+        "providerName",
+        "revalidateOnResume",
+        "sessionId",
+        "tokenizerId"
+      ],
+      "type": "object"
+    },
+    "QualificationReceipt": {
+      "additionalProperties": false,
+      "description": "Qualification never floats to another version, build, configuration or candidate.",
+      "properties": {
+        "buildIdentityDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "candidateDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "configurationDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "dependencies": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "limits": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "observedAt": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]\\d{2}:\\d{2})$",
+          "type": "string"
+        },
+        "probeScope": {
+          "description": "identifier reference or embedded Scope",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Scope"
+            }
+          ]
+        },
+        "providerName": {
+          "type": "string"
+        },
+        "providerVersion": {
+          "type": "string"
+        },
+        "receiptId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "result": {
+          "enum": [
+            "QUALIFIED",
+            "PROVISIONAL",
+            "TENTATIVE",
+            "NEGATIVELY_QUALIFIED",
+            "BLOCKED",
+            "NOT_ASSESSED"
+          ],
+          "type": "string"
+        },
+        "subjectKind": {
+          "type": "string"
+        },
+        "syntheticFixture": {
+          "type": "boolean"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "configurationDigest",
+        "dependencies",
+        "limits",
+        "observedAt",
+        "probeScope",
+        "providerName",
+        "providerVersion",
+        "receiptId",
+        "result",
+        "subjectKind",
+        "syntheticFixture"
+      ],
+      "type": "object"
+    },
+    "ReleaseManifest": {
+      "additionalProperties": false,
+      "properties": {
+        "acceptanceByDimension": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "dimension": {
+                "enum": [
+                  "SOFTWARE_ACCEPTED",
+                  "EFFICIENCY_VERIFIED",
+                  "DEPLOYMENT_VERIFIED",
+                  "LIVE_ADAPTER_QUALIFIED"
+                ],
+                "type": "string"
+              },
+              "evidenceRefs": {
+                "items": {
+                  "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "reason": {
+                "type": "string"
+              },
+              "status": {
+                "enum": [
+                  "PASS",
+                  "FAIL",
+                  "UNKNOWN",
+                  "ERROR",
+                  "NOT_RUN"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "dimension",
+              "evidenceRefs",
+              "reason",
+              "status"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "auditResultDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "blockers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "dependencyLockDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "knownGaps": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "liveUrl": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9+.-]*:",
+          "type": "string"
+        },
+        "memberDigests": {
+          "additionalProperties": {
+            "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "payloadDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "product": {
+          "type": "string"
+        },
+        "releaseUrl": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9+.-]*:",
+          "type": "string"
+        },
+        "repositoryUrl": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9+.-]*:",
+          "type": "string"
+        },
+        "schemaManifestDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "acceptanceByDimension",
+        "blockers",
+        "dependencyLockDigest",
+        "knownGaps",
+        "memberDigests",
+        "payloadDigest",
+        "product",
+        "schemaManifestDigest",
+        "version"
+      ],
+      "type": "object"
+    },
+    "ResourceUsage": {
+      "additionalProperties": false,
+      "description": "Typed measured resource vector with observation authority, scope, accounting basis and uncertainty.",
+      "properties": {
+        "accountingRule": {
+          "enum": [
+            "SUBSET_OF_INPUT",
+            "SUBSET_OF_OUTPUT",
+            "DISJOINT_ADDITIVE",
+            "UNSPECIFIED"
+          ],
+          "type": "string"
+        },
+        "basis": {
+          "enum": [
+            "OBSERVED",
+            "ESTIMATED",
+            "UNKNOWN",
+            "NOT_APPLICABLE"
+          ],
+          "type": "string"
+        },
+        "belowResolution": {
+          "type": "boolean"
+        },
+        "clockResolutionNs": {
+          "type": "integer"
+        },
+        "dedupKey": {
+          "description": "Manager/worker/nested traces referencing the same measurement share this key and are counted once.",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "VENDOR_INPUT_TOKENS",
+            "VENDOR_OUTPUT_TOKENS",
+            "VENDOR_CACHED_INPUT_TOKENS",
+            "VENDOR_CACHE_READ_INPUT_TOKENS",
+            "VENDOR_CACHE_CREATION_INPUT_TOKENS",
+            "VENDOR_REASONING_OUTPUT_TOKENS",
+            "LOCAL_MODEL_INPUT_TOKENS",
+            "LOCAL_MODEL_OUTPUT_TOKENS",
+            "TOOL_RUNTIME_MS",
+            "RETRY_COUNT",
+            "FAILED_ATTEMPT_COUNT",
+            "METERED_COMPUTE_MS",
+            "MONEY_MINOR_UNITS"
+          ],
+          "type": "string"
+        },
+        "parentKind": {
+          "description": "Set when this measurement is a declared subset of another.",
+          "enum": [
+            "VENDOR_INPUT_TOKENS",
+            "VENDOR_OUTPUT_TOKENS",
+            "VENDOR_CACHED_INPUT_TOKENS",
+            "VENDOR_CACHE_READ_INPUT_TOKENS",
+            "VENDOR_CACHE_CREATION_INPUT_TOKENS",
+            "VENDOR_REASONING_OUTPUT_TOKENS",
+            "LOCAL_MODEL_INPUT_TOKENS",
+            "LOCAL_MODEL_OUTPUT_TOKENS",
+            "TOOL_RUNTIME_MS",
+            "RETRY_COUNT",
+            "FAILED_ATTEMPT_COUNT",
+            "METERED_COMPUTE_MS",
+            "MONEY_MINOR_UNITS"
+          ],
+          "type": "string"
+        },
+        "providerAccountingVersion": {
+          "type": "string"
+        },
+        "providerName": {
+          "type": "string"
+        },
+        "providerResponseId": {
+          "type": "string"
+        },
+        "scope": {
+          "description": "identifier reference or embedded Scope",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Scope"
+            }
+          ]
+        },
+        "tokenizerId": {
+          "type": "string"
+        },
+        "uncertainty": {
+          "description": "Exact decimal text. Binary floats are rejected: they have no stable digest representation.",
+          "oneOf": [
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "unit": {
+          "type": "string"
+        },
+        "unknownReason": {
+          "type": "string"
+        },
+        "value": {
+          "description": "Absent when basis is UNKNOWN. Never defaulted to zero.",
+          "oneOf": [
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "accountingRule",
+        "basis",
+        "dedupKey",
+        "kind",
+        "scope",
+        "unit"
+      ],
+      "type": "object"
+    },
+    "ResourceUsageLedger": {
+      "additionalProperties": false,
+      "properties": {
+        "accountingDomains": {},
+        "consumes": {},
+        "measurements": {
+          "items": {
+            "description": "identifier reference or embedded ResourceUsage",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/ResourceUsage"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "recordType": {
+          "type": "string"
+        },
+        "runId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "schemaVersion": {
+          "type": "string"
+        },
+        "subsetReconciliation": {},
+        "synthetic": {
+          "type": "boolean"
+        },
+        "totals": {},
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "accountingDomains",
+        "consumes",
+        "measurements",
+        "recordType",
+        "runId",
+        "schemaVersion",
+        "subsetReconciliation",
+        "synthetic",
+        "totals"
+      ],
+      "type": "object"
+    },
+    "Retry": {
+      "additionalProperties": false,
+      "properties": {
+        "attempt": {
+          "type": "integer"
+        },
+        "ofInvocationId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "permitted": {
+          "type": "boolean"
+        },
+        "reasonClass": {
+          "description": "transport, resource, semantic_mismatch. A semantic mismatch is never retried to search for a PASS.",
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "attempt",
+        "ofInvocationId",
+        "permitted",
+        "reasonClass"
+      ],
+      "type": "object"
+    },
+    "ReviewView": {
+      "additionalProperties": false,
+      "description": "A view projects state. It never establishes it.",
+      "properties": {
+        "accessibilityResults": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "checkId": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              },
+              "status": {
+                "enum": [
+                  "PASS",
+                  "FAIL",
+                  "UNKNOWN",
+                  "ERROR",
+                  "NOT_RUN"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "checkId",
+              "reason",
+              "status"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "lifecycle": {
+          "enum": [
+            "WIP_DIAGNOSTIC",
+            "COMMITTED_PROJECTION",
+            "STALE",
+            "UNAVAILABLE"
+          ],
+          "type": "string"
+        },
+        "profileId": {
+          "type": "string"
+        },
+        "rasterProfileDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "rendererId": {
+          "type": "string"
+        },
+        "rendererVersion": {
+          "type": "string"
+        },
+        "semanticInputDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "sourceAuditDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "sourceCheckpointDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "unavailableReason": {
+          "type": "string"
+        },
+        "viewId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "accessibilityResults",
+        "lifecycle",
+        "profileId",
+        "rendererId",
+        "rendererVersion",
+        "semanticInputDigest",
+        "viewId"
+      ],
+      "type": "object"
+    },
+    "RollbackAction": {
+      "additionalProperties": false,
+      "properties": {
+        "actionId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "authorizedByRole": {
+          "type": "string"
+        },
+        "performed": {
+          "type": "boolean"
+        },
+        "resultDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "targetEntryId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "actionId",
+        "authorizedByRole",
+        "performed",
+        "targetEntryId"
+      ],
+      "type": "object"
+    },
+    "Scope": {
+      "additionalProperties": false,
+      "description": "A bounded scope. Absence claims require ENUMERATION closure over exactly this scope.",
+      "properties": {
+        "enumerationComplete": {
+          "type": "boolean"
+        },
+        "epoch": {
+          "type": "string"
+        },
+        "expectedMemberCount": {
+          "type": "integer"
+        },
+        "scopeKind": {
+          "type": "string"
+        },
+        "selector": {
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "enumerationComplete",
+        "scopeKind",
+        "selector"
+      ],
+      "type": "object"
+    },
+    "SelectionReceipt": {
+      "additionalProperties": false,
+      "description": "Deterministic candidate selection: generate, hard-prune, feature, rank, budget-select, commit. Hard predicates are never overridden by ranking.",
+      "properties": {
+        "blocked": {
+          "type": "boolean"
+        },
+        "candidateUniverse": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "committed": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "hardPredicates": {
+          "items": {
+            "description": "identifier reference or embedded Predicate",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/Predicate"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "nodeId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "prngSeed": {
+          "type": "string"
+        },
+        "prunedCandidates": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "candidateId": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              "predicateId": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "candidateId",
+              "predicateId"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "quantization": {
+          "type": "integer"
+        },
+        "rankedCandidates": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "candidateId": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              "score": {
+                "description": "Exact decimal text. Binary floats are rejected: they have no stable digest representation.",
+                "oneOf": [
+                  {
+                    "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "candidateId",
+              "score"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "terminalDecisionByCandidate": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Every candidate in the universe has a terminal decision.",
+          "type": "object"
+        },
+        "tieBreak": {
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "blocked",
+        "candidateUniverse",
+        "hardPredicates",
+        "nodeId",
+        "prunedCandidates",
+        "quantization",
+        "rankedCandidates",
+        "terminalDecisionByCandidate",
+        "tieBreak"
+      ],
+      "type": "object"
+    },
+    "Span": {
+      "additionalProperties": false,
+      "description": "State and purpose are orthogonal. Verification and rework spans inside active execution are labelled subsets, not additive siblings.",
+      "properties": {
+        "actorId": {
+          "type": "string"
+        },
+        "allocationUnknown": {
+          "description": "True when a synchronous call mixes provider work and waiting without instrumented children.",
+          "type": "boolean"
+        },
+        "belowResolution": {
+          "type": "boolean"
+        },
+        "clockDomain": {
+          "description": "Spans from different clock domains cannot be unioned into a precise interval.",
+          "type": "string"
+        },
+        "clockResolutionNs": {
+          "type": "integer"
+        },
+        "endNs": {
+          "type": "integer"
+        },
+        "leaf": {
+          "description": "Aggregate effort sums non-overlapping leaf actor spans only.",
+          "type": "boolean"
+        },
+        "parentSpanId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "purpose": {
+          "enum": [
+            "PLANNING",
+            "RETRIEVAL",
+            "GENERATION",
+            "VERIFICATION",
+            "AUDIT",
+            "PACKAGING",
+            "RECOVERY_REWORK"
+          ],
+          "type": "string"
+        },
+        "spanId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "startNs": {
+          "type": "integer"
+        },
+        "state": {
+          "enum": [
+            "ACTIVE_EXECUTION",
+            "TOOL_WAIT",
+            "HUMAN_WAIT",
+            "IDLE",
+            "UNKNOWN"
+          ],
+          "type": "string"
+        },
+        "traceRunId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "uncertainty": {
+          "description": "Clock tick uncertainty in milliseconds.",
+          "oneOf": [
+            {
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "actorId",
+        "allocationUnknown",
+        "clockDomain",
+        "endNs",
+        "leaf",
+        "purpose",
+        "spanId",
+        "startNs",
+        "state",
+        "traceRunId"
+      ],
+      "type": "object"
+    },
+    "StateSnapshot": {
+      "additionalProperties": false,
+      "description": "Bounded state inventory with completeness indicators, environment binding, freshness and unresolved facts.",
+      "properties": {
+        "admittedSourceVersions": {
+          "additionalProperties": {
+            "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "artifactRefs": {
+          "additionalProperties": {
+            "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "completeness": {
+          "enum": [
+            "AVAILABLE",
+            "UNDEFINED_ZERO_DENOMINATOR",
+            "NOT_APPLICABLE",
+            "INADMISSIBLE_INPUTS",
+            "INSUFFICIENT_EVIDENCE"
+          ],
+          "type": "string"
+        },
+        "contractDigests": {
+          "additionalProperties": {
+            "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "environmentBinding": {
+          "description": "identifier reference or embedded EnvironmentIdentity",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/EnvironmentIdentity"
+            }
+          ]
+        },
+        "ephemeralBindings": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "bindingKind": {
+                "type": "string"
+              },
+              "carriesAuthority": {
+                "type": "boolean"
+              },
+              "recordedValue": {},
+              "refreshRequiredOnResume": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "bindingKind",
+              "carriesAuthority",
+              "recordedValue",
+              "refreshRequiredOnResume"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "implementationVersions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "planDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "requiredFacts": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "factId": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              "missingReason": {
+                "type": "string"
+              },
+              "present": {
+                "type": "boolean"
+              },
+              "provenance": {
+                "description": "identifier reference or embedded Provenance",
+                "oneOf": [
+                  {
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/$defs/Provenance"
+                  }
+                ]
+              },
+              "value": {}
+            },
+            "required": [
+              "factId",
+              "present"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "admittedSourceVersions",
+        "artifactRefs",
+        "completeness",
+        "contractDigests",
+        "environmentBinding",
+        "ephemeralBindings",
+        "implementationVersions",
+        "planDigest",
+        "requiredFacts"
+      ],
+      "type": "object"
+    },
+    "ToolInvocation": {
+      "additionalProperties": false,
+      "properties": {
+        "completedAt": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]\\d{2}:\\d{2})$",
+          "type": "string"
+        },
+        "errorClass": {
+          "type": "string"
+        },
+        "idempotencyKey": {
+          "type": "string"
+        },
+        "implementation": {
+          "description": "identifier reference or embedded Implementation",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Implementation"
+            }
+          ]
+        },
+        "invocationId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "resultDigest": {
+          "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+          "type": "string"
+        },
+        "startedAt": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]\\d{2}:\\d{2})$",
+          "type": "string"
+        },
+        "terminalStatus": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "UNKNOWN",
+            "ERROR",
+            "NOT_RUN"
+          ],
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "idempotencyKey",
+        "implementation",
+        "invocationId",
+        "startedAt",
+        "terminalStatus"
+      ],
+      "type": "object"
+    },
+    "Transaction": {
+      "additionalProperties": false,
+      "properties": {
+        "closedAt": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]\\d{2}:\\d{2})$",
+          "type": "string"
+        },
+        "committed": {
+          "type": "boolean"
+        },
+        "openedAt": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]\\d{2}:\\d{2})$",
+          "type": "string"
+        },
+        "operationId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "transactionId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "committed",
+        "openedAt",
+        "operationId",
+        "transactionId"
+      ],
+      "type": "object"
+    },
+    "Verification": {
+      "additionalProperties": false,
+      "description": "An independent recomputation of a proposition. Produced only inside the auditor package.",
+      "properties": {
+        "claimId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "commonModeDependencies": {
+          "description": "Declared shared primitives. Sharing serialization is permitted only when declared and independently tested.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "independenceLevel": {
+          "description": "SEPARATE_PROCESS, SEPARATE_IMPLEMENTATION, SEPARATE_ALGORITHM.",
+          "type": "string"
+        },
+        "mode": {
+          "description": "RECOMPUTE, REPLAY, COMPARE, VERIFY_DIGEST, VERIFY_REFERENCE, INDEPENDENT_ALGORITHM, OBSERVATION_ONLY.",
+          "type": "string"
+        },
+        "producerStatus": {},
+        "proposition": {
+          "description": "Inline proposition when supplied; claimId references the proposition in the frozen bundle.",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Proposition"
+            }
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "recomputedValue": {},
+        "recordType": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "UNKNOWN",
+            "ERROR",
+            "NOT_RUN"
+          ],
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "commonModeDependencies",
+        "independenceLevel",
+        "mode",
+        "reason",
+        "status"
+      ],
+      "type": "object"
+    },
+    "VerificationCostSet": {
+      "additionalProperties": false,
+      "properties": {
+        "auditorTokens": {
+          "description": "identifier reference or embedded ResourceUsage",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/ResourceUsage"
+            }
+          ]
+        },
+        "managerTokens": {
+          "description": "identifier reference or embedded ResourceUsage",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/ResourceUsage"
+            }
+          ]
+        },
+        "recoveryTokens": {
+          "description": "identifier reference or embedded ResourceUsage",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/ResourceUsage"
+            }
+          ]
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "auditorTokens",
+        "managerTokens",
+        "recoveryTokens"
+      ],
+      "type": "object"
+    },
+    "WorkItem": {
+      "additionalProperties": false,
+      "description": "Bounded unit of work with an accounting identity.",
+      "properties": {
+        "accountingId": {
+          "description": "Stable credit identity. Duplicated accounting IDs are rejected.",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "accountingPartition": {
+          "description": "Parent and child work items in the same partition cannot both be credited.",
+          "type": "string"
+        },
+        "contracts": {
+          "items": {
+            "description": "identifier reference or embedded Contract",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/Contract"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "lifecycle": {
+          "enum": [
+            "CREATED",
+            "VALIDATED",
+            "READY",
+            "RUNNING",
+            "CHECKPOINTED",
+            "COMPLETED",
+            "BLOCKED",
+            "FAILED",
+            "ERRORED",
+            "CANCELED"
+          ],
+          "type": "string"
+        },
+        "limits": {
+          "additionalProperties": {},
+          "type": "object"
+        },
+        "parentOutcome": {
+          "description": "identifier reference or embedded Outcome",
+          "oneOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/Outcome"
+            }
+          ]
+        },
+        "permittedSideEffects": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "prerequisites": {
+          "items": {
+            "description": "identifier reference or embedded WorkItem",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/WorkItem"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "requiredCapabilities": {
+          "items": {
+            "description": "identifier reference or embedded Capability",
+            "oneOf": [
+              {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/Capability"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        "title": {
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "accountingId",
+        "accountingPartition",
+        "contracts",
+        "lifecycle",
+        "parentOutcome",
+        "permittedSideEffects",
+        "requiredCapabilities",
+        "title"
+      ],
+      "type": "object"
+    },
+    "WorkPacket": {
+      "additionalProperties": false,
+      "description": "Bounded dispatch extension. Not a different completed-work unit by default.",
+      "properties": {
+        "finalAuditAuthority": {
+          "type": "boolean"
+        },
+        "frozenInterfaceVersion": {
+          "type": "string"
+        },
+        "ownedPaths": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ownerRole": {
+          "type": "string"
+        },
+        "packetId": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        "requirementIds": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "finalAuditAuthority",
+        "frozenInterfaceVersion",
+        "ownedPaths",
+        "ownerRole",
+        "packetId",
+        "requirementIds"
+      ],
+      "type": "object"
+    },
+    "WorkUnitPolicy": {
+      "additionalProperties": false,
+      "description": "Predeclared, versioned acceptance universe with frozen weights. Weighting is frozen before any benchmark or release measurement.",
+      "properties": {
+        "acceptanceUniverse": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "accountingId": {
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "type": "string"
+              },
+              "partialCreditDefined": {
+                "type": "boolean"
+              },
+              "partition": {
+                "type": "string"
+              },
+              "requiredGateIds": {
+                "items": {
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "weight": {
+                "description": "Exact decimal text. Binary floats are rejected: they have no stable digest representation.",
+                "oneOf": [
+                  {
+                    "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "accountingId",
+              "partialCreditDefined",
+              "partition",
+              "requiredGateIds",
+              "weight"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "frozen": {
+          "type": "boolean"
+        },
+        "frozenAt": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]\\d{2}:\\d{2})$",
+          "type": "string"
+        },
+        "policyVersion": {
+          "type": "string"
+        },
+        "x-extension": {
+          "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "acceptanceUniverse",
+        "frozen",
+        "policyVersion"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://ontology.continuity.invalid/2.0.0/schema/Decision.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_generated": "GENERATED FROM ontology/metamodel.json -- DO NOT EDIT",
+  "_semanticModelDigest": "sha256:356d05c8e459888cd22779f81e74d9e856a749105e115cca66391806a95aca4a",
+  "additionalProperties": false,
+  "description": "An authorized or computed disposition with cited inputs. Never inferred from labels or colours.",
+  "properties": {
+    "citedInputs": {
+      "items": {
+        "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "createdAt": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|[+-]\\d{2}:\\d{2})$",
+      "type": "string"
+    },
+    "decisionKind": {
+      "type": "string"
+    },
+    "disposition": {
+      "type": "string"
+    },
+    "hashProfile": {
+      "type": "string"
+    },
+    "issuedByRole": {
+      "type": "string"
+    },
+    "logicalId": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+      "type": "string"
+    },
+    "policyRef": {
+      "type": "string"
+    },
+    "provenance": {
+      "description": "identifier reference or embedded Provenance",
+      "oneOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "type": "string"
+        },
+        {
+          "$ref": "#/$defs/Provenance"
+        }
+      ]
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "recordType": {
+      "type": "string"
+    },
+    "revisionId": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+      "type": "string"
+    },
+    "schemaVersion": {
+      "type": "string"
+    },
+    "semanticModelDigest": {
+      "pattern": "^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$",
+      "type": "string"
+    },
+    "x-extension": {
+      "description": "Opaque versioned extension data. Never consulted for acceptance, authority or required behaviour.",
+      "type": "object"
+    }
+  },
+  "required": [
+    "citedInputs",
+    "decisionKind",
+    "disposition",
+    "hashProfile",
+    "issuedByRole",
+    "logicalId",
+    "provenance",
+    "rationale",
+    "recordType",
+    "revisionId",
+    "schemaVersion",
+    "semanticModelDigest"
+  ],
+  "title": "Decision",
+  "type": "object"
+}

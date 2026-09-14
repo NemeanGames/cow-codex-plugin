@@ -1,0 +1,6 @@
+interface:
+  display_name: "COW Work Continuity"
+  short_description: "Checkpoint and resume verified agent work"
+  default_prompt: "Use $cow-work-continuity to resume or checkpoint this task without reconstructing state from chat history."
+policy:
+  allow_implicit_invocation: true

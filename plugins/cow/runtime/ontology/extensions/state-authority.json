@@ -1,0 +1,147 @@
+{
+  "schema": "continuity.ontology.extension/2",
+  "extensionId": "state-authority",
+  "extensionVersion": "2.0.0",
+  "requiresMetamodelVersion": "2.0.0",
+  "doc": "Authorization, mutation-effect evidence and acceptance. The ontology models and validates authority; it never creates authority through graph entailment.",
+  "entities": {
+    "AuthorizedOperation": {
+      "kind": "EXTENSION",
+      "fields": {
+        "operationId": {"type": "id", "required": true},
+        "capability": {"type": {"ref": "Capability"}, "required": true},
+        "authorizedScope": {"type": {"ref": "Scope"}, "required": true},
+        "grantedByRole": {"type": "string", "required": true},
+        "grantDigest": {"type": "digest", "required": true},
+        "expiresAt": {"type": "timestamp", "required": false},
+        "replayGuard": {"type": "string", "required": true},
+        "secretsExcluded": {"type": "boolean", "required": true, "doc": "Always true in a persisted receipt: operation capabilities and secrets never enter persisted records."}
+      }
+    },
+    "Transaction": {
+      "kind": "EXTENSION",
+      "fields": {
+        "transactionId": {"type": "id", "required": true},
+        "operationId": {"type": "id", "required": true},
+        "openedAt": {"type": "timestamp", "required": true},
+        "closedAt": {"type": "timestamp", "required": false},
+        "committed": {"type": "boolean", "required": true}
+      }
+    },
+    "OwnershipAssertion": {
+      "kind": "EXTENSION",
+      "doc": "Direct ownership only. Ownership is not transitive and cannot be smuggled through containment.",
+      "fields": {
+        "subject": {"type": "string", "required": true},
+        "ownerRole": {"type": "string", "required": true},
+        "transactionId": {"type": "id", "required": true},
+        "directness": {"type": {"enum": "OperationalOwnership"}, "required": true}
+      }
+    },
+    "MutationIntent": {
+      "kind": "EXTENSION",
+      "fields": {
+        "intentId": {"type": "id", "required": true},
+        "operationId": {"type": "id", "required": true},
+        "targetScope": {"type": {"ref": "Scope"}, "required": true},
+        "declaredEffects": {"type": {"list": "string"}, "required": true},
+        "preStateDigest": {"type": "digest", "required": true}
+      }
+    },
+    "MutationLedgerEntry": {
+      "kind": "EXTENSION",
+      "doc": "Append-only. A mutation-effect claim requires the authorized operation, intent, pre-state, ledger range, post-state, provider readback, direct ownership binding and rollback-set closure.",
+      "fields": {
+        "entryId": {"type": "id", "required": true},
+        "sequence": {"type": "integer", "required": true},
+        "priorEntryDigest": {"type": "digest", "required": true},
+        "operationId": {"type": "id", "required": true},
+        "transactionId": {"type": "id", "required": true},
+        "intentId": {"type": "id", "required": true},
+        "ownership": {"type": {"ref": "OwnershipAssertion"}, "required": true},
+        "preStateDigest": {"type": "digest", "required": true},
+        "postStateDigest": {"type": "digest", "required": true},
+        "readbackRef": {"type": "digest", "required": false},
+        "effectDescription": {"type": "text", "required": true}
+      }
+    },
+    "ProviderReadback": {
+      "kind": "EXTENSION",
+      "doc": "An independent re-read of the mutated subject from the provider. A provider success field is not a readback.",
+      "fields": {
+        "readbackId": {"type": "id", "required": true},
+        "operationId": {"type": "id", "required": true},
+        "channel": {"type": {"enum": "ObservationChannel"}, "required": true},
+        "observedStateDigest": {"type": "digest", "required": true},
+        "matchesExpectedPostState": {"type": "boolean", "required": true}
+      }
+    },
+    "RollbackAction": {
+      "kind": "EXTENSION",
+      "fields": {
+        "actionId": {"type": "id", "required": true},
+        "targetEntryId": {"type": "id", "required": true},
+        "authorizedByRole": {"type": "string", "required": true},
+        "performed": {"type": "boolean", "required": true},
+        "resultDigest": {"type": "digest", "required": false}
+      }
+    },
+    "MutationSetClosureReceipt": {
+      "kind": "EXTENSION",
+      "doc": "Set equality between intended effects, ledger entries, readbacks and the rollback set.",
+      "fields": {
+        "operationId": {"type": "id", "required": true},
+        "intendedEffects": {"type": {"list": "string"}, "required": true},
+        "ledgeredEffects": {"type": {"list": "string"}, "required": true},
+        "readbackConfirmedEffects": {"type": {"list": "string"}, "required": true},
+        "rollbackSet": {"type": {"list": "string"}, "required": true},
+        "setsEqual": {"type": "boolean", "required": true},
+        "discrepancies": {"type": {"list": "string"}, "required": true}
+      }
+    },
+    "EntailmentReceipt": {
+      "kind": "EXTENSION",
+      "doc": "Emitted for any inference used to prune, rank, authorize or accept.",
+      "fields": {
+        "receiptId": {"type": "id", "required": true},
+        "relation": {"type": "string", "required": true},
+        "sourceGraphDigest": {"type": "digest", "required": true},
+        "metamodelDigest": {"type": "digest", "required": true},
+        "ruleDigest": {"type": "digest", "required": true},
+        "implementationDigest": {"type": "digest", "required": true},
+        "witnessPath": {"type": {"list": "string"}, "required": true},
+        "authorityClasses": {"type": {"list": {"enum": "AuthorityClass"}}, "required": true},
+        "intendedUse": {"type": "string", "required": true},
+        "depth": {"type": "integer", "required": true}
+      }
+    },
+    "AcceptanceReceipt": {
+      "kind": "EXTENSION",
+      "doc": "Credits exactly one accounting identity once. Revocation appends a correction; it never rewrites history.",
+      "fields": {
+        "receiptId": {"type": "id", "required": true},
+        "accountingId": {"type": "id", "required": true},
+        "partition": {"type": "string", "required": true},
+        "workUnitPolicyVersion": {"type": "string", "required": true},
+        "weight": {"type": "decimal", "required": true},
+        "requiredGateResults": {"type": {"list": "digest"}, "required": true},
+        "acceptedAt": {"type": "timestamp", "required": true},
+        "revoked": {"type": "boolean", "required": true},
+        "revocationReason": {"type": "string", "required": false},
+        "correctsReceiptId": {"type": "id", "required": false},
+        "firstQualifyingAttempt": {"type": "boolean", "required": true}
+      }
+    },
+    "AcceptedWorkLedgerEntry": {
+      "kind": "EXTENSION",
+      "fields": {
+        "sequence": {"type": "integer", "required": true},
+        "receiptId": {"type": "id", "required": true},
+        "accountingId": {"type": "id", "required": true},
+        "weight": {"type": "decimal", "required": true},
+        "delta": {"type": "string", "required": true, "doc": "CREDIT or INVALIDATE."},
+        "measurementWindow": {"type": "string", "required": true}
+      }
+    }
+  }
+}

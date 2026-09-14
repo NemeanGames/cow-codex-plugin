@@ -1,0 +1,746 @@
+{
+  "schema": "continuity.ontology.extension/2",
+  "extensionId": "measurement-continuity",
+  "extensionVersion": "2.0.0",
+  "requiresMetamodelVersion": "2.0.0",
+  "doc": "Measurement, benchmarking, provider qualification, freshness and cache reuse. Each entity here is justified by a trace, an invariant or a competency question; this is not an ontology of every engine class.",
+  "entities": {
+    "Measurement": {
+      "kind": "EXTENSION",
+      "doc": "A typed metric result. Carries value, unit, scope, authority, validity, formula version, input references and a reason when unavailable.",
+      "fields": {
+        "metricId": {
+          "type": "string",
+          "required": true
+        },
+        "formulaVersion": {
+          "type": "string",
+          "required": true
+        },
+        "availability": {
+          "type": {
+            "enum": "MetricAvailability"
+          },
+          "required": true
+        },
+        "value": {
+          "type": "decimal",
+          "required": false,
+          "doc": "Absent unless availability is AVAILABLE. There is no NaN and no infinity."
+        },
+        "unit": {
+          "type": "string",
+          "required": true
+        },
+        "numerator": {
+          "type": "decimal",
+          "required": false
+        },
+        "denominator": {
+          "type": "decimal",
+          "required": false
+        },
+        "scope": {
+          "type": {
+            "ref": "Scope"
+          },
+          "required": true
+        },
+        "inputRefs": {
+          "type": {
+            "list": "digest"
+          },
+          "required": true
+        },
+        "unavailableReason": {
+          "type": "string",
+          "required": false
+        },
+        "uncertainty": {
+          "type": "decimal",
+          "required": false
+        },
+        "admissibility": {
+          "type": {
+            "enum": "EvidenceAdmissibility"
+          },
+          "required": true
+        }
+      }
+    },
+    "BenchmarkPair": {
+      "kind": "EXTENSION",
+      "doc": "One matched baseline/assisted execution pair under a frozen equivalence contract.",
+      "fields": {
+        "pairId": {
+          "type": "id",
+          "required": true
+        },
+        "equivalenceContractDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "baselineTraceRef": {
+          "type": "digest",
+          "required": true
+        },
+        "assistedTraceRef": {
+          "type": "digest",
+          "required": true
+        },
+        "baselineAccepted": {
+          "type": "boolean",
+          "required": true
+        },
+        "assistedAccepted": {
+          "type": "boolean",
+          "required": true
+        },
+        "cacheStratum": {
+          "type": "string",
+          "required": true
+        },
+        "setupAmortized": {
+          "type": "boolean",
+          "required": true
+        },
+        "includedInCohort": {
+          "type": "boolean",
+          "required": true,
+          "doc": "Failed attempts stay in the cohort. Excluding them to improve a ratio invalidates the claim."
+        },
+        "exclusionReason": {
+          "type": "string",
+          "required": false
+        },
+        "contaminationChecks": {
+          "type": {
+            "list": {
+              "object": {
+                "checkId": {
+                  "type": "id",
+                  "required": true
+                },
+                "status": {
+                  "type": {
+                    "enum": "Status"
+                  },
+                  "required": true
+                },
+                "reason": {
+                  "type": "string",
+                  "required": true
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "verificationCosts": {
+          "type": {
+            "ref": "VerificationCostSet"
+          },
+          "required": false
+        },
+        "receipts": {
+          "type": "json",
+          "required": false
+        }
+      }
+    },
+    "BenchmarkProtocol": {
+      "kind": "EXTENSION",
+      "doc": "Pre-registered before a cohort is measured. A pilot is a debugging cohort, never an advertised result.",
+      "fields": {
+        "protocolId": {
+          "type": "id",
+          "required": true
+        },
+        "protocolKind": {
+          "type": "string",
+          "required": true,
+          "doc": "PILOT or REGISTERED_COHORT."
+        },
+        "equivalenceContractDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "targetPairs": {
+          "type": "integer",
+          "required": true
+        },
+        "minimumPairs": {
+          "type": "integer",
+          "required": true
+        },
+        "strata": {
+          "type": {
+            "list": "string"
+          },
+          "required": true
+        },
+        "stoppingRule": {
+          "type": "string",
+          "required": true
+        },
+        "uncertaintyMethod": {
+          "type": "string",
+          "required": true
+        },
+        "setupTreatment": {
+          "type": "string",
+          "required": true
+        },
+        "preRegisteredAt": {
+          "type": "timestamp",
+          "required": true
+        },
+        "frozen": {
+          "type": "boolean",
+          "required": true
+        }
+      }
+    },
+    "ProviderSession": {
+      "kind": "EXTENSION",
+      "fields": {
+        "sessionId": {
+          "type": "id",
+          "required": true
+        },
+        "providerName": {
+          "type": "string",
+          "required": true
+        },
+        "accountingVersion": {
+          "type": "string",
+          "required": true
+        },
+        "tokenizerId": {
+          "type": "string",
+          "required": true
+        },
+        "openedAt": {
+          "type": "timestamp",
+          "required": true
+        },
+        "expiresAt": {
+          "type": "timestamp",
+          "required": false
+        },
+        "revalidateOnResume": {
+          "type": "boolean",
+          "required": true
+        }
+      }
+    },
+    "QualificationReceipt": {
+      "kind": "EXTENSION",
+      "doc": "Qualification never floats to another version, build, configuration or candidate.",
+      "fields": {
+        "receiptId": {
+          "type": "id",
+          "required": true
+        },
+        "subjectKind": {
+          "type": "string",
+          "required": true
+        },
+        "providerName": {
+          "type": "string",
+          "required": true
+        },
+        "providerVersion": {
+          "type": "string",
+          "required": true
+        },
+        "buildIdentityDigest": {
+          "type": "digest",
+          "required": false
+        },
+        "configurationDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "candidateDigest": {
+          "type": "digest",
+          "required": false
+        },
+        "probeScope": {
+          "type": {
+            "ref": "Scope"
+          },
+          "required": true
+        },
+        "observedAt": {
+          "type": "timestamp",
+          "required": true
+        },
+        "result": {
+          "type": {
+            "enum": "Qualification"
+          },
+          "required": true
+        },
+        "limits": {
+          "type": {
+            "list": "string"
+          },
+          "required": true
+        },
+        "dependencies": {
+          "type": {
+            "list": "string"
+          },
+          "required": true
+        },
+        "syntheticFixture": {
+          "type": "boolean",
+          "required": true
+        }
+      }
+    },
+    "FreshnessPolicy": {
+      "kind": "EXTENSION",
+      "doc": "Cache keys are decided by the claim, not by a shared filename.",
+      "fields": {
+        "policyId": {
+          "type": "id",
+          "required": true
+        },
+        "claimTypeGlob": {
+          "type": "string",
+          "required": true
+        },
+        "reusableWhileUnchanged": {
+          "type": {
+            "list": "string"
+          },
+          "required": true,
+          "doc": "Dependency classes whose stability permits reuse, e.g. candidate bytes, source implementation, metamodel, contract."
+        },
+        "alwaysFreshDomains": {
+          "type": {
+            "list": "string"
+          },
+          "required": true,
+          "doc": "Process, map, visibility, slot, dirty-state and prescribed cold-reopen observations are never served from cache."
+        },
+        "maxAgeSeconds": {
+          "type": "integer",
+          "required": false
+        }
+      }
+    },
+    "CacheReuseReceipt": {
+      "kind": "EXTENSION",
+      "fields": {
+        "receiptId": {
+          "type": "id",
+          "required": true
+        },
+        "claimType": {
+          "type": "string",
+          "required": true
+        },
+        "cacheKeyDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "boundInputs": {
+          "type": {
+            "map": "digest"
+          },
+          "required": true
+        },
+        "freshnessPolicyId": {
+          "type": "id",
+          "required": true
+        },
+        "reused": {
+          "type": "boolean",
+          "required": true
+        },
+        "refusedReason": {
+          "type": "string",
+          "required": false,
+          "doc": "A timeout is never converted into a cache hit."
+        }
+      }
+    },
+    "ChunkEnvelope": {
+      "kind": "EXTENSION",
+      "doc": "One stable-ID-ordered collection chunk in a single authorized session.",
+      "fields": {
+        "chunkId": {
+          "type": "id",
+          "required": true
+        },
+        "runId": {
+          "type": "id",
+          "required": true
+        },
+        "attempt": {
+          "type": "integer",
+          "required": true
+        },
+        "candidateDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "sourceDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "policyDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "mapIdentity": {
+          "type": "string",
+          "required": true
+        },
+        "processCreationDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "snapshotEpoch": {
+          "type": "string",
+          "required": true
+        },
+        "rangeStart": {
+          "type": "string",
+          "required": true
+        },
+        "rangeEnd": {
+          "type": "string",
+          "required": true
+        },
+        "memberIds": {
+          "type": {
+            "list": "string"
+          },
+          "required": true
+        },
+        "engineCount": {
+          "type": "integer",
+          "required": false
+        },
+        "serializedRowCount": {
+          "type": "integer",
+          "required": false
+        },
+        "completed": {
+          "type": "boolean",
+          "required": true
+        },
+        "deadlineMs": {
+          "type": "duration_ms",
+          "required": true
+        },
+        "elapsedMs": {
+          "type": "duration_ms",
+          "required": true
+        },
+        "timedOut": {
+          "type": "boolean",
+          "required": true
+        }
+      }
+    },
+    "ChunkAggregate": {
+      "kind": "EXTENSION",
+      "doc": "Rejects gaps, overlap, duplicate ranges, stale or mixed epochs, process changes, candidate changes and partial writes.",
+      "fields": {
+        "aggregateId": {
+          "type": "id",
+          "required": true
+        },
+        "chunkRefs": {
+          "type": {
+            "list": "digest"
+          },
+          "required": true
+        },
+        "requiredScope": {
+          "type": {
+            "ref": "Scope"
+          },
+          "required": true
+        },
+        "status": {
+          "type": {
+            "enum": "Status"
+          },
+          "required": true
+        },
+        "rejectionReasons": {
+          "type": {
+            "list": "string"
+          },
+          "required": true
+        },
+        "consistencyWitnesses": {
+          "type": {
+            "list": {
+              "object": {
+                "witnessKind": {
+                  "type": "string",
+                  "required": true
+                },
+                "expected": {
+                  "type": "json",
+                  "required": false
+                },
+                "observed": {
+                  "type": "json",
+                  "required": false
+                },
+                "agrees": {
+                  "type": "boolean",
+                  "required": true
+                }
+              }
+            }
+          },
+          "required": true,
+          "doc": "Engine counts, serialized rows and component membership are consistency witnesses, not independent auditors."
+        },
+        "consistencyGuarantee": {
+          "type": "string",
+          "required": true,
+          "doc": "The actual guarantee, e.g. NOT_ATOMIC_SNAPSHOT, rather than an implied one."
+        }
+      }
+    },
+    "ReviewView": {
+      "kind": "EXTENSION",
+      "doc": "A view projects state. It never establishes it.",
+      "fields": {
+        "viewId": {
+          "type": "id",
+          "required": true
+        },
+        "semanticInputDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "sourceCheckpointDigest": {
+          "type": "digest",
+          "required": false
+        },
+        "sourceAuditDigest": {
+          "type": "digest",
+          "required": false
+        },
+        "profileId": {
+          "type": "string",
+          "required": true
+        },
+        "rendererId": {
+          "type": "string",
+          "required": true
+        },
+        "rendererVersion": {
+          "type": "string",
+          "required": true
+        },
+        "lifecycle": {
+          "type": {
+            "enum": "ViewLifecycle"
+          },
+          "required": true
+        },
+        "accessibilityResults": {
+          "type": {
+            "list": {
+              "object": {
+                "checkId": {
+                  "type": "id",
+                  "required": true
+                },
+                "status": {
+                  "type": {
+                    "enum": "Status"
+                  },
+                  "required": true
+                },
+                "reason": {
+                  "type": "string",
+                  "required": true
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "rasterProfileDigest": {
+          "type": "digest",
+          "required": false
+        },
+        "unavailableReason": {
+          "type": "string",
+          "required": false
+        }
+      }
+    },
+    "ReleaseManifest": {
+      "kind": "EXTENSION",
+      "fields": {
+        "product": {
+          "type": "string",
+          "required": true
+        },
+        "version": {
+          "type": "string",
+          "required": true
+        },
+        "payloadDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "memberDigests": {
+          "type": {
+            "map": "digest"
+          },
+          "required": true
+        },
+        "schemaManifestDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "dependencyLockDigest": {
+          "type": "digest",
+          "required": true
+        },
+        "auditResultDigest": {
+          "type": "digest",
+          "required": false
+        },
+        "acceptanceByDimension": {
+          "type": {
+            "list": {
+              "object": {
+                "dimension": {
+                  "type": {
+                    "enum": "AcceptanceDimension"
+                  },
+                  "required": true
+                },
+                "status": {
+                  "type": {
+                    "enum": "Status"
+                  },
+                  "required": true
+                },
+                "evidenceRefs": {
+                  "type": {
+                    "list": "digest"
+                  },
+                  "required": true
+                },
+                "reason": {
+                  "type": "string",
+                  "required": true
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "repositoryUrl": {
+          "type": "uri",
+          "required": false
+        },
+        "releaseUrl": {
+          "type": "uri",
+          "required": false
+        },
+        "liveUrl": {
+          "type": "uri",
+          "required": false
+        },
+        "blockers": {
+          "type": {
+            "list": "string"
+          },
+          "required": true
+        },
+        "knownGaps": {
+          "type": {
+            "list": "string"
+          },
+          "required": true
+        }
+      }
+    },
+    "VerificationCostSet": {
+      "kind": "SUPPORT",
+      "fields": {
+        "managerTokens": {
+          "type": {
+            "ref": "ResourceUsage"
+          },
+          "required": true
+        },
+        "auditorTokens": {
+          "type": {
+            "ref": "ResourceUsage"
+          },
+          "required": true
+        },
+        "recoveryTokens": {
+          "type": {
+            "ref": "ResourceUsage"
+          },
+          "required": true
+        }
+      }
+    },
+    "ResourceUsageLedger": {
+      "kind": "SUPPORT",
+      "fields": {
+        "recordType": {
+          "type": "string",
+          "required": true
+        },
+        "schemaVersion": {
+          "type": "string",
+          "required": true
+        },
+        "runId": {
+          "type": "id",
+          "required": true
+        },
+        "synthetic": {
+          "type": "boolean",
+          "required": true
+        },
+        "measurements": {
+          "type": {
+            "list": {
+              "ref": "ResourceUsage"
+            }
+          },
+          "required": true
+        },
+        "totals": {
+          "type": "json",
+          "required": true
+        },
+        "subsetReconciliation": {
+          "type": "json",
+          "required": true
+        },
+        "accountingDomains": {
+          "type": "json",
+          "required": true
+        },
+        "consumes": {
+          "type": "json",
+          "required": true
+        }
+      }
+    }
+  }
+}

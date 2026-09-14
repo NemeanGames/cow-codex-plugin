@@ -1,0 +1,70 @@
+{
+  "schema": "continuity.registry.capabilities/2",
+  "registryVersion": "2.0.0",
+  "doc": "Stable functional contracts. A capability never names a vendor, a plugin or a tool. Providers for these live in implementations.json and are replaceable under the same contract.",
+  "capabilities": {
+    "cap.artifact.package": {
+      "name": "artifact.package",
+      "intent": "Package a declared set of local files into a content-addressed archive with a payload manifest.",
+      "inputContract": "contract.artifact.package.input.v1",
+      "outputContract": "contract.artifact.package.output.v1",
+      "sideEffectClass": "local_write"
+    },
+    "cap.artifact.verify": {
+      "name": "artifact.verify",
+      "intent": "Verify an archive's member digests against its manifest without extracting outside a bounded root.",
+      "inputContract": "contract.artifact.verify.input.v1",
+      "outputContract": "contract.artifact.verify.output.v1",
+      "sideEffectClass": "read_only"
+    },
+    "cap.prior_context.retrieve": {
+      "name": "prior_context.retrieve",
+      "intent": "Restore the required-fact inventory for a task from committed state, without reading conversation history.",
+      "inputContract": "contract.prior_context.input.v1",
+      "outputContract": "contract.prior_context.output.v1",
+      "sideEffectClass": "read_only"
+    },
+    "cap.reference.retrieve": {
+      "name": "reference.retrieve",
+      "intent": "Resolve an authoritative reference to exact bytes plus a retrieval receipt.",
+      "inputContract": "contract.reference.input.v1",
+      "outputContract": "contract.reference.output.v1",
+      "sideEffectClass": "read_only"
+    },
+    "cap.qa.probe": {
+      "name": "qa.probe",
+      "intent": "Execute a contract-bound deterministic probe and return a five-state result with evidence references.",
+      "inputContract": "contract.qa.probe.input.v1",
+      "outputContract": "contract.qa.probe.output.v1",
+      "sideEffectClass": "read_only"
+    },
+    "cap.qa.audit": {
+      "name": "qa.audit",
+      "intent": "Independently recompute required claims from a frozen input bundle and return a verdict.",
+      "inputContract": "contract.qa.audit.input.v1",
+      "outputContract": "contract.qa.audit.output.v1",
+      "sideEffectClass": "read_only"
+    },
+    "cap.city.collect_instances": {
+      "name": "city.collect_instances",
+      "intent": "Enumerate instanced static mesh transforms for a bounded set of building controls in one authorized session.",
+      "inputContract": "contract.city.collect.input.v1",
+      "outputContract": "contract.city.collect.output.v1",
+      "sideEffectClass": "read_only"
+    },
+    "cap.view.render": {
+      "name": "view.render",
+      "intent": "Project committed semantic state into an accessible read-only view.",
+      "inputContract": "contract.view.render.input.v1",
+      "outputContract": "contract.view.render.output.v1",
+      "sideEffectClass": "local_write"
+    },
+    "cap.provider.chat_completion": {
+      "name": "provider.chat_completion",
+      "intent": "Obtain a model completion together with a provider usage receipt.",
+      "inputContract": "contract.provider.completion.input.v1",
+      "outputContract": "contract.provider.completion.output.v1",
+      "sideEffectClass": "read_only"
+    }
+  }
+}

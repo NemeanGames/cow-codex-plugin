@@ -1,0 +1,20 @@
+{
+  "name": "cow-local",
+  "interface": {
+    "displayName": "COW Local Plugins"
+  },
+  "plugins": [
+    {
+      "name": "cow",
+      "source": {
+        "source": "local",
+        "path": "./plugins/cow"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

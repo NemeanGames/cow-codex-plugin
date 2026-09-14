@@ -1,0 +1,624 @@
+{
+  "schema": "ont20.competency-corpus/1",
+  "authority": "source_snapshots/handoff/continuity-ontology-2.0.0-implementation-plan/planning/REQUIREMENTS_AND_GATES.md",
+  "authoritySha256": "48245600cabbfcd54953b8296a26300a1abf45a1307cf1bea2dbaf2c5ef70f5e",
+  "questions": [
+    {
+      "number": 1,
+      "question": "Which capabilities produced the most accepted weighted work per admissible vendor token, and which rankings are not comparable?",
+      "queryId": "q.capability_ranking",
+      "corpus": "tests/fixtures/competency/repair4.json",
+      "expectedAnswer": {
+        "queryId": "q.capability_ranking",
+        "available": true,
+        "value": {
+          "rankingsWithinDomain": [
+            {
+              "accountingDomain": "vendor-a",
+              "capabilityId": "package",
+              "workPerToken": "0.02"
+            },
+            {
+              "accountingDomain": "vendor-b",
+              "capabilityId": "verify",
+              "workPerToken": "0.01"
+            }
+          ],
+          "excluded": [],
+          "notComparableAcrossDomains": [
+            "vendor-a",
+            "vendor-b"
+          ]
+        },
+        "witnessRefs": [
+          "cap.a",
+          "cap.b"
+        ],
+        "explanation": "aggregate accepted weighted work / observed tokens; no cross-domain ranking",
+        "unavailableReason": null,
+        "question": "Which capabilities produced the most accepted weighted work per admissible vendor token, and which rankings are not comparable?"
+      },
+      "answerDigest": "sha256:ad30e87d84ee5703c79f78d0727e064af9adc362f639c746f7e642b8a5258655",
+      "witnessRefs": [
+        "cap.a",
+        "cap.b"
+      ],
+      "corpusDigest": "sha256:9461adb294accbcf733aaa3b9be2675b1e4d672655bdec594debc2f861e0db5f"
+    },
+    {
+      "number": 2,
+      "question": "Which implementations achieved equivalent accepted outputs with lower observed cost, under which contracts?",
+      "queryId": "q.equivalent_lower_cost",
+      "corpus": "tests/fixtures/competency/repair4.json",
+      "expectedAnswer": {
+        "queryId": "q.equivalent_lower_cost",
+        "available": true,
+        "value": [
+          {
+            "implementationId": "impl.package",
+            "contractId": "eq.fixture",
+            "fullCostRatio": "2"
+          }
+        ],
+        "witnessRefs": [
+          "comparison.1"
+        ],
+        "explanation": "approved equivalent-output comparisons with a full observed-cost ratio above one",
+        "unavailableReason": null,
+        "question": "Which implementations achieved equivalent accepted outputs with lower observed cost, under which contracts?"
+      },
+      "answerDigest": "sha256:72a7e14a6c12b007d4a2ecf0e88d37b964054d58fc46a172510e19b749c01153",
+      "witnessRefs": [
+        "comparison.1"
+      ],
+      "corpusDigest": "sha256:9461adb294accbcf733aaa3b9be2675b1e4d672655bdec594debc2f861e0db5f"
+    },
+    {
+      "number": 3,
+      "question": "Where did a long session spend active elapsed time, aggregate effort, waiting, verification and rework?",
+      "queryId": "q.session_time",
+      "corpus": "tests/fixtures/competency/repair4.json",
+      "expectedAnswer": {
+        "queryId": "q.session_time",
+        "available": true,
+        "value": {
+          "activeElapsed": {
+            "availability": "AVAILABLE",
+            "valueMs": 30.0,
+            "clockDomain": "fixture",
+            "spanCount": 3,
+            "clockResolutionNs": 1000,
+            "belowResolution": false,
+            "uncertaintyMs": 0.001
+          },
+          "aggregateEffort": {
+            "availability": "AVAILABLE",
+            "valueMs": 40.0,
+            "actorCount": 1,
+            "spanCount": 4,
+            "clockDomains": [
+              "fixture"
+            ],
+            "clockResolutionNs": 1000,
+            "belowResolution": false,
+            "uncertaintyMs": 0.001
+          },
+          "unionByState": {
+            "ACTIVE_EXECUTION": 30.0,
+            "WAITING": 10.0
+          },
+          "purposeSubsets": {
+            "PLANNING": {
+              "purpose": "PLANNING",
+              "totalMs": 10.0,
+              "withinActiveMs": 10.0,
+              "outsideActiveMs": 0.0,
+              "isSubsetOfActive": true,
+              "spanCount": 1,
+              "note": "withinActiveMs is a labelled subset of active elapsed time, not an addition to it",
+              "clockResolutionNs": 1000,
+              "belowResolution": false,
+              "uncertaintyMs": 0.001
+            },
+            "REWORK": {
+              "purpose": "REWORK",
+              "totalMs": 10.0,
+              "withinActiveMs": 10.0,
+              "outsideActiveMs": 0.0,
+              "isSubsetOfActive": true,
+              "spanCount": 1,
+              "note": "withinActiveMs is a labelled subset of active elapsed time, not an addition to it",
+              "clockResolutionNs": 1000,
+              "belowResolution": false,
+              "uncertaintyMs": 0.001
+            },
+            "VERIFICATION": {
+              "purpose": "VERIFICATION",
+              "totalMs": 10.0,
+              "withinActiveMs": 10.0,
+              "outsideActiveMs": 0.0,
+              "isSubsetOfActive": true,
+              "spanCount": 1,
+              "note": "withinActiveMs is a labelled subset of active elapsed time, not an addition to it",
+              "clockResolutionNs": 1000,
+              "belowResolution": false,
+              "uncertaintyMs": 0.001
+            },
+            "WAITING": {
+              "purpose": "WAITING",
+              "totalMs": 10.0,
+              "withinActiveMs": 0.0,
+              "outsideActiveMs": 10.0,
+              "isSubsetOfActive": false,
+              "spanCount": 1,
+              "note": "withinActiveMs is a labelled subset of active elapsed time, not an addition to it",
+              "clockResolutionNs": 1000,
+              "belowResolution": false,
+              "uncertaintyMs": 0.001
+            }
+          },
+          "spanCount": 4,
+          "clockResolutionNs": 1000,
+          "unionByStatePrecision": {
+            "ACTIVE_EXECUTION": {
+              "clockResolutionNs": 1000,
+              "belowResolution": false,
+              "uncertaintyMs": 0.001
+            },
+            "WAITING": {
+              "clockResolutionNs": 1000,
+              "belowResolution": false,
+              "uncertaintyMs": 0.001
+            }
+          },
+          "contract": "activeElapsed is a union in one clock domain; aggregateEffort sums non-overlapping leaf actor spans. They are different measurements and neither is derived from the other."
+        },
+        "witnessRefs": [
+          "span.PLANNING",
+          "span.REWORK",
+          "span.VERIFICATION",
+          "span.WAITING"
+        ],
+        "explanation": "interval unions, leaf effort, waiting states and labelled verification/rework subsets",
+        "unavailableReason": null,
+        "question": "Where did a long session spend active elapsed time, aggregate effort, waiting, verification and rework?"
+      },
+      "answerDigest": "sha256:d06d551b23b5d0717a59f370d26d7807ae42f1026252fd973125a238b55529bc",
+      "witnessRefs": [
+        "span.PLANNING",
+        "span.REWORK",
+        "span.VERIFICATION",
+        "span.WAITING"
+      ],
+      "corpusDigest": "sha256:9461adb294accbcf733aaa3b9be2675b1e4d672655bdec594debc2f861e0db5f"
+    },
+    {
+      "number": 4,
+      "question": "Which costs are measured, estimated, locally metered or unavailable, and where would aggregation double-count?",
+      "queryId": "q.resource_unknowns",
+      "corpus": "tests/fixtures/competency/repair4.json",
+      "expectedAnswer": {
+        "queryId": "q.resource_unknowns",
+        "available": true,
+        "value": [
+          {
+            "kind": "VENDOR_INPUT_TOKENS",
+            "reason": "no usage receipt"
+          }
+        ],
+        "witnessRefs": [
+          "resource.missing"
+        ],
+        "explanation": "measurements explicitly recorded as not observed; these are not zero",
+        "unavailableReason": null,
+        "question": "Which costs are measured, estimated, locally metered or unavailable, and where would aggregation double-count?"
+      },
+      "answerDigest": "sha256:c935d8e7e2e69d4e9de801fe7d03cbaeba3e587fa53f4da2807a376f61a63085",
+      "witnessRefs": [
+        "resource.missing"
+      ],
+      "corpusDigest": "sha256:9461adb294accbcf733aaa3b9be2675b1e4d672655bdec594debc2f861e0db5f"
+    },
+    {
+      "number": 5,
+      "question": "Which claims/artifacts lack sufficient provenance or complete evidence, and what exact observation would close them?",
+      "queryId": "q.unverified_claims",
+      "corpus": "tests/fixtures/competency/repair4.json",
+      "expectedAnswer": {
+        "queryId": "q.unverified_claims",
+        "available": true,
+        "value": [
+          {
+            "claimId": "claim.missing",
+            "status": "UNKNOWN",
+            "reason": "needs file-byte observation of manifest"
+          }
+        ],
+        "witnessRefs": [
+          "claim.missing"
+        ],
+        "explanation": "claims whose independent recomputation did not reach PASS",
+        "unavailableReason": null,
+        "question": "Which claims/artifacts lack sufficient provenance or complete evidence, and what exact observation would close them?"
+      },
+      "answerDigest": "sha256:ed118338ae2ba337a28924c7c2afb51953e147da80877bbf61de632220291657",
+      "witnessRefs": [
+        "claim.missing"
+      ],
+      "corpusDigest": "sha256:9461adb294accbcf733aaa3b9be2675b1e4d672655bdec594debc2f861e0db5f"
+    },
+    {
+      "number": 6,
+      "question": "Which gates require human judgment, who approved the bound candidate, and which approvals became stale?",
+      "queryId": "q.human_approvals",
+      "corpus": "tests/fixtures/competency/repair4.json",
+      "expectedAnswer": {
+        "queryId": "q.human_approvals",
+        "available": true,
+        "value": [
+          {
+            "gateId": "gate.human",
+            "approvals": [
+              {
+                "approvalId": "approval.old",
+                "approvedBy": "fixture.reviewer",
+                "candidateDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "stale": true
+              }
+            ]
+          }
+        ],
+        "witnessRefs": [
+          "gate.human"
+        ],
+        "explanation": "human approvals are bound to a candidate; changed candidate makes the approval stale",
+        "unavailableReason": null,
+        "question": "Which gates require human judgment, who approved the bound candidate, and which approvals became stale?"
+      },
+      "answerDigest": "sha256:587e43c2d7d271ce44f0e16e5cc63cefeffa013520eabc2d224ed54e71d736d2",
+      "witnessRefs": [
+        "gate.human"
+      ],
+      "corpusDigest": "sha256:9461adb294accbcf733aaa3b9be2675b1e4d672655bdec594debc2f861e0db5f"
+    },
+    {
+      "number": 7,
+      "question": "Can a new agent resume without chat history, and which required facts or live identities must be refreshed?",
+      "queryId": "q.resume_readiness",
+      "corpus": "tests/fixtures/competency/repair4.json",
+      "expectedAnswer": {
+        "queryId": "q.resume_readiness",
+        "available": true,
+        "value": {
+          "resumable": false,
+          "blockers": [
+            "refresh process identity"
+          ],
+          "retention": 1
+        },
+        "witnessRefs": [
+          "cp.fixture"
+        ],
+        "explanation": "resume decision and the required-fact retention behind it",
+        "unavailableReason": null,
+        "question": "Can a new agent resume without chat history, and which required facts or live identities must be refreshed?"
+      },
+      "answerDigest": "sha256:dbee49ba2324ccdaff2d17f0588b5fc61c65dd1fe7a750c470a9be38078b69b7",
+      "witnessRefs": [
+        "cp.fixture"
+      ],
+      "corpusDigest": "sha256:9461adb294accbcf733aaa3b9be2675b1e4d672655bdec594debc2f861e0db5f"
+    },
+    {
+      "number": 8,
+      "question": "Which qualified provider can replace a failed implementation without dropping mandatory workflow nodes?",
+      "queryId": "q.blocked_nodes",
+      "corpus": "tests/fixtures/competency/repair4.json",
+      "expectedAnswer": {
+        "queryId": "q.blocked_nodes",
+        "available": true,
+        "value": [
+          {
+            "nodeId": "node.mandatory",
+            "reason": "no qualified replacement provider"
+          }
+        ],
+        "witnessRefs": [
+          "node.mandatory"
+        ],
+        "explanation": "mandatory nodes preserved as BLOCKED rather than dropped from the DAG",
+        "unavailableReason": null,
+        "question": "Which qualified provider can replace a failed implementation without dropping mandatory workflow nodes?"
+      },
+      "answerDigest": "sha256:b9e7d2b5975fc320059e94d5cb2909a1143ac8a6dcdfbbf07efd01ec8d3c52f3",
+      "witnessRefs": [
+        "node.mandatory"
+      ],
+      "corpusDigest": "sha256:9461adb294accbcf733aaa3b9be2675b1e4d672655bdec594debc2f861e0db5f"
+    },
+    {
+      "number": 9,
+      "question": "Which alleged 20–50x savings have valid matched baselines and which remain hypotheses?",
+      "queryId": "q.efficiency_status",
+      "corpus": "tests/fixtures/competency/repair4.json",
+      "expectedAnswer": {
+        "queryId": "q.efficiency_status",
+        "available": true,
+        "value": {
+          "verifiedClaims": 0,
+          "blockedClaims": 1,
+          "blockers": [
+            "no valid matched baseline"
+          ]
+        },
+        "witnessRefs": [
+          "hypothesis.20x"
+        ],
+        "explanation": "efficiency verification is a separate dimension from software acceptance",
+        "unavailableReason": null,
+        "question": "Which alleged 20–50x savings have valid matched baselines and which remain hypotheses?"
+      },
+      "answerDigest": "sha256:256ce923bbd1f489265a4e53cdfdac40079926e9d5d5c234b77267333903e59b",
+      "witnessRefs": [
+        "hypothesis.20x"
+      ],
+      "corpusDigest": "sha256:9461adb294accbcf733aaa3b9be2675b1e4d672655bdec594debc2f861e0db5f"
+    },
+    {
+      "number": 10,
+      "question": "Which changes invalidate cached results, which preserve offline result reuse, and why?",
+      "queryId": "q.cache_invalidation",
+      "corpus": "tests/fixtures/competency/repair4.json",
+      "expectedAnswer": {
+        "queryId": "q.cache_invalidation",
+        "available": true,
+        "value": [
+          {
+            "requestId": "cache.changed",
+            "decision": {
+              "recordType": "CacheReuseReceipt",
+              "receiptId": "HASH_EQUALITY:byte_comparison",
+              "claimType": "HASH_EQUALITY",
+              "cacheKeyDigest": "sha256:a026faf9c4f8ac220dd4e844fa4bf36bb23d6a81e2160f27b4a53f75c42113c0",
+              "boundInputs": {
+                "candidateBytes": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              },
+              "freshnessPolicyId": "cache.fixture",
+              "reused": false,
+              "refusedReason": "dependency closure changed: candidateBytes"
+            }
+          },
+          {
+            "requestId": "cache.same",
+            "decision": {
+              "recordType": "CacheReuseReceipt",
+              "receiptId": "HASH_EQUALITY:byte_comparison",
+              "claimType": "HASH_EQUALITY",
+              "cacheKeyDigest": "sha256:a026faf9c4f8ac220dd4e844fa4bf36bb23d6a81e2160f27b4a53f75c42113c0",
+              "boundInputs": {
+                "candidateBytes": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              },
+              "freshnessPolicyId": "cache.fixture",
+              "reused": true,
+              "reason": "pure comparison over unchanged frozen bytes; every relevant dependency is bound and stable"
+            }
+          },
+          {
+            "requestId": "cache.unknown",
+            "decision": {
+              "recordType": "CacheReuseReceipt",
+              "receiptId": "HASH_EQUALITY:byte_comparison",
+              "claimType": "HASH_EQUALITY",
+              "cacheKeyDigest": "sha256:a026faf9c4f8ac220dd4e844fa4bf36bb23d6a81e2160f27b4a53f75c42113c0",
+              "boundInputs": {
+                "candidateBytes": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+              },
+              "freshnessPolicyId": "cache.fixture",
+              "reused": false,
+              "refusedReason": "cached entry age is unknown under maxAgeSeconds policy"
+            }
+          }
+        ],
+        "witnessRefs": [
+          "cache.changed",
+          "cache.same",
+          "cache.unknown"
+        ],
+        "explanation": "recompute reuse from frozen dependencies, explicit age and freshness policy",
+        "unavailableReason": null,
+        "question": "Which changes invalidate cached results, which preserve offline result reuse, and why?"
+      },
+      "answerDigest": "sha256:2d13e8aef7767c3fe6d797c2933f416aa356577fb4866922ad411adb7f8b3bec",
+      "witnessRefs": [
+        "cache.changed",
+        "cache.same",
+        "cache.unknown"
+      ],
+      "corpusDigest": "sha256:9461adb294accbcf733aaa3b9be2675b1e4d672655bdec594debc2f861e0db5f"
+    },
+    {
+      "number": 11,
+      "question": "What changed between sealed bundles, and is a full materialization equivalent to their delta chain?",
+      "queryId": "q.bundle_delta",
+      "corpus": "tests/fixtures/competency/repair4.json",
+      "expectedAnswer": {
+        "queryId": "q.bundle_delta",
+        "available": true,
+        "value": {
+          "changedClaimIds": [
+            "c.added"
+          ],
+          "materializationEquivalent": true,
+          "resolvedStateDigest": "sha256:746502be29eb6988cc1d079c8c4bb847570fdae86390b1451f8f0b7a43f9ca29"
+        },
+        "witnessRefs": [
+          "bundle.base",
+          "bundle.full",
+          "delta.one"
+        ],
+        "explanation": "resolve the delta chain and compare its state digest with the supplied full materialization",
+        "unavailableReason": null,
+        "question": "What changed between sealed bundles, and is a full materialization equivalent to their delta chain?"
+      },
+      "answerDigest": "sha256:ea48b96d8346ef9e81ee273299f79b82b46eb071e38e9a1d8aec22900e4f92fc",
+      "witnessRefs": [
+        "bundle.base",
+        "bundle.full",
+        "delta.one"
+      ],
+      "corpusDigest": "sha256:9461adb294accbcf733aaa3b9be2675b1e4d672655bdec594debc2f861e0db5f"
+    },
+    {
+      "number": 12,
+      "question": "Does the evidence prove saved-state self-consistency, cross-map shape equivalence, site placement, or historical persistence?",
+      "queryId": "q.evidence_dimensions",
+      "corpus": "tests/fixtures/competency/repair4.json",
+      "expectedAnswer": {
+        "queryId": "q.evidence_dimensions",
+        "available": false,
+        "value": null,
+        "witnessRefs": [
+          "fixture:repair4-competency"
+        ],
+        "explanation": "UNAVAILABLE",
+        "unavailableReason": "no admissible dimension-specific observations for: crossMapShapeEquivalence, sitePlacement, historicalPersistence",
+        "question": "Does the evidence prove saved-state self-consistency, cross-map shape equivalence, site placement, or historical persistence?"
+      },
+      "answerDigest": "sha256:dbe53034df6558cec82d0d7a6d1d1ab1710a7936c84037f27647dd0cc6255019",
+      "witnessRefs": [
+        "fixture:repair4-competency"
+      ],
+      "corpusDigest": "sha256:9461adb294accbcf733aaa3b9be2675b1e4d672655bdec594debc2f861e0db5f"
+    },
+    {
+      "number": 13,
+      "question": "Which proposed promotion would cross an authority boundary or rely on a comparison-only producer result?",
+      "queryId": "q.promotion_boundaries",
+      "corpus": "tests/fixtures/competency/repair4.json",
+      "expectedAnswer": {
+        "queryId": "q.promotion_boundaries",
+        "available": true,
+        "value": [
+          {
+            "requestId": "promotion.fixture",
+            "decision": {
+              "recordType": "PromotionDecision",
+              "candidateDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "auditResultDigest": null,
+              "policyDigest": "sha256:b3bb7d8f738928636021786ac2db663a188af12d960b2fcd9728ed79feb04694",
+              "state": "INELIGIBLE",
+              "reasons": [
+                "the audit result does not name the frozen bundle it evaluated",
+                "the audit was not produced by the independent auditor role"
+              ],
+              "issuerRole": "worker",
+              "humanApprovalRefs": []
+            },
+            "crossesAuthorityBoundary": true,
+            "comparisonOnlyProducerResult": true
+          }
+        ],
+        "witnessRefs": [
+          "promotion.fixture"
+        ],
+        "explanation": "pure promotion policy plus issuer/actuator separation and comparison-only qualification; no actuation",
+        "unavailableReason": null,
+        "question": "Which proposed promotion would cross an authority boundary or rely on a comparison-only producer result?"
+      },
+      "answerDigest": "sha256:0510c76d4d184a14fadeee6a77bdd4d09bd58bd06f18e4326ce7faa90c46a353",
+      "witnessRefs": [
+        "promotion.fixture"
+      ],
+      "corpusDigest": "sha256:9461adb294accbcf733aaa3b9be2675b1e4d672655bdec594debc2f861e0db5f"
+    },
+    {
+      "number": 14,
+      "question": "Which legacy records were migrated without upgrading their authority or synthetic/observed status?",
+      "queryId": "q.legacy_migration",
+      "corpus": "tests/fixtures/competency/repair4.json",
+      "expectedAnswer": {
+        "queryId": "q.legacy_migration",
+        "available": true,
+        "value": [
+          {
+            "schemaVersion": "2.0.0",
+            "recordType": "LegacyExample",
+            "hashProfile": "continuity.core.v2",
+            "provenance": {
+              "origin": "SYNTHETIC_FIXTURE",
+              "productionMethod": "TRANSCRIBED",
+              "observationChannel": "FILE_BYTES",
+              "authorityClass": "POLICY_OR_SYNTHETIC_AID",
+              "operationalOwnership": "NOT_APPLICABLE",
+              "verificationStatus": "UNVERIFIED",
+              "actor": "migration",
+              "syntheticFixture": true,
+              "sourceRefs": [
+                "783b173fb8eec97c19a27521573cd90ff71aaae2533a2cba68b777e558748e43"
+              ]
+            },
+            "migrationReceipt": {
+              "recordType": "MigrationReceipt",
+              "sourcePath": "fixture:legacy",
+              "legacyProfile": "ontology.core.v1",
+              "legacyDigest": "783b173fb8eec97c19a27521573cd90ff71aaae2533a2cba68b777e558748e43",
+              "legacyBytesPreserved": true,
+              "deterministic": true,
+              "unknownFields": {},
+              "note": "The original record is unchanged and still verifies under ontology.core.v1. This is a new semantic record that cites it.",
+              "syntheticNote": "This record originated as a synthetic fixture. It stays synthetic after migration and remains inadmissible for any live or measured-savings claim."
+            },
+            "legacyPayload": {
+              "status": "PASS"
+            },
+            "revisionId": "sha256:3988cf53b6de9435ec0e7d5e7817a30962f6d55b86fec8c339b7fc3420ad999e"
+          }
+        ],
+        "witnessRefs": [
+          "migration.fixture"
+        ],
+        "explanation": "migration preserves producer status, original identity, authority ceiling and synthetic qualification",
+        "unavailableReason": null,
+        "question": "Which legacy records were migrated without upgrading their authority or synthetic/observed status?"
+      },
+      "answerDigest": "sha256:9eca60ca666c27e7bd45167097532231aee65067a1f122147ad3526ab2606920",
+      "witnessRefs": [
+        "migration.fixture"
+      ],
+      "corpusDigest": "sha256:9461adb294accbcf733aaa3b9be2675b1e4d672655bdec594debc2f861e0db5f"
+    },
+    {
+      "number": 15,
+      "question": "What exact software, deployment and live-provider scopes does the release qualify?",
+      "queryId": "q.release_dimensions",
+      "corpus": "tests/fixtures/competency/repair4.json",
+      "expectedAnswer": {
+        "queryId": "q.release_dimensions",
+        "available": true,
+        "value": {
+          "SOFTWARE_ACCEPTED": "UNKNOWN",
+          "EFFICIENCY_VERIFIED": "NOT_RUN",
+          "DEPLOYMENT_VERIFIED": "NOT_RUN",
+          "LIVE_ADAPTER_QUALIFIED": "NOT_RUN"
+        },
+        "witnessRefs": [
+          "DEPLOYMENT_VERIFIED",
+          "EFFICIENCY_VERIFIED",
+          "LIVE_ADAPTER_QUALIFIED",
+          "SOFTWARE_ACCEPTED"
+        ],
+        "explanation": "software acceptance, efficiency verification, deployment and live qualification are reported independently",
+        "unavailableReason": null,
+        "question": "What exact software, deployment and live-provider scopes does the release qualify?"
+      },
+      "answerDigest": "sha256:f9a2aa45f1c123d88de3f41f82aafbbe8dec600207f9ad2f7c575cd8f2e926be",
+      "witnessRefs": [
+        "DEPLOYMENT_VERIFIED",
+        "EFFICIENCY_VERIFIED",
+        "LIVE_ADAPTER_QUALIFIED",
+        "SOFTWARE_ACCEPTED"
+      ],
+      "corpusDigest": "sha256:9461adb294accbcf733aaa3b9be2675b1e4d672655bdec594debc2f861e0db5f"
+    }
+  ]
+}

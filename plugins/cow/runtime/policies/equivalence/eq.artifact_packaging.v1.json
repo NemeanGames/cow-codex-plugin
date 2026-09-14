@@ -1,0 +1,75 @@
+{
+  "schema": "continuity.equivalence-contract/2",
+  "name": "eq.artifact_packaging.v1",
+  "contractVersion": "1.0.0",
+  "frozen": true,
+  "doc": "Comparison conditions for the artifact-packaging workflow family. Frozen before any cohort is measured; changing any field creates a new contract version and invalidates cohorts measured under the old one.",
+  "heldConstant": [
+    "requested outcome",
+    "input file family and byte content",
+    "required artifact kinds",
+    "acceptance thresholds",
+    "evidence standard",
+    "auditor requirements",
+    "work-unit weighting"
+  ],
+  "permittedDifferences": [
+    "which implementation realizes the packaging capability",
+    "the order in which declared members are supplied",
+    "wall-clock start time"
+  ],
+  "invalidatingDifferences": [
+    "a different member set",
+    "a relaxed verification requirement on either side",
+    "a baseline that received the assisted path's output",
+    "a mixed warm and cold cache condition",
+    "a different work-unit policy version"
+  ],
+  "requiredArtifactKinds": ["payload_archive", "payload_manifest"],
+  "qualityThresholds": [
+    {
+      "predicateId": "q.verification",
+      "subjectPath": "verificationStatus",
+      "operator": "EQUAL",
+      "expected": "PASS",
+      "mandatory": true
+    },
+    {
+      "predicateId": "q.members",
+      "subjectPath": "memberCount",
+      "operator": "NONINFERIOR_TO_BASELINE",
+      "mandatory": true
+    },
+    {
+      "predicateId": "q.evidence_closure",
+      "subjectPath": "evidenceClosure",
+      "operator": "GREATER_THAN_OR_EQUAL",
+      "expected": 1,
+      "mandatory": true
+    }
+  ],
+  "evidenceStandard": [
+    {
+      "requirementId": "eq.e1",
+      "evidenceKind": "manifest",
+      "minimumAuthorityClasses": ["DETERMINISTIC_DERIVATION"],
+      "mandatory": true,
+      "syntheticAcceptable": false
+    },
+    {
+      "requirementId": "eq.e2",
+      "evidenceKind": "provider_usage_receipt",
+      "minimumAuthorityClasses": ["PROVIDER_OBSERVATION"],
+      "mandatory": true,
+      "syntheticAcceptable": false,
+      "note": "Required for any vendor-token claim. Where no provider is called this requirement is inapplicable and the claim is limited to time and correctness."
+    }
+  ],
+  "failureRecoveryPolicy": "a failed attempt stays in the cohort with its full cost; retries are counted, never discarded",
+  "weightingPolicyRef": "wup.e2e.v1",
+  "cacheStratum": "mixed_rejected",
+  "tokenAccountingBasis": "provider-reported usage under a pinned accounting version",
+  "normalizationContract": null,
+  "minimumMatchedPairs": 25,
+  "minimumPairsNote": "25 matched pairs is the initial broad-claim policy; a smaller cohort produces an evaluation, not a published claim."
+}

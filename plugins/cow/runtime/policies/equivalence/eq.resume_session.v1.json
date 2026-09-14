@@ -1,0 +1,47 @@
+{
+  "schema": "continuity.equivalence-contract/2",
+  "name": "eq.resume_session.v1",
+  "contractVersion": "1.0.0",
+  "frozen": true,
+  "doc": "Comparison conditions for the resume-session family: a replacement agent must report twelve facts about an interrupted session. Baseline reconstructs from the rendered history; assisted resumes from a committed checkpoint. Frozen before any pair is measured.",
+  "workflowFamily": "resume:session_state_report",
+  "heldConstant": [
+    "the twelve questions and their oracle",
+    "the rendered history bytes (baseline) and the checkpoint bytes (assisted), both pinned by digest",
+    "the 40-tool-call cap, applied to both arms",
+    "model and effort",
+    "tools available"
+  ],
+  "permittedDifferences": [
+    "the arm's inputs: history (baseline) versus checkpoint (assisted) -- this is the treatment",
+    "how the arm searches or reads",
+    "prose in the report values"
+  ],
+  "invalidatingDifferences": [
+    "an arm that saw ORACLE.json",
+    "an arm that saw the other arm's directory",
+    "a cap applied to one arm only",
+    "a different model or effort between the arms of one pair",
+    "a fact answered by consulting the ontology repository's documents rather than the history or checkpoint"
+  ],
+  "requiredArtifactKinds": ["state_report"],
+  "qualityThresholds": [
+    {"predicateId": "q.report_accepted", "subjectPath": "catalogAccepted", "operator": "EQUAL", "expected": true, "mandatory": true},
+    {"predicateId": "q.predicates_failed", "subjectPath": "failedPredicateCount", "operator": "EQUAL", "expected": 0, "mandatory": true}
+  ],
+  "evidenceStandard": [
+    {"requirementId": "eq.e1", "evidenceKind": "provider_usage_receipt", "minimumAuthorityClasses": ["PROVIDER_OBSERVATION"], "mandatory": true, "syntheticAcceptable": false},
+    {"requirementId": "eq.e2", "evidenceKind": "derivation_receipt", "minimumAuthorityClasses": ["DETERMINISTIC_DERIVATION"], "mandatory": true, "syntheticAcceptable": false}
+  ],
+  "failureRecoveryPolicy": "a failed or over-cap arm stays in the cohort with its full cost; UNKNOWN answers are honest failures and are counted, never re-run",
+  "weightingPolicyRef": "wup.resume_session.v1",
+  "cacheStratum": "cold",
+  "tokenAccountingBasis": "anthropic messages-api usage, observed-2026-09-10 layout; one measurement per requestId",
+  "costBases": {
+    "context_tokens": "INPUT + CACHE_CREATION + CACHE_READ",
+    "output_tokens": "OUTPUT",
+    "total_tokens": "context + output"
+  },
+  "normalizationContract": null,
+  "minimumMatchedPairs": 25
+}

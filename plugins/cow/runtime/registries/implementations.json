@@ -1,0 +1,98 @@
+{
+  "schema": "continuity.registry.implementations/2",
+  "registryVersion": "2.0.0",
+  "doc": "Versioned providers. Qualification is bound to an exact version and configuration and never floats. A tentative mapping stays tentative until an actual implementation schema and an observed trace bind it; a plugin name is not a capability definition.",
+  "implementations": {
+    "impl.local_packaging.zipstore.v1": {
+      "providerName": "continuity_integrations.local_packaging",
+      "providerVersion": "1.0.0",
+      "realizes": ["cap.artifact.package", "cap.artifact.verify"],
+      "qualification": "QUALIFIED",
+      "qualificationBasis": "offline conformance plus a real observed local execution captured end to end",
+      "authorizedScope": ["local_write:run_root", "read_only:declared_inputs"],
+      "failureModes": ["PATH_ESCAPE", "MEMBER_DIGEST_MISMATCH", "OVERSIZED_MEMBER", "DUPLICATE_MEMBER"],
+      "resourceProfile": {"vendorTokens": "none", "note": "a real local trace with no vendor usage supports time, replay and correctness claims, not a measured token reduction"}
+    },
+    "impl.prior_context.checkpoint_store.v1": {
+      "providerName": "continuity_ontology.checkpoints",
+      "providerVersion": "2.0.0",
+      "realizes": ["cap.prior_context.retrieve"],
+      "qualification": "QUALIFIED",
+      "qualificationBasis": "fresh-process resume test restores the required-fact inventory without conversation history",
+      "authorizedScope": ["read_only:run_root"],
+      "failureModes": ["MISSING_REQUIRED_FACT", "STALE_EPHEMERAL_BINDING", "EXPIRED_AUTHORIZATION", "OPEN_OPERATION_UNRECONCILED"]
+    },
+    "impl.reference.local_manifest.v1": {
+      "providerName": "continuity_integrations.reference_retrieval",
+      "providerVersion": "1.0.0",
+      "realizes": ["cap.reference.retrieve"],
+      "qualification": "QUALIFIED",
+      "qualificationBasis": "resolves admitted source manifests to exact bytes with a retrieval receipt",
+      "authorizedScope": ["read_only:source_snapshots"],
+      "failureModes": ["UNRESOLVED_REFERENCE", "DIGEST_MISMATCH"]
+    },
+    "impl.cityqa.runner.v1_0_0": {
+      "providerName": "cityqa",
+      "providerVersion": "1.0.0",
+      "realizes": ["cap.qa.probe"],
+      "qualification": "QUALIFIED",
+      "qualificationBasis": "preserved source package; its own 128 tests re-observed on this host under CPython 3.10.8",
+      "authorizedScope": ["read_only:fixtures", "local_write:run_root"],
+      "failureModes": ["MISSING_CONTRACT_VALUE", "PROBE_ERROR", "STOP_RULE_TRIGGERED"]
+    },
+    "impl.cityqa.auditor.v1_0_0": {
+      "providerName": "cityqa_audit",
+      "providerVersion": "1.0.0",
+      "realizes": ["cap.qa.audit"],
+      "qualification": "QUALIFIED",
+      "qualificationBasis": "preserved source package with its own recomputation boundary",
+      "authorizedScope": ["read_only:frozen_audit_input", "local_write:audit_out"],
+      "failureModes": ["RECEIPT_INTEGRITY_FAILURE", "ROLE_ISOLATION_FAILURE"]
+    },
+    "impl.unreal.remote_control.v_unbound": {
+      "providerName": "unreal_remote_control",
+      "providerVersion": "UNKNOWN",
+      "realizes": ["cap.city.collect_instances"],
+      "qualification": "BLOCKED",
+      "qualificationBasis": "no live probe is authorized under this development task; the collector is authored and offline-tested only",
+      "authorizedScope": [],
+      "blockedReason": "LIVE_QUALIFICATION_REQUIRES_SEPARATE_FROZEN_PACKET",
+      "failureModes": ["PLUGIN_PREREQUISITE_MISSING", "REOPEN_MAP_MISMATCH", "DUPLICATE_BUILDING_CONTROLS", "STALE_MANIFEST", "COLLECTOR_ATTRIBUTE_ERROR"],
+      "negativeQualification": {
+        "subject": "remote code execution endpoint",
+        "result": "NEGATIVELY_QUALIFIED",
+        "boundTo": "the exact configuration observed in the historical report",
+        "note": "Configuration-bound only. This does not authorize a re-probe or a settings change, and it does not generalize to another build or configuration."
+      }
+    },
+    "impl.view.html_svg.v1": {
+      "providerName": "continuity_ontology.projection",
+      "providerVersion": "2.0.0",
+      "realizes": ["cap.view.render"],
+      "qualification": "QUALIFIED",
+      "qualificationBasis": "accessible static HTML and SVG generated from committed semantic inputs",
+      "authorizedScope": ["local_write:web"],
+      "failureModes": ["CLIPPED_CRITICAL_DATA", "COLOR_ONLY_STATUS", "TRUNCATED_CONTROLLED_TERM", "RENDERER_UNAVAILABLE"]
+    },
+    "impl.view.raster.cairosvg": {
+      "providerName": "cairosvg",
+      "providerVersion": "UNKNOWN",
+      "realizes": ["cap.view.render"],
+      "qualification": "NOT_ASSESSED",
+      "qualificationBasis": "optional raster backend; not importable in this environment",
+      "authorizedScope": ["local_write:web"],
+      "blockedReason": "RASTER_BACKEND_NOT_IMPORTABLE",
+      "note": "A missing renderer is an unavailable view, not a successful picture. SVG remains authoritative."
+    },
+    "impl.provider.tentative_plugin_map": {
+      "providerName": "TENTATIVE_PLUGIN_NAME_MAPPING",
+      "providerVersion": "UNBOUND",
+      "realizes": ["cap.provider.chat_completion"],
+      "qualification": "TENTATIVE",
+      "qualificationBasis": "the five plugin-name mappings from the proposal are names only; no implementation schema or observed trace binds them yet",
+      "authorizedScope": [],
+      "blockedReason": "NO_IMPLEMENTATION_SCHEMA_OR_OBSERVED_TRACE",
+      "note": "Kept explicitly TENTATIVE rather than promoted to a capability by naming."
+    }
+  }
+}

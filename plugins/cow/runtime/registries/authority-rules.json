@@ -1,0 +1,132 @@
+{
+  "schema": "continuity.registry.authority-rules/2",
+  "registryVersion": "2.0.0",
+  "doc": "Per-claim-type admissibility. There is no global numeric trust ranking: a rule names which authority classes and evidence kinds can establish that particular claim. An unknown claim type is never admitted, which is how a new claim type is prevented from silently becoming PASS.",
+  "allowlistedOperators": {
+    "EQUAL": {"arity": 2, "doc": "exact equality after the claim's declared normalization"},
+    "NOT_EQUAL": {"arity": 2},
+    "LESS_THAN": {"arity": 2, "numeric": true},
+    "LESS_THAN_OR_EQUAL": {"arity": 2, "numeric": true},
+    "GREATER_THAN": {"arity": 2, "numeric": true},
+    "GREATER_THAN_OR_EQUAL": {"arity": 2, "numeric": true},
+    "WITHIN_TOLERANCE": {"arity": 2, "numeric": true, "requiresTolerance": true},
+    "SET_EQUAL": {"arity": 2, "doc": "unordered equality over a bounded enumerated scope"},
+    "SUBSET_OF": {"arity": 2},
+    "SEQUENCE_EQUAL": {"arity": 2, "doc": "ordered equality; order is semantic"},
+    "PRESENT": {"arity": 1},
+    "ABSENT": {"arity": 1, "requiresEnumerationClosure": true, "doc": "absence needs a complete enumeration over a bounded scope; an empty query result is not absence"},
+    "DIGEST_EQUAL": {"arity": 2, "doc": "equality within one declared digest domain; cross-domain comparison is rejected"},
+    "COUNT_EQUAL": {"arity": 2, "numeric": true, "requiresEnumerationClosure": true}
+  },
+  "note": "There is no expression language and no eval. A predicate names one operator from this table; anything else fails closed.",
+  "byClaimType": {
+    "IDENTITY": {
+      "permittedAuthorityClasses": ["AUTHORITATIVE_SOURCE", "DETERMINISTIC_DERIVATION"],
+      "permittedEvidenceKinds": ["source_bytes", "manifest", "derivation_receipt"],
+      "syntheticAcceptable": false
+    },
+    "HASH_EQUALITY": {
+      "permittedAuthorityClasses": ["AUTHORITATIVE_SOURCE", "DETERMINISTIC_DERIVATION"],
+      "permittedEvidenceKinds": ["source_bytes", "manifest", "derivation_receipt"],
+      "syntheticAcceptable": false
+    },
+    "PRESENCE": {
+      "permittedAuthorityClasses": ["AUTHORITATIVE_SOURCE", "DETERMINISTIC_DERIVATION", "PROVIDER_OBSERVATION", "OPERATION_OWNED_RESULT"],
+      "permittedEvidenceKinds": ["source_bytes", "provider_readback", "process_observation", "engine_observation", "manifest"],
+      "syntheticAcceptable": true
+    },
+    "EXACT_COUNT": {
+      "permittedAuthorityClasses": ["AUTHORITATIVE_SOURCE", "DETERMINISTIC_DERIVATION", "PROVIDER_OBSERVATION"],
+      "permittedEvidenceKinds": ["source_bytes", "engine_observation", "serialized_rows", "manifest"],
+      "syntheticAcceptable": true,
+      "note": "A screenshot cannot establish an exact count. visual_capture is deliberately absent from the permitted kinds."
+    },
+    "BOUNDED_VALUE": {
+      "permittedAuthorityClasses": ["AUTHORITATIVE_SOURCE", "DETERMINISTIC_DERIVATION", "PROVIDER_OBSERVATION"],
+      "permittedEvidenceKinds": ["measurement", "engine_observation", "source_bytes"],
+      "syntheticAcceptable": true
+    },
+    "ORDER": {
+      "permittedAuthorityClasses": ["AUTHORITATIVE_SOURCE", "DETERMINISTIC_DERIVATION"],
+      "permittedEvidenceKinds": ["source_bytes", "event_log", "derivation_receipt"],
+      "syntheticAcceptable": true
+    },
+    "SET_EQUALITY": {
+      "permittedAuthorityClasses": ["AUTHORITATIVE_SOURCE", "DETERMINISTIC_DERIVATION", "OPERATION_OWNED_RESULT"],
+      "permittedEvidenceKinds": ["enumeration_closure", "manifest", "mutation_ledger"],
+      "syntheticAcceptable": true
+    },
+    "REFERENCE_CLOSURE": {
+      "permittedAuthorityClasses": ["DETERMINISTIC_DERIVATION", "AUTHORITATIVE_SOURCE"],
+      "permittedEvidenceKinds": ["enumeration_closure", "manifest"],
+      "syntheticAcceptable": true
+    },
+    "PROVENANCE": {
+      "permittedAuthorityClasses": ["AUTHORITATIVE_SOURCE", "DETERMINISTIC_DERIVATION"],
+      "permittedEvidenceKinds": ["source_bytes", "manifest", "derivation_receipt"],
+      "syntheticAcceptable": false
+    },
+    "AUTHORITY": {
+      "permittedAuthorityClasses": ["AUTHORITATIVE_SOURCE", "OPERATION_OWNED_RESULT"],
+      "permittedEvidenceKinds": ["authorization_receipt", "manifest"],
+      "syntheticAcceptable": false
+    },
+    "GEOMETRY_RELATION": {
+      "permittedAuthorityClasses": ["DETERMINISTIC_DERIVATION", "PROVIDER_OBSERVATION"],
+      "permittedEvidenceKinds": ["engine_observation", "serialized_rows", "measurement"],
+      "syntheticAcceptable": true,
+      "note": "An image difference does not establish a geometric relation."
+    },
+    "PERSISTENCE_EQUIVALENCE": {
+      "permittedAuthorityClasses": ["DETERMINISTIC_DERIVATION", "PROVIDER_OBSERVATION"],
+      "permittedEvidenceKinds": ["engine_observation", "source_bytes", "reopen_observation"],
+      "requiredObservationChannels": ["ENGINE_API", "FILE_BYTES"],
+      "syntheticAcceptable": false,
+      "note": "Saved metadata and a fresh measurement taken from the same candidate establish self-consistency, not an independently recorded historical comparison."
+    },
+    "MUTATION_EFFECT": {
+      "permittedAuthorityClasses": ["OPERATION_OWNED_RESULT"],
+      "permittedEvidenceKinds": ["mutation_ledger", "provider_readback", "authorization_receipt"],
+      "syntheticAcceptable": false,
+      "note": "A provider success field and a screenshot are both inadmissible here."
+    },
+    "EXECUTION_PATH": {
+      "permittedAuthorityClasses": ["DETERMINISTIC_DERIVATION", "OPERATION_OWNED_RESULT"],
+      "permittedEvidenceKinds": ["event_log", "process_observation"],
+      "syntheticAcceptable": true
+    },
+    "ROLE_SEPARATION": {
+      "permittedAuthorityClasses": ["DETERMINISTIC_DERIVATION", "AUTHORITATIVE_SOURCE"],
+      "permittedEvidenceKinds": ["source_bytes", "process_observation", "manifest"],
+      "syntheticAcceptable": true
+    },
+    "VISUAL_CAPTURE": {
+      "permittedAuthorityClasses": ["PROVIDER_OBSERVATION", "HEURISTIC_DECISION"],
+      "permittedEvidenceKinds": ["visual_capture"],
+      "syntheticAcceptable": true,
+      "note": "Supports capture integrity and visible-placement review only."
+    },
+    "STATE_CLOSURE": {
+      "permittedAuthorityClasses": ["DETERMINISTIC_DERIVATION", "OPERATION_OWNED_RESULT"],
+      "permittedEvidenceKinds": ["enumeration_closure", "manifest", "event_log"],
+      "syntheticAcceptable": true
+    },
+    "RESOURCE_MEASUREMENT": {
+      "permittedAuthorityClasses": ["PROVIDER_OBSERVATION", "DETERMINISTIC_DERIVATION"],
+      "permittedEvidenceKinds": ["provider_usage_receipt", "measurement"],
+      "syntheticAcceptable": true,
+      "note": "A synthetic measurement is admissible for engine conformance and inadmissible for any published savings claim; the live gate sets for_live_claim."
+    },
+    "EQUIVALENCE": {
+      "permittedAuthorityClasses": ["DETERMINISTIC_DERIVATION"],
+      "permittedEvidenceKinds": ["benchmark_pair", "measurement", "manifest"],
+      "syntheticAcceptable": true
+    },
+    "DEPLOYMENT": {
+      "permittedAuthorityClasses": ["PROVIDER_OBSERVATION", "OPERATION_OWNED_RESULT"],
+      "permittedEvidenceKinds": ["http_observation", "build_receipt"],
+      "syntheticAcceptable": false,
+      "note": "A prepared workflow file is not deployment evidence; an HTTP 200 alone does not establish that the intended release content is live."
+    }
+  }
+}

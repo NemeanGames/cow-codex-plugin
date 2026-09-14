@@ -1,0 +1,3198 @@
+# GENERATED FROM ontology/metamodel.json -- DO NOT EDIT
+# semanticModelDigest: sha256:356d05c8e459888cd22779f81e74d9e856a749105e115cca66391806a95aca4a
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix cont: <https://ontology.continuity.invalid/2.0.0/> .
+
+cont:AcceptanceReceiptShape a sh:NodeShape ;
+    sh:targetClass cont:AcceptanceReceipt ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:AcceptanceReceipt.acceptedAt ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AcceptanceReceipt.accountingId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AcceptanceReceipt.correctsReceiptId ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:AcceptanceReceipt.firstQualifyingAttempt ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AcceptanceReceipt.partition ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AcceptanceReceipt.receiptId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AcceptanceReceipt.requiredGateResults ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AcceptanceReceipt.revocationReason ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:AcceptanceReceipt.revoked ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AcceptanceReceipt.weight ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AcceptanceReceipt.workUnitPolicyVersion ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:AcceptedWorkLedgerEntryShape a sh:NodeShape ;
+    sh:targetClass cont:AcceptedWorkLedgerEntry ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:AcceptedWorkLedgerEntry.accountingId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AcceptedWorkLedgerEntry.delta ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AcceptedWorkLedgerEntry.measurementWindow ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AcceptedWorkLedgerEntry.receiptId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AcceptedWorkLedgerEntry.sequence ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AcceptedWorkLedgerEntry.weight ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+    ] .
+
+cont:AdjudicationReceiptShape a sh:NodeShape ;
+    sh:targetClass cont:AdjudicationReceipt ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:AdjudicationReceipt.authorizedByRole ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AdjudicationReceipt.citedEvidence ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AdjudicationReceipt.citedPolicy ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AdjudicationReceipt.conflictId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AdjudicationReceipt.disposition ;
+        sh:in ( "UNRESOLVED" "ADJUDICATED_ACCEPT" "ADJUDICATED_REJECT" "ADJUDICATED_SPLIT_SCOPE" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AdjudicationReceipt.rationale ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ArtifactShape a sh:NodeShape ;
+    sh:targetClass cont:Artifact ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:Artifact.artifactKind ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Artifact.name ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Artifact.versions ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:ArtifactVersion ] ) ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ArtifactVersionShape a sh:NodeShape ;
+    sh:targetClass cont:ArtifactVersion ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:ArtifactVersion.artifact ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Artifact ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ArtifactVersion.contentDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ArtifactVersion.derivationReceipt ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ArtifactVersion.directlyDerivedFrom ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ArtifactVersion.mediaType ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ArtifactVersion.sizeBytes ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] .
+
+cont:AuditResultShape a sh:NodeShape ;
+    sh:targetClass cont:AuditResult ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:AuditResult.auditId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AuditResult.auditInputManifestDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AuditResult.auditorImplementationDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AuditResult.auditorRole ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AuditResult.commonModeDependencies ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AuditResult.disagreedWithProducer ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AuditResult.frozenBundleDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AuditResult.mandatoryTotals ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AuditResult.resultDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AuditResult.verdict ;
+        sh:in ( "APPROVE" "REJECT" "INDETERMINATE" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AuditResult.verdictRationale ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AuditResult.verifications ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Verification ] ) ;
+        sh:minCount 1 ;
+    ] .
+
+cont:AuthorizedOperationShape a sh:NodeShape ;
+    sh:targetClass cont:AuthorizedOperation ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:AuthorizedOperation.authorizedScope ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Scope ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AuthorizedOperation.capability ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Capability ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AuthorizedOperation.expiresAt ;
+        sh:datatype xsd:dateTime ;
+    ] ;
+    sh:property [
+        sh:path cont:AuthorizedOperation.grantDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AuthorizedOperation.grantedByRole ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AuthorizedOperation.operationId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AuthorizedOperation.replayGuard ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:AuthorizedOperation.secretsExcluded ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] .
+
+cont:BenchmarkPairShape a sh:NodeShape ;
+    sh:targetClass cont:BenchmarkPair ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:BenchmarkPair.assistedAccepted ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkPair.assistedTraceRef ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkPair.baselineAccepted ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkPair.baselineTraceRef ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkPair.cacheStratum ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkPair.contaminationChecks ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkPair.equivalenceContractDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkPair.exclusionReason ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkPair.includedInCohort ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkPair.pairId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkPair.receipts ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkPair.setupAmortized ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkPair.verificationCosts ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:VerificationCostSet ] ) ;
+    ] .
+
+cont:BenchmarkProtocolShape a sh:NodeShape ;
+    sh:targetClass cont:BenchmarkProtocol ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:BenchmarkProtocol.equivalenceContractDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkProtocol.frozen ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkProtocol.minimumPairs ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkProtocol.preRegisteredAt ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkProtocol.protocolId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkProtocol.protocolKind ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkProtocol.setupTreatment ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkProtocol.stoppingRule ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkProtocol.strata ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkProtocol.targetPairs ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:BenchmarkProtocol.uncertaintyMethod ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:CacheReuseReceiptShape a sh:NodeShape ;
+    sh:targetClass cont:CacheReuseReceipt ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:CacheReuseReceipt.boundInputs ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:CacheReuseReceipt.cacheKeyDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:CacheReuseReceipt.claimType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:CacheReuseReceipt.freshnessPolicyId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:CacheReuseReceipt.receiptId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:CacheReuseReceipt.refusedReason ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:CacheReuseReceipt.reused ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] .
+
+cont:CapabilityShape a sh:NodeShape ;
+    sh:targetClass cont:Capability ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:Capability.inputContract ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Contract ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Capability.intent ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Capability.name ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Capability.outputContract ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Contract ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Capability.sideEffectClass ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:CheckpointShape a sh:NodeShape ;
+    sh:targetClass cont:Checkpoint ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:Checkpoint.acceptedDecisions ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Decision ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Checkpoint.closureReceipt ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:ClosureReceipt ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Checkpoint.committed ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Checkpoint.lastSealedEventDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Checkpoint.lastSealedEventSeq ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Checkpoint.nextLegalActions ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Checkpoint.openOperations ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:OpenOperation ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Checkpoint.outcome ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Outcome ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Checkpoint.recoveryPolicyRef ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Checkpoint.snapshot ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:StateSnapshot ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Checkpoint.unresolvedClaims ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ChunkAggregateShape a sh:NodeShape ;
+    sh:targetClass cont:ChunkAggregate ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:ChunkAggregate.aggregateId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkAggregate.chunkRefs ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkAggregate.consistencyGuarantee ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkAggregate.consistencyWitnesses ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkAggregate.rejectionReasons ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkAggregate.requiredScope ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Scope ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkAggregate.status ;
+        sh:in ( "PASS" "FAIL" "UNKNOWN" "ERROR" "NOT_RUN" ) ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ChunkEnvelopeShape a sh:NodeShape ;
+    sh:targetClass cont:ChunkEnvelope ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:ChunkEnvelope.attempt ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkEnvelope.candidateDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkEnvelope.chunkId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkEnvelope.completed ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkEnvelope.deadlineMs ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkEnvelope.elapsedMs ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkEnvelope.engineCount ;
+        sh:datatype xsd:integer ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkEnvelope.mapIdentity ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkEnvelope.memberIds ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkEnvelope.policyDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkEnvelope.processCreationDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkEnvelope.rangeEnd ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkEnvelope.rangeStart ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkEnvelope.runId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkEnvelope.serializedRowCount ;
+        sh:datatype xsd:integer ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkEnvelope.snapshotEpoch ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkEnvelope.sourceDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ChunkEnvelope.timedOut ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ClaimShape a sh:NodeShape ;
+    sh:targetClass cont:Claim ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:Claim.claimId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Claim.freshnessPolicyRef ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:FreshnessPolicy ] ) ;
+    ] ;
+    sh:property [
+        sh:path cont:Claim.lifecycle ;
+        sh:in ( "DRAFT" "SEALED" "AUDITED" "SUPERSEDED" "REVOKED" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Claim.mandatory ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Claim.producerAssertion ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:ProducerAssertion ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Claim.proposition ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Proposition ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Claim.requiredEvidence ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:EvidenceRequirement ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Claim.sufficiency ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:EvidenceSufficiencyReceipt ] ) ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ClaimBundleShape a sh:NodeShape ;
+    sh:targetClass cont:ClaimBundle ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:ClaimBundle.bundleId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ClaimBundle.candidateDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ClaimBundle.lifecycle ;
+        sh:in ( "OPEN" "SEALED" "DELTA" "MATERIALIZED" "INVALIDATED" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ClaimBundle.memberIndex ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ClaimBundle.resolvedStateDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ClaimBundle.sealedAt ;
+        sh:datatype xsd:dateTime ;
+    ] .
+
+cont:ClaimBundleDeltaShape a sh:NodeShape ;
+    sh:targetClass cont:ClaimBundleDelta ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:ClaimBundleDelta.changedRevisions ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ClaimBundleDelta.deltaId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ClaimBundleDelta.depth ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ClaimBundleDelta.newEvidenceRefs ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ClaimBundleDelta.parentBundleDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ClaimBundleDelta.removedClaimIds ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ClaimBundleDelta.resolvedStateDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ClaimRevisionShape a sh:NodeShape ;
+    sh:targetClass cont:ClaimRevision ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:ClaimRevision.changeReason ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ClaimRevision.claim ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Claim ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ClaimRevision.claimId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ClaimRevision.parentRevisionDigest ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ClaimRevision.revisionNumber ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ClosureReceiptShape a sh:NodeShape ;
+    sh:targetClass cont:ClosureReceipt ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:ClosureReceipt.closureKind ;
+        sh:in ( "ENUMERATION" "MUTATION_SET" "DEPENDENCY" "EVIDENCE" "ROLLBACK" "STATE" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ClosureReceipt.complete ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ClosureReceipt.enumeratedMembers ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ClosureReceipt.expectedCount ;
+        sh:datatype xsd:integer ;
+    ] ;
+    sh:property [
+        sh:path cont:ClosureReceipt.incompleteReason ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ClosureReceipt.observedCount ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ClosureReceipt.scope ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Scope ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ClosureReceipt.witnessRefs ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ConflictSetShape a sh:NodeShape ;
+    sh:targetClass cont:ConflictSet ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:ConflictSet.claimIds ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ConflictSet.conflictId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ConflictSet.conflictingEvidence ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ConflictSet.description ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ConflictSet.disposition ;
+        sh:in ( "UNRESOLVED" "ADJUDICATED_ACCEPT" "ADJUDICATED_REJECT" "ADJUDICATED_SPLIT_SCOPE" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ConflictSet.invalidatesDownstream ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ContractShape a sh:NodeShape ;
+    sh:targetClass cont:Contract ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:Contract.contractVersion ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Contract.freshnessPolicyRef ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:FreshnessPolicy ] ) ;
+    ] ;
+    sh:property [
+        sh:path cont:Contract.name ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Contract.predicates ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Predicate ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Contract.requiredAuthorityClasses ;
+        sh:in ( "AUTHORITATIVE_SOURCE" "DETERMINISTIC_DERIVATION" "PROVIDER_OBSERVATION" "OPERATION_OWNED_RESULT" "HEURISTIC_DECISION" "POLICY_OR_SYNTHETIC_AID" "CALLER_ASSERTION" ) ;
+    ] ;
+    sh:property [
+        sh:path cont:Contract.requiredEvidence ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:EvidenceRequirement ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Contract.scope ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Contract.tolerances ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+    ] ;
+    sh:property [
+        sh:path cont:Contract.units ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+    ] .
+
+cont:DecisionShape a sh:NodeShape ;
+    sh:targetClass cont:Decision ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:Decision.citedInputs ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Decision.decisionKind ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Decision.disposition ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Decision.issuedByRole ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Decision.policyRef ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:Decision.rationale ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:EfficiencyClaimShape a sh:NodeShape ;
+    sh:targetClass cont:EfficiencyClaim ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:EfficiencyClaim.cohort ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:BenchmarkPair ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EfficiencyClaim.equivalenceContract ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:EquivalenceContract ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EfficiencyClaim.evaluatorResultRef ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:EfficiencyClaim.evaluatorVerdict ;
+        sh:in ( "APPROVE" "REJECT" "INDETERMINATE" ) ;
+    ] ;
+    sh:property [
+        sh:path cont:EfficiencyClaim.expectedClaim ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EfficiencyClaim.metricId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EfficiencyClaim.producerNotes ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:EfficiencyClaim.proposedValue ;
+        sh:datatype xsd:decimal ;
+    ] .
+
+cont:EntailmentReceiptShape a sh:NodeShape ;
+    sh:targetClass cont:EntailmentReceipt ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:EntailmentReceipt.authorityClasses ;
+        sh:in ( "AUTHORITATIVE_SOURCE" "DETERMINISTIC_DERIVATION" "PROVIDER_OBSERVATION" "OPERATION_OWNED_RESULT" "HEURISTIC_DECISION" "POLICY_OR_SYNTHETIC_AID" "CALLER_ASSERTION" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EntailmentReceipt.depth ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EntailmentReceipt.implementationDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EntailmentReceipt.intendedUse ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EntailmentReceipt.metamodelDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EntailmentReceipt.receiptId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EntailmentReceipt.relation ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EntailmentReceipt.ruleDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EntailmentReceipt.sourceGraphDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EntailmentReceipt.witnessPath ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:EnvironmentIdentityShape a sh:NodeShape ;
+    sh:targetClass cont:EnvironmentIdentity ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:EnvironmentIdentity.adapterEndpointConfigDigest ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:EnvironmentIdentity.hostId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EnvironmentIdentity.interpreter ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EnvironmentIdentity.interpreterVersion ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EnvironmentIdentity.moduleClosureDigest ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:EnvironmentIdentity.platform ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EnvironmentIdentity.processCreation ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+    ] ;
+    sh:property [
+        sh:path cont:EnvironmentIdentity.providerBuild ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+    ] ;
+    sh:property [
+        sh:path cont:EnvironmentIdentity.unknownFields ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:EquivalenceContractShape a sh:NodeShape ;
+    sh:targetClass cont:EquivalenceContract ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:EquivalenceContract.cacheStratum ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EquivalenceContract.escalationPermitted ;
+        sh:datatype xsd:boolean ;
+    ] ;
+    sh:property [
+        sh:path cont:EquivalenceContract.evidenceStandard ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:EvidenceRequirement ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EquivalenceContract.failureRecoveryPolicy ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EquivalenceContract.frozen ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EquivalenceContract.heldConstant ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EquivalenceContract.invalidatingDifferences ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EquivalenceContract.minimumMatchedPairs ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EquivalenceContract.name ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EquivalenceContract.normalizationContract ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:EquivalenceContract.permittedDifferences ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EquivalenceContract.qualityThresholds ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Predicate ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EquivalenceContract.requiredArtifactKinds ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EquivalenceContract.tokenAccountingBasis ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EquivalenceContract.verificationCostFields ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:EquivalenceContract.weightingPolicyRef ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:WorkUnitPolicy ] ) ;
+        sh:minCount 1 ;
+    ] .
+
+cont:EvidenceShape a sh:NodeShape ;
+    sh:targetClass cont:Evidence ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:Evidence.admissibility ;
+        sh:in ( "ADMISSIBLE" "INADMISSIBLE_SCOPE" "INADMISSIBLE_AUTHORITY" "INADMISSIBLE_FRESHNESS" "INADMISSIBLE_INCOMPLETE" "INADMISSIBLE_SYNTHETIC_FOR_LIVE" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Evidence.contentDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Evidence.evidenceKind ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Evidence.method ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Evidence.scope ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Scope ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Evidence.subject ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Evidence.supportsClaimTypes ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Evidence.validFrom ;
+        sh:datatype xsd:dateTime ;
+    ] ;
+    sh:property [
+        sh:path cont:Evidence.validUntil ;
+        sh:datatype xsd:dateTime ;
+    ] .
+
+cont:EvidenceRequirementShape a sh:NodeShape ;
+    sh:targetClass cont:EvidenceRequirement ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:EvidenceRequirement.evidenceKind ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EvidenceRequirement.freshnessSeconds ;
+        sh:datatype xsd:integer ;
+    ] ;
+    sh:property [
+        sh:path cont:EvidenceRequirement.mandatory ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EvidenceRequirement.minimumAuthorityClasses ;
+        sh:in ( "AUTHORITATIVE_SOURCE" "DETERMINISTIC_DERIVATION" "PROVIDER_OBSERVATION" "OPERATION_OWNED_RESULT" "HEURISTIC_DECISION" "POLICY_OR_SYNTHETIC_AID" "CALLER_ASSERTION" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EvidenceRequirement.requiredObservationChannels ;
+        sh:in ( "FILE_BYTES" "PROCESS_API" "PROVIDER_API" "ENGINE_API" "SCREEN_CAPTURE" "USER_REPORT" "LOG_STREAM" "NOT_OBSERVED" ) ;
+    ] ;
+    sh:property [
+        sh:path cont:EvidenceRequirement.requirementId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EvidenceRequirement.syntheticAcceptable ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] .
+
+cont:EvidenceSufficiencyReceiptShape a sh:NodeShape ;
+    sh:targetClass cont:EvidenceSufficiencyReceipt ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:EvidenceSufficiencyReceipt.closed ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EvidenceSufficiencyReceipt.mandatoryApplicable ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EvidenceSufficiencyReceipt.mandatorySatisfied ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:EvidenceSufficiencyReceipt.requirementResults ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ExecutionEventShape a sh:NodeShape ;
+    sh:targetClass cont:ExecutionEvent ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:ExecutionEvent.correctsEventId ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionEvent.eventId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionEvent.eventType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionEvent.eventTypeVersion ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionEvent.idempotencyKey ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionEvent.logicalSubject ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionEvent.monotonicClockDomain ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionEvent.monotonicNs ;
+        sh:datatype xsd:integer ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionEvent.payload ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionEvent.payloadDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionEvent.priorEventDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionEvent.replayPolicy ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionEvent.sequence ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionEvent.wallClock ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ExecutionPlanShape a sh:NodeShape ;
+    sh:targetClass cont:ExecutionPlan ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:ExecutionPlan.frozen ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionPlan.limits ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionPlan.nodes ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionPlan.outcome ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Outcome ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionPlan.selectionReceipts ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:SelectionReceipt ] ) ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ExecutionTraceShape a sh:NodeShape ;
+    sh:targetClass cont:ExecutionTrace ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:ExecutionTrace.actualActor ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionTrace.attempt ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionTrace.authorizationReceiptRef ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionTrace.capability ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Capability ] ) ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionTrace.consumedArtifacts ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:ArtifactVersion ] ) ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionTrace.environmentBinding ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:EnvironmentIdentity ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionTrace.events ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:ExecutionEvent ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionTrace.implementation ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Implementation ] ) ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionTrace.issuer ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionTrace.mutationScopeDeclared ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionTrace.parentTrace ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:ExecutionTrace ] ) ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionTrace.plan ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:ExecutionPlan ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionTrace.producedArtifacts ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:ArtifactVersion ] ) ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionTrace.resourceUsage ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:ResourceUsage ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionTrace.runId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionTrace.spans ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Span ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionTrace.terminalStatus ;
+        sh:in ( "PASS" "FAIL" "UNKNOWN" "ERROR" "NOT_RUN" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ExecutionTrace.workItem ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:WorkItem ] ) ;
+        sh:minCount 1 ;
+    ] .
+
+cont:FailureModeShape a sh:NodeShape ;
+    sh:targetClass cont:FailureMode ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:FailureMode.code ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:FailureMode.description ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:FailureMode.domain ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:FailureMode.mapsToStatus ;
+        sh:in ( "PASS" "FAIL" "UNKNOWN" "ERROR" "NOT_RUN" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:FailureMode.severity ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:FreshnessPolicyShape a sh:NodeShape ;
+    sh:targetClass cont:FreshnessPolicy ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:FreshnessPolicy.alwaysFreshDomains ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:FreshnessPolicy.claimTypeGlob ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:FreshnessPolicy.maxAgeSeconds ;
+        sh:datatype xsd:integer ;
+    ] ;
+    sh:property [
+        sh:path cont:FreshnessPolicy.policyId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:FreshnessPolicy.reusableWhileUnchanged ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:GateShape a sh:NodeShape ;
+    sh:targetClass cont:Gate ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:Gate.authority ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Gate.evaluatesAgainst ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Contract ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Gate.independenceRequired ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Gate.name ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Gate.requiredPredicateIds ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:GateResultShape a sh:NodeShape ;
+    sh:targetClass cont:GateResult ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:GateResult.candidateDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:GateResult.contractDigests ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:GateResult.evidenceClosure ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:ClosureReceipt ] ) ;
+    ] ;
+    sh:property [
+        sh:path cont:GateResult.gate ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Gate ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:GateResult.independentlyEvaluated ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:GateResult.notRunDependency ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:GateResult.predicateResults ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:GateResult.status ;
+        sh:in ( "PASS" "FAIL" "UNKNOWN" "ERROR" "NOT_RUN" ) ;
+        sh:minCount 1 ;
+    ] .
+
+cont:HandoffShape a sh:NodeShape ;
+    sh:targetClass cont:Handoff ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:Handoff.checkpoint ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Checkpoint ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Handoff.fromActor ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Handoff.referencedEvidence ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Handoff.toActor ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Handoff.transferredFacts ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ImplementationShape a sh:NodeShape ;
+    sh:targetClass cont:Implementation ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:Implementation.authorizedScope ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Implementation.failureModes ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:Implementation.inputSchemaDigest ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:Implementation.outputSchemaDigest ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:Implementation.providerName ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Implementation.providerVersion ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Implementation.qualification ;
+        sh:in ( "QUALIFIED" "PROVISIONAL" "TENTATIVE" "NEGATIVELY_QUALIFIED" "BLOCKED" "NOT_ASSESSED" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Implementation.qualificationReceipt ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:QualificationReceipt ] ) ;
+    ] ;
+    sh:property [
+        sh:path cont:Implementation.realizes ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Capability ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Implementation.resourceProfile ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+    ] .
+
+cont:MeasurementShape a sh:NodeShape ;
+    sh:targetClass cont:Measurement ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:Measurement.admissibility ;
+        sh:in ( "ADMISSIBLE" "INADMISSIBLE_SCOPE" "INADMISSIBLE_AUTHORITY" "INADMISSIBLE_FRESHNESS" "INADMISSIBLE_INCOMPLETE" "INADMISSIBLE_SYNTHETIC_FOR_LIVE" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Measurement.availability ;
+        sh:in ( "AVAILABLE" "UNDEFINED_ZERO_DENOMINATOR" "NOT_APPLICABLE" "INADMISSIBLE_INPUTS" "INSUFFICIENT_EVIDENCE" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Measurement.denominator ;
+        sh:datatype xsd:decimal ;
+    ] ;
+    sh:property [
+        sh:path cont:Measurement.formulaVersion ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Measurement.inputRefs ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Measurement.metricId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Measurement.numerator ;
+        sh:datatype xsd:decimal ;
+    ] ;
+    sh:property [
+        sh:path cont:Measurement.scope ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Scope ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Measurement.unavailableReason ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:Measurement.uncertainty ;
+        sh:datatype xsd:decimal ;
+    ] ;
+    sh:property [
+        sh:path cont:Measurement.unit ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Measurement.value ;
+        sh:datatype xsd:decimal ;
+    ] .
+
+cont:MutationIntentShape a sh:NodeShape ;
+    sh:targetClass cont:MutationIntent ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:MutationIntent.declaredEffects ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:MutationIntent.intentId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:MutationIntent.operationId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:MutationIntent.preStateDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:MutationIntent.targetScope ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Scope ] ) ;
+        sh:minCount 1 ;
+    ] .
+
+cont:MutationLedgerEntryShape a sh:NodeShape ;
+    sh:targetClass cont:MutationLedgerEntry ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:MutationLedgerEntry.effectDescription ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:MutationLedgerEntry.entryId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:MutationLedgerEntry.intentId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:MutationLedgerEntry.operationId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:MutationLedgerEntry.ownership ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:OwnershipAssertion ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:MutationLedgerEntry.postStateDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:MutationLedgerEntry.preStateDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:MutationLedgerEntry.priorEntryDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:MutationLedgerEntry.readbackRef ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:MutationLedgerEntry.sequence ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:MutationLedgerEntry.transactionId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:MutationSetClosureReceiptShape a sh:NodeShape ;
+    sh:targetClass cont:MutationSetClosureReceipt ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:MutationSetClosureReceipt.discrepancies ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:MutationSetClosureReceipt.intendedEffects ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:MutationSetClosureReceipt.ledgeredEffects ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:MutationSetClosureReceipt.operationId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:MutationSetClosureReceipt.readbackConfirmedEffects ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:MutationSetClosureReceipt.rollbackSet ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:MutationSetClosureReceipt.setsEqual ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ObservationShape a sh:NodeShape ;
+    sh:targetClass cont:Observation ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:Observation.channel ;
+        sh:in ( "FILE_BYTES" "PROCESS_API" "PROVIDER_API" "ENGINE_API" "SCREEN_CAPTURE" "USER_REPORT" "LOG_STREAM" "NOT_OBSERVED" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Observation.epoch ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:Observation.errorClass ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:Observation.observationId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Observation.observedAt ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Observation.partial ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Observation.rawDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Observation.scope ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Scope ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Observation.subject ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Observation.value ;
+        sh:datatype xsd:string ;
+    ] .
+
+cont:OpenOperationShape a sh:NodeShape ;
+    sh:targetClass cont:OpenOperation ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:OpenOperation.capability ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Capability ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:OpenOperation.disposition ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:OpenOperation.idempotencyKey ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:OpenOperation.operationId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:OpenOperation.receiptObserved ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:OpenOperation.reconciliationProbe ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:OpenOperation.reconciliationRequired ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:OpenOperation.sideEffectPossible ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] .
+
+cont:OutcomeShape a sh:NodeShape ;
+    sh:targetClass cont:Outcome ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:Outcome.acceptanceCriteria ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Contract ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Outcome.lifecycle ;
+        sh:in ( "CREATED" "VALIDATED" "READY" "RUNNING" "CHECKPOINTED" "COMPLETED" "BLOCKED" "FAILED" "ERRORED" "CANCELED" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Outcome.requestedResult ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Outcome.requiredArtifactKinds ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Outcome.requiredEvidenceKinds ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Outcome.subjectUniverse ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Outcome.title ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Outcome.workUnitPolicyRef ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:WorkUnitPolicy ] ) ;
+        sh:minCount 1 ;
+    ] .
+
+cont:OwnershipAssertionShape a sh:NodeShape ;
+    sh:targetClass cont:OwnershipAssertion ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:OwnershipAssertion.directness ;
+        sh:in ( "DIRECTLY_OWNED" "DELEGATED_WITH_RECEIPT" "OBSERVED_THIRD_PARTY" "NOT_APPLICABLE" "UNKNOWN" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:OwnershipAssertion.ownerRole ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:OwnershipAssertion.subject ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:OwnershipAssertion.transactionId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:PredicateShape a sh:NodeShape ;
+    sh:targetClass cont:Predicate ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:Predicate.expected ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:Predicate.mandatory ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Predicate.operator ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Predicate.predicateId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Predicate.subjectPath ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Predicate.tolerance ;
+        sh:datatype xsd:decimal ;
+    ] ;
+    sh:property [
+        sh:path cont:Predicate.unit ;
+        sh:datatype xsd:string ;
+    ] .
+
+cont:ProducerAssertionShape a sh:NodeShape ;
+    sh:targetClass cont:ProducerAssertion ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:ProducerAssertion.evidenceRefs ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ProducerAssertion.note ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ProducerAssertion.observedValue ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ProducerAssertion.producerRole ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ProducerAssertion.producerStatus ;
+        sh:in ( "PASS" "FAIL" "UNKNOWN" "ERROR" "NOT_RUN" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ProducerAssertion.proposition ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Proposition ] ) ;
+        sh:minCount 1 ;
+    ] .
+
+cont:PromotionDecisionShape a sh:NodeShape ;
+    sh:targetClass cont:PromotionDecision ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:PromotionDecision.actuatorRole ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:PromotionDecision.auditResultDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:PromotionDecision.candidateDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:PromotionDecision.humanApprovalRefs ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:PromotionDecision.issuerRole ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:PromotionDecision.policyDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:PromotionDecision.reasons ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:PromotionDecision.state ;
+        sh:in ( "NOT_EVALUATED" "ELIGIBLE" "INELIGIBLE" "PROMOTED" "WITHHELD" ) ;
+        sh:minCount 1 ;
+    ] .
+
+cont:PropositionShape a sh:NodeShape ;
+    sh:targetClass cont:Proposition ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:Proposition.claimType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Proposition.expectedValue ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:Proposition.scope ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Scope ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Proposition.statement ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Proposition.subject ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Proposition.unit ;
+        sh:datatype xsd:string ;
+    ] .
+
+cont:ProvenanceShape a sh:NodeShape ;
+    sh:targetClass cont:Provenance ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:Provenance.actor ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Provenance.authorityClass ;
+        sh:in ( "AUTHORITATIVE_SOURCE" "DETERMINISTIC_DERIVATION" "PROVIDER_OBSERVATION" "OPERATION_OWNED_RESULT" "HEURISTIC_DECISION" "POLICY_OR_SYNTHETIC_AID" "CALLER_ASSERTION" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Provenance.observationChannel ;
+        sh:in ( "FILE_BYTES" "PROCESS_API" "PROVIDER_API" "ENGINE_API" "SCREEN_CAPTURE" "USER_REPORT" "LOG_STREAM" "NOT_OBSERVED" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Provenance.operationalOwnership ;
+        sh:in ( "DIRECTLY_OWNED" "DELEGATED_WITH_RECEIPT" "OBSERVED_THIRD_PARTY" "NOT_APPLICABLE" "UNKNOWN" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Provenance.origin ;
+        sh:in ( "SOURCE_ARTIFACT" "LIVE_OBSERVATION" "DERIVATION" "POLICY" "HUMAN_INPUT" "SYNTHETIC_FIXTURE" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Provenance.productionMethod ;
+        sh:in ( "MEASURED" "RECOMPUTED" "REPLAYED" "TRANSCRIBED" "ESTIMATED" "ASSERTED" "GENERATED" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Provenance.sourceRefs ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:Provenance.syntheticFixture ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Provenance.validitySnapshot ;
+        sh:datatype xsd:dateTime ;
+    ] ;
+    sh:property [
+        sh:path cont:Provenance.verificationStatus ;
+        sh:in ( "UNVERIFIED" "PRODUCER_ASSERTED" "INDEPENDENTLY_VERIFIED" "CONTRADICTED" "INADMISSIBLE" ) ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ProviderReadbackShape a sh:NodeShape ;
+    sh:targetClass cont:ProviderReadback ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:ProviderReadback.channel ;
+        sh:in ( "FILE_BYTES" "PROCESS_API" "PROVIDER_API" "ENGINE_API" "SCREEN_CAPTURE" "USER_REPORT" "LOG_STREAM" "NOT_OBSERVED" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ProviderReadback.matchesExpectedPostState ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ProviderReadback.observedStateDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ProviderReadback.operationId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ProviderReadback.readbackId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ProviderSessionShape a sh:NodeShape ;
+    sh:targetClass cont:ProviderSession ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:ProviderSession.accountingVersion ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ProviderSession.expiresAt ;
+        sh:datatype xsd:dateTime ;
+    ] ;
+    sh:property [
+        sh:path cont:ProviderSession.openedAt ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ProviderSession.providerName ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ProviderSession.revalidateOnResume ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ProviderSession.sessionId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ProviderSession.tokenizerId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:QualificationReceiptShape a sh:NodeShape ;
+    sh:targetClass cont:QualificationReceipt ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:QualificationReceipt.buildIdentityDigest ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:QualificationReceipt.candidateDigest ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:QualificationReceipt.configurationDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:QualificationReceipt.dependencies ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:QualificationReceipt.limits ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:QualificationReceipt.observedAt ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:QualificationReceipt.probeScope ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Scope ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:QualificationReceipt.providerName ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:QualificationReceipt.providerVersion ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:QualificationReceipt.receiptId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:QualificationReceipt.result ;
+        sh:in ( "QUALIFIED" "PROVISIONAL" "TENTATIVE" "NEGATIVELY_QUALIFIED" "BLOCKED" "NOT_ASSESSED" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:QualificationReceipt.subjectKind ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:QualificationReceipt.syntheticFixture ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ReleaseManifestShape a sh:NodeShape ;
+    sh:targetClass cont:ReleaseManifest ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:ReleaseManifest.acceptanceByDimension ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ReleaseManifest.auditResultDigest ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ReleaseManifest.blockers ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ReleaseManifest.dependencyLockDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ReleaseManifest.knownGaps ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ReleaseManifest.liveUrl ;
+        sh:datatype xsd:anyURI ;
+    ] ;
+    sh:property [
+        sh:path cont:ReleaseManifest.memberDigests ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ReleaseManifest.payloadDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ReleaseManifest.product ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ReleaseManifest.releaseUrl ;
+        sh:datatype xsd:anyURI ;
+    ] ;
+    sh:property [
+        sh:path cont:ReleaseManifest.repositoryUrl ;
+        sh:datatype xsd:anyURI ;
+    ] ;
+    sh:property [
+        sh:path cont:ReleaseManifest.schemaManifestDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ReleaseManifest.version ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ResourceUsageShape a sh:NodeShape ;
+    sh:targetClass cont:ResourceUsage ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:ResourceUsage.accountingRule ;
+        sh:in ( "SUBSET_OF_INPUT" "SUBSET_OF_OUTPUT" "DISJOINT_ADDITIVE" "UNSPECIFIED" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsage.basis ;
+        sh:in ( "OBSERVED" "ESTIMATED" "UNKNOWN" "NOT_APPLICABLE" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsage.belowResolution ;
+        sh:datatype xsd:boolean ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsage.clockResolutionNs ;
+        sh:datatype xsd:integer ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsage.dedupKey ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsage.kind ;
+        sh:in ( "VENDOR_INPUT_TOKENS" "VENDOR_OUTPUT_TOKENS" "VENDOR_CACHED_INPUT_TOKENS" "VENDOR_CACHE_READ_INPUT_TOKENS" "VENDOR_CACHE_CREATION_INPUT_TOKENS" "VENDOR_REASONING_OUTPUT_TOKENS" "LOCAL_MODEL_INPUT_TOKENS" "LOCAL_MODEL_OUTPUT_TOKENS" "TOOL_RUNTIME_MS" "RETRY_COUNT" "FAILED_ATTEMPT_COUNT" "METERED_COMPUTE_MS" "MONEY_MINOR_UNITS" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsage.parentKind ;
+        sh:in ( "VENDOR_INPUT_TOKENS" "VENDOR_OUTPUT_TOKENS" "VENDOR_CACHED_INPUT_TOKENS" "VENDOR_CACHE_READ_INPUT_TOKENS" "VENDOR_CACHE_CREATION_INPUT_TOKENS" "VENDOR_REASONING_OUTPUT_TOKENS" "LOCAL_MODEL_INPUT_TOKENS" "LOCAL_MODEL_OUTPUT_TOKENS" "TOOL_RUNTIME_MS" "RETRY_COUNT" "FAILED_ATTEMPT_COUNT" "METERED_COMPUTE_MS" "MONEY_MINOR_UNITS" ) ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsage.providerAccountingVersion ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsage.providerName ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsage.providerResponseId ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsage.scope ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Scope ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsage.tokenizerId ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsage.uncertainty ;
+        sh:datatype xsd:decimal ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsage.unit ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsage.unknownReason ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsage.value ;
+        sh:datatype xsd:decimal ;
+    ] .
+
+cont:ResourceUsageLedgerShape a sh:NodeShape ;
+    sh:targetClass cont:ResourceUsageLedger ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:ResourceUsageLedger.accountingDomains ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsageLedger.consumes ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsageLedger.measurements ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:ResourceUsage ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsageLedger.recordType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsageLedger.runId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsageLedger.schemaVersion ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsageLedger.subsetReconciliation ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsageLedger.synthetic ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ResourceUsageLedger.totals ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:RetryShape a sh:NodeShape ;
+    sh:targetClass cont:Retry ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:Retry.attempt ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Retry.ofInvocationId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Retry.permitted ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Retry.reasonClass ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ReviewViewShape a sh:NodeShape ;
+    sh:targetClass cont:ReviewView ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:ReviewView.accessibilityResults ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ReviewView.lifecycle ;
+        sh:in ( "WIP_DIAGNOSTIC" "COMMITTED_PROJECTION" "STALE" "UNAVAILABLE" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ReviewView.profileId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ReviewView.rasterProfileDigest ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ReviewView.rendererId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ReviewView.rendererVersion ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ReviewView.semanticInputDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ReviewView.sourceAuditDigest ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ReviewView.sourceCheckpointDigest ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ReviewView.unavailableReason ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ReviewView.viewId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:RollbackActionShape a sh:NodeShape ;
+    sh:targetClass cont:RollbackAction ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:RollbackAction.actionId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:RollbackAction.authorizedByRole ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:RollbackAction.performed ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:RollbackAction.resultDigest ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:RollbackAction.targetEntryId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ScopeShape a sh:NodeShape ;
+    sh:targetClass cont:Scope ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:Scope.enumerationComplete ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Scope.epoch ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:Scope.expectedMemberCount ;
+        sh:datatype xsd:integer ;
+    ] ;
+    sh:property [
+        sh:path cont:Scope.scopeKind ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Scope.selector ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:SelectionReceiptShape a sh:NodeShape ;
+    sh:targetClass cont:SelectionReceipt ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:SelectionReceipt.blocked ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:SelectionReceipt.candidateUniverse ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:SelectionReceipt.committed ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:SelectionReceipt.hardPredicates ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Predicate ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:SelectionReceipt.nodeId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:SelectionReceipt.prngSeed ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:SelectionReceipt.prunedCandidates ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:SelectionReceipt.quantization ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:SelectionReceipt.rankedCandidates ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:SelectionReceipt.terminalDecisionByCandidate ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:SelectionReceipt.tieBreak ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:SpanShape a sh:NodeShape ;
+    sh:targetClass cont:Span ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:Span.actorId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Span.allocationUnknown ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Span.belowResolution ;
+        sh:datatype xsd:boolean ;
+    ] ;
+    sh:property [
+        sh:path cont:Span.clockDomain ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Span.clockResolutionNs ;
+        sh:datatype xsd:integer ;
+    ] ;
+    sh:property [
+        sh:path cont:Span.endNs ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Span.leaf ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Span.parentSpanId ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:Span.purpose ;
+        sh:in ( "PLANNING" "RETRIEVAL" "GENERATION" "VERIFICATION" "AUDIT" "PACKAGING" "RECOVERY_REWORK" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Span.spanId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Span.startNs ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Span.state ;
+        sh:in ( "ACTIVE_EXECUTION" "TOOL_WAIT" "HUMAN_WAIT" "IDLE" "UNKNOWN" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Span.traceRunId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Span.uncertainty ;
+        sh:datatype xsd:decimal ;
+    ] .
+
+cont:StateSnapshotShape a sh:NodeShape ;
+    sh:targetClass cont:StateSnapshot ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:StateSnapshot.admittedSourceVersions ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:StateSnapshot.artifactRefs ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:StateSnapshot.completeness ;
+        sh:in ( "AVAILABLE" "UNDEFINED_ZERO_DENOMINATOR" "NOT_APPLICABLE" "INADMISSIBLE_INPUTS" "INSUFFICIENT_EVIDENCE" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:StateSnapshot.contractDigests ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:StateSnapshot.environmentBinding ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:EnvironmentIdentity ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:StateSnapshot.ephemeralBindings ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:StateSnapshot.implementationVersions ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:StateSnapshot.planDigest ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:StateSnapshot.requiredFacts ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] .
+
+cont:ToolInvocationShape a sh:NodeShape ;
+    sh:targetClass cont:ToolInvocation ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:ToolInvocation.completedAt ;
+        sh:datatype xsd:dateTime ;
+    ] ;
+    sh:property [
+        sh:path cont:ToolInvocation.errorClass ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ToolInvocation.idempotencyKey ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ToolInvocation.implementation ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Implementation ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ToolInvocation.invocationId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ToolInvocation.resultDigest ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:ToolInvocation.startedAt ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:ToolInvocation.terminalStatus ;
+        sh:in ( "PASS" "FAIL" "UNKNOWN" "ERROR" "NOT_RUN" ) ;
+        sh:minCount 1 ;
+    ] .
+
+cont:TransactionShape a sh:NodeShape ;
+    sh:targetClass cont:Transaction ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:Transaction.closedAt ;
+        sh:datatype xsd:dateTime ;
+    ] ;
+    sh:property [
+        sh:path cont:Transaction.committed ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Transaction.openedAt ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Transaction.operationId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Transaction.transactionId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:VerificationShape a sh:NodeShape ;
+    sh:targetClass cont:Verification ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:Verification.claimId ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:Verification.commonModeDependencies ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Verification.independenceLevel ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Verification.mode ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Verification.producerStatus ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:Verification.proposition ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Proposition ] ) ;
+    ] ;
+    sh:property [
+        sh:path cont:Verification.reason ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Verification.recomputedValue ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:Verification.recordType ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path cont:Verification.status ;
+        sh:in ( "PASS" "FAIL" "UNKNOWN" "ERROR" "NOT_RUN" ) ;
+        sh:minCount 1 ;
+    ] .
+
+cont:VerificationCostSetShape a sh:NodeShape ;
+    sh:targetClass cont:VerificationCostSet ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:VerificationCostSet.auditorTokens ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:ResourceUsage ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:VerificationCostSet.managerTokens ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:ResourceUsage ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:VerificationCostSet.recoveryTokens ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:ResourceUsage ] ) ;
+        sh:minCount 1 ;
+    ] .
+
+cont:WorkItemShape a sh:NodeShape ;
+    sh:targetClass cont:WorkItem ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:WorkItem.accountingId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:WorkItem.accountingPartition ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:WorkItem.contracts ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Contract ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:WorkItem.lifecycle ;
+        sh:in ( "CREATED" "VALIDATED" "READY" "RUNNING" "CHECKPOINTED" "COMPLETED" "BLOCKED" "FAILED" "ERRORED" "CANCELED" ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:WorkItem.limits ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+    ] ;
+    sh:property [
+        sh:path cont:WorkItem.parentOutcome ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Outcome ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:WorkItem.permittedSideEffects ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:WorkItem.prerequisites ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:WorkItem ] ) ;
+    ] ;
+    sh:property [
+        sh:path cont:WorkItem.requiredCapabilities ;
+        sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Capability ] ) ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:WorkItem.title ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:WorkPacketShape a sh:NodeShape ;
+    sh:targetClass cont:WorkPacket ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:WorkPacket.finalAuditAuthority ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:WorkPacket.frozenInterfaceVersion ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:WorkPacket.ownedPaths ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:WorkPacket.ownerRole ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:WorkPacket.packetId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:WorkPacket.requirementIds ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:WorkUnitPolicyShape a sh:NodeShape ;
+    sh:targetClass cont:WorkUnitPolicy ;
+    sh:closed true ;
+    sh:property [
+        sh:path cont:WorkUnitPolicy.acceptanceUniverse ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:WorkUnitPolicy.frozen ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:WorkUnitPolicy.frozenAt ;
+        sh:datatype xsd:dateTime ;
+    ] ;
+    sh:property [
+        sh:path cont:WorkUnitPolicy.policyVersion ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] .
+
+cont:comparesRelationShape a sh:NodeShape ;
+    sh:targetClass cont:EfficiencyClaim ;
+    sh:property [
+        sh:path cont:compares ;
+        sh:class cont:ExecutionTrace ;
+        sh:minCount 2 ;
+    ] .
+
+cont:constrainedByContractRelationShape a sh:NodeShape ;
+    sh:targetClass cont:WorkItem ;
+    sh:property [
+        sh:path cont:constrainedByContract ;
+        sh:class cont:Contract ;
+        sh:minCount 1 ;
+    ] .
+
+cont:constrainedByEquivalenceRelationShape a sh:NodeShape ;
+    sh:targetClass cont:EfficiencyClaim ;
+    sh:property [
+        sh:path cont:constrainedByEquivalence ;
+        sh:class cont:EquivalenceContract ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+cont:decomposedIntoRelationShape a sh:NodeShape ;
+    sh:targetClass cont:Outcome ;
+    sh:property [
+        sh:path cont:decomposedInto ;
+        sh:class cont:WorkItem ;
+        sh:minCount 1 ;
+    ] .
+
+cont:evaluatesAgainstRelationShape a sh:NodeShape ;
+    sh:targetClass cont:Gate ;
+    sh:property [
+        sh:path cont:evaluatesAgainst ;
+        sh:class cont:Contract ;
+        sh:minCount 1 ;
+    ] .
+
+cont:executesRelationShape a sh:NodeShape ;
+    sh:targetClass cont:ExecutionTrace ;
+    sh:property [
+        sh:path cont:executes ;
+        sh:class cont:ExecutionPlan ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+cont:preservesRelationShape a sh:NodeShape ;
+    sh:targetClass cont:Checkpoint ;
+    sh:property [
+        sh:path cont:preserves ;
+        sh:class cont:StateSnapshot ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+cont:realizesCapabilityRelationShape a sh:NodeShape ;
+    sh:targetClass cont:Implementation ;
+    sh:property [
+        sh:path cont:realizesCapability ;
+        sh:class cont:Capability ;
+        sh:minCount 1 ;
+    ] .
+
+cont:requiresCapabilityRelationShape a sh:NodeShape ;
+    sh:targetClass cont:WorkItem ;
+    sh:property [
+        sh:path cont:requiresCapability ;
+        sh:class cont:Capability ;
+        sh:minCount 1 ;
+    ] .
+
+cont:schedulesRelationShape a sh:NodeShape ;
+    sh:targetClass cont:ExecutionPlan ;
+    sh:property [
+        sh:path cont:schedules ;
+        sh:class cont:WorkItem ;
+        sh:minCount 1 ;
+    ] .
+
+cont:transfersRelationShape a sh:NodeShape ;
+    sh:targetClass cont:Handoff ;
+    sh:property [
+        sh:path cont:transfers ;
+        sh:class cont:Checkpoint ;
+        sh:minCount 1 ;
+    ] .
+

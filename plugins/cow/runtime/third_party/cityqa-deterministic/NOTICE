@@ -1,0 +1,1 @@
+This public runtime includes only the CityQA engine source required by Continuity Ontology. Fixtures, outputs, and CityQA tests are not shipped.

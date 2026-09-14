@@ -1,0 +1,80 @@
+{
+  "schema": "continuity.equivalence-contract/2",
+  "name": "eq.catalog_rebuild.v1",
+  "contractVersion": "1.0.0",
+  "frozen": true,
+  "doc": "Comparison conditions for the catalog-rebuild workflow family: derive a building QA catalog from a raw hero-qa/1 extract. Frozen before any pair is measured. Changing any field creates a new contract version and invalidates pairs measured under this one.",
+  "workflowFamily": "creation:catalog_rebuild",
+  "heldConstant": [
+    "the raw extract bytes (sha256 pinned in the pilot manifest)",
+    "the deliverable schema (catalog.schema.json)",
+    "the graded predicate set and tolerances (benchmarks/pilot/catalog/checker.py)",
+    "the model and effort setting",
+    "the six execution-plan steps",
+    "the tools available to the agent (file read/write, Python)",
+    "no access to the original workbook, qa-data, photos or builder for either arm"
+  ],
+  "permittedDifferences": [
+    "the assisted arm's additional step 0 (read the steering files and structure work through the ontology)",
+    "whether the arm's working directory is the ontology repository",
+    "the arm's intermediate files, scripts and ontology records",
+    "prose in summary.md"
+  ],
+  "invalidatingDifferences": [
+    "an arm that saw the original workbook, hero-qa-data.json, photos or build_sheet.mjs",
+    "an arm that saw the other arm's output or the oracle",
+    "a different extract",
+    "a relaxed graded predicate set on either side",
+    "a different model or effort between the arms of one pair",
+    "an arm run from a directory where the ontology's CLAUDE.md auto-loads without being an explicit plan step"
+  ],
+  "requiredArtifactKinds": ["catalog_json", "summary_md"],
+  "qualityThresholds": [
+    {
+      "predicateId": "q.catalog_accepted",
+      "subjectPath": "catalogAccepted",
+      "operator": "EQUAL",
+      "expected": true,
+      "mandatory": true
+    },
+    {
+      "predicateId": "q.predicates_failed",
+      "subjectPath": "failedPredicateCount",
+      "operator": "EQUAL",
+      "expected": 0,
+      "mandatory": true
+    }
+  ],
+  "evidenceStandard": [
+    {
+      "requirementId": "eq.e1",
+      "evidenceKind": "provider_usage_receipt",
+      "minimumAuthorityClasses": ["PROVIDER_OBSERVATION"],
+      "mandatory": true,
+      "syntheticAcceptable": false,
+      "note": "The subagent transcript's per-request usage blocks, parsed by benchmarks/pilot/catalog/transcript_usage.py. The agent's own statements about its usage are caller assertions and inadmissible."
+    },
+    {
+      "requirementId": "eq.e2",
+      "evidenceKind": "derivation_receipt",
+      "minimumAuthorityClasses": ["DETERMINISTIC_DERIVATION"],
+      "mandatory": true,
+      "syntheticAcceptable": false,
+      "note": "The checker's grading receipt against the independently computed oracle."
+    }
+  ],
+  "failureRecoveryPolicy": "a failed arm stays in the cohort with its full cost; the pair is inadmissible for the leverage numerator and is reported as such; nothing is re-run to obtain acceptance",
+  "weightingPolicyRef": "wup.catalog_rebuild.v1",
+  "cacheStratum": "cold",
+  "cacheStratumNote": "Every subagent starts with a fresh context. Prompt-cache reads still occur on shared system-prompt prefixes; they are measured under VENDOR_CACHE_READ_INPUT_TOKENS and reported separately, never hidden inside a total.",
+  "tokenAccountingBasis": "anthropic messages-api usage, observed-2026-09-10 layout: input_tokens, cache_creation_input_tokens and cache_read_input_tokens are DISJOINT_ADDITIVE; thinking_tokens is a SUBSET_OF_OUTPUT. One measurement per provider requestId.",
+  "costBases": {
+    "context_tokens": "VENDOR_INPUT_TOKENS + VENDOR_CACHE_CREATION_INPUT_TOKENS + VENDOR_CACHE_READ_INPUT_TOKENS -- everything the model processed as input",
+    "output_tokens": "VENDOR_OUTPUT_TOKENS -- everything the model produced, thinking included",
+    "total_tokens": "context_tokens + output_tokens",
+    "note": "Leverage is computed and reported on each basis separately. No monetary basis: no versioned price evidence is admitted."
+  },
+  "normalizationContract": null,
+  "minimumMatchedPairs": 25,
+  "minimumPairsNote": "25 matched pairs is the initial broad-claim policy. The five-pair pilot produces an evaluation, never a published claim."
+}

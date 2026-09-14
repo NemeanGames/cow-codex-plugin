@@ -1,0 +1,36 @@
+{
+  "name": "cow",
+  "version": "1.0.0",
+  "description": "Continuity Of Work ontology for resumable, evidence-bound, auditable Codex work.",
+  "author": {
+    "name": "Adrian Arvizu"
+  },
+  "license": "MIT",
+  "keywords": [
+    "cow",
+    "continuity",
+    "provenance",
+    "checkpoint",
+    "audit",
+    "evidence",
+    "agents"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "COW \u2014 Continuity Of Work",
+    "shortDescription": "Resumable, evidence-bound, auditable agent work",
+    "longDescription": "Externalize persistent state, evidence, checkpoints, and mechanical verification while reserving model context for reasoning.",
+    "developerName": "Adrian Arvizu",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Use COW to checkpoint this work and leave a resumable state.",
+      "Use COW to resume from the latest verified checkpoint.",
+      "Use COW to bind this research claim to evidence and provenance."
+    ],
+    "brandColor": "#0B2A4A"
+  }
+}
