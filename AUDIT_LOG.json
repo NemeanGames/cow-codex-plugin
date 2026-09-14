@@ -1,0 +1,53 @@
+{
+  "schema": "cow.bootstrap.audit/1",
+  "plugin": "cow",
+  "version": "1.0.0",
+  "bootstrapProfile": "AGENT_BOOTSTRAP v4.1",
+  "parallelAgentExecution": false,
+  "parallelAgentExecutionReason": "Separate Codex agent/worktree launch was unavailable in this chat surface; packet boundaries were preserved and executed deterministically in one tool session.",
+  "packets": [
+    {
+      "id": "WP1",
+      "title": "Codex plugin manifest + marketplace contract",
+      "status": "PASS"
+    },
+    {
+      "id": "WP2",
+      "title": "COW work-continuity skill",
+      "status": "PASS"
+    },
+    {
+      "id": "WP3",
+      "title": "COW audit-boundary skill",
+      "status": "PASS"
+    },
+    {
+      "id": "WP4",
+      "title": "COW research-provenance skill",
+      "status": "PASS"
+    },
+    {
+      "id": "WP5",
+      "title": "Sanitized deterministic runtime embedding",
+      "status": "PASS"
+    },
+    {
+      "id": "WP6",
+      "title": "Deterministic wrapper + step logger",
+      "status": "PASS"
+    },
+    {
+      "id": "WP7",
+      "title": "Validation and smoke tests",
+      "status": "PASS"
+    },
+    {
+      "id": "WP8",
+      "title": "Packaging, docs, and release evidence",
+      "status": "PASS"
+    }
+  ],
+  "gates": {},
+  "liveUrl": null,
+  "liveUrlBlocker": "No GitHub repository connector or authenticated push/deploy action is available in this chat surface."
+}
