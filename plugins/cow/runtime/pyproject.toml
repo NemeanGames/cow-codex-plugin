@@ -1,55 +1,12 @@
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
-
 [project]
-name = "continuity-ontology"
-version = "2.0.0"
-description = "Continuity Workflow Ontology 2.0: verified work throughput modelling with observed traces, claim/evidence closure, independent audit and durable continuity."
-readme = "README.md"
-license = { file = "LICENSE" }
-
-# Verified against the actual host interpreter (CPython 3.10.8) rather than
-# inherited from the CityQA package metadata, which declares >=3.12. The full
-# CityQA suite and this package both import and test clean on 3.10; nothing in
-# either uses 3.11+ syntax. tomllib is deliberately unused for that reason.
+name = "cow-plugin-runtime"
+version = "2.0.0.post1"
+description = "Public subset of the COW runtime, distributed inside the plugin"
 requires-python = ">=3.10"
-
-# The core runtime imports nothing outside the standard library and the
-# preserved CityQA source packages. A system whose premise is hash-bound
-# authority should not carry a supply-chain surface it cannot verify, and the
-# offline-after-setup requirement is then satisfied outright.
+license = {file = "LICENSE"}
 dependencies = []
-
-[project.optional-dependencies]
-dev = ["pytest>=8.0,<9"]
-# Optional PNG rasterization only. HTML is the complete report; SVG summarizes all check statuses;
-# with no backend importable a raster view is reported UNAVAILABLE, never PASS.
-raster = ["cairosvg>=2.7"]
-
-[project.scripts]
-ont20 = "continuity_ontology.cli.main:main"
-ont20-audit = "continuity_audit.cli:main"
-
-[tool.setuptools]
-# CityQA is preserved as source packages rather than duplicated. There is one
-# QA engine in this repository and it is the original.
-package-dir = { "" = "src", "cityqa" = "third_party/cityqa-deterministic/src/cityqa", "cityqa_audit" = "third_party/cityqa-deterministic/src/cityqa_audit", "cityqa_promote" = "third_party/cityqa-deterministic/src/cityqa_promote", "cityqa_visual" = "third_party/cityqa-deterministic/src/cityqa_visual" }
-
 [tool.setuptools.packages.find]
-where = ["src"]
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-pythonpath = ["src", "third_party/cityqa-deterministic/src"]
-filterwarnings = ["error"]
-markers = [
-  "evaluator_case(function_id): behavioral state-path witness for the named evaluator",
-  "adversarial: negative cases that must fail correctly",
-  "conformance: cross-representation agreement",
-  "golden: frozen oracle vectors",
-  "integration: end-to-end across packets",
-  "security: injection, traversal, bounds and isolation",
-  "migration: legacy compatibility",
-  "performance: measured, never asserted as a savings claim",
-]
+where = ["src", "third_party/cityqa-deterministic/src"]

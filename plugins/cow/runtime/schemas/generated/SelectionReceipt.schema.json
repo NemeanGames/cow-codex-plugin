@@ -5171,7 +5171,7 @@
   "$id": "https://ontology.continuity.invalid/2.0.0/schema/SelectionReceipt.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "_generated": "GENERATED FROM ontology/metamodel.json -- DO NOT EDIT",
-  "_semanticModelDigest": "sha256:356d05c8e459888cd22779f81e74d9e856a749105e115cca66391806a95aca4a",
+  "_semanticModelDigest": "sha256:419687df6a57c009f9657437e1bec5d2739c2c8e17ba5f5978a85f2cee84d40e",
   "additionalProperties": false,
   "description": "Deterministic candidate selection: generate, hard-prune, feature, rank, budget-select, commit. Hard predicates are never overridden by ranking.",
   "properties": {

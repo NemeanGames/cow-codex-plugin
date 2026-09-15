@@ -58,3 +58,11 @@ python scripts/validate_plugin.py plugins/cow
 The historical bootstrap is generic execution guidance. The public profile in
 `AGENT_BOOTSTRAP_v4.1.md` does not authorize operations or establish that independent agents ran.
 Private research archives, transcripts, credentials, and real execution records must remain outside this repository.
+
+## v1.0.1 corrective release
+
+Use v1.0.1 or current main. The original v1.0.0 tag remains available for historical provenance, but its Git source has inconsistent line endings and frozen digests. The original standalone v1.0.0 ZIP passes its own frozen identity checks; it still lacks startup enforcement and contains unsupported entry points.
+
+v1.0.1 normalizes runtime source bytes, regenerates representations, checks model/extension/artifact digests before every wrapper command, removes unavailable integration commands, and corrects the runbook. Its semantic identity is `sha256:419687df6a57c009f9657437e1bec5d2739c2c8e17ba5f5978a85f2cee84d40e`. This is a new identity, not a relabeling of historical records. No automatic migration or cross-verification with old identities is claimed.
+
+The audit skill supplies review guidance, not an independent auditor executable. Resume observations establish freshness only; they do not authenticate OS processes or authorize side effects. The bundled runtime is a public subset, not the full upstream research distribution.

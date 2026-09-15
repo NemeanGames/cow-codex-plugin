@@ -1,6 +1,6 @@
 """GENERATED FROM ontology/metamodel.json -- DO NOT EDIT
 
-semanticModelDigest: sha256:356d05c8e459888cd22779f81e74d9e856a749105e115cca66391806a95aca4a
+semanticModelDigest: sha256:419687df6a57c009f9657437e1bec5d2739c2c8e17ba5f5978a85f2cee84d40e
 """
 
 from __future__ import annotations
@@ -8,7 +8,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any
 
-SEMANTIC_MODEL_DIGEST = 'sha256:356d05c8e459888cd22779f81e74d9e856a749105e115cca66391806a95aca4a'
+SEMANTIC_MODEL_DIGEST = 'sha256:419687df6a57c009f9657437e1bec5d2739c2c8e17ba5f5978a85f2cee84d40e'
 METAMODEL_VERSION = '2.0.0'
 
 

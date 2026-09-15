@@ -1,7 +1,7 @@
 ---
 name: cow-research-provenance
 description: >-
-  Use COW to structure research provenance for AI-assisted or computational work: connect claims to evidence, execution traces, checkpoints, agents, transformations, digests, and qualification state. Trigger on research provenance, reproducibility, evidence package, experimental claim, method trace, grant evidence, audit trail, or research handoff.
+  Use COW to structure research provenance for AI-assisted or computational work: connect claims to evidence, execution traces, checkpoints, agents, transformations, digests, and qualification state. Invoke explicitly when this workflow is requested.
 ---
 
 # COW research provenance

@@ -709,7 +709,7 @@ def cmd_task_record(args: argparse.Namespace) -> int:
             if isinstance(obj, dict) and obj.get("reason"):
                 reason = str(obj["reason"])
                 break
-        sys.stdout.write(("ERROR " + reason)[:160] + "\n")
+        sys.stdout.write(("ERROR " + reason if len(reason) <= 154 else ("ERROR " + reason)[:157].rsplit(" ", 1)[0] + "...") + "\n")
         return code
 
     task = _Task(args.root)
@@ -719,12 +719,12 @@ def cmd_task_record(args: argparse.Namespace) -> int:
     rev = ref.split(" ", 1)[1] if " " in ref else "?"
     rev = rev[7:19] if rev.startswith("sha256:") else rev[:12]
     blockers = state.get("blockers", [])
-    tail = ("blockers=" + str(len(blockers))) if blockers else ("next=" + str(state.get("nextLegalAction", ""))[:48])
+    tail = ("blockers=" + str(len(blockers))) if blockers else ("next=" + str(state.get("nextLegalAction", "")))
     line = "%s cp=%s rev=%s steps=%d %s" % (
         "PASS" if code == ExitCode.PASS else ("FAIL" if code == ExitCode.FAIL else "ERROR"),
         manifest["checkpoint"]["id"], rev, steps_recorded, tail,
     )
-    sys.stdout.write(line[:160] + "\n")
+    sys.stdout.write((line if len(line) <= 160 else line[:157].rsplit(" ", 1)[0] + "...") + "\n")
     return code
 
 

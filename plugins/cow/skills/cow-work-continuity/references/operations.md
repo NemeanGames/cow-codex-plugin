@@ -1,19 +1,24 @@
-# COW operations reference
+# Supported plugin operations
 
-Use the bundled wrapper `scripts/cow_cli.py`; it loads the plugin runtime without installing packages globally.
+Use the bundled cow_cli.py wrapper, which validates frozen identity before dispatch.
+Choose an installed Python 3.10+ interpreter: `python3`, `python`, or Windows `py -3`.
+Use forward slashes in evidence paths, including on Windows.
 
-## One-call record
+Supported documented workflow: `model`, `profiles`, `task record`, `resume`,
+`validate`, `status`, `report`, and `run-e2e`. Consult each command's `--help`.
+Use `task record` at each completed milestone with a distinct task and checkpoint id.
+The advanced manifest-based task commands and hand-assembled query corpus are
+not documented workflows in this plugin. `query --list` only lists available queries.
 
-`task record` authors and validates Outcome, WorkItem, ExecutionPlan, Evidence, Claim, ExecutionTrace, and Checkpoint records. Use `--root .cow` for project-local state.
+Validate the record envelope at `.cow/records/checkpoint.json` using
+`validate Checkpoint`. Files inside `.cow/checkpoints/` are checkpoint-store bodies;
+use `resume` to inspect them, not the record-envelope validator.
 
-## Multi-session record
+Resume without fresh processId observation is blocked. A new supplied processId
+can satisfy freshness even when it differs. This is not OS process authentication
+or permission to reuse old handles. Inspect current resources and reacquire handles
+before side effects. `--fact` stores strings and does not reconcile typed ephemeral
+bindings; do not use a processId fact as a substitute for `--observed`.
 
-Use `task init` before work, `task step` after plan steps, and `task finish` once deliverables exist. This is appropriate only when a checkpoint must exist before the task finishes.
-
-## Resume semantics
-
-A resume block is not permission to bypass the checkpoint. Supply fresh ephemeral observations, reconcile possibly-effectful open operations, verify event tails, or return to a complete checkpoint as named by the blocker.
-
-## Evidence discipline
-
-Reference evidence by digest/record id. Load full content only when the task genuinely requires inspection.
+Audit and research skills guide review; neither invokes an independent auditor.
+No private integration, release-sealing scripts, or full upstream tests are shipped.

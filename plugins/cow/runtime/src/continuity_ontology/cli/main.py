@@ -191,30 +191,6 @@ def cmd_report(args: argparse.Namespace) -> int:
     return ExitCode.PASS if not failures else ExitCode.FAIL
 
 
-def cmd_pershing(args: argparse.Namespace) -> int:
-    from continuity_integrations.unreal_cityreference.program_profile import (
-        load_program_profile,
-        render_runbook,
-        validate_program_invariants,
-    )
-
-    profile = load_program_profile(_repo_root() / "profiles" / "pershing" / "program.json")
-    if args.runbook:
-        sys.stdout.write(render_runbook(profile, args.runbook))
-        return ExitCode.PASS
-    result = validate_program_invariants(profile)
-    _emit(result)
-    return ExitCode.PASS if result["status"] == "PASS" else ExitCode.FAIL
-
-
-def cmd_sfd(args: argparse.Namespace) -> int:
-    from continuity_integrations.unreal_cityreference.sfd import compatibility_status
-
-    status = compatibility_status()
-    _emit(status)
-    return ExitCode.PASS if status["status"] == "PASS" else ExitCode.UNKNOWN
-
-
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="ont20", description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -254,12 +230,6 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("state")
     p.add_argument("--out", required=True)
     p.set_defaults(func=cmd_report)
-
-    p = sub.add_parser("pershing", help="validate the integration profile or render a runbook")
-    p.add_argument("--runbook", help="gate id, e.g. PG5")
-    p.set_defaults(func=cmd_pershing)
-
-    sub.add_parser("sfd", help="report SFD v1 compatibility qualification").set_defaults(func=cmd_sfd)
 
     from .task import add_task_parser
 

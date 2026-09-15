@@ -1,6 +1,6 @@
 {
   "name": "cow",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Continuity Of Work ontology for resumable, evidence-bound, auditable Codex work.",
   "author": {
     "name": "Adrian Arvizu"

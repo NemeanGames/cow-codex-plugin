@@ -1,5 +1,5 @@
 # GENERATED FROM ontology/metamodel.json -- DO NOT EDIT
-# semanticModelDigest: sha256:356d05c8e459888cd22779f81e74d9e856a749105e115cca66391806a95aca4a
+# semanticModelDigest: sha256:419687df6a57c009f9657437e1bec5d2739c2c8e17ba5f5978a85f2cee84d40e
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
