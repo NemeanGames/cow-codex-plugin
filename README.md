@@ -12,6 +12,15 @@ COW separates model reasoning from durable state, evidence, verification, and au
 
 ## Install as a local Codex plugin
 
+Public repository: [NemeanGames/cow-codex-plugin](https://github.com/NemeanGames/cow-codex-plugin).
+Documentation: [COW for Codex](https://nemeangames.github.io/cow-codex-plugin/).
+
+Clone the repository, then use the absolute path to your clone in the commands below:
+
+```bash
+git clone https://github.com/NemeanGames/cow-codex-plugin.git
+```
+
 The repository includes a Codex marketplace manifest at `.agents/plugins/marketplace.json` and the plugin at `plugins/cow`.
 
 For a non-default local marketplace, add the repository root and install the plugin:
@@ -32,3 +41,20 @@ The bundled runtime is derived from the sanitized `continuity-ontology-public-ru
 ## Scope
 
 The plugin preserves `PASS`, `FAIL`, `UNKNOWN`, `ERROR`, and `NOT_RUN` as distinct states. It does not convert a producer assertion into independent verification and does not make a general efficiency, monetary-savings, or cross-domain reliability claim.
+
+## Release history and validation
+
+The original annotated `v1.0.0` tag points to `8f6d3bf96e7f9d5c4bf8e39fd2864cc901864c64`.
+Publication and documentation changes follow that tag without rewriting it.
+`AUDIT_LOG.json` and `work_packets/` describe the original author-side packaging checks, not an independent release audit.
+
+Python 3.10 or later is required to run the bundled runtime. Check the installation with:
+
+```bash
+python plugins/cow/skills/cow-work-continuity/scripts/cow_cli.py model
+python scripts/validate_plugin.py plugins/cow
+```
+
+The historical bootstrap is generic execution guidance. The public profile in
+`AGENT_BOOTSTRAP_v4.1.md` does not authorize operations or establish that independent agents ran.
+Private research archives, transcripts, credentials, and real execution records must remain outside this repository.

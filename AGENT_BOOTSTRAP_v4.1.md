@@ -1,10 +1,10 @@
 # AGENT_BOOTSTRAP v4.1: ONT20 execution profile
 
-INTERNAL. Do not publish this file without approval. This is an execution plan for the receiving orchestrator, not a claim that agents have been launched.
+Public release adaptation of the historical execution profile. This is guidance, not an authorization to execute operations or a claim that agents have been launched. The original profile remains in the preserved v1.0.0 history.
 
 ## Bootstrap
 
-Select the verified existing ontology repository or create a private `continuity-ontology` repository in the authorized user account. Preserve all original references and existing history. Resolve a new task-owned workspace and run root outside the Unreal project and protected evidence. Add/preserve `README.md`, `.gitignore`, `LICENSE`, `AUDIT_LOG.json`, and this internal profile. Initial new-bootstrap commit:
+Use the authorized COW repository and preserve original references and history. Keep private research and real execution records in a separate local workspace. Preserve `README.md`, `.gitignore`, `LICENSE`, `AUDIT_LOG.json`, and this profile. Historical bootstrap commit:
 
 `feat: bootstrap v4.1 (parallel orchestrator + extended mode)`
 
@@ -24,7 +24,7 @@ Record actual interpreter/provider versions. Use task-local environments and ver
 
 ## Deployment
 
-Build a separate sanitized documentation/read-only demo payload for GitHub Pages. Vercel is fallback after a recorded Pages blocker. Do not publish private source snapshots, real run data, host paths, location defaults, screenshots, credentials, or this internal bootstrap. Public output requires the privacy/license gate and release audit. Record and verify an actual live URL; otherwise leave it null with a blocker. Do not claim deployment from a prepared workflow alone.
+Deploy only the sanitized `docs/` payload to GitHub Pages. Do not publish private source snapshots, real run data, host paths, location defaults, screenshots, or credentials. Check privacy and licensing before publishing; describe author-side checks accurately and do not imply independent audit. Record and verify an actual live URL; otherwise leave it null with a blocker. Do not claim deployment from a prepared workflow alone.
 
 ## Stops
 

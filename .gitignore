@@ -5,3 +5,11 @@ __pycache__/
 *.tmp
 *.log
 dist/
+.cow/
+.env
+.env.*
+!.env.example
+*PRIVATE*
+*.bundle
+*.pem
+*.key
