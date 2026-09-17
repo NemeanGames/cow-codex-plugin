@@ -35,7 +35,17 @@ from typing import Any, Mapping, Sequence
 from cityqa.engine.statuses import ExitCode
 
 from ..canonical.profiles import digest_with
-from ..checkpoints.store import CheckpointStore
+from ..checkpoints.evidence_integrity import (
+    EvidenceManifestError,
+    EvidencePathError,
+    evidence_record_name,
+    missing_evidence_files,
+    normalize_manifest_evidence,
+    seal_record,
+    verify_evidence_bindings,
+    verify_run_root,
+)
+from ..checkpoints.store import CheckpointError, CheckpointStore
 from ..claims.bundle import compile_claim
 from ..claims.cas import ContentStore
 from ..events.store import EventStore
@@ -43,7 +53,8 @@ from ..model.metamodel import load_metamodel
 from ..projection.views import compact_status
 from ..validate.validator import RecordValidator
 
-__all__ = ["add_task_parser", "cmd_task_init", "cmd_task_step", "cmd_task_finish", "cmd_task_record"]
+__all__ = ["add_task_parser", "cmd_task_init", "cmd_task_step", "cmd_task_finish", "cmd_task_record",
+           "cmd_task_verify"]
 
 PROFILE = "continuity.core.v2"
 SCHEMA_VERSION = "2.0.0"
@@ -58,6 +69,17 @@ EVENT_TYPES: dict[str, tuple[str, ...]] = {
 
 _PURPOSES = ("PLANNING", "RETRIEVAL", "GENERATION", "VERIFICATION", "AUDIT", "PACKAGING", "RECOVERY_REWORK")
 _STATUSES = ("PASS", "FAIL", "UNKNOWN", "ERROR", "NOT_RUN")
+
+#: The five producer statuses map onto the semantic exit-code table one to
+#: one. NOT_RUN is 6 (blocked / not run), not a FAIL; UNKNOWN is 3, not zero.
+_STATUS_EXIT: dict[str, int] = {
+    "PASS": ExitCode.PASS,
+    "FAIL": ExitCode.FAIL,
+    "UNKNOWN": ExitCode.UNKNOWN,
+    "ERROR": ExitCode.ERROR,
+    "NOT_RUN": ExitCode.BLOCKED_BY_PRIOR_STATE,
+}
+_EXIT_STATUS: dict[int, str] = {code: status for status, code in _STATUS_EXIT.items()}
 
 _MEDIA = {".json": "application/json", ".md": "text/markdown", ".txt": "text/plain",
           ".csv": "text/csv", ".py": "text/x-python"}
@@ -136,18 +158,8 @@ class _Task:
 
     def seal(self, record_type: str, logical_id: str, body: Mapping[str, Any],
              provenance: Mapping[str, Any]) -> dict[str, Any]:
-        record: dict[str, Any] = {
-            "schemaVersion": SCHEMA_VERSION,
-            "semanticModelDigest": self.model.digest,
-            "recordType": record_type,
-            "logicalId": logical_id,
-            "hashProfile": PROFILE,
-            "provenance": dict(provenance),
-            "createdAt": _utc(),
-        }
-        record.update(body)
-        record["revisionId"] = digest_with(PROFILE, record)
-        return record
+        return seal_record(record_type, logical_id, body, provenance,
+                           semantic_model_digest=self.model.digest, created_at=_utc())
 
     def write(self, name: str, record: Mapping[str, Any]) -> Path:
         self.records.mkdir(parents=True, exist_ok=True)
@@ -172,12 +184,38 @@ class _Task:
         return report
 
 
-def _read_manifest(path: str) -> dict[str, Any]:
+def _read_manifest(path: str, base: str | os.PathLike[str] | None = None, *,
+                   require_files: bool = False) -> dict[str, Any]:
+    """Load a manifest and run the evidence preflight against ``base``.
+
+    ``base`` defaults to the manifest's own directory, which is what
+    ``task finish`` resolves evidence paths against. The preflight normalizes
+    every evidence path, refuses duplicate or conflicting IDs, requires
+    ``claim.evidence`` to list every evidence ID exactly once and -- for
+    ``finish`` and ``record``, where the deliverables must already exist --
+    refuses a listed file that is absent, all before any record, event, CAS
+    object or checkpoint is written. ``init`` does not require the files:
+    outputs are produced by the steps that follow it.
+    """
     manifest = json.loads(Path(path).read_text(encoding="utf-8"))
     for key in ("taskId", "outcome", "workItem", "evidence", "claim", "checkpoint"):
         if key not in manifest:
             raise ValueError("manifest is missing " + repr(key))
+    if not isinstance(manifest["evidence"], list):
+        raise ValueError("manifest 'evidence' must be a list")
+    manifest["evidence"] = [dict(e) for e in manifest["evidence"]]
+    claim_evidence = manifest["claim"].setdefault("evidence", [])
+    normalize_manifest_evidence(manifest["evidence"], base if base is not None else Path(path).resolve().parent,
+                                require_files=require_files, claim_evidence=claim_evidence)
     return manifest
+
+
+def _refusal(exc: Exception) -> dict[str, Any]:
+    """The documented non-success for a manifest the preflight rejects."""
+    payload: dict[str, Any] = {"status": "ERROR", "reason": str(exc)}
+    if isinstance(exc, EvidenceManifestError):
+        payload["duplicateEvidenceIds"] = list(exc.duplicate_ids)
+    return payload
 
 
 def _contract(manifest: Mapping[str, Any]) -> dict[str, Any]:
@@ -215,14 +253,20 @@ def _contract(manifest: Mapping[str, Any]) -> dict[str, Any]:
 # init
 # ---------------------------------------------------------------------------
 
-def _manifest_for(args: argparse.Namespace) -> dict[str, Any]:
+def _manifest_for(args: argparse.Namespace, *, require_files: bool = False) -> dict[str, Any]:
     preloaded = getattr(args, "_manifest_obj", None)
-    return dict(preloaded) if preloaded is not None else _read_manifest(args.manifest)
+    if preloaded is not None:
+        return dict(preloaded)
+    return _read_manifest(args.manifest, require_files=require_files)
 
 
 def cmd_task_init(args: argparse.Namespace) -> int:
     task = _Task(args.root)
-    manifest = _manifest_for(args)
+    try:
+        manifest = _manifest_for(args)
+    except (EvidenceManifestError, EvidencePathError, ValueError, KeyError) as exc:
+        _emit(_refusal(exc))
+        return ExitCode.ERROR
     task_id = str(manifest["taskId"])
     if task.state_path.exists():
         _emit({"status": "ERROR", "reason": "task already initialised under " + str(task.root)})
@@ -334,9 +378,13 @@ def cmd_task_finish(args: argparse.Namespace) -> int:
         _emit({"status": "ERROR", "reason": "task was already finished at " + state["finishedAt"]
                + "; its records are under " + str(task.records) + " and the event chain is sealed"})
         return ExitCode.ERROR
-    manifest = _manifest_for(args)
-    task_id = state["taskId"]
     base = Path(getattr(args, "_base", None) or Path(args.manifest).resolve().parent)
+    try:
+        manifest = _manifest_for(args, require_files=True)
+    except (EvidenceManifestError, EvidencePathError, ValueError, KeyError) as exc:
+        _emit(_refusal(exc))
+        return ExitCode.ERROR
+    task_id = state["taskId"]
     domain = state["clockDomain"]
     run_id = state["runId"]
 
@@ -348,23 +396,21 @@ def cmd_task_finish(args: argparse.Namespace) -> int:
     producer_status = str(claim_m.get("producerStatus", "UNKNOWN"))
 
     # -- evidence: every listed file, stored by content digest -------------
+    # Existence was preflighted before anything was written; this re-check
+    # guards the window between preflight and storage and stores nothing when
+    # it fails.
+    missing = missing_evidence_files(manifest["evidence"], base)
+    if missing:
+        _emit({"status": "ERROR", "reason": "evidence file(s) not found: " + ", ".join(missing)})
+        return ExitCode.ERROR
     cas = ContentStore(task.root / "cas")
     ev_digest: dict[str, str] = {}
     ev_records: list[tuple[str, dict[str, Any]]] = []
     ev_store: dict[str, dict[str, Any]] = {}
     artifacts: list[dict[str, Any]] = []
     sources: list[dict[str, Any]] = []
-    missing = []
     for e in manifest["evidence"]:
-        path = base / e["path"]
-        if not path.exists():
-            missing.append(e["path"])
-            continue
-        digest = cas.put_file(path)
-        ev_digest[e["id"]] = digest
-    if missing:
-        _emit({"status": "FAIL", "reason": "evidence file(s) not found: " + ", ".join(missing)})
-        return ExitCode.FAIL
+        ev_digest[e["id"]] = cas.put_file(base / e["path"])
     events = task.events(task_id)
     for e in manifest["evidence"]:
         path = base / e["path"]
@@ -382,9 +428,11 @@ def cmd_task_finish(args: argparse.Namespace) -> int:
             "scope": {"scopeKind": "file", "selector": e["path"], "enumerationComplete": True},
             "supportsClaimTypes": list(e.get("claimTypes", [claim_m["claimType"]] if not is_source else [claim_m["claimType"], "HASH_EQUALITY"])),
         }, prov)
-        ev_records.append((e["id"].replace(".", "_"), record))
+        ev_records.append((evidence_record_name(e["id"]), record))
         ev_store[digest] = {"evidenceKind": e["kind"], "admissibility": "ADMISSIBLE", "synthetic": False, "provenance": prov}
-        version = {"artifact": e["path"], "contentDigest": digest, "sizeBytes": path.stat().st_size,
+        # The logical artifact reference is the evidence ID (a bounded
+        # identifier); the path itself is the Evidence record's subject.
+        version = {"artifact": e["id"], "contentDigest": digest, "sizeBytes": path.stat().st_size,
                    "mediaType": _MEDIA.get(path.suffix.lower(), "application/octet-stream")}
         if is_source:
             sources.append(version)
@@ -466,8 +514,13 @@ def cmd_task_finish(args: argparse.Namespace) -> int:
     # -- checkpoint ----------------------------------------------------------
     cp_m = manifest["checkpoint"]
     facts = dict(cp_m.get("requiredFacts", {}))
+    if "claimDigest" in facts and facts["claimDigest"] != claim["revisionId"]:
+        _emit({"status": "FAIL", "reason": "conflicting checkpoint claimDigest"})
+        return ExitCode.FAIL
     facts.update({"claimDigest": claim["revisionId"], "eventPosition": len(events) - 1})
-    witnesses = [ev_digest[e["id"]] for e in manifest["evidence"] if not e.get("source")] or list(ev_digest.values())
+    # The closure witnesses are every evidence digest the snapshot binds, so
+    # the witness set and the snapshot's digest set are checked for equality.
+    witnesses = sorted(set(ev_digest.values()))
     snapshot = {
         "admittedSourceVersions": {e["path"]: ev_digest[e["id"]] for e in manifest["evidence"] if e.get("source")},
         "artifactRefs": {e["path"]: ev_digest[e["id"]] for e in manifest["evidence"] if not e.get("source")},
@@ -480,8 +533,26 @@ def cmd_task_finish(args: argparse.Namespace) -> int:
         "completeness": "AVAILABLE",
         "environmentBinding": env,
     }
+
+    # -- full-association check: refuse before commit, never after --------
+    # Every manifest path must be bound, in the snapshot and in its own sealed
+    # record, to the digest just computed for that file; the CAS must hold
+    # bytes that re-hash to it; every witness and claim reference must belong
+    # to a manifest entry. The same function runs after the fact (`task verify`).
+    integrity = verify_evidence_bindings(
+        snapshot, {name + ".json": rec for name, rec in ev_records}, cas,
+        expected={e["path"]: ev_digest[e["id"]] for e in manifest["evidence"]},
+        referenced=list(witnesses) + list(claim_refs),
+        witness_refs=witnesses, claim=claim, claim_evidence=list(claim_m.get("evidence", [])))
+    if integrity["blockers"]:
+        _emit({"status": "ERROR",
+               "reason": "evidence binding check refused the checkpoint: " + "; ".join(integrity["blockers"]),
+               "evidenceIntegrity": integrity})
+        return ExitCode.ERROR
+
     checkpoint = CheckpointStore(task.root / "checkpoints").commit(
         cp_m["id"], outcome_id=state["outcomeId"], snapshot=snapshot,
+        proposed_claim_records={"claim.json": claim},
         last_sealed_event_seq=len(events) - 1, last_sealed_event_digest=events.head_digest(),
         accepted_decisions=[{
             "decisionKind": "producer_self_check", "disposition": producer_status, "issuedByRole": "worker",
@@ -518,8 +589,8 @@ def cmd_task_finish(args: argparse.Namespace) -> int:
         ("plan", "ExecutionPlan", json.loads((task.records / "plan.json").read_text(encoding="utf-8"))),
     ]
     for name, rec in ev_records:
-        task.write("evidence_" + name, rec)
-        named.append(("evidence_" + name, "Evidence", rec))
+        task.write(name, rec)
+        named.append((name, "Evidence", rec))
     task.write("claim", claim)
     task.write("execution_trace", trace)
     task.write("checkpoint", checkpoint_record)
@@ -554,7 +625,7 @@ def cmd_task_finish(args: argparse.Namespace) -> int:
         len(named), sum(1 for r in report["records"] if r["valid"]), len(events), checkpoint["revisionId"]))
     if not report["allValid"]:
         return ExitCode.FAIL
-    return ExitCode.PASS if producer_status == "PASS" else ExitCode.FAIL
+    return _STATUS_EXIT[producer_status]
 
 
 
@@ -568,19 +639,23 @@ def _parse_evidence_flag(spec: str) -> dict[str, Any]:
     path = parts[0]
     is_source = len(parts) > 2 and parts[2].lower() in ("source", "src", "input")
     kind = parts[1] if len(parts) > 1 and parts[1] else ("source_bytes" if is_source else "derivation_receipt")
-    entry: dict[str, Any] = {"id": "ev." + Path(path).stem.replace(" ", "_"), "path": path, "kind": kind}
+    # The ID is assigned by the preflight from the normalized relative path;
+    # a stem-only ID folded distinct files onto one record before 2026-09-16.
+    entry: dict[str, Any] = {"path": path, "kind": kind}
     if is_source:
         entry["source"] = True
     return entry
 
 
 def _manifest_from_args(args: argparse.Namespace) -> dict[str, Any]:
+    base = Path(args.base or ".").resolve()
     if args.manifest:
-        return _read_manifest(args.manifest)
+        return _read_manifest(args.manifest, base, require_files=True)
     if not args.evidence:
         raise ValueError("record needs --manifest or at least one --evidence PATH[:KIND[:source]]")
     task_id = args.task_id
     evidence = [_parse_evidence_flag(e) for e in args.evidence]
+    normalize_manifest_evidence(evidence, base, require_files=True)
     sources = [e["id"] for e in evidence if e.get("source")]
     outputs = [e for e in evidence if not e.get("source")]
     for e in outputs:
@@ -672,7 +747,10 @@ def cmd_task_record(args: argparse.Namespace) -> int:
     try:
         manifest = _manifest_from_args(args)
     except (ValueError, KeyError) as exc:
-        _emit({"status": "ERROR", "reason": str(exc)})
+        if args.quiet:
+            sys.stdout.write(("ERROR " + str(exc) if len(str(exc)) <= 154 else ("ERROR " + str(exc))[:157].rsplit(" ", 1)[0] + "...") + "\n")
+        else:
+            _emit(_refusal(exc))
         return ExitCode.ERROR
     args._manifest_obj = manifest
     args._base = str(Path(args.base or ".").resolve())
@@ -699,8 +777,10 @@ def cmd_task_record(args: argparse.Namespace) -> int:
 
     if code == ExitCode.ERROR:
         # A refusal is reported as its reason, never as the stale state of an
-        # earlier run under the same root.
-        reason = "error"
+        # earlier run under the same root. A finished run whose producer
+        # status is ERROR is not a refusal: it emits no reason line and falls
+        # through to the compact status line like the other four statuses.
+        reason = None
         for line in reversed(full.splitlines()):
             try:
                 obj = json.loads(line)
@@ -709,8 +789,9 @@ def cmd_task_record(args: argparse.Namespace) -> int:
             if isinstance(obj, dict) and obj.get("reason"):
                 reason = str(obj["reason"])
                 break
-        sys.stdout.write(("ERROR " + reason if len(reason) <= 154 else ("ERROR " + reason)[:157].rsplit(" ", 1)[0] + "...") + "\n")
-        return code
+        if reason is not None:
+            sys.stdout.write(("ERROR " + reason if len(reason) <= 154 else ("ERROR " + reason)[:157].rsplit(" ", 1)[0] + "...") + "\n")
+            return code
 
     task = _Task(args.root)
     state_path = task.root / "state.json"
@@ -721,11 +802,37 @@ def cmd_task_record(args: argparse.Namespace) -> int:
     blockers = state.get("blockers", [])
     tail = ("blockers=" + str(len(blockers))) if blockers else ("next=" + str(state.get("nextLegalAction", "")))
     line = "%s cp=%s rev=%s steps=%d %s" % (
-        "PASS" if code == ExitCode.PASS else ("FAIL" if code == ExitCode.FAIL else "ERROR"),
+        _EXIT_STATUS.get(code, "ERROR"),
         manifest["checkpoint"]["id"], rev, steps_recorded, tail,
     )
     sys.stdout.write((line if len(line) <= 160 else line[:157].rsplit(" ", 1)[0] + "...") + "\n")
     return code
+
+
+# ---------------------------------------------------------------------------
+# verify -- the evidence-integrity pass over an existing run root
+# ---------------------------------------------------------------------------
+
+def cmd_task_verify(args: argparse.Namespace) -> int:
+    """Re-check a committed run: CAS bytes, sealed Evidence records, snapshot bindings.
+
+    Exit 0 when every reference passes; 2 when a finding names a missing,
+    corrupted, mis-bound, ambiguous or unverified record; 6 when the pass
+    could not run (no CAS); 4 when the checkpoint itself cannot be loaded.
+    Nothing is rewritten.
+    """
+    try:
+        result = verify_run_root(args.root, args.checkpoint_id,
+                                 cas_root=args.cas_root, records_root=args.records_root)
+    except (CheckpointError, ValueError, OSError) as exc:
+        _emit({"status": "ERROR", "reason": str(exc)})
+        return ExitCode.ERROR
+    _emit(result)
+    if result["status"] == "PASS":
+        return ExitCode.PASS
+    if result["status"] == "NOT_RUN":
+        return ExitCode.BLOCKED_BY_PRIOR_STATE
+    return {"FAIL": ExitCode.FAIL, "UNKNOWN": ExitCode.UNKNOWN, "ERROR": ExitCode.ERROR}[result["status"]]
 
 
 # ---------------------------------------------------------------------------
@@ -777,3 +884,10 @@ def add_task_parser(sub: Any) -> None:
     r.add_argument("--word-budget", type=int, default=200)
     r.add_argument("--quiet", action="store_true", help="one line of output (<=160 chars)")
     r.set_defaults(func=cmd_task_record)
+
+    v = tasks.add_parser("verify", help="re-check a run's evidence: CAS bytes, sealed records, snapshot bindings")
+    v.add_argument("--root", required=True, help="the run root that holds checkpoints/, cas/ and records/")
+    v.add_argument("--checkpoint-id", help="defaults to the only checkpoint under <root>/checkpoints")
+    v.add_argument("--cas-root", help="content store (default: <root>/cas)")
+    v.add_argument("--records-root", help="sealed records (default: <root>/records)")
+    v.set_defaults(func=cmd_task_verify)

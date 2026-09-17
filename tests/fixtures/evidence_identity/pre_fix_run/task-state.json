@@ -1,0 +1,16 @@
+{
+  "clockDomain": "host:fixture-host",
+  "contractDigest": "sha256:b566e8881b46d093afbddae8930a55234c3797d729d8cd2fbade08258d4ca060",
+  "finishedAt": "2026-09-16T15:28:52Z",
+  "implementation": "impl.prefix.v1",
+  "lastNs": 89811312000000,
+  "outcomeId": "outcome.prefix",
+  "planDigest": "sha256:b36da29427d7ff997442a8e415aaaaf5155a138a54d3b7a1ace0088a73f1aee4",
+  "planId": "plan.prefix",
+  "python": "python",
+  "runId": "run-prefix-1789572532",
+  "startNs": 89811312000000,
+  "steps": [],
+  "taskId": "prefix",
+  "workItemId": "wi.prefix"
+}

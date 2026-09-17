@@ -1,26 +1,4 @@
-# Runtime dependencies of the ontology, audit, gateway and reporting paths.
-#
-# There are none. This file is deliberately not empty of meaning: its digest is
-# recorded in RELEASE_MANIFEST.json as dependencyLockDigest, so a dependency
-# cannot be added later without the manifest changing.
-#
-# Verified host interpreter for this candidate:
-#   CPython 3.10.8 (tags/v3.10.8:aaaf517, Oct 11 2022) [MSC v.1933 64 bit (AMD64)]
-#   Windows-10-10.0.26200-SP0
-#
-# Preserved source package (not a fetched dependency):
-#   cityqa-deterministic==1.0.0  -- vendored under third_party/, MIT-style licence
-#                                   retained; its own 128 tests re-observed passing
-#                                   on this host.
-#
-# Development only (not required to run any pipeline):
-#   pytest==8.3.4
-#
-# Optional raster backend (HTML is the complete report; a missing backend
-# yields an UNAVAILABLE view, never a PASS):
-#   cairosvg==2.7.1   -- NOT INSTALLED in this environment
-#
-# NOT REDISTRIBUTED:
-#   continuity-ontology==0.1.0 -- private reference only; the archive carries no
-#                                 licence file, so redistribution rights are
-#                                 unknown and it is excluded from every payload.
+# Public COW runtime: no third-party Python package dependencies.
+# Python 3.10+; the licensed CityQA engine subset is vendored.
+# Development tests only: pytest==8.3.4.
+# Native client installation and live adapters are outside these tests.

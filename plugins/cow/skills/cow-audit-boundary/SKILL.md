@@ -1,6 +1,6 @@
 ---
 name: cow-audit-boundary
-description: Use COW when Codex is reviewing, auditing, qualifying, or challenging a work product and must preserve the producer/auditor boundary, sealed-candidate identity, evidence sufficiency, and five-state outcomes. Invoke explicitly when this workflow is requested.
+description: Use COW when the agent is reviewing, auditing, qualifying, or challenging a work product and must preserve the producer/auditor boundary, sealed-candidate identity, evidence sufficiency, and five-state outcomes. Invoke explicitly when this workflow is requested.
 ---
 
 # COW audit boundary

@@ -1,0 +1,20 @@
+{
+  "lifecycle": "CHECKPOINTED",
+  "currentGate": "producer_self_check=PASS (producer-asserted, not verified)",
+  "mandatoryTotals": {
+    "PASS": 1,
+    "FAIL": 0,
+    "UNKNOWN": 0,
+    "ERROR": 0,
+    "NOT_RUN": 1
+  },
+  "bundleDigest": "none (single producer claim sha256:53d41d916079060ebb81f98105416e6008014c3bfc155ad017778fff7453aa90)",
+  "auditDigest": "none (independent audit NOT_RUN)",
+  "nextLegalAction": "hand the claim and its evidence to the independent auditor",
+  "blockers": [],
+  "evidenceReferences": [
+    "sha256:150d529554ab3599e3e173d2b3f908f2f78f62b1c3936750a07b043bede561f2",
+    "sha256:150d529554ab3599e3e173d2b3f908f2f78f62b1c3936750a07b043bede561f2",
+    "checkpoint sha256:92fca6cb103af0472a88479eb189ff1972191f94ca49d4621d94307458dc2eeb"
+  ]
+}

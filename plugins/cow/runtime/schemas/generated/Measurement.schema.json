@@ -9,11 +9,11 @@
           "type": "string"
         },
         "accountingId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "correctsReceiptId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "firstQualifyingAttempt": {
@@ -23,7 +23,7 @@
           "type": "string"
         },
         "receiptId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "requiredGateResults": {
@@ -76,7 +76,7 @@
       "additionalProperties": false,
       "properties": {
         "accountingId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "delta": {
@@ -87,7 +87,7 @@
           "type": "string"
         },
         "receiptId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "sequence": {
@@ -137,7 +137,7 @@
           "type": "string"
         },
         "conflictId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "disposition": {
@@ -182,7 +182,7 @@
             "description": "identifier reference or embedded ArtifactVersion",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -212,7 +212,7 @@
           "description": "identifier reference or embedded Artifact",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -258,7 +258,7 @@
       "description": "Produced by the independent auditor package only. Never written by a producer.",
       "properties": {
         "auditId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "auditInputManifestDigest": {
@@ -283,7 +283,7 @@
         },
         "disagreedWithProducer": {
           "items": {
-            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
             "type": "string"
           },
           "type": "array"
@@ -319,7 +319,7 @@
             "description": "identifier reference or embedded Verification",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -357,7 +357,7 @@
           "description": "identifier reference or embedded Scope",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -369,7 +369,7 @@
           "description": "identifier reference or embedded Capability",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -389,7 +389,7 @@
           "type": "string"
         },
         "operationId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "replayGuard": {
@@ -441,7 +441,7 @@
             "additionalProperties": false,
             "properties": {
               "checkId": {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               "reason": {
@@ -479,7 +479,7 @@
           "type": "boolean"
         },
         "pairId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "receipts": {},
@@ -490,7 +490,7 @@
           "description": "identifier reference or embedded VerificationCostSet",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -536,7 +536,7 @@
           "type": "string"
         },
         "protocolId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "protocolKind": {
@@ -599,11 +599,11 @@
           "type": "string"
         },
         "freshnessPolicyId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "receiptId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "refusedReason": {
@@ -636,7 +636,7 @@
           "description": "identifier reference or embedded Contract",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -654,7 +654,7 @@
           "description": "identifier reference or embedded Contract",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -689,7 +689,7 @@
             "description": "identifier reference or embedded Decision",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -703,7 +703,7 @@
           "description": "identifier reference or embedded ClosureReceipt",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -732,7 +732,7 @@
             "description": "identifier reference or embedded OpenOperation",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -746,7 +746,7 @@
           "description": "identifier reference or embedded Outcome",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -761,7 +761,7 @@
           "description": "identifier reference or embedded StateSnapshot",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -771,7 +771,7 @@
         },
         "unresolvedClaims": {
           "items": {
-            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
             "type": "string"
           },
           "type": "array"
@@ -801,7 +801,7 @@
       "description": "Rejects gaps, overlap, duplicate ranges, stale or mixed epochs, process changes, candidate changes and partial writes.",
       "properties": {
         "aggregateId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "chunkRefs": {
@@ -847,7 +847,7 @@
           "description": "identifier reference or embedded Scope",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -893,7 +893,7 @@
           "type": "string"
         },
         "chunkId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "completed": {
@@ -934,7 +934,7 @@
           "type": "string"
         },
         "runId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "serializedRowCount": {
@@ -980,14 +980,14 @@
       "description": "Binds a proposition, bounded scope, expected/observed values, required evidence, authority/freshness and policy.",
       "properties": {
         "claimId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "freshnessPolicyRef": {
           "description": "identifier reference or embedded FreshnessPolicy",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -1012,7 +1012,7 @@
           "description": "identifier reference or embedded ProducerAssertion",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -1024,7 +1024,7 @@
           "description": "identifier reference or embedded Proposition",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -1032,12 +1032,16 @@
             }
           ]
         },
+        "recordType": {
+          "description": "Explicit nested Claim discriminator; integrity checking requires Claim on persisted bundled bodies.",
+          "type": "string"
+        },
         "requiredEvidence": {
           "items": {
             "description": "identifier reference or embedded EvidenceRequirement",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -1051,7 +1055,7 @@
           "description": "identifier reference or embedded EvidenceSufficiencyReceipt",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -1080,7 +1084,7 @@
       "description": "Sealed producer bundle. Immutable member index with a resolved-state digest.",
       "properties": {
         "bundleId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "candidateDigest": {
@@ -1102,7 +1106,7 @@
             "additionalProperties": false,
             "properties": {
               "claimId": {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               "mandatory": {
@@ -1153,7 +1157,7 @@
             "additionalProperties": false,
             "properties": {
               "claimId": {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               "revisionDigest": {
@@ -1170,7 +1174,7 @@
           "type": "array"
         },
         "deltaId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "depth": {
@@ -1189,7 +1193,7 @@
         },
         "removedClaimIds": {
           "items": {
-            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
             "type": "string"
           },
           "type": "array"
@@ -1224,7 +1228,7 @@
           "description": "identifier reference or embedded Claim",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -1233,7 +1237,7 @@
           ]
         },
         "claimId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "parentRevisionDigest": {
@@ -1293,7 +1297,7 @@
           "description": "identifier reference or embedded Scope",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -1329,13 +1333,13 @@
       "properties": {
         "claimIds": {
           "items": {
-            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
             "type": "string"
           },
           "type": "array"
         },
         "conflictId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "conflictingEvidence": {
@@ -1359,7 +1363,7 @@
         },
         "invalidatesDownstream": {
           "items": {
-            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
             "type": "string"
           },
           "type": "array"
@@ -1390,7 +1394,7 @@
           "description": "identifier reference or embedded FreshnessPolicy",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -1406,7 +1410,7 @@
             "description": "identifier reference or embedded Predicate",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -1436,7 +1440,7 @@
             "description": "identifier reference or embedded EvidenceRequirement",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -1536,7 +1540,7 @@
             "description": "identifier reference or embedded BenchmarkPair",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -1550,7 +1554,7 @@
           "description": "identifier reference or embedded EquivalenceContract",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -1639,7 +1643,7 @@
           "type": "string"
         },
         "receiptId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "relation": {
@@ -1769,7 +1773,7 @@
             "description": "identifier reference or embedded EvidenceRequirement",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -1818,7 +1822,7 @@
             "description": "identifier reference or embedded Predicate",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -1848,7 +1852,7 @@
           "description": "identifier reference or embedded WorkUnitPolicy",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -1908,7 +1912,7 @@
           "description": "identifier reference or embedded Scope",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -1994,7 +1998,7 @@
           "type": "array"
         },
         "requirementId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "syntheticAcceptable": {
@@ -2047,7 +2051,7 @@
                 "type": "string"
               },
               "requirementId": {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               "satisfied": {
@@ -2084,11 +2088,11 @@
       "description": "Append-only envelope. Corrections are linked events, never silent edits.",
       "properties": {
         "correctsEventId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "eventId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "eventType": {
@@ -2170,7 +2174,7 @@
               },
               "dependsOn": {
                 "items": {
-                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                   "type": "string"
                 },
                 "type": "array"
@@ -2179,14 +2183,14 @@
                 "type": "boolean"
               },
               "nodeId": {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               "selectedImplementation": {
                 "description": "identifier reference or embedded Implementation",
                 "oneOf": [
                   {
-                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                     "type": "string"
                   },
                   {
@@ -2198,7 +2202,7 @@
                 "description": "identifier reference or embedded WorkItem",
                 "oneOf": [
                   {
-                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                     "type": "string"
                   },
                   {
@@ -2221,7 +2225,7 @@
           "description": "identifier reference or embedded Outcome",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -2234,7 +2238,7 @@
             "description": "identifier reference or embedded SelectionReceipt",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -2275,7 +2279,7 @@
           "description": "identifier reference or embedded Capability",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -2288,7 +2292,7 @@
             "description": "identifier reference or embedded ArtifactVersion",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -2302,7 +2306,7 @@
           "description": "identifier reference or embedded EnvironmentIdentity",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -2315,7 +2319,7 @@
             "description": "identifier reference or embedded ExecutionEvent",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -2329,7 +2333,7 @@
           "description": "identifier reference or embedded Implementation",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -2348,7 +2352,7 @@
           "description": "identifier reference or embedded ExecutionTrace",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -2360,7 +2364,7 @@
           "description": "identifier reference or embedded ExecutionPlan",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -2373,7 +2377,7 @@
             "description": "identifier reference or embedded ArtifactVersion",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -2388,7 +2392,7 @@
             "description": "identifier reference or embedded ResourceUsage",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -2399,7 +2403,7 @@
           "type": "array"
         },
         "runId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "spans": {
@@ -2407,7 +2411,7 @@
             "description": "identifier reference or embedded Span",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -2431,7 +2435,7 @@
           "description": "identifier reference or embedded WorkItem",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -2517,7 +2521,7 @@
           "type": "integer"
         },
         "policyId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "reusableWhileUnchanged": {
@@ -2552,7 +2556,7 @@
             "description": "identifier reference or embedded Contract",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -2570,7 +2574,7 @@
         },
         "requiredPredicateIds": {
           "items": {
-            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
             "type": "string"
           },
           "type": "array"
@@ -2608,7 +2612,7 @@
           "description": "identifier reference or embedded ClosureReceipt",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -2620,7 +2624,7 @@
           "description": "identifier reference or embedded Gate",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -2648,7 +2652,7 @@
               "expected": {},
               "observed": {},
               "predicateId": {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               "reason": {
@@ -2707,7 +2711,7 @@
           "description": "identifier reference or embedded Checkpoint",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -2730,7 +2734,7 @@
         },
         "transferredFacts": {
           "items": {
-            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
             "type": "string"
           },
           "type": "array"
@@ -2794,7 +2798,7 @@
           "description": "identifier reference or embedded QualificationReceipt",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -2807,7 +2811,7 @@
             "description": "identifier reference or embedded Capability",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -2901,7 +2905,7 @@
           "description": "identifier reference or embedded Scope",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -2965,11 +2969,11 @@
           "type": "array"
         },
         "intentId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "operationId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "preStateDigest": {
@@ -2980,7 +2984,7 @@
           "description": "identifier reference or embedded Scope",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -3010,22 +3014,22 @@
           "type": "string"
         },
         "entryId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "intentId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "operationId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "ownership": {
           "description": "identifier reference or embedded OwnershipAssertion",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -3053,7 +3057,7 @@
           "type": "integer"
         },
         "transactionId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "x-extension": {
@@ -3098,7 +3102,7 @@
           "type": "array"
         },
         "operationId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "readbackConfirmedEffects": {
@@ -3156,7 +3160,7 @@
           "type": "string"
         },
         "observationId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "observedAt": {
@@ -3174,7 +3178,7 @@
           "description": "identifier reference or embedded Scope",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -3210,7 +3214,7 @@
           "description": "identifier reference or embedded Capability",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -3225,7 +3229,7 @@
           "type": "string"
         },
         "operationId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "receiptObserved": {
@@ -3264,7 +3268,7 @@
             "description": "identifier reference or embedded Contract",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -3318,7 +3322,7 @@
           "description": "identifier reference or embedded WorkUnitPolicy",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -3364,7 +3368,7 @@
           "type": "string"
         },
         "transactionId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "x-extension": {
@@ -3393,7 +3397,7 @@
           "type": "string"
         },
         "predicateId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "subjectPath": {
@@ -3459,7 +3463,7 @@
           "description": "identifier reference or embedded Proposition",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -3555,7 +3559,7 @@
           "description": "identifier reference or embedded Scope",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -3719,11 +3723,11 @@
           "type": "string"
         },
         "operationId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "readbackId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "x-extension": {
@@ -3761,7 +3765,7 @@
           "type": "boolean"
         },
         "sessionId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "tokenizerId": {
@@ -3818,7 +3822,7 @@
           "description": "identifier reference or embedded Scope",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -3833,7 +3837,7 @@
           "type": "string"
         },
         "receiptId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "result": {
@@ -4073,7 +4077,7 @@
           "description": "identifier reference or embedded Scope",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -4139,7 +4143,7 @@
             "description": "identifier reference or embedded ResourceUsage",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -4153,7 +4157,7 @@
           "type": "string"
         },
         "runId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "schemaVersion": {
@@ -4189,7 +4193,7 @@
           "type": "integer"
         },
         "ofInvocationId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "permitted": {
@@ -4221,7 +4225,7 @@
             "additionalProperties": false,
             "properties": {
               "checkId": {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               "reason": {
@@ -4285,7 +4289,7 @@
           "type": "string"
         },
         "viewId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "x-extension": {
@@ -4308,7 +4312,7 @@
       "additionalProperties": false,
       "properties": {
         "actionId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "authorizedByRole": {
@@ -4322,7 +4326,7 @@
           "type": "string"
         },
         "targetEntryId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "x-extension": {
@@ -4378,13 +4382,13 @@
         },
         "candidateUniverse": {
           "items": {
-            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
             "type": "string"
           },
           "type": "array"
         },
         "committed": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "hardPredicates": {
@@ -4392,7 +4396,7 @@
             "description": "identifier reference or embedded Predicate",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -4403,7 +4407,7 @@
           "type": "array"
         },
         "nodeId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "prngSeed": {
@@ -4414,11 +4418,11 @@
             "additionalProperties": false,
             "properties": {
               "candidateId": {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               "predicateId": {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               }
             },
@@ -4438,7 +4442,7 @@
             "additionalProperties": false,
             "properties": {
               "candidateId": {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               "score": {
@@ -4519,7 +4523,7 @@
           "type": "boolean"
         },
         "parentSpanId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "purpose": {
@@ -4535,7 +4539,7 @@
           "type": "string"
         },
         "spanId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "startNs": {
@@ -4552,7 +4556,7 @@
           "type": "string"
         },
         "traceRunId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "uncertainty": {
@@ -4625,7 +4629,7 @@
           "description": "identifier reference or embedded EnvironmentIdentity",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -4673,7 +4677,7 @@
             "additionalProperties": false,
             "properties": {
               "factId": {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               "missingReason": {
@@ -4686,7 +4690,7 @@
                 "description": "identifier reference or embedded Provenance",
                 "oneOf": [
                   {
-                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                     "type": "string"
                   },
                   {
@@ -4739,7 +4743,7 @@
           "description": "identifier reference or embedded Implementation",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -4748,7 +4752,7 @@
           ]
         },
         "invocationId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "resultDigest": {
@@ -4798,11 +4802,11 @@
           "type": "string"
         },
         "operationId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "transactionId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "x-extension": {
@@ -4823,7 +4827,7 @@
       "description": "An independent recomputation of a proposition. Produced only inside the auditor package.",
       "properties": {
         "claimId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "commonModeDependencies": {
@@ -4846,7 +4850,7 @@
           "description": "Inline proposition when supplied; claimId references the proposition in the frozen bundle.",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -4892,7 +4896,7 @@
           "description": "identifier reference or embedded ResourceUsage",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -4904,7 +4908,7 @@
           "description": "identifier reference or embedded ResourceUsage",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -4916,7 +4920,7 @@
           "description": "identifier reference or embedded ResourceUsage",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -4942,7 +4946,7 @@
       "properties": {
         "accountingId": {
           "description": "Stable credit identity. Duplicated accounting IDs are rejected.",
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "accountingPartition": {
@@ -4954,7 +4958,7 @@
             "description": "identifier reference or embedded Contract",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -4987,7 +4991,7 @@
           "description": "identifier reference or embedded Outcome",
           "oneOf": [
             {
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
               "type": "string"
             },
             {
@@ -5006,7 +5010,7 @@
             "description": "identifier reference or embedded WorkItem",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -5021,7 +5025,7 @@
             "description": "identifier reference or embedded Capability",
             "oneOf": [
               {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               {
@@ -5071,12 +5075,12 @@
           "type": "string"
         },
         "packetId": {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         "requirementIds": {
           "items": {
-            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
             "type": "string"
           },
           "type": "array"
@@ -5105,7 +5109,7 @@
             "additionalProperties": false,
             "properties": {
               "accountingId": {
-                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                 "type": "string"
               },
               "partialCreditDefined": {
@@ -5116,7 +5120,7 @@
               },
               "requiredGateIds": {
                 "items": {
-                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
                   "type": "string"
                 },
                 "type": "array"
@@ -5171,7 +5175,7 @@
   "$id": "https://ontology.continuity.invalid/2.0.0/schema/Measurement.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "_generated": "GENERATED FROM ontology/metamodel.json -- DO NOT EDIT",
-  "_semanticModelDigest": "sha256:419687df6a57c009f9657437e1bec5d2739c2c8e17ba5f5978a85f2cee84d40e",
+  "_semanticModelDigest": "sha256:0e07de0be6ddc33f77d15bf5d7144f2ba48edf23beb878b4257583718f1e706d",
   "additionalProperties": false,
   "description": "A typed metric result. Carries value, unit, scope, authority, validity, formula version, input references and a reason when unavailable.",
   "properties": {
@@ -5226,7 +5230,7 @@
       "type": "array"
     },
     "logicalId": {
-      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
       "type": "string"
     },
     "metricId": {
@@ -5248,7 +5252,7 @@
       "description": "identifier reference or embedded Provenance",
       "oneOf": [
         {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         {
@@ -5260,7 +5264,7 @@
       "type": "string"
     },
     "revisionId": {
-      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
       "type": "string"
     },
     "schemaVersion": {
@@ -5270,7 +5274,7 @@
       "description": "identifier reference or embedded Scope",
       "oneOf": [
         {
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,4095}$",
           "type": "string"
         },
         {

@@ -21,6 +21,17 @@ def main():
     for k in ('name','version','description','author','interface'):
         if k not in data: die('missing '+k)
     if data['name'] != p.name: die('plugin folder name must match manifest name')
+    cm = p/'.claude-plugin/plugin.json'
+    if cm.exists():
+        claude = json.loads(cm.read_text(encoding='utf-8'))
+        if claude.get('name') != p.name: die('Claude plugin name mismatch')
+        if not SEMVER.match(claude.get('version','')): die('invalid Claude plugin version')
+        if not (p/claude.get('skills','skills')).is_dir(): die('Claude skills path missing')
+        market = p.parents[1]/'.claude-plugin/marketplace.json'
+        entries = json.loads(market.read_text(encoding='utf-8'))
+        if entries.get('name') != 'cow-claude': die('unexpected Claude marketplace identifier')
+        if entries.get('plugins',[]) != [{'name':'cow','source':'./plugins/cow','description':'Evidence-bound offline work continuity.'}]:
+            die('unexpected Claude marketplace source')
     if not NAME_RE.match(data['name']): die('invalid plugin name')
     if not SEMVER.match(data['version']): die('version is not strict semver')
     if not isinstance(data['author'],dict) or not data['author'].get('name'): die('author.name required')

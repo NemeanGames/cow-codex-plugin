@@ -1,0 +1,54 @@
+{
+  "semanticModelDigest": "sha256:356d05c8e459888cd22779f81e74d9e856a749105e115cca66391806a95aca4a",
+  "records": [
+    {
+      "recordType": "Outcome",
+      "path": "records/outcome.json",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "recordType": "WorkItem",
+      "path": "records/work_item.json",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "recordType": "ExecutionPlan",
+      "path": "records/plan.json",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "recordType": "Evidence",
+      "path": "records/evidence_ev_reopen_receipt.json",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "recordType": "Evidence",
+      "path": "records/evidence_ev_reopen_receipt.json",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "recordType": "Claim",
+      "path": "records/claim.json",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "recordType": "ExecutionTrace",
+      "path": "records/execution_trace.json",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "recordType": "Checkpoint",
+      "path": "records/checkpoint.json",
+      "valid": true,
+      "issues": []
+    }
+  ],
+  "allValid": true
+}

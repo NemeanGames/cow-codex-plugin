@@ -50,6 +50,12 @@ class ResumeBlocked(CheckpointError):
     """Raised when resume cannot legally proceed."""
 
 
+_INTEGRITY_NOT_RUN_UNCHECKED: dict[str, Any] = {
+    "status": "NOT_RUN", "reason": "evidence integrity was not checked",
+    "checked": 0, "passed": 0, "findings": [], "blockers": [],
+}
+
+
 class ResumeReport:
     """The result of attempting to resume from a committed checkpoint."""
 
@@ -64,6 +70,8 @@ class ResumeReport:
         "next_legal_actions",
         "tail_events",
         "restored_values",
+        "evidence_integrity",
+        "claim_integrity",
     )
 
     def __init__(
@@ -78,6 +86,8 @@ class ResumeReport:
         next_legal_actions: Sequence[str],
         tail_events: int,
         restored_values: Mapping[str, Any] | None = None,
+        evidence_integrity: Mapping[str, Any] | None = None,
+        claim_integrity: Mapping[str, Any] | None = None,
     ) -> None:
         self.checkpoint_id = checkpoint_id
         self.resumable = resumable
@@ -89,6 +99,8 @@ class ResumeReport:
         self.next_legal_actions = list(next_legal_actions)
         self.tail_events = tail_events
         self.restored_values = dict(restored_values or {})
+        self.evidence_integrity = dict(evidence_integrity or _INTEGRITY_NOT_RUN_UNCHECKED)
+        self.claim_integrity = dict(claim_integrity or {})
 
     def retention(self) -> dict[str, Any]:
         """Continuity retention over the frozen required-fact set."""
@@ -116,6 +128,8 @@ class ResumeReport:
             "nextLegalActions": self.next_legal_actions,
             "tailEventsAfterSeal": self.tail_events,
             "continuityRetention": self.retention(),
+            "evidenceIntegrity": self.evidence_integrity,
+            "claimIntegrity": self.claim_integrity,
         }
 
     def __bool__(self) -> bool:
@@ -123,11 +137,21 @@ class ResumeReport:
 
 
 class CheckpointStore:
-    """Commits checkpoints and resumes from them in a fresh process."""
+    """Commits checkpoints and resumes from them in a fresh process.
 
-    def __init__(self, root: str | os.PathLike[str], *, validate_records: bool = False) -> None:
+    ``cas_root`` and ``records_root`` locate the run's content store and
+    sealed records for the evidence-integrity pass on resume. When omitted
+    the historical layout is assumed: ``<run>/cas`` and ``<run>/records``
+    beside ``<run>/checkpoints``.
+    """
+
+    def __init__(self, root: str | os.PathLike[str], *, validate_records: bool = False,
+                 cas_root: str | os.PathLike[str] | None = None,
+                 records_root: str | os.PathLike[str] | None = None) -> None:
         self.root = Path(root)
         self.validate_records = validate_records
+        self.cas_root = Path(cas_root) if cas_root is not None else None
+        self.records_root = Path(records_root) if records_root is not None else None
         self.root.mkdir(parents=True, exist_ok=True)
 
     def _path(self, checkpoint_id: str) -> Path:
@@ -150,6 +174,7 @@ class CheckpointStore:
         next_legal_actions: Sequence[str],
         recovery_policy_ref: str,
         closure_receipt: Mapping[str, Any],
+        proposed_claim_records: Mapping[str, Any] | None = None,
     ) -> dict[str, Any]:
         """Write a committed checkpoint atomically.
 
@@ -191,6 +216,9 @@ class CheckpointStore:
             "nextLegalActions": list(next_legal_actions),
             "recoveryPolicyRef": recovery_policy_ref,
         }
+        claim_check = self.claim_integrity(record, proposed=proposed_claim_records)
+        if claim_check["blockers"]:
+            raise CheckpointError("; ".join(claim_check["blockers"]))
         record["revisionId"] = digest_with("continuity.core.v2", record)
         if self.validate_records:
             validate_persisted(record)
@@ -295,6 +323,15 @@ class CheckpointStore:
                 "before the tail is treated as committed"
             )
 
+        # Evidence integrity: every path the snapshot binds must have its
+        # bytes in the CAS and a sealed record naming it with the same digest.
+        # A checkpoint whose facts all restore is still not resumable over a
+        # mis-bound, missing or corrupted evidence reference.
+        integrity = self.evidence_integrity(record)
+        blockers.extend(integrity["blockers"])
+        claims = self.claim_integrity(record)
+        blockers.extend(claims["blockers"])
+
         return ResumeReport(
             checkpoint_id=checkpoint_id,
             resumable=not blockers,
@@ -306,7 +343,71 @@ class CheckpointStore:
             next_legal_actions=record.get("nextLegalActions", []),
             tail_events=len(tail),
             restored_values=restored_values,
+            evidence_integrity=integrity,
+            claim_integrity=claims,
         )
+
+    def claim_integrity(self, record: Mapping[str, Any], *, proposed=None) -> dict[str, Any]:
+        from .claim_integrity import check_claim_integrity
+        from ..claims.cas import ContentStore
+        cas_root = self.cas_root if self.cas_root is not None else self.root.parent / "cas"
+        records_root = self.records_root if self.records_root is not None else self.root.parent / "records"
+        return check_claim_integrity(record, records_root,
+                                     ContentStore(cas_root) if cas_root.is_dir() else None,
+                                     proposed=proposed)
+
+    # -- evidence integrity ----------------------------------------------
+
+    def evidence_integrity(self, record: Mapping[str, Any]) -> dict[str, Any]:
+        """The evidence-integrity pass over a loaded checkpoint.
+
+        ``NOT_RUN`` is reported, never treated as a pass: when the snapshot
+        references evidence and no CAS can be located, the result carries a
+        blocker. Only a snapshot with zero evidence references is
+        ``NOT_RUN`` without a blocker.
+        """
+        from ..claims.cas import ContentStore
+        from .evidence_integrity import load_evidence_records, snapshot_references, verify_evidence_bindings
+
+        snapshot = record.get("snapshot") or {}
+        refs = snapshot_references(snapshot)
+        if not refs:
+            return {"status": "NOT_RUN", "reason": "the snapshot references no evidence",
+                    "checked": 0, "passed": 0, "findings": [], "blockers": []}
+        explicit = self.cas_root is not None
+        cas_root = self.cas_root if explicit else self.root.parent / "cas"
+        if not cas_root.is_dir():
+            reason = (("explicit CAS root " + str(cas_root) + " does not exist or is not a directory")
+                      if explicit else
+                      ("no CAS root found at " + str(cas_root) + "; pass --cas-root"))
+            return {"status": "NOT_RUN", "reason": reason, "checked": 0, "passed": 0,
+                    "findings": [{"section": section, "path": path, "digest": digest, "status": "NOT_RUN",
+                                  "problems": []} for section, path, digest in refs],
+                    "blockers": ["evidence integrity not run: " + reason]}
+        records_root = self.records_root if self.records_root is not None else self.root.parent / "records"
+        records = load_evidence_records(records_root)
+        # The sealed Claim, when the run wrote one, is checked against the
+        # snapshot too: its evidence refs and its evidence ids must equal the
+        # snapshot's digests and derived ids. A run without a claim record
+        # (the e2e pipeline keeps its claim in the bundle) reports
+        # claimChecked: false rather than pretending the check ran.
+        claim = None
+        claim_path = Path(records_root) / "claim.json"
+        if claim_path.is_file():
+            try:
+                loaded = json.loads(claim_path.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError):
+                loaded = None
+            if isinstance(loaded, dict) and loaded.get("recordType") == "Claim":
+                claim = loaded
+        witnesses = (record.get("closureReceipt") or {}).get("witnessRefs")
+        result = verify_evidence_bindings(
+            snapshot, records, ContentStore(cas_root),
+            witness_refs=witnesses if isinstance(witnesses, list) else None, claim=claim)
+        result["casRoot"] = str(cas_root)
+        result["recordsRoot"] = str(records_root)
+        result["evidenceRecords"] = len(records)
+        return result
 
 
 def reconcile_open_operation(operation: Mapping[str, Any]) -> dict[str, Any]:

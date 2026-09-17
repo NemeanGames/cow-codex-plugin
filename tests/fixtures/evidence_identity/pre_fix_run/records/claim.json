@@ -1,0 +1,102 @@
+{
+  "claimId": "claim.prefix",
+  "createdAt": "2026-09-16T15:28:52Z",
+  "hashProfile": "continuity.core.v2",
+  "lifecycle": "DRAFT",
+  "logicalId": "claim.prefix",
+  "mandatory": true,
+  "producerAssertion": {
+    "evidenceRefs": [
+      "sha256:150d529554ab3599e3e173d2b3f908f2f78f62b1c3936750a07b043bede561f2",
+      "sha256:150d529554ab3599e3e173d2b3f908f2f78f62b1c3936750a07b043bede561f2"
+    ],
+    "note": "PRODUCER ASSERTION: the producer computed and self-checked this; it carries no verification authority and has not been independently audited.",
+    "producerRole": "worker",
+    "producerStatus": "PASS",
+    "proposition": {
+      "claimType": "HASH_EQUALITY",
+      "scope": {
+        "enumerationComplete": true,
+        "scopeKind": "file",
+        "selector": "a/reopen_receipt.py"
+      },
+      "statement": "a/reopen_receipt.py was produced from the declared sources and self-checked",
+      "subject": "a/reopen_receipt.py"
+    }
+  },
+  "proposition": {
+    "claimType": "HASH_EQUALITY",
+    "scope": {
+      "enumerationComplete": true,
+      "scopeKind": "file",
+      "selector": "a/reopen_receipt.py"
+    },
+    "statement": "a/reopen_receipt.py was produced from the declared sources and self-checked",
+    "subject": "a/reopen_receipt.py"
+  },
+  "provenance": {
+    "actor": "worker",
+    "authorityClass": "DETERMINISTIC_DERIVATION",
+    "observationChannel": "FILE_BYTES",
+    "operationalOwnership": "DIRECTLY_OWNED",
+    "origin": "DERIVATION",
+    "productionMethod": "RECOMPUTED",
+    "sourceRefs": [
+      "sha256:150d529554ab3599e3e173d2b3f908f2f78f62b1c3936750a07b043bede561f2",
+      "sha256:150d529554ab3599e3e173d2b3f908f2f78f62b1c3936750a07b043bede561f2"
+    ],
+    "syntheticFixture": false,
+    "verificationStatus": "PRODUCER_ASSERTED"
+  },
+  "recordType": "Claim",
+  "requiredEvidence": [
+    {
+      "evidenceKind": "derivation_receipt",
+      "mandatory": true,
+      "minimumAuthorityClasses": [
+        "DETERMINISTIC_DERIVATION"
+      ],
+      "requirementId": "r.reopen_receipt",
+      "syntheticAcceptable": false
+    },
+    {
+      "evidenceKind": "derivation_receipt",
+      "mandatory": true,
+      "minimumAuthorityClasses": [
+        "DETERMINISTIC_DERIVATION"
+      ],
+      "requirementId": "r.reopen_receipt",
+      "syntheticAcceptable": false
+    }
+  ],
+  "revisionId": "sha256:53d41d916079060ebb81f98105416e6008014c3bfc155ad017778fff7453aa90",
+  "schemaVersion": "2.0.0",
+  "semanticModelDigest": "sha256:356d05c8e459888cd22779f81e74d9e856a749105e115cca66391806a95aca4a",
+  "sufficiency": {
+    "closed": true,
+    "mandatoryApplicable": 2,
+    "mandatorySatisfied": 2,
+    "requirementResults": [
+      {
+        "applicable": true,
+        "evidenceRefs": [
+          "sha256:150d529554ab3599e3e173d2b3f908f2f78f62b1c3936750a07b043bede561f2"
+        ],
+        "mandatory": true,
+        "reason": "satisfied by 1 admissible item(s)",
+        "requirementId": "r.reopen_receipt",
+        "satisfied": true
+      },
+      {
+        "applicable": true,
+        "evidenceRefs": [
+          "sha256:150d529554ab3599e3e173d2b3f908f2f78f62b1c3936750a07b043bede561f2"
+        ],
+        "mandatory": true,
+        "reason": "satisfied by 1 admissible item(s)",
+        "requirementId": "r.reopen_receipt",
+        "satisfied": true
+      }
+    ]
+  }
+}

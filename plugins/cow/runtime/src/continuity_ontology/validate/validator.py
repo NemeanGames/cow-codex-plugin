@@ -20,9 +20,20 @@ __all__ = [
     "ValidationResult",
     "RecordValidator",
     "validate_record",
+    "ID_PATTERN",
 ]
 
-_ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$")
+#: A bounded identifier: a restricted alphabet and at most 4096 characters.
+#: The bound exists to keep identifiers sane, not to fit a filesystem
+#: component: an evidence ID carries the whole escaped relative path of its
+#: file (``ev.<escaped path>``), which can legitimately exceed 256 characters
+#: for a deeply nested path. File names are bounded separately.
+#: The generators read ID_PATTERN so the published JSON Schemas, the
+#: TypeScript types and this validator carry one identifier grammar; a test
+#: asserts the generated pattern equals this one.
+_ID_MAX_LENGTH = 4096
+ID_PATTERN = r"^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0," + str(_ID_MAX_LENGTH - 1) + r"}$"
+_ID_RE = re.compile(ID_PATTERN)
 _DIGEST_RE = re.compile(r"^sha256:[0-9a-f]{64}$")
 _BARE_DIGEST_RE = re.compile(r"^[0-9a-f]{64}$")
 _TIMESTAMP_RE = re.compile(

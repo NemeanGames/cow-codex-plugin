@@ -1,0 +1,35 @@
+{
+  "admissibility": "ADMISSIBLE",
+  "contentDigest": "sha256:150d529554ab3599e3e173d2b3f908f2f78f62b1c3936750a07b043bede561f2",
+  "createdAt": "2026-09-16T15:28:52Z",
+  "evidenceKind": "derivation_receipt",
+  "hashProfile": "continuity.core.v2",
+  "logicalId": "ev.reopen_receipt",
+  "method": "derived by the task's own script from its declared sources",
+  "provenance": {
+    "actor": "worker",
+    "authorityClass": "DETERMINISTIC_DERIVATION",
+    "observationChannel": "FILE_BYTES",
+    "operationalOwnership": "DIRECTLY_OWNED",
+    "origin": "DERIVATION",
+    "productionMethod": "RECOMPUTED",
+    "sourceRefs": [
+      "sha256:150d529554ab3599e3e173d2b3f908f2f78f62b1c3936750a07b043bede561f2"
+    ],
+    "syntheticFixture": false,
+    "verificationStatus": "PRODUCER_ASSERTED"
+  },
+  "recordType": "Evidence",
+  "revisionId": "sha256:229afe4ede71ad6649c0a3e5ae21b165014ba2e90d1242d8839dad116b25cca8",
+  "schemaVersion": "2.0.0",
+  "scope": {
+    "enumerationComplete": true,
+    "scopeKind": "file",
+    "selector": "a/reopen_receipt.py"
+  },
+  "semanticModelDigest": "sha256:356d05c8e459888cd22779f81e74d9e856a749105e115cca66391806a95aca4a",
+  "subject": "a/reopen_receipt.py",
+  "supportsClaimTypes": [
+    "HASH_EQUALITY"
+  ]
+}

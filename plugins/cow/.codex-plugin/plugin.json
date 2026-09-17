@@ -1,6 +1,6 @@
 {
   "name": "cow",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Continuity Of Work ontology for resumable, evidence-bound, auditable Codex work.",
   "author": {
     "name": "Adrian Arvizu"
@@ -17,7 +17,7 @@
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "COW \u2014 Continuity Of Work",
+    "displayName": "COW — Continuity Of Work",
     "shortDescription": "Resumable, evidence-bound, auditable agent work",
     "longDescription": "Externalize persistent state, evidence, checkpoints, and mechanical verification while reserving model context for reasoning.",
     "developerName": "Adrian Arvizu",

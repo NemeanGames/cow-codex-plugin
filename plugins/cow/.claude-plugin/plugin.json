@@ -1,0 +1,10 @@
+{
+  "name": "cow",
+  "version": "1.0.3",
+  "description": "Continuity Of Work: explicit checkpoints, evidence integrity and audit boundaries.",
+  "author": {
+    "name": "Adrian Arvizu"
+  },
+  "license": "MIT",
+  "skills": "./skills/"
+}

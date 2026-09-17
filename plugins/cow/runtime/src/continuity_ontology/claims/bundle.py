@@ -143,6 +143,9 @@ def compile_claim(
     if "producerStatus" not in producer_assertion:
         raise ClaimError("a producer assertion must carry the producer's own status")
 
+    requirement_ids = [r["requirementId"] for r in requirements]
+    if len(requirement_ids) != len(set(requirement_ids)):
+        raise ClaimError("duplicate requirement IDs")
     sufficiency = evidence_sufficiency(requirements, available_evidence)
     claim = {
         "recordType": "Claim",
@@ -161,6 +164,7 @@ def compile_claim(
 
 def _revision(claim: Mapping[str, Any], number: int, parent_digest: str | None, reason: str) -> dict[str, Any]:
     sealed = dict(claim)
+    sealed["sufficiency"] = {k: v for k, v in claim["sufficiency"].items() if k != "recordType"}
     sealed["lifecycle"] = "SEALED"
     revision = {
         "recordType": "ClaimRevision",

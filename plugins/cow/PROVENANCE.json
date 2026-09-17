@@ -1,9 +1,27 @@
 {
-  "source": "COW Codex plugin",
-  "sourceCommit": "6555f7ef7d15e3670e63fa8899f193fccd24a650",
-  "originalTagCommit": "8f6d3bf96e7f9d5c4bf8e39fd2864cc901864c64",
-  "adaptation": "Codex 1.0.1 adopts corrected public runtime and documentation from Claude 1.0.1 plus the status truncation fix. Original v1.0.0 remains unchanged.",
+  "sourceCommit": "ab1b179b02996500050e547eff4d846ca0e836ed",
+  "sourceCandidateDigest": "sha256:b411364ebe51f1c944aecde133d948ea4a7bec26de64f04840d736a5a04f2215",
+  "semanticModelDigest": "sha256:0e07de0be6ddc33f77d15bf5d7144f2ba48edf23beb878b4257583718f1e706d",
+  "codexVersion": "1.0.2",
+  "claudeVersion": "1.0.3",
+  "adaptation": "Existing public runtime allowlist refreshed from cycle8, plus Claim/evidence integrity modules. Private integration CLI providers removed. Public packaging and skills retained.",
   "privateResearchPackagesIncluded": false,
-  "semanticModelDigest": "sha256:419687df6a57c009f9657437e1bec5d2739c2c8e17ba5f5978a85f2cee84d40e",
-  "compatibility": "New package identity. No cross-verification with v1.0.0 identities is claimed. Original candidate unchanged."
+  "sourceAudit": {
+    "disposition": "INDETERMINATE",
+    "mandatoryPass": 49,
+    "mandatoryFail": 0,
+    "unknown": [
+      "R31",
+      "R39",
+      "R41"
+    ],
+    "repairPass": [
+      "R13",
+      "R17",
+      "F4",
+      "F5"
+    ]
+  },
+  "pluginQualification": "Public package checks are separate from the upstream source audit; native client/live validation not claimed.",
+  "compatibility": "Preserve historical runs; missing required Claim bodies require a new recording from preserved inputs. No automatic migration."
 }

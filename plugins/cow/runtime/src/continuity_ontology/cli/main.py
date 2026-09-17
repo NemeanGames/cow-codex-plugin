@@ -125,7 +125,7 @@ def cmd_resume(args: argparse.Namespace) -> int:
     from ..checkpoints.store import CheckpointError, CheckpointStore
 
     try:
-        store = CheckpointStore(args.checkpoint_root)
+        store = CheckpointStore(args.checkpoint_root, cas_root=args.cas_root, records_root=args.records_root)
         observed = json.loads(args.observed) if args.observed else {}
         report = store.resume(args.checkpoint_id, observed_environment=observed)
     except CheckpointError as exc:
@@ -213,6 +213,8 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--checkpoint-root", required=True)
     p.add_argument("--checkpoint-id", required=True)
     p.add_argument("--observed", help="JSON object of freshly observed ephemeral bindings")
+    p.add_argument("--cas-root", help="content store for the evidence-integrity pass (default: <run>/cas beside the checkpoints)")
+    p.add_argument("--records-root", help="sealed records for the evidence-integrity pass (default: <run>/records)")
     p.set_defaults(func=cmd_resume)
 
     p = sub.add_parser("query", help="answer competency questions from a corpus")

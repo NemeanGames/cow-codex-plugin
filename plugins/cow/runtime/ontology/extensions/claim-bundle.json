@@ -281,6 +281,11 @@
         "mandatory": {
           "type": "boolean",
           "required": true
+        },
+        "recordType": {
+          "type": "string",
+          "required": false,
+          "doc": "Explicit nested Claim discriminator; integrity checking requires Claim on persisted bundled bodies."
         }
       }
     },

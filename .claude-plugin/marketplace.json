@@ -1,0 +1,13 @@
+{
+  "name": "cow-claude",
+  "owner": {
+    "name": "Adrian Arvizu"
+  },
+  "plugins": [
+    {
+      "name": "cow",
+      "source": "./plugins/cow",
+      "description": "Evidence-bound offline work continuity."
+    }
+  ]
+}
