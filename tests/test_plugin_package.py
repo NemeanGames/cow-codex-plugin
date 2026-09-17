@@ -68,6 +68,6 @@ def test_two_builds_identical(tmp_path):
 def test_manifest_order_is_case_sensitive_posix(tmp_path):
     spec=importlib.util.spec_from_file_location('builder',ROOT/'scripts/build_plugins.py')
     builder=importlib.util.module_from_spec(spec); spec.loader.exec_module(builder)
-    for name in ('z','a','A','B'):
+    for name in ('z','apple','Apple2','Banana'):
         (tmp_path/name).write_text(name)
-    assert [p.name for p in builder.public_files(tmp_path)] == ['A','B','a','z']
+    assert [p.name for p in builder.public_files(tmp_path)] == ['Apple2','Banana','apple','z']
