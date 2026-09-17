@@ -1,5 +1,5 @@
 # GENERATED FROM ontology/metamodel.json -- DO NOT EDIT
-# semanticModelDigest: sha256:419687df6a57c009f9657437e1bec5d2739c2c8e17ba5f5978a85f2cee84d40e
+# semanticModelDigest: sha256:0e07de0be6ddc33f77d15bf5d7144f2ba48edf23beb878b4257583718f1e706d
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -700,6 +700,10 @@ cont:ClaimShape a sh:NodeShape ;
         sh:path cont:Claim.proposition ;
         sh:or ( [ sh:datatype xsd:string ] [ sh:class cont:Proposition ] ) ;
         sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path cont:Claim.recordType ;
+        sh:datatype xsd:string ;
     ] ;
     sh:property [
         sh:path cont:Claim.requiredEvidence ;

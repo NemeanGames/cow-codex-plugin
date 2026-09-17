@@ -18,6 +18,7 @@ from typing import Any, Mapping
 
 from ..canonical.profiles import digest_with
 from ..model.metamodel import Metamodel
+from ..validate.validator import ID_PATTERN
 
 __all__ = [
     "GENERATED_HEADER",
@@ -50,7 +51,7 @@ _SCALAR_JSON_SCHEMA: dict[str, dict[str, Any]] = {
     },
     "duration_ms": {"type": "integer", "minimum": 0},
     "digest": {"type": "string", "pattern": r"^(sha256:[0-9a-f]{64}|[0-9a-f]{64})$"},
-    "id": {"type": "string", "pattern": r"^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$"},
+    "id": {"type": "string", "pattern": ID_PATTERN},
     "uri": {"type": "string", "pattern": r"^[a-zA-Z][a-zA-Z0-9+.-]*:"},
     "json": {},
 }
@@ -212,7 +213,7 @@ def _schema_for_type(model: Metamodel, spec: Any) -> dict[str, Any]:
     if ctor == "ref":
         return {
             "oneOf": [
-                {"type": "string", "pattern": r"^[A-Za-z0-9][A-Za-z0-9._:@/+-]{0,255}$"},
+                {"type": "string", "pattern": ID_PATTERN},
                 {"$ref": "#/$defs/" + arg},
             ],
             "description": "identifier reference or embedded " + arg,

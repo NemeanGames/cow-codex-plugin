@@ -1,6 +1,6 @@
 ---
 name: cow-work-continuity
-description: Use COW when Codex needs to resume prior work, checkpoint progress, record an execution trace, bind evidence by digest, render compact status, or leave a verified handoff for another agent. Invoke explicitly when this workflow is requested.
+description: Use COW when the agent needs to resume prior work, checkpoint progress, record an execution trace, bind evidence by digest, render compact status, or leave a verified handoff for another agent. Invoke explicitly when this workflow is requested.
 ---
 
 # COW work continuity
@@ -24,7 +24,7 @@ The wrapper resolves the plugin's bundled runtime automatically.
 If `.cow/checkpoints` exists, list checkpoint files and resume the intended checkpoint:
 
 ```bash
-python "<absolute-work-continuity-skill-path>/scripts/cow_cli.py" resume   --checkpoint-root .cow/checkpoints   --checkpoint-id <checkpoint-id>   --observed '{"processId": <current-pid>}'
+python "<absolute-work-continuity-skill-path>/scripts/cow_cli.py" resume   --checkpoint-root .cow/checkpoints --cas-root .cow/cas   --checkpoint-id <checkpoint-id>   --observed '{"processId": <current-pid>}'
 ```
 
 Interpret exit codes semantically: `0 PASS`, `2 FAIL`, `3 UNKNOWN`, `4 ERROR`, `5 invalid contract`, `6 blocked/NOT_RUN`. Never turn `UNKNOWN` into zero or retry a blocked side effect without reconciliation.
@@ -72,3 +72,17 @@ Choose an available Python 3.10+ interpreter before running examples: `python3`,
 ## Script paths
 
 Replace `<absolute-work-continuity-skill-path>` with this installed skill directory before running examples. Keep the working directory at the user project so `.cow` records are written there, not inside the plugin installation.
+
+## Verify before handoff
+
+```bash
+python "<absolute-work-continuity-skill-path>/scripts/cow_cli.py" task verify --root .cow --checkpoint-id <checkpoint-id>
+```
+
+Required Claim bodies and evidence must match their checkpoint pins. Missing required
+Claim bodies produce UNKNOWN; malformed or mismatched Claims produce FAIL; I/O errors
+produce ERROR. Resume blocks these cases with exit 6. Without a CAS, verification is
+NOT_RUN and resume is blocked. Claim-free checkpoints retain non-blocking Claim NOT_RUN.
+Preserve historical runs. Recover an old incompatible run by recording preserved inputs
+into a new root, never by resealing or editing the old checkpoint to force acceptance.
+These shared skills work in Codex and Claude Code; invoke the workflow explicitly.

@@ -29,6 +29,7 @@ from continuity_audit.output.writer import AuditWriter
 from continuity_audit.recompute.evidence import recompute_claim_status
 
 from ..canonical.profiles import digest_with
+from ..checkpoints.evidence_integrity import evidence_id, evidence_record_name, seal_record, verify_evidence_bindings
 from ..checkpoints.store import CheckpointStore
 from ..claims.bundle import compile_claim, seal_bundle, verify_seal_dag
 from ..claims.cas import ContentStore
@@ -78,6 +79,8 @@ def run_end_to_end(
 ) -> dict[str, Any]:
     """Execute the full workflow and return its receipts."""
     root = Path(run_root)
+    if any((root / "checkpoints").glob("*.checkpoint.json")):
+        raise ValueError("run root already contains a checkpoint; record into a new root")
     root.mkdir(parents=True, exist_ok=True)
     cas = ContentStore(root / "cas")
     events = EventStore(root / "events", "e2e", known_event_types=EVENT_TYPES)
@@ -209,9 +212,9 @@ def run_end_to_end(
     # -- 5. producer claims ------------------------------------------------
     requirements = [
         {"requirementId": "r.manifest", "evidenceKind": "manifest", "mandatory": True,
-         "applicable": True, "syntheticAcceptable": False},
+         "minimumAuthorityClasses": ["DETERMINISTIC_DERIVATION"], "syntheticAcceptable": False},
         {"requirementId": "r.receipt", "evidenceKind": "derivation_receipt", "mandatory": True,
-         "applicable": True, "syntheticAcceptable": False},
+         "minimumAuthorityClasses": ["DETERMINISTIC_DERIVATION"], "syntheticAcceptable": False},
     ]
     claim = compile_claim(
         "c.archive_members_intact",
@@ -230,8 +233,15 @@ def run_end_to_end(
         requirements,
         evidence_store,
     )
+    claim["producerAssertion"]["proposition"] = dict(claim["proposition"])
     candidate_digest = result["manifest"]["archiveDigest"]
     bundle = seal_bundle("b.e2e", candidate_digest, [claim], sealed_at=_utc())
+    revision_root = root / "records" / "claim-revisions"
+    revision_root.mkdir(parents=True, exist_ok=True)
+    for revision in bundle["_revisions"].values():
+        body = {k: v for k, v in revision.items() if k != "_digest"}
+        (revision_root / (revision["_digest"][7:] + ".json")).write_text(
+            json.dumps(body, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     bundle_public = {k: v for k, v in bundle.items() if not k.startswith("_")}
     bundle_digest = cas.put_value(bundle_public)
 
@@ -334,6 +344,36 @@ def run_end_to_end(
     span("s.run", "worker", outer_start, outer_end, "PLANNING", leaf=False)
     timing = timing_summary(spans)
 
+    # The archive the checkpoint binds is stored by content digest and named
+    # by a sealed Evidence record per snapshot path, so the same integrity
+    # pass that guards `task record` can re-check this run on resume.
+    stored_archive_digest = cas.put_file(archive_path)
+    if stored_archive_digest != candidate_digest:
+        raise ValueError("archive digest " + candidate_digest + " does not match the stored bytes "
+                         + stored_archive_digest)
+    model_digest = load_metamodel().digest
+    evidence_records: list[dict[str, Any]] = []
+    for subject in ("payload", "payload.zip"):
+        ev_record = seal_record("Evidence", evidence_id(subject), {
+            "evidenceKind": "archive_bytes",
+            "subject": subject,
+            "contentDigest": candidate_digest,
+            "admissibility": "ADMISSIBLE",
+            "method": "archive bytes read from disk after packaging",
+            "scope": {"scopeKind": "file", "selector": subject, "enumerationComplete": True},
+            "supportsClaimTypes": ["HASH_EQUALITY"],
+        }, {
+            "actor": "worker", "origin": "DERIVATION", "authorityClass": "DETERMINISTIC_DERIVATION",
+            "productionMethod": "RECOMPUTED", "observationChannel": "FILE_BYTES",
+            "operationalOwnership": "DIRECTLY_OWNED", "verificationStatus": "PRODUCER_ASSERTED",
+            "syntheticFixture": False,
+        }, semantic_model_digest=model_digest, created_at=_utc())
+        validate_persisted(ev_record)
+        evidence_records.append(ev_record)
+        record_path = root / "records" / (evidence_record_name(ev_record["logicalId"]) + ".json")
+        record_path.parent.mkdir(parents=True, exist_ok=True)
+        record_path.write_bytes((json.dumps(ev_record, indent=2, sort_keys=True) + "\n").encode("utf-8"))
+
     checkpoints = CheckpointStore(root / "checkpoints", validate_records=True)
     snapshot = {
         "admittedSourceVersions": {"payload": candidate_digest},
@@ -361,6 +401,12 @@ def run_end_to_end(
             "unknownFields": [],
         },
     }
+    binding = verify_evidence_bindings(
+        snapshot, evidence_records, cas,
+        expected={"payload": candidate_digest, "payload.zip": candidate_digest},
+        referenced=[candidate_digest])
+    if binding["blockers"]:
+        raise ValueError("evidence binding check refused the checkpoint: " + "; ".join(binding["blockers"]))
     checkpoint = checkpoints.commit(
         "cp.e2e",
         outcome_id="outcome.package_release_payload",

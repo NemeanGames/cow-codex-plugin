@@ -1,0 +1,53 @@
+{
+  "createdAt": "2026-09-16T15:28:52Z",
+  "frozen": true,
+  "hashProfile": "continuity.core.v2",
+  "logicalId": "plan.prefix",
+  "nodes": [
+    {
+      "blocked": false,
+      "mandatory": true,
+      "nodeId": "n1",
+      "selectedImplementation": "impl.prefix.v1",
+      "workItem": "wi.prefix"
+    }
+  ],
+  "outcome": "outcome.prefix",
+  "provenance": {
+    "actor": "worker",
+    "authorityClass": "POLICY_OR_SYNTHETIC_AID",
+    "observationChannel": "NOT_OBSERVED",
+    "operationalOwnership": "DIRECTLY_OWNED",
+    "origin": "POLICY",
+    "productionMethod": "ASSERTED",
+    "syntheticFixture": false,
+    "verificationStatus": "PRODUCER_ASSERTED"
+  },
+  "recordType": "ExecutionPlan",
+  "revisionId": "sha256:b36da29427d7ff997442a8e415aaaaf5155a138a54d3b7a1ace0088a73f1aee4",
+  "schemaVersion": "2.0.0",
+  "selectionReceipts": [
+    {
+      "blocked": false,
+      "candidateUniverse": [
+        "impl.prefix.v1"
+      ],
+      "committed": "impl.prefix.v1",
+      "hardPredicates": [],
+      "nodeId": "n1",
+      "prunedCandidates": [],
+      "quantization": 0,
+      "rankedCandidates": [
+        {
+          "candidateId": "impl.prefix.v1",
+          "score": "1"
+        }
+      ],
+      "terminalDecisionByCandidate": {
+        "impl.prefix.v1": "SELECTED"
+      },
+      "tieBreak": "single_candidate"
+    }
+  ],
+  "semanticModelDigest": "sha256:356d05c8e459888cd22779f81e74d9e856a749105e115cca66391806a95aca4a"
+}

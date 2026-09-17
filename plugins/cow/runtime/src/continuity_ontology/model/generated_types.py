@@ -1,6 +1,6 @@
 """GENERATED FROM ontology/metamodel.json -- DO NOT EDIT
 
-semanticModelDigest: sha256:419687df6a57c009f9657437e1bec5d2739c2c8e17ba5f5978a85f2cee84d40e
+semanticModelDigest: sha256:0e07de0be6ddc33f77d15bf5d7144f2ba48edf23beb878b4257583718f1e706d
 """
 
 from __future__ import annotations
@@ -8,7 +8,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any
 
-SEMANTIC_MODEL_DIGEST = 'sha256:419687df6a57c009f9657437e1bec5d2739c2c8e17ba5f5978a85f2cee84d40e'
+SEMANTIC_MODEL_DIGEST = 'sha256:0e07de0be6ddc33f77d15bf5d7144f2ba48edf23beb878b4257583718f1e706d'
 METAMODEL_VERSION = '2.0.0'
 
 
@@ -407,6 +407,7 @@ ENTITY_FIELDS: dict[str, dict[str, dict[str, Any]]] = {
         'mandatory': {'type': 'boolean', 'required': True, 'python': 'bool'},
         'producerAssertion': {'type': {'ref': 'ProducerAssertion'}, 'required': True, 'python': 'str | dict[str, Any]'},
         'proposition': {'type': {'ref': 'Proposition'}, 'required': True, 'python': 'str | dict[str, Any]'},
+        'recordType': {'type': 'string', 'required': False, 'python': 'str'},
         'requiredEvidence': {'type': {'list': {'ref': 'EvidenceRequirement'}}, 'required': True, 'python': 'list[str | dict[str, Any]]'},
         'sufficiency': {'type': {'ref': 'EvidenceSufficiencyReceipt'}, 'required': True, 'python': 'str | dict[str, Any]'},
     },

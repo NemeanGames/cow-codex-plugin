@@ -1,0 +1,71 @@
+{
+  "acceptanceCriteria": [
+    {
+      "contractVersion": "1.0.0",
+      "name": "prefix",
+      "predicates": [
+        {
+          "expected": null,
+          "mandatory": true,
+          "operator": "EQUAL",
+          "predicateId": "p.prefix",
+          "subjectPath": "$.a/reopen_receipt.py"
+        }
+      ],
+      "requiredEvidence": [
+        {
+          "evidenceKind": "derivation_receipt",
+          "mandatory": true,
+          "minimumAuthorityClasses": [
+            "DETERMINISTIC_DERIVATION"
+          ],
+          "requirementId": "r.reopen_receipt",
+          "syntheticAcceptable": false
+        },
+        {
+          "evidenceKind": "derivation_receipt",
+          "mandatory": true,
+          "minimumAuthorityClasses": [
+            "DETERMINISTIC_DERIVATION"
+          ],
+          "requirementId": "r.reopen_receipt",
+          "syntheticAcceptable": false
+        }
+      ],
+      "scope": [
+        "a/reopen_receipt.py"
+      ]
+    }
+  ],
+  "createdAt": "2026-09-16T15:28:52Z",
+  "hashProfile": "continuity.core.v2",
+  "lifecycle": "RUNNING",
+  "logicalId": "outcome.prefix",
+  "provenance": {
+    "actor": "worker",
+    "authorityClass": "CALLER_ASSERTION",
+    "observationChannel": "NOT_OBSERVED",
+    "operationalOwnership": "DIRECTLY_OWNED",
+    "origin": "HUMAN_INPUT",
+    "productionMethod": "ASSERTED",
+    "syntheticFixture": false,
+    "verificationStatus": "PRODUCER_ASSERTED"
+  },
+  "recordType": "Outcome",
+  "requestedResult": "produce a/reopen_receipt.py",
+  "requiredArtifactKinds": [
+    "py"
+  ],
+  "requiredEvidenceKinds": [
+    "derivation_receipt",
+    "source_bytes"
+  ],
+  "revisionId": "sha256:40ce10dc6d3fc254495766dedf948a6a7acf8120c6a32c842f77c2758d488ff4",
+  "schemaVersion": "2.0.0",
+  "semanticModelDigest": "sha256:356d05c8e459888cd22779f81e74d9e856a749105e115cca66391806a95aca4a",
+  "subjectUniverse": [
+    "a/reopen_receipt.py"
+  ],
+  "title": "prefix",
+  "workUnitPolicyRef": "wup.prefix.v1"
+}

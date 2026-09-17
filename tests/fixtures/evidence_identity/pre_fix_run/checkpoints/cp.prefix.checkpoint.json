@@ -1,0 +1,97 @@
+{
+  "acceptedDecisions": [
+    {
+      "citedInputs": [
+        "sha256:53d41d916079060ebb81f98105416e6008014c3bfc155ad017778fff7453aa90"
+      ],
+      "decisionKind": "producer_self_check",
+      "disposition": "PASS",
+      "issuedByRole": "worker",
+      "rationale": "producer-side status of claim claim.prefix; NOT an independent verification"
+    }
+  ],
+  "closureReceipt": {
+    "closureKind": "STATE",
+    "complete": true,
+    "enumeratedMembers": [
+      "claimDigest",
+      "eventPosition"
+    ],
+    "expectedCount": 2,
+    "observedCount": 2,
+    "scope": {
+      "enumerationComplete": true,
+      "scopeKind": "required_facts",
+      "selector": "cp.prefix"
+    },
+    "witnessRefs": [
+      "sha256:150d529554ab3599e3e173d2b3f908f2f78f62b1c3936750a07b043bede561f2"
+    ]
+  },
+  "committed": true,
+  "hashProfile": "continuity.core.v2",
+  "lastSealedEventDigest": "sha256:1489a38d53bb973de9f5d82f1ba7cc52ac676ad30d92c01c0704eb9c3c5cd456",
+  "lastSealedEventSeq": 2,
+  "logicalId": "cp.prefix",
+  "nextLegalActions": [
+    "hand the claim and its evidence to the independent auditor"
+  ],
+  "openOperations": [],
+  "outcome": "outcome.prefix",
+  "recordType": "Checkpoint",
+  "recoveryPolicyRef": "rp.default.v1",
+  "revisionId": "sha256:92fca6cb103af0472a88479eb189ff1972191f94ca49d4621d94307458dc2eeb",
+  "schemaVersion": "2.0.0",
+  "snapshot": {
+    "admittedSourceVersions": {
+      "a/reopen_receipt.json": "sha256:150d529554ab3599e3e173d2b3f908f2f78f62b1c3936750a07b043bede561f2"
+    },
+    "artifactRefs": {
+      "a/reopen_receipt.py": "sha256:150d529554ab3599e3e173d2b3f908f2f78f62b1c3936750a07b043bede561f2"
+    },
+    "completeness": "AVAILABLE",
+    "contractDigests": {
+      "prefix": "sha256:b566e8881b46d093afbddae8930a55234c3797d729d8cd2fbade08258d4ca060"
+    },
+    "environmentBinding": {
+      "hostId": "fixture-host",
+      "interpreter": "cpython",
+      "interpreterVersion": "3.10.8",
+      "platform": "fixture-platform",
+      "processCreation": {
+        "executablePath": "python",
+        "pid": 4242
+      },
+      "unknownFields": [
+        "moduleClosureDigest"
+      ]
+    },
+    "ephemeralBindings": [
+      {
+        "bindingKind": "processId",
+        "carriesAuthority": false,
+        "recordedValue": 4242,
+        "refreshRequiredOnResume": true
+      }
+    ],
+    "implementationVersions": {
+      "impl.prefix.v1": "1.0.0"
+    },
+    "planDigest": "sha256:b36da29427d7ff997442a8e415aaaaf5155a138a54d3b7a1ace0088a73f1aee4",
+    "requiredFacts": [
+      {
+        "factId": "claimDigest",
+        "present": true,
+        "value": "sha256:53d41d916079060ebb81f98105416e6008014c3bfc155ad017778fff7453aa90"
+      },
+      {
+        "factId": "eventPosition",
+        "present": true,
+        "value": 2
+      }
+    ]
+  },
+  "unresolvedClaims": [
+    "claim.prefix"
+  ]
+}

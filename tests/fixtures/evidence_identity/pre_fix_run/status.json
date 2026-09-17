@@ -1,0 +1,11 @@
+{
+  "recordType": "CompactStatus",
+  "text": "state: CHECKPOINTED\ngate: producer_self_check=PASS (producer-asserted, not verified)\nmandatory checks: ERROR=0, FAIL=0, NOT_RUN=1, PASS=1, UNKNOWN=0\nbundle: none (single producer claim sha256:53d41d916079060ebb81f98105416e6008014c3bfc155ad017778fff7453aa90)\naudit: none (independent audit NOT_RUN)\nnext legal action: hand the claim and its evidence to the independent auditor\nevidence: sha256:150d529554ab3599e3e173d2b3f908f2f78f62b1c3936750a07b043bede561f2\nevidence: sha256:150d529554ab3599e3e173d2b3f908f2f78f62b1c3936750a07b043bede561f2\nevidence: checkpoint sha256:92fca6cb103af0472a88479eb189ff1972191f94ca49d4621d94307458dc2eeb",
+  "wordCount": 45,
+  "wordBudget": 200,
+  "budgetExceeded": false,
+  "blockerCount": 0,
+  "blockersNamed": [],
+  "truncated": false,
+  "note": "Every blocker is named. Detailed evidence is retrieved by reference rather than inlined."
+}

@@ -1,0 +1,178 @@
+{
+  "actualActor": "worker:prefix",
+  "attempt": 1,
+  "capability": "cap.artifact.derive",
+  "consumedArtifacts": [
+    {
+      "artifact": "a/reopen_receipt.json",
+      "contentDigest": "sha256:150d529554ab3599e3e173d2b3f908f2f78f62b1c3936750a07b043bede561f2",
+      "mediaType": "application/json",
+      "sizeBytes": 19
+    }
+  ],
+  "createdAt": "2026-09-16T15:28:52Z",
+  "environmentBinding": {
+    "hostId": "fixture-host",
+    "interpreter": "cpython",
+    "interpreterVersion": "3.10.8",
+    "platform": "fixture-platform",
+    "processCreation": {
+      "executablePath": "python",
+      "pid": 4242
+    },
+    "unknownFields": [
+      "moduleClosureDigest"
+    ]
+  },
+  "events": [
+    {
+      "eventId": "prefix:00000000",
+      "eventType": "plan.frozen",
+      "eventTypeVersion": "1",
+      "idempotencyKey": "prefix:plan",
+      "logicalSubject": "plan.prefix",
+      "monotonicClockDomain": "host:fixture-host",
+      "monotonicNs": 89811312000000,
+      "payload": {
+        "outcome": "outcome.prefix",
+        "planDigest": "sha256:b36da29427d7ff997442a8e415aaaaf5155a138a54d3b7a1ace0088a73f1aee4",
+        "workItem": "wi.prefix"
+      },
+      "payloadDigest": "sha256:dc3eed1cacb4b50a2555981e1a60d2f68544a3510ed00835c3f209fed17a4156",
+      "priorEventDigest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "replayPolicy": "REPLAYABLE",
+      "sequence": 0,
+      "wallClock": "2026-09-16T15:28:52Z"
+    },
+    {
+      "eventId": "prefix:00000001",
+      "eventType": "artifact.produced",
+      "eventTypeVersion": "1",
+      "idempotencyKey": "prefix:artifact:ev.reopen_receipt",
+      "logicalSubject": "a/reopen_receipt.py",
+      "monotonicClockDomain": "host:fixture-host",
+      "monotonicNs": 89811359000000,
+      "payload": {
+        "contentDigest": "sha256:150d529554ab3599e3e173d2b3f908f2f78f62b1c3936750a07b043bede561f2",
+        "sizeBytes": 16
+      },
+      "payloadDigest": "sha256:efe024834944b281b39c873336e64c2f4e9d162e513f79e1839fc36b8397b18a",
+      "priorEventDigest": "sha256:fb462ef39a3246ac6bf2960c03c0828449299e6e6cfc343b5fc9d7c49e26b3ac",
+      "replayPolicy": "REPLAYABLE",
+      "sequence": 1,
+      "wallClock": "2026-09-16T15:28:52Z"
+    },
+    {
+      "eventId": "prefix:00000002",
+      "eventType": "claim.compiled",
+      "eventTypeVersion": "1",
+      "idempotencyKey": "prefix:claim",
+      "logicalSubject": "claim.prefix",
+      "monotonicClockDomain": "host:fixture-host",
+      "monotonicNs": 89811359000000,
+      "payload": {
+        "claimDigest": "sha256:53d41d916079060ebb81f98105416e6008014c3bfc155ad017778fff7453aa90",
+        "producerStatus": "PASS",
+        "sufficient": true
+      },
+      "payloadDigest": "sha256:32d388cd11613fee929e65f3e6c765d44dbeb45fcd2341d9f462c1d9812b20ec",
+      "priorEventDigest": "sha256:a41f087204d5836618167e333d9056ff4611875d4c786ca8772fac7fd38d9ec5",
+      "replayPolicy": "REPLAYABLE",
+      "sequence": 2,
+      "wallClock": "2026-09-16T15:28:52Z"
+    },
+    {
+      "eventId": "prefix:00000003",
+      "eventType": "checkpoint.committed",
+      "eventTypeVersion": "1",
+      "idempotencyKey": "prefix:checkpoint",
+      "logicalSubject": "cp.prefix",
+      "monotonicClockDomain": "host:fixture-host",
+      "monotonicNs": 89811375000000,
+      "payload": {
+        "revisionId": "sha256:92fca6cb103af0472a88479eb189ff1972191f94ca49d4621d94307458dc2eeb"
+      },
+      "payloadDigest": "sha256:ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "priorEventDigest": "sha256:1489a38d53bb973de9f5d82f1ba7cc52ac676ad30d92c01c0704eb9c3c5cd456",
+      "replayPolicy": "REPLAYABLE",
+      "sequence": 3,
+      "wallClock": "2026-09-16T15:28:52Z"
+    }
+  ],
+  "hashProfile": "continuity.core.v2",
+  "implementation": "impl.prefix.v1",
+  "issuer": "agent",
+  "logicalId": "run-prefix-1789572532",
+  "mutationScopeDeclared": true,
+  "plan": "plan.prefix",
+  "producedArtifacts": [
+    {
+      "artifact": "a/reopen_receipt.py",
+      "contentDigest": "sha256:150d529554ab3599e3e173d2b3f908f2f78f62b1c3936750a07b043bede561f2",
+      "directlyDerivedFrom": [
+        "sha256:150d529554ab3599e3e173d2b3f908f2f78f62b1c3936750a07b043bede561f2"
+      ],
+      "mediaType": "text/x-python",
+      "sizeBytes": 16
+    }
+  ],
+  "provenance": {
+    "actor": "worker",
+    "authorityClass": "OPERATION_OWNED_RESULT",
+    "observationChannel": "PROCESS_API",
+    "operationalOwnership": "DIRECTLY_OWNED",
+    "origin": "LIVE_OBSERVATION",
+    "productionMethod": "MEASURED",
+    "syntheticFixture": false,
+    "verificationStatus": "PRODUCER_ASSERTED"
+  },
+  "recordType": "ExecutionTrace",
+  "resourceUsage": [
+    {
+      "accountingRule": "DISJOINT_ADDITIVE",
+      "basis": "OBSERVED",
+      "dedupKey": "run-prefix-1789572532:runtime",
+      "kind": "TOOL_RUNTIME_MS",
+      "scope": {
+        "enumerationComplete": true,
+        "scopeKind": "run",
+        "selector": "run-prefix-1789572532"
+      },
+      "unit": "milliseconds",
+      "value": "63.0"
+    },
+    {
+      "accountingRule": "DISJOINT_ADDITIVE",
+      "basis": "UNKNOWN",
+      "dedupKey": "run-prefix-1789572532:vendor_in",
+      "kind": "VENDOR_INPUT_TOKENS",
+      "scope": {
+        "enumerationComplete": true,
+        "scopeKind": "run",
+        "selector": "run-prefix-1789572532"
+      },
+      "unit": "tokens",
+      "unknownReason": "the task CLI calls no provider; the agent's own usage is measured from its transcript, not here"
+    }
+  ],
+  "revisionId": "sha256:5bfbf536630fc300e8a391e6b78369aad25b6deec0cc3d136defc952af50b190",
+  "runId": "run-prefix-1789572532",
+  "schemaVersion": "2.0.0",
+  "semanticModelDigest": "sha256:356d05c8e459888cd22779f81e74d9e856a749105e115cca66391806a95aca4a",
+  "spans": [
+    {
+      "actorId": "worker",
+      "allocationUnknown": false,
+      "clockDomain": "host:fixture-host",
+      "endNs": 89811375000000,
+      "leaf": false,
+      "purpose": "GENERATION",
+      "spanId": "s.run",
+      "startNs": 89811312000000,
+      "state": "ACTIVE_EXECUTION",
+      "traceRunId": "run-prefix-1789572532"
+    }
+  ],
+  "terminalStatus": "NOT_RUN",
+  "workItem": "wi.prefix"
+}

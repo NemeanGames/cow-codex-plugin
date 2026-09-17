@@ -1,0 +1,68 @@
+{
+  "accountingId": "wi.prefix",
+  "accountingPartition": "prefix",
+  "contracts": [
+    {
+      "contractVersion": "1.0.0",
+      "name": "prefix",
+      "predicates": [
+        {
+          "expected": null,
+          "mandatory": true,
+          "operator": "EQUAL",
+          "predicateId": "p.prefix",
+          "subjectPath": "$.a/reopen_receipt.py"
+        }
+      ],
+      "requiredEvidence": [
+        {
+          "evidenceKind": "derivation_receipt",
+          "mandatory": true,
+          "minimumAuthorityClasses": [
+            "DETERMINISTIC_DERIVATION"
+          ],
+          "requirementId": "r.reopen_receipt",
+          "syntheticAcceptable": false
+        },
+        {
+          "evidenceKind": "derivation_receipt",
+          "mandatory": true,
+          "minimumAuthorityClasses": [
+            "DETERMINISTIC_DERIVATION"
+          ],
+          "requirementId": "r.reopen_receipt",
+          "syntheticAcceptable": false
+        }
+      ],
+      "scope": [
+        "a/reopen_receipt.py"
+      ]
+    }
+  ],
+  "createdAt": "2026-09-16T15:28:52Z",
+  "hashProfile": "continuity.core.v2",
+  "lifecycle": "RUNNING",
+  "logicalId": "wi.prefix",
+  "parentOutcome": "outcome.prefix",
+  "permittedSideEffects": [
+    "local_write:."
+  ],
+  "provenance": {
+    "actor": "worker",
+    "authorityClass": "CALLER_ASSERTION",
+    "observationChannel": "NOT_OBSERVED",
+    "operationalOwnership": "DIRECTLY_OWNED",
+    "origin": "HUMAN_INPUT",
+    "productionMethod": "ASSERTED",
+    "syntheticFixture": false,
+    "verificationStatus": "PRODUCER_ASSERTED"
+  },
+  "recordType": "WorkItem",
+  "requiredCapabilities": [
+    "cap.artifact.derive"
+  ],
+  "revisionId": "sha256:e572ab203ee6c2fa630fd297797a3e54211aa0b03640865ac3cfa4d35462a748",
+  "schemaVersion": "2.0.0",
+  "semanticModelDigest": "sha256:356d05c8e459888cd22779f81e74d9e856a749105e115cca66391806a95aca4a",
+  "title": "prefix"
+}

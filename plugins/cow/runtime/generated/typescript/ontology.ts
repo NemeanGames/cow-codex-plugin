@@ -1,7 +1,7 @@
 // GENERATED FROM ontology/metamodel.json -- DO NOT EDIT
-// semanticModelDigest: sha256:419687df6a57c009f9657437e1bec5d2739c2c8e17ba5f5978a85f2cee84d40e
+// semanticModelDigest: sha256:0e07de0be6ddc33f77d15bf5d7144f2ba48edf23beb878b4257583718f1e706d
 
-export const SEMANTIC_MODEL_DIGEST = "sha256:419687df6a57c009f9657437e1bec5d2739c2c8e17ba5f5978a85f2cee84d40e";
+export const SEMANTIC_MODEL_DIGEST = "sha256:0e07de0be6ddc33f77d15bf5d7144f2ba48edf23beb878b4257583718f1e706d";
 export const METAMODEL_VERSION = "2.0.0";
 
 export type AcceptanceDimension =
@@ -603,6 +603,7 @@ export interface Claim extends RecordEnvelope {
   mandatory: boolean;
   producerAssertion: string | ProducerAssertion;
   proposition: string | Proposition;
+  recordType?: string;
   requiredEvidence: Array<string | EvidenceRequirement>;
   sufficiency: string | EvidenceSufficiencyReceipt;
   "x-extension"?: Record<string, unknown>;
