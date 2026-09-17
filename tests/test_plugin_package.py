@@ -25,6 +25,7 @@ def test_fresh_archive_workflow(tmp_path, client):
     subprocess.run([sys.executable, '-B', str(ROOT/'scripts/build_plugins.py'), '--out', str(tmp_path/'z')], check=True, capture_output=True)
     archive = next((tmp_path/'z').glob(f'cow-{client}-*.zip'))
     with zipfile.ZipFile(archive) as z:
+        assert all(info.create_system == 3 for info in z.infolist())
         assert len(z.namelist()) == len(set(z.namelist()))
         assert not any('..' in Path(n).parts for n in z.namelist())
         z.extractall(tmp_path/'unpacked')
