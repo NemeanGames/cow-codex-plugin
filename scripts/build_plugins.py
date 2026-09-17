@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PLUGIN = ROOT / 'plugins/cow'
 
 def public_files(root):
-    return [p for p in sorted(root.rglob('*')) if p.is_file()
+    return [p for p in sorted(root.rglob('*'), key=lambda p: p.relative_to(root).as_posix()) if p.is_file()
             and '__pycache__' not in p.parts and p.suffix != '.pyc']
 
 def runtime_manifest():
